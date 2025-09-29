@@ -6,21 +6,25 @@ type ServiceConfig struct {
 }
 
 var Services = map[string]ServiceConfig{
+	"payment-service": {
+		Name: "payment-service",
+		Port: "50001", // Aligned with Dapr configuration
+	},
 	"trip-service": {
 		Name: "trip-service",
-		Port: "50003",
+		Port: "50002", // Aligned with Dapr configuration
 	},
 	"identity-service": {
 		Name: "identity-service",
-		Port: "50002",
+		Port: "50003", // Aligned with Dapr configuration
 	},
 	"driver-service": {
 		Name: "driver-service",
-		Port: "50004",
+		Port: "50004", // Aligned with Dapr configuration
 	},
 	"rider-service": {
 		Name: "rider-service",
-		Port: "50001",
+		Port: "50005", // Aligned with Dapr configuration
 	},
 }
 
