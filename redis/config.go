@@ -215,6 +215,11 @@ func (kb *RedisKeyBuilder) BuildDriverKey(driverID string, parts ...string) stri
 	return kb.BuildKey(allParts...)
 }
 
+// BuildDriverSubscriptionKey builds a driver subscription key
+func (kb *RedisKeyBuilder) BuildDriverSubscriptionKey(driverID string) string {
+	return kb.BuildDriverKey(driverID, "subscription")
+}
+
 // BuildRiderKey builds a rider-specific key
 func (kb *RedisKeyBuilder) BuildRiderKey(riderID string, parts ...string) string {
 	allParts := append([]string{"rider", riderID}, parts...)

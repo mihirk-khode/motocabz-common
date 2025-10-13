@@ -32,7 +32,7 @@ const (
 // Driver service provides driver-specific operations for location management and instant match
 type DriverServiceClient interface {
 	// Updates driver location and status
-	UpdateLocation(ctx context.Context, in *UpdateLocationRequest, opts ...grpc.CallOption) (*UpdateLocationResponse, error)
+	UpdateLocation(ctx context.Context, in *RqUpdateLocation, opts ...grpc.CallOption) (*RsUpdateLocation, error)
 	// Gets driver current status for instant match
 	GetDriverStatus(ctx context.Context, in *GetDriverStatusRequest, opts ...grpc.CallOption) (*GetDriverStatusResponse, error)
 	// Streams driver location updates
@@ -49,9 +49,9 @@ func NewDriverServiceClient(cc grpc.ClientConnInterface) DriverServiceClient {
 	return &driverServiceClient{cc}
 }
 
-func (c *driverServiceClient) UpdateLocation(ctx context.Context, in *UpdateLocationRequest, opts ...grpc.CallOption) (*UpdateLocationResponse, error) {
+func (c *driverServiceClient) UpdateLocation(ctx context.Context, in *RqUpdateLocation, opts ...grpc.CallOption) (*RsUpdateLocation, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(UpdateLocationResponse)
+	out := new(RsUpdateLocation)
 	err := c.cc.Invoke(ctx, DriverService_UpdateLocation_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
@@ -99,7 +99,7 @@ func (c *driverServiceClient) GetDriverInfo(ctx context.Context, in *GetDriverIn
 // Driver service provides driver-specific operations for location management and instant match
 type DriverServiceServer interface {
 	// Updates driver location and status
-	UpdateLocation(context.Context, *UpdateLocationRequest) (*UpdateLocationResponse, error)
+	UpdateLocation(context.Context, *RqUpdateLocation) (*RsUpdateLocation, error)
 	// Gets driver current status for instant match
 	GetDriverStatus(context.Context, *GetDriverStatusRequest) (*GetDriverStatusResponse, error)
 	// Streams driver location updates
@@ -116,7 +116,7 @@ type DriverServiceServer interface {
 // pointer dereference when methods are called.
 type UnimplementedDriverServiceServer struct{}
 
-func (UnimplementedDriverServiceServer) UpdateLocation(context.Context, *UpdateLocationRequest) (*UpdateLocationResponse, error) {
+func (UnimplementedDriverServiceServer) UpdateLocation(context.Context, *RqUpdateLocation) (*RsUpdateLocation, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdateLocation not implemented")
 }
 func (UnimplementedDriverServiceServer) GetDriverStatus(context.Context, *GetDriverStatusRequest) (*GetDriverStatusResponse, error) {
@@ -150,7 +150,7 @@ func RegisterDriverServiceServer(s grpc.ServiceRegistrar, srv DriverServiceServe
 }
 
 func _DriverService_UpdateLocation_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(UpdateLocationRequest)
+	in := new(RqUpdateLocation)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -162,7 +162,7 @@ func _DriverService_UpdateLocation_Handler(srv interface{}, ctx context.Context,
 		FullMethod: DriverService_UpdateLocation_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(DriverServiceServer).UpdateLocation(ctx, req.(*UpdateLocationRequest))
+		return srv.(DriverServiceServer).UpdateLocation(ctx, req.(*RqUpdateLocation))
 	}
 	return interceptor(ctx, in, info, handler)
 }
