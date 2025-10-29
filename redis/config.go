@@ -21,12 +21,19 @@ type EnvRedisConfig struct {
 
 // LoadFromEnv loads Redis configuration from environment variables
 func LoadFromEnv() RedisConfig {
-	host := getEnvOrDefault("REDIS_HOST", "localhost")
-	port := getEnvOrDefault("REDIS_PORT", "6379")
-	password := getEnvOrDefault("REDIS_PASSWORD", "")
-	db := getEnvIntOrDefault("REDIS_DB", 0)
-	poolSize := getEnvIntOrDefault("REDIS_POOL_SIZE", 10)
-	minIdle := getEnvIntOrDefault("REDIS_MIN_IDLE", 5)
+	// host := getEnvOrDefault("REDIS_HOST", "localhost")
+	// port := getEnvOrDefault("REDIS_PORT", "6379")
+	// password := getEnvOrDefault("REDIS_PASSWORD", "")
+	// db := getEnvIntOrDefault("REDIS_DB", 0)
+	// poolSize := getEnvIntOrDefault("REDIS_POOL_SIZE", 10)
+	// minIdle := getEnvIntOrDefault("REDIS_MIN_IDLE", 5)
+
+	host := "localhost"
+	port := "6379"
+	password := ""
+	db := 0
+	poolSize := 10
+	minIdle := 5
 
 	return RedisConfig{
 		Host:     host,
@@ -136,11 +143,11 @@ func GetServiceConfig(serviceName string) RedisServiceConfig {
 			Prefix:      "geo:",
 			TTL:         time.Duration(getEnvIntOrDefault("REDIS_GEO_TTL_SECONDS", 7200)) * time.Second,
 		}
-	case "pubsub":
+	case "kafka-pubsub":
 		return RedisServiceConfig{
-			ServiceName: "pubsub",
+			ServiceName: "kafka-pubsub",
 			DB:          getEnvIntOrDefault("REDIS_PUBSUB_DB", 4),
-			Prefix:      "pubsub:",
+			Prefix:      "kafka-pubsub:",
 			TTL:         0, // Pub/sub doesn't need TTL
 		}
 	default:

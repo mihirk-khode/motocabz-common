@@ -4,6 +4,7 @@ import (
 	"context"
 	"encoding/json"
 	"fmt"
+	"log"
 	"sync"
 	"time"
 
@@ -111,6 +112,14 @@ func NewRedisService(config RedisConfig) IRedisService {
 		ReadTimeout:  3 * time.Second,
 		WriteTimeout: 3 * time.Second,
 	})
+
+	ctx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
+	defer cancel()
+	if err := client.Ping(ctx).Err(); err != nil {
+		log.Printf("----------------------------------------------------------------Error connecting to Redis: %v--------------------------------------------------------------------", err)
+	}
+	log.Println("----------------------------------------------------------------Redis is up!!--------------------------------------------------------------------")
+	fmt.Println("----------------------------------------------------------------Redis client created successfully--------------------------------------------------------------------")
 
 	return &RedisService{
 		client: client,
