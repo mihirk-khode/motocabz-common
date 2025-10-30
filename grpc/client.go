@@ -1,7 +1,6 @@
 package grpc
 
 import (
-	"context"
 	"fmt"
 	"log"
 
@@ -58,35 +57,6 @@ func (c *GRPCClient) GetServiceConnection(serviceName string) (*grpc.ClientConn,
 	return conn, nil
 }
 
-// InvokeService invokes a service method using Dapr
-func (c *GRPCClient) InvokeService(ctx context.Context, serviceName, method string, data []byte) ([]byte, error) {
-	// Use Dapr's service invocation for inter-service communication
-	content := &client.DataContent{
-		ContentType: "application/json",
-		Data:        data,
-	}
-
-	resp, err := c.daprClient.InvokeMethodWithContent(ctx, serviceName, method, "post", content)
-	if err != nil {
-		return nil, fmt.Errorf("failed to invoke %s.%s: %w", serviceName, method, err)
-	}
-
-	return resp, nil
-}
-
-// PublishEvent publishes an event to a topic using Dapr
-func (c *GRPCClient) PublishEvent(ctx context.Context, topic string, data []byte) error {
-	pubsubName := "kafka-pubsub" // Default pubsub component
-
-	err := c.daprClient.PublishEvent(ctx, pubsubName, topic, data)
-	if err != nil {
-		return fmt.Errorf("failed to publish event to %s: %w", topic, err)
-	}
-
-	log.Printf("📢 Published event to topic: %s", topic)
-	return nil
-}
-
 // Close closes all connections
 func (c *GRPCClient) Close() error {
 	var lastErr error
@@ -103,65 +73,4 @@ func (c *GRPCClient) Close() error {
 	}
 
 	return lastErr
-}
-
-// GetPaymentServiceClient returns a payment service client
-func (c *GRPCClient) GetPaymentServiceClient(ctx context.Context) (interface{}, error) {
-	conn, err := c.GetServiceConnection(PaymentService)
-	if err != nil {
-		return nil, err
-	}
-
-	// TODO: Return the actual payment service client
-	// This would require importing the payment service protobuf client
-	log.Printf("Payment service client connected")
-	return conn, nil
-}
-
-// GetTripServiceClient returns a trip service client
-func (c *GRPCClient) GetTripServiceClient(ctx context.Context) (interface{}, error) {
-	conn, err := c.GetServiceConnection(TripService)
-	if err != nil {
-		return nil, err
-	}
-
-	// TODO: Return the actual trip service client
-	log.Printf("Trip service client connected")
-	return conn, nil
-}
-
-// GetIdentityServiceClient returns an identity service client
-func (c *GRPCClient) GetIdentityServiceClient(ctx context.Context) (interface{}, error) {
-	conn, err := c.GetServiceConnection(IdentityService)
-	if err != nil {
-		return nil, err
-	}
-
-	// TODO: Return the actual identity service client
-	log.Printf("Identity service client connected")
-	return conn, nil
-}
-
-// GetDriverServiceClient returns a driver service client
-func (c *GRPCClient) GetDriverServiceClient(ctx context.Context) (interface{}, error) {
-	conn, err := c.GetServiceConnection(DriverService)
-	if err != nil {
-		return nil, err
-	}
-
-	// TODO: Return the actual driver service client
-	log.Printf("Driver service client connected")
-	return conn, nil
-}
-
-// GetRiderServiceClient returns a rider service client
-func (c *GRPCClient) GetRiderServiceClient(ctx context.Context) (interface{}, error) {
-	conn, err := c.GetServiceConnection(RiderService)
-	if err != nil {
-		return nil, err
-	}
-
-	// TODO: Return the actual rider service client
-	log.Printf("Rider service client connected")
-	return conn, nil
 }
