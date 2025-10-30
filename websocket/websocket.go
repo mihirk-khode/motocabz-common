@@ -292,10 +292,6 @@ const (
 	UserTypeDriver = "driver"
 	UserTypeRider  = "rider"
 	UserTypeAdmin  = "admin"
-	UserTypeTrip   = "trip"
-	UserTypeAll    = "all"
-	UserTypeAny    = "any"
-	UserTypeNone   = "none"
 )
 
 // WebSocket statistics

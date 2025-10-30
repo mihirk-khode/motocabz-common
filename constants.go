@@ -91,19 +91,20 @@ const (
 	WSMessageTypeSystemMessage         = "system_message"
 )
 
-// Notification Types
 const (
-	NotificationTypeNewRideRequest   = "new_ride_request"
-	NotificationTypeBiddingUpdate    = "bidding_update"
-	NotificationTypeDriverAssigned   = "driver_assigned"
-	NotificationTypeTripCancelled    = "trip_cancelled"
-	NotificationTypeTripCompleted    = "trip_completed"
-	NotificationTypeTripNotification = "trip_notification"
-	NotificationTypeTripStatusUpdate = "trip_status_update"
-	NotificationTypeDriverLocation   = "driver_location_update"
-	NotificationTypeNoDriverFound    = "no_driver_found"
-	NotificationTypeBiddingStarted   = "bidding_started"
-	NotificationTypeBidReceived      = "bid_received"
+	NotificationTypeNewRideRequest   = "NEW_RIDE_REQUEST"
+	NotificationTypeBiddingUpdate    = "BIDDING_UPDATE"
+	NotificationTypeDriverAssigned   = "DRIVER_ASSIGNED"
+	NotificationTypeTripCancelled    = "TRIP_CANCELLED"
+	NotificationTypeTripCompleted    = "TRIP_COMPLETED"
+	NotificationTypeTripNotification = "TRIP_NOTIFICATION"
+	NotificationTypeTripStatusUpdate = "TRIP_STATUS_UPDATE"
+	NotificationTypeDriverLocation   = "DRIVER_LOCATION_UPDATE"
+	NotificationTypeNoDriverFound    = "NO_DRIVER_FOUND"
+	NotificationTypeBiddingStarted   = "BIDDING_STARTED"
+	NotificationTypeBidReceived      = "BID_RECEIVED"
+	NotificationTypeBidAccepted      = "BID_ACCEPTED"
+	NotificationTypeBidRejected      = "BID_REJECTED"
 )
 
 // Event Types
