@@ -204,7 +204,7 @@ const (
 
 // Dapr Components
 const (
-	DaprPubsubName  = "kafka-pubsub"
+	DaprPubsubName  = "pubsub"
 	DaprStateStore  = "statestore"
 	DaprSecretStore = "secretstore"
 	DaprConfigStore = "configstore"
