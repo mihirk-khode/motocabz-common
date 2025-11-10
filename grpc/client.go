@@ -12,6 +12,7 @@ import (
 	"google.golang.org/grpc/connectivity"
 	"google.golang.org/grpc/credentials/insecure"
 	"google.golang.org/grpc/keepalive"
+	"google.golang.org/grpc/status"
 )
 
 const (
@@ -21,6 +22,14 @@ const (
 	defaultMaxRetries = 3
 	// Default retry backoff
 	defaultRetryBackoff = 1 * time.Second
+	// Default keepalive time
+	defaultKeepaliveTime = 30 * time.Second
+	// Default keepalive timeout
+	defaultKeepaliveTimeout = 10 * time.Second
+	// Default max message size (4MB)
+	defaultMaxMsgSize = 4 * 1024 * 1024
+	// Connection health check interval
+	healthCheckInterval = 30 * time.Second
 )
 
 // ConnectionInfo stores connection metadata
@@ -33,36 +42,98 @@ type ConnectionInfo struct {
 	Conn        *grpc.ClientConn
 }
 
+// Options configures the GRPCClient behavior
+type Options struct {
+	Namespace        string
+	DialTimeout      time.Duration
+	MaxRetries       int
+	RetryBackoff     time.Duration
+	KeepaliveTime    time.Duration
+	KeepaliveTimeout time.Duration
+	MaxMsgSize       int
+	EnableMetrics    bool
+}
+
 // GRPCClient manages gRPC connections for service-to-service communication
 type GRPCClient struct {
-	daprClient   client.Client
-	conns        map[string]*grpc.ClientConn
-	connInfo     map[string]*ConnectionInfo
-	connsMutex   sync.RWMutex
-	namespace    string
-	dialTimeout  time.Duration
-	maxRetries   int
-	retryBackoff time.Duration
-	stopMonitor  chan struct{}
-	monitorWg    sync.WaitGroup
+	daprClient       client.Client
+	conns            map[string]*grpc.ClientConn
+	connInfo         map[string]*ConnectionInfo
+	connsMutex       sync.RWMutex
+	namespace        string
+	dialTimeout      time.Duration
+	maxRetries       int
+	retryBackoff     time.Duration
+	keepaliveTime    time.Duration
+	keepaliveTimeout time.Duration
+	maxMsgSize       int
+	stopMonitor      chan struct{}
+	monitorWg        sync.WaitGroup
+	ctx              context.Context
+	cancel           context.CancelFunc
 }
 
 // NewGRPCClient creates a new gRPC client with Dapr integration
 func NewGRPCClient(namespace string) (*GRPCClient, error) {
+	return NewGRPCClientWithOptions(&Options{
+		Namespace:        namespace,
+		DialTimeout:      defaultDialTimeout,
+		MaxRetries:       defaultMaxRetries,
+		RetryBackoff:     defaultRetryBackoff,
+		KeepaliveTime:    defaultKeepaliveTime,
+		KeepaliveTimeout: defaultKeepaliveTimeout,
+		MaxMsgSize:       defaultMaxMsgSize,
+		EnableMetrics:    false,
+	})
+}
+
+// NewGRPCClientWithOptions creates a new gRPC client with custom options
+func NewGRPCClientWithOptions(opts *Options) (*GRPCClient, error) {
+	if opts == nil {
+		opts = &Options{}
+	}
+
 	daprClient, err := client.NewClient()
 	if err != nil {
 		return nil, fmt.Errorf("failed to create Dapr client: %w", err)
 	}
 
+	ctx, cancel := context.WithCancel(context.Background())
+
 	grpcClient := &GRPCClient{
-		daprClient:   daprClient,
-		conns:        make(map[string]*grpc.ClientConn),
-		connInfo:     make(map[string]*ConnectionInfo),
-		namespace:    namespace,
-		dialTimeout:  defaultDialTimeout,
-		maxRetries:   defaultMaxRetries,
-		retryBackoff: defaultRetryBackoff,
-		stopMonitor:  make(chan struct{}),
+		daprClient:       daprClient,
+		conns:            make(map[string]*grpc.ClientConn),
+		connInfo:         make(map[string]*ConnectionInfo),
+		namespace:        opts.Namespace,
+		dialTimeout:      opts.DialTimeout,
+		maxRetries:       opts.MaxRetries,
+		retryBackoff:     opts.RetryBackoff,
+		keepaliveTime:    opts.KeepaliveTime,
+		keepaliveTimeout: opts.KeepaliveTimeout,
+		maxMsgSize:       opts.MaxMsgSize,
+		stopMonitor:      make(chan struct{}),
+		ctx:              ctx,
+		cancel:           cancel,
+	}
+
+	// Set defaults if not provided
+	if grpcClient.dialTimeout == 0 {
+		grpcClient.dialTimeout = defaultDialTimeout
+	}
+	if grpcClient.maxRetries == 0 {
+		grpcClient.maxRetries = defaultMaxRetries
+	}
+	if grpcClient.retryBackoff == 0 {
+		grpcClient.retryBackoff = defaultRetryBackoff
+	}
+	if grpcClient.keepaliveTime == 0 {
+		grpcClient.keepaliveTime = defaultKeepaliveTime
+	}
+	if grpcClient.keepaliveTimeout == 0 {
+		grpcClient.keepaliveTimeout = defaultKeepaliveTimeout
+	}
+	if grpcClient.maxMsgSize == 0 {
+		grpcClient.maxMsgSize = defaultMaxMsgSize
 	}
 
 	// Start background connection health monitor
@@ -74,6 +145,11 @@ func NewGRPCClient(namespace string) (*GRPCClient, error) {
 // GetServiceConnection returns a gRPC connection to the specified service
 // with automatic retry and connection health checking
 func (c *GRPCClient) GetServiceConnection(serviceName string) (*grpc.ClientConn, error) {
+	return c.GetServiceConnectionWithContext(context.Background(), serviceName)
+}
+
+// GetServiceConnectionWithContext returns a gRPC connection with context support
+func (c *GRPCClient) GetServiceConnectionWithContext(ctx context.Context, serviceName string) (*grpc.ClientConn, error) {
 	// Check if we already have a connection and verify it's still healthy
 	c.connsMutex.RLock()
 	if conn, exists := c.conns[serviceName]; exists {
@@ -83,10 +159,12 @@ func (c *GRPCClient) GetServiceConnection(serviceName string) (*grpc.ClientConn,
 		// If connection is ready or idle, return it
 		if state == connectivity.Ready || state == connectivity.Idle {
 			// Update last used time
+			c.connsMutex.Lock()
 			if info, exists := c.connInfo[serviceName]; exists {
 				info.LastUsed = time.Now()
 				info.State = state
 			}
+			c.connsMutex.Unlock()
 			return conn, nil
 		}
 
@@ -118,100 +196,26 @@ func (c *GRPCClient) GetServiceConnection(serviceName string) (*grpc.ClientConn,
 		target = fmt.Sprintf("localhost:%s", config.Port)
 	}
 
-	// Retry connection with exponential backoff
-	var conn *grpc.ClientConn
-	var lastErr error
+	// Create dial context with timeout
+	dialCtx, dialCancel := context.WithTimeout(ctx, c.dialTimeout)
+	defer dialCancel()
 
-	for attempt := 0; attempt < c.maxRetries; attempt++ {
-		if attempt > 0 {
-			backoff := c.retryBackoff * time.Duration(1<<uint(attempt-1)) // Exponential backoff
-			log.Printf("🔄 Retrying connection to %s (attempt %d/%d) after %v...",
-				serviceName, attempt+1, c.maxRetries, backoff)
-			time.Sleep(backoff)
-		}
+	// Configure dial options with best practices
+	dialOptions := c.getDialOptions()
 
-		// Create context with timeout for each attempt
-		ctx, cancel := context.WithTimeout(context.Background(), c.dialTimeout)
-
-		// Configure dial options with keepalive and retry
-		dialOptions := []grpc.DialOption{
-			grpc.WithTransportCredentials(insecure.NewCredentials()),
-			// Don't use WithBlock() - allow non-blocking connection attempts
-			grpc.WithKeepaliveParams(keepalive.ClientParameters{
-				Time:                30 * time.Second, // Send keepalive pings every 30 seconds
-				Timeout:             10 * time.Second, // Wait 10 seconds for ping ack
-				PermitWithoutStream: true,             // Send pings even when there are no active streams
-			}),
-			grpc.WithDefaultCallOptions(
-				grpc.MaxCallRecvMsgSize(4*1024*1024), // 4MB max message size
-				grpc.MaxCallSendMsgSize(4*1024*1024), // 4MB max message size
-			),
-		}
-
-		var err error
-		conn, err = grpc.DialContext(ctx, target, dialOptions...)
-		cancel()
-
-		if err != nil {
-			lastErr = fmt.Errorf("failed to connect to %s at %s (attempt %d/%d): %w",
-				serviceName, target, attempt+1, c.maxRetries, err)
-			log.Printf("❌ %v", lastErr)
-			continue
-		}
-
-		// Wait for connection to be ready (with timeout)
-		// Poll connection state until ready or timeout
-		readyCtx, readyCancel := context.WithTimeout(context.Background(), 10*time.Second)
-		defer readyCancel()
-		stateCheckTicker := time.NewTicker(100 * time.Millisecond)
-		defer stateCheckTicker.Stop()
-
-		connectionReady := false
-		for !connectionReady {
-			select {
-			case <-readyCtx.Done():
-				// Timeout reached, check final state
-				state := conn.GetState()
-				if state == connectivity.Ready || state == connectivity.Idle {
-					connectionReady = true
-				} else {
-					// Connection not ready, close and retry
-					conn.Close()
-					lastErr = fmt.Errorf("connection to %s at %s timed out waiting for ready state (current: %v)",
-						serviceName, target, state)
-					log.Printf("❌ %v", lastErr)
-					conn = nil
-				}
-				connectionReady = true // Exit loop
-			case <-stateCheckTicker.C:
-				state := conn.GetState()
-				if state == connectivity.Ready || state == connectivity.Idle {
-					connectionReady = true
-				} else if state == connectivity.Shutdown {
-					// Connection was shut down, close and retry
-					conn.Close()
-					lastErr = fmt.Errorf("connection to %s at %s was shut down",
-						serviceName, target)
-					log.Printf("❌ %v", lastErr)
-					conn = nil
-					connectionReady = true // Exit loop
-				}
-				// Continue waiting for Connecting or TransientFailure states
-			}
-		}
-
-		if connectionReady && conn != nil {
-			break
-		}
-
-		if conn == nil {
-			continue
-		}
+	// Attempt connection
+	conn, err := grpc.DialContext(dialCtx, target, dialOptions...)
+	if err != nil {
+		return nil, fmt.Errorf("failed to dial %s at %s: %w", serviceName, target, err)
 	}
 
-	if conn == nil {
-		return nil, fmt.Errorf("failed to establish connection to %s after %d attempts: %w",
-			serviceName, c.maxRetries, lastErr)
+	// Wait for connection to be ready with context
+	readyCtx, readyCancel := context.WithTimeout(ctx, 10*time.Second)
+	defer readyCancel()
+
+	if err := c.waitForReady(readyCtx, conn, serviceName, target); err != nil {
+		conn.Close()
+		return nil, fmt.Errorf("connection to %s at %s not ready: %w", serviceName, target, err)
 	}
 
 	// Verify final connection state
@@ -239,18 +243,119 @@ func (c *GRPCClient) GetServiceConnection(serviceName string) (*grpc.ClientConn,
 	return conn, nil
 }
 
-// Close closes all connections
+// getDialOptions returns configured dial options with best practices
+func (c *GRPCClient) getDialOptions() []grpc.DialOption {
+	return []grpc.DialOption{
+		grpc.WithTransportCredentials(insecure.NewCredentials()),
+		grpc.WithKeepaliveParams(keepalive.ClientParameters{
+			Time:                c.keepaliveTime,
+			Timeout:             c.keepaliveTimeout,
+			PermitWithoutStream: true,
+		}),
+		grpc.WithDefaultCallOptions(
+			grpc.MaxCallRecvMsgSize(c.maxMsgSize),
+			grpc.MaxCallSendMsgSize(c.maxMsgSize),
+		),
+		// Add interceptors for retry and logging
+		grpc.WithUnaryInterceptor(c.unaryClientInterceptor()),
+		grpc.WithStreamInterceptor(c.streamClientInterceptor()),
+	}
+}
+
+// waitForReady waits for the connection to be ready
+func (c *GRPCClient) waitForReady(ctx context.Context, conn *grpc.ClientConn, serviceName, target string) error {
+	ticker := time.NewTicker(100 * time.Millisecond)
+	defer ticker.Stop()
+
+	for {
+		state := conn.GetState()
+		switch state {
+		case connectivity.Ready, connectivity.Idle:
+			return nil
+		case connectivity.Shutdown:
+			return fmt.Errorf("connection was shut down")
+		case connectivity.TransientFailure:
+			// Wait for automatic reconnection
+		case connectivity.Connecting:
+			// Still connecting
+		}
+
+		select {
+		case <-ctx.Done():
+			return fmt.Errorf("timeout waiting for ready state (current: %v): %w", state, ctx.Err())
+		case <-ticker.C:
+			// Continue checking
+		}
+	}
+}
+
+// unaryClientInterceptor provides unary client interceptor for logging and retry
+func (c *GRPCClient) unaryClientInterceptor() grpc.UnaryClientInterceptor {
+	return func(ctx context.Context, method string, req, reply interface{}, cc *grpc.ClientConn, invoker grpc.UnaryInvoker, opts ...grpc.CallOption) error {
+		start := time.Now()
+		err := invoker(ctx, method, req, reply, cc, opts...)
+		duration := time.Since(start)
+
+		if err != nil {
+			st, ok := status.FromError(err)
+			if ok {
+				log.Printf("gRPC call %s failed: code=%s, message=%s, duration=%v",
+					method, st.Code(), st.Message(), duration)
+			} else {
+				log.Printf("gRPC call %s failed: error=%v, duration=%v", method, err, duration)
+			}
+		} else {
+			log.Printf("gRPC call %s succeeded: duration=%v", method, duration)
+		}
+
+		return err
+	}
+}
+
+// streamClientInterceptor provides stream client interceptor for logging
+func (c *GRPCClient) streamClientInterceptor() grpc.StreamClientInterceptor {
+	return func(ctx context.Context, desc *grpc.StreamDesc, cc *grpc.ClientConn, method string, streamer grpc.Streamer, opts ...grpc.CallOption) (grpc.ClientStream, error) {
+		start := time.Now()
+		stream, err := streamer(ctx, desc, cc, method, opts...)
+		duration := time.Since(start)
+
+		if err != nil {
+			log.Printf("gRPC stream %s failed: error=%v, duration=%v", method, err, duration)
+		} else {
+			log.Printf("gRPC stream %s established: duration=%v", method, duration)
+		}
+
+		return stream, err
+	}
+}
+
+// Close closes all connections gracefully
 func (c *GRPCClient) Close() error {
 	var lastErr error
+
+	// Cancel context to stop background goroutines
+	if c.cancel != nil {
+		c.cancel()
+	}
+
+	// Stop connection monitor
+	close(c.stopMonitor)
+	c.monitorWg.Wait()
 
 	c.connsMutex.Lock()
 	defer c.connsMutex.Unlock()
 
+	// Close all connections
 	for serviceName, conn := range c.conns {
 		if conn != nil {
+			// Gracefully close connection
 			if err := conn.Close(); err != nil {
 				log.Printf("Error closing connection to %s: %v", serviceName, err)
-				lastErr = err
+				if lastErr == nil {
+					lastErr = err
+				}
+			} else {
+				log.Printf("Closed connection to %s", serviceName)
 			}
 		}
 	}
@@ -259,10 +364,7 @@ func (c *GRPCClient) Close() error {
 	c.conns = make(map[string]*grpc.ClientConn)
 	c.connInfo = make(map[string]*ConnectionInfo)
 
-	// Stop connection monitor
-	close(c.stopMonitor)
-	c.monitorWg.Wait()
-
+	// Close Dapr client
 	if c.daprClient != nil {
 		c.daprClient.Close()
 	}
@@ -273,6 +375,11 @@ func (c *GRPCClient) Close() error {
 // InitializeAllConnections pre-connects to all configured services
 // This ensures all connections are established and persisted upfront
 func (c *GRPCClient) InitializeAllConnections() error {
+	return c.InitializeAllConnectionsWithContext(context.Background())
+}
+
+// InitializeAllConnectionsWithContext pre-connects to all configured services with context
+func (c *GRPCClient) InitializeAllConnectionsWithContext(ctx context.Context) error {
 	log.Printf("🔄 Initializing all gRPC connections...")
 
 	var wg sync.WaitGroup
@@ -284,7 +391,7 @@ func (c *GRPCClient) InitializeAllConnections() error {
 		wg.Add(1)
 		go func(name string) {
 			defer wg.Done()
-			conn, err := c.GetServiceConnection(name)
+			conn, err := c.GetServiceConnectionWithContext(ctx, name)
 			if err != nil {
 				mu.Lock()
 				errors = append(errors, fmt.Errorf("failed to connect to %s: %w", name, err))
@@ -365,11 +472,13 @@ func (c *GRPCClient) startConnectionMonitor() {
 	c.monitorWg.Add(1)
 	go func() {
 		defer c.monitorWg.Done()
-		ticker := time.NewTicker(30 * time.Second) // Check every 30 seconds
+		ticker := time.NewTicker(healthCheckInterval)
 		defer ticker.Stop()
 
 		for {
 			select {
+			case <-c.ctx.Done():
+				return
 			case <-c.stopMonitor:
 				return
 			case <-ticker.C:
@@ -400,10 +509,8 @@ func (c *GRPCClient) checkAndReconnectConnections() {
 		state := conn.GetState()
 		// If connection is in a bad state, try to reconnect
 		switch state {
-		case connectivity.Shutdown, connectivity.TransientFailure:
-			log.Printf("⚠️ Connection to %s is in state %v, attempting to reconnect...", serviceName, state)
-
-			// Remove bad connection
+		case connectivity.Shutdown:
+			log.Printf("⚠️ Connection to %s is shut down, removing from pool", serviceName)
 			c.connsMutex.Lock()
 			delete(c.conns, serviceName)
 			delete(c.connInfo, serviceName)
@@ -411,19 +518,36 @@ func (c *GRPCClient) checkAndReconnectConnections() {
 				conn.Close()
 			}
 			c.connsMutex.Unlock()
+		case connectivity.TransientFailure:
+			// Check if it's been in transient failure for too long
+			c.connsMutex.RLock()
+			info, infoExists := c.connInfo[serviceName]
+			c.connsMutex.RUnlock()
 
-			// Attempt to reconnect (this will be done on next GetServiceConnection call)
-			// Or we can proactively reconnect here
-			go func(name string) {
-				_, err := c.GetServiceConnection(name)
-				if err != nil {
-					log.Printf("❌ Failed to reconnect to %s: %v", name, err)
-				} else {
-					log.Printf("✅ Successfully reconnected to %s", name)
+			if infoExists && time.Since(info.LastUsed) > 2*healthCheckInterval {
+				log.Printf("⚠️ Connection to %s has been in transient failure, attempting to reconnect...", serviceName)
+				c.connsMutex.Lock()
+				delete(c.conns, serviceName)
+				delete(c.connInfo, serviceName)
+				if conn != nil {
+					conn.Close()
 				}
-			}(serviceName)
+				c.connsMutex.Unlock()
+
+				// Attempt to reconnect in background
+				go func(name string) {
+					ctx, cancel := context.WithTimeout(context.Background(), c.dialTimeout)
+					defer cancel()
+					_, err := c.GetServiceConnectionWithContext(ctx, name)
+					if err != nil {
+						log.Printf("❌ Failed to reconnect to %s: %v", name, err)
+					} else {
+						log.Printf("✅ Successfully reconnected to %s", name)
+					}
+				}(serviceName)
+			}
 		case connectivity.Ready, connectivity.Idle:
-			// Update last used time for healthy connections
+			// Update state for healthy connections
 			c.connsMutex.Lock()
 			if info, exists := c.connInfo[serviceName]; exists {
 				info.State = state
