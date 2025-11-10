@@ -13,10 +13,11 @@ import (
 type GRPCClient struct {
 	daprClient client.Client
 	conns      map[string]*grpc.ClientConn
+	namespace  string
 }
 
 // NewGRPCClient creates a new gRPC client with Dapr integration
-func NewGRPCClient() (*GRPCClient, error) {
+func NewGRPCClient(namespace string) (*GRPCClient, error) {
 	daprClient, err := client.NewClient()
 	if err != nil {
 		return nil, fmt.Errorf("failed to create Dapr client: %w", err)
@@ -25,6 +26,7 @@ func NewGRPCClient() (*GRPCClient, error) {
 	return &GRPCClient{
 		daprClient: daprClient,
 		conns:      make(map[string]*grpc.ClientConn),
+		namespace:  namespace,
 	}, nil
 }
 
@@ -41,9 +43,14 @@ func (c *GRPCClient) GetServiceConnection(serviceName string) (*grpc.ClientConn,
 		return nil, fmt.Errorf("service %s not found in configuration", serviceName)
 	}
 
-	// Create connection using Dapr service invocation
-	// In Dapr, we use the service name directly for service-to-service calls
-	target := fmt.Sprintf("localhost:%s", config.Port)
+	var target string
+	if c.namespace != "" {
+		// Kubernetes DNS name for headless service with namespace
+		target = fmt.Sprintf("%s.%s.svc.cluster.local:%s", config.Name, c.namespace, config.Port)
+	} else {
+		// Localhost for local development
+		target = fmt.Sprintf("localhost:%s", config.Port)
+	}
 
 	conn, err := grpc.Dial(target, grpc.WithTransportCredentials(insecure.NewCredentials()))
 	if err != nil {
@@ -53,7 +60,7 @@ func (c *GRPCClient) GetServiceConnection(serviceName string) (*grpc.ClientConn,
 	// Cache the connection
 	c.conns[serviceName] = conn
 
-	log.Printf("✅ Connected to %s service on %s", serviceName, config.Port)
+	log.Printf("✅ Connected to %s service on %s", serviceName, target)
 	return conn, nil
 }
 
@@ -62,9 +69,11 @@ func (c *GRPCClient) Close() error {
 	var lastErr error
 
 	for serviceName, conn := range c.conns {
-		if err := conn.Close(); err != nil {
-			log.Printf("Error closing connection to %s: %v", serviceName, err)
-			lastErr = err
+		if conn != nil {
+			if err := conn.Close(); err != nil {
+				log.Printf("Error closing connection to %s: %v", serviceName, err)
+				lastErr = err
+			}
 		}
 	}
 
