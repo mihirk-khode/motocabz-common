@@ -1,12 +1,16 @@
 package grpc
 
 import (
+	"context"
 	"fmt"
 	"log"
+	"time"
 
 	"github.com/dapr/go-sdk/client"
 	"google.golang.org/grpc"
+	"google.golang.org/grpc/connectivity"
 	"google.golang.org/grpc/credentials/insecure"
+	"google.golang.org/grpc/keepalive"
 )
 
 // GRPCClient manages gRPC connections for service-to-service communication
@@ -32,9 +36,19 @@ func NewGRPCClient(namespace string) (*GRPCClient, error) {
 
 // GetServiceConnection returns a gRPC connection to the specified service
 func (c *GRPCClient) GetServiceConnection(serviceName string) (*grpc.ClientConn, error) {
-	// Check if we already have a connection
+	// Check if we already have a connection and verify it's still healthy
 	if conn, exists := c.conns[serviceName]; exists {
-		return conn, nil
+		// Check connection state - if it's not ready, try to reconnect
+		state := conn.GetState()
+		if state == connectivity.Ready || state == connectivity.Idle {
+			return conn, nil
+		}
+		// Connection is in a bad state, remove it and create a new one
+		log.Printf("⚠️ Connection to %s is in state %v, reconnecting...", serviceName, state)
+		delete(c.conns, serviceName)
+		if conn != nil {
+			conn.Close()
+		}
 	}
 
 	// Get service configuration
@@ -52,15 +66,40 @@ func (c *GRPCClient) GetServiceConnection(serviceName string) (*grpc.ClientConn,
 		target = fmt.Sprintf("localhost:%s", config.Port)
 	}
 
-	conn, err := grpc.Dial(target, grpc.WithTransportCredentials(insecure.NewCredentials()))
+	// Configure dial options with timeout, keepalive, and retry
+	ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
+	defer cancel()
+
+	dialOptions := []grpc.DialOption{
+		grpc.WithTransportCredentials(insecure.NewCredentials()),
+		grpc.WithBlock(), // Block until connection is established
+		grpc.WithKeepaliveParams(keepalive.ClientParameters{
+			Time:                10 * time.Second, // Send keepalive pings every 10 seconds
+			Timeout:             3 * time.Second,  // Wait 3 seconds for ping ack before considering the connection dead
+			PermitWithoutStream: true,             // Send pings even when there are no active streams
+		}),
+		grpc.WithDefaultCallOptions(
+			grpc.MaxCallRecvMsgSize(4*1024*1024), // 4MB max message size
+			grpc.MaxCallSendMsgSize(4*1024*1024), // 4MB max message size
+		),
+	}
+
+	conn, err := grpc.DialContext(ctx, target, dialOptions...)
 	if err != nil {
-		return nil, fmt.Errorf("failed to connect to %s: %w", serviceName, err)
+		return nil, fmt.Errorf("failed to connect to %s at %s: %w", serviceName, target, err)
+	}
+
+	// WithBlock() ensures connection is established, but verify state
+	state := conn.GetState()
+	if state != connectivity.Ready && state != connectivity.Idle {
+		conn.Close()
+		return nil, fmt.Errorf("connection to %s at %s is in state %v, expected Ready or Idle", serviceName, target, state)
 	}
 
 	// Cache the connection
 	c.conns[serviceName] = conn
 
-	log.Printf("✅ Connected to %s service on %s", serviceName, target)
+	log.Printf("✅ Connected to %s service on %s (state: %v)", serviceName, target, state)
 	return conn, nil
 }
 
