@@ -22,10 +22,12 @@ const (
 	defaultMaxRetries = 3
 	// Default retry backoff
 	defaultRetryBackoff = 1 * time.Second
-	// Default keepalive time
-	defaultKeepaliveTime = 30 * time.Second
+	// Default keepalive time - increased to reduce ping frequency (prevents "too_many_pings" error)
+	defaultKeepaliveTime = 60 * time.Second
 	// Default keepalive timeout
-	defaultKeepaliveTimeout = 10 * time.Second
+	defaultKeepaliveTimeout = 20 * time.Second
+	// Default ready timeout - increased for Kubernetes environments
+	defaultReadyTimeout = 30 * time.Second
 	// Default max message size (4MB)
 	defaultMaxMsgSize = 4 * 1024 * 1024
 	// Connection health check interval
@@ -50,6 +52,7 @@ type Options struct {
 	RetryBackoff     time.Duration
 	KeepaliveTime    time.Duration
 	KeepaliveTimeout time.Duration
+	ReadyTimeout     time.Duration
 	MaxMsgSize       int
 	EnableMetrics    bool
 }
@@ -66,6 +69,7 @@ type GRPCClient struct {
 	retryBackoff     time.Duration
 	keepaliveTime    time.Duration
 	keepaliveTimeout time.Duration
+	readyTimeout     time.Duration
 	maxMsgSize       int
 	stopMonitor      chan struct{}
 	monitorWg        sync.WaitGroup
@@ -82,6 +86,7 @@ func NewGRPCClient(namespace string) (*GRPCClient, error) {
 		RetryBackoff:     defaultRetryBackoff,
 		KeepaliveTime:    defaultKeepaliveTime,
 		KeepaliveTimeout: defaultKeepaliveTimeout,
+		ReadyTimeout:     defaultReadyTimeout,
 		MaxMsgSize:       defaultMaxMsgSize,
 		EnableMetrics:    false,
 	})
@@ -110,6 +115,7 @@ func NewGRPCClientWithOptions(opts *Options) (*GRPCClient, error) {
 		retryBackoff:     opts.RetryBackoff,
 		keepaliveTime:    opts.KeepaliveTime,
 		keepaliveTimeout: opts.KeepaliveTimeout,
+		readyTimeout:     opts.ReadyTimeout,
 		maxMsgSize:       opts.MaxMsgSize,
 		stopMonitor:      make(chan struct{}),
 		ctx:              ctx,
@@ -131,6 +137,9 @@ func NewGRPCClientWithOptions(opts *Options) (*GRPCClient, error) {
 	}
 	if grpcClient.keepaliveTimeout == 0 {
 		grpcClient.keepaliveTimeout = defaultKeepaliveTimeout
+	}
+	if grpcClient.readyTimeout == 0 {
+		grpcClient.readyTimeout = defaultReadyTimeout
 	}
 	if grpcClient.maxMsgSize == 0 {
 		grpcClient.maxMsgSize = defaultMaxMsgSize
@@ -156,8 +165,9 @@ func (c *GRPCClient) GetServiceConnectionWithContext(ctx context.Context, servic
 		state := conn.GetState()
 		c.connsMutex.RUnlock()
 
-		// If connection is ready or idle, return it
-		if state == connectivity.Ready || state == connectivity.Idle {
+		// If connection is ready, idle, or connecting, return it
+		// CONNECTING state is valid - gRPC will complete the connection asynchronously
+		if state == connectivity.Ready || state == connectivity.Idle || state == connectivity.Connecting {
 			// Update last used time
 			c.connsMutex.Lock()
 			if info, exists := c.connInfo[serviceName]; exists {
@@ -209,20 +219,29 @@ func (c *GRPCClient) GetServiceConnectionWithContext(ctx context.Context, servic
 		return nil, fmt.Errorf("failed to dial %s at %s: %w", serviceName, target, err)
 	}
 
-	// Wait for connection to be ready with context
-	readyCtx, readyCancel := context.WithTimeout(ctx, 10*time.Second)
+	// Wait for connection to be ready with context (use longer timeout for Kubernetes)
+	readyCtx, readyCancel := context.WithTimeout(ctx, c.readyTimeout)
 	defer readyCancel()
 
+	// Try to wait for ready, but don't fail if it's still connecting
+	// Connections in CONNECTING state will become ready when first used
 	if err := c.waitForReady(readyCtx, conn, serviceName, target); err != nil {
-		conn.Close()
-		return nil, fmt.Errorf("connection to %s at %s not ready: %w", serviceName, target, err)
+		// If connection is still in CONNECTING state, allow it (will become ready on first use)
+		state := conn.GetState()
+		if state == connectivity.Connecting {
+			log.Printf("⚠️ Connection to %s at %s is still connecting, will become ready on first use", serviceName, target)
+			// Cache the connection anyway - gRPC will handle the connection asynchronously
+		} else {
+			conn.Close()
+			return nil, fmt.Errorf("connection to %s at %s not ready: %w", serviceName, target, err)
+		}
 	}
 
-	// Verify final connection state
+	// Verify final connection state - allow CONNECTING state for Kubernetes
 	state := conn.GetState()
-	if state != connectivity.Ready && state != connectivity.Idle {
+	if state != connectivity.Ready && state != connectivity.Idle && state != connectivity.Connecting {
 		conn.Close()
-		return nil, fmt.Errorf("connection to %s at %s is in state %v, expected Ready or Idle",
+		return nil, fmt.Errorf("connection to %s at %s is in state %v, expected Ready, Idle, or Connecting",
 			serviceName, target, state)
 	}
 
@@ -250,7 +269,7 @@ func (c *GRPCClient) getDialOptions() []grpc.DialOption {
 		grpc.WithKeepaliveParams(keepalive.ClientParameters{
 			Time:                c.keepaliveTime,
 			Timeout:             c.keepaliveTimeout,
-			PermitWithoutStream: true,
+			PermitWithoutStream: false, // Only send keepalive when there are active streams (prevents "too_many_pings")
 		}),
 		grpc.WithDefaultCallOptions(
 			grpc.MaxCallRecvMsgSize(c.maxMsgSize),
@@ -259,6 +278,8 @@ func (c *GRPCClient) getDialOptions() []grpc.DialOption {
 		// Add interceptors for retry and logging
 		grpc.WithUnaryInterceptor(c.unaryClientInterceptor()),
 		grpc.WithStreamInterceptor(c.streamClientInterceptor()),
+		// Use WaitForReady to allow connections in CONNECTING state to proceed
+		grpc.WithDefaultCallOptions(grpc.WaitForReady(false)), // Don't block on ready, allow async connection
 	}
 }
 
