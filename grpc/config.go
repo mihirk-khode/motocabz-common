@@ -12,7 +12,7 @@ var Services = map[string]ServiceConfig{
 	},
 	"trip-service": {
 		Name: "trip-service",
-		Port: "50001", // Trip service gRPC port (from Kubernetes service)
+		Port: "50002", // Trip service gRPC port (from Kubernetes service)
 	},
 	"identity-service": {
 		Name: "identity-service",
