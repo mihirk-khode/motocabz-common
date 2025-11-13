@@ -81,17 +81,6 @@ func (eh *GRPCErrorHandler) ValidateID(id, fieldName string) error {
 	return nil
 }
 
-// ValidateLocation validates latitude and longitude coordinates
-func (eh *GRPCErrorHandler) ValidateLocation(lat, lng float64) error {
-	if lat < -90 || lat > 90 {
-		return status.Error(codes.InvalidArgument, "Latitude must be between -90 and 90")
-	}
-	if lng < -180 || lng > 180 {
-		return status.Error(codes.InvalidArgument, "Longitude must be between -180 and 180")
-	}
-	return nil
-}
-
 // ValidateEmail validates email format
 func (eh *GRPCErrorHandler) ValidateEmail(email string) error {
 	if strings.TrimSpace(email) == "" {
