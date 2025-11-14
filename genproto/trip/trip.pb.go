@@ -256,6 +256,336 @@ func (NegotiationStatus) EnumDescriptor() ([]byte, []int) {
 	return file_trip_proto_rawDescGZIP(), []int{3}
 }
 
+type UserRole int32
+
+const (
+	UserRole_USER_ROLE_UNSPECIFIED UserRole = 0
+	UserRole_USER_ROLE_RIDER       UserRole = 1
+	UserRole_USER_ROLE_DRIVER      UserRole = 2
+)
+
+// Enum value maps for UserRole.
+var (
+	UserRole_name = map[int32]string{
+		0: "USER_ROLE_UNSPECIFIED",
+		1: "USER_ROLE_RIDER",
+		2: "USER_ROLE_DRIVER",
+	}
+	UserRole_value = map[string]int32{
+		"USER_ROLE_UNSPECIFIED": 0,
+		"USER_ROLE_RIDER":       1,
+		"USER_ROLE_DRIVER":      2,
+	}
+)
+
+func (x UserRole) Enum() *UserRole {
+	p := new(UserRole)
+	*p = x
+	return p
+}
+
+func (x UserRole) String() string {
+	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
+}
+
+func (UserRole) Descriptor() protoreflect.EnumDescriptor {
+	return file_trip_proto_enumTypes[4].Descriptor()
+}
+
+func (UserRole) Type() protoreflect.EnumType {
+	return &file_trip_proto_enumTypes[4]
+}
+
+func (x UserRole) Number() protoreflect.EnumNumber {
+	return protoreflect.EnumNumber(x)
+}
+
+// Deprecated: Use UserRole.Descriptor instead.
+func (UserRole) EnumDescriptor() ([]byte, []int) {
+	return file_trip_proto_rawDescGZIP(), []int{4}
+}
+
+type BiddingSessionStatus int32
+
+const (
+	BiddingSessionStatus_BIDDING_SESSION_STATUS_UNSPECIFIED BiddingSessionStatus = 0
+	BiddingSessionStatus_BIDDING_SESSION_STATUS_ACTIVE      BiddingSessionStatus = 1
+	BiddingSessionStatus_BIDDING_SESSION_STATUS_EXPIRED     BiddingSessionStatus = 2
+	BiddingSessionStatus_BIDDING_SESSION_STATUS_ASSIGNED    BiddingSessionStatus = 3
+	BiddingSessionStatus_BIDDING_SESSION_STATUS_CANCELLED   BiddingSessionStatus = 4
+)
+
+// Enum value maps for BiddingSessionStatus.
+var (
+	BiddingSessionStatus_name = map[int32]string{
+		0: "BIDDING_SESSION_STATUS_UNSPECIFIED",
+		1: "BIDDING_SESSION_STATUS_ACTIVE",
+		2: "BIDDING_SESSION_STATUS_EXPIRED",
+		3: "BIDDING_SESSION_STATUS_ASSIGNED",
+		4: "BIDDING_SESSION_STATUS_CANCELLED",
+	}
+	BiddingSessionStatus_value = map[string]int32{
+		"BIDDING_SESSION_STATUS_UNSPECIFIED": 0,
+		"BIDDING_SESSION_STATUS_ACTIVE":      1,
+		"BIDDING_SESSION_STATUS_EXPIRED":     2,
+		"BIDDING_SESSION_STATUS_ASSIGNED":    3,
+		"BIDDING_SESSION_STATUS_CANCELLED":   4,
+	}
+)
+
+func (x BiddingSessionStatus) Enum() *BiddingSessionStatus {
+	p := new(BiddingSessionStatus)
+	*p = x
+	return p
+}
+
+func (x BiddingSessionStatus) String() string {
+	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
+}
+
+func (BiddingSessionStatus) Descriptor() protoreflect.EnumDescriptor {
+	return file_trip_proto_enumTypes[5].Descriptor()
+}
+
+func (BiddingSessionStatus) Type() protoreflect.EnumType {
+	return &file_trip_proto_enumTypes[5]
+}
+
+func (x BiddingSessionStatus) Number() protoreflect.EnumNumber {
+	return protoreflect.EnumNumber(x)
+}
+
+// Deprecated: Use BiddingSessionStatus.Descriptor instead.
+func (BiddingSessionStatus) EnumDescriptor() ([]byte, []int) {
+	return file_trip_proto_rawDescGZIP(), []int{5}
+}
+
+type InstantMatchStatus int32
+
+const (
+	InstantMatchStatus_INSTANT_MATCH_STATUS_UNSPECIFIED InstantMatchStatus = 0
+	InstantMatchStatus_INSTANT_MATCH_STATUS_PENDING     InstantMatchStatus = 1
+	InstantMatchStatus_INSTANT_MATCH_STATUS_MATCHED     InstantMatchStatus = 2
+	InstantMatchStatus_INSTANT_MATCH_STATUS_ACCEPTED    InstantMatchStatus = 3
+	InstantMatchStatus_INSTANT_MATCH_STATUS_CANCELLED   InstantMatchStatus = 4
+	InstantMatchStatus_INSTANT_MATCH_STATUS_EXPIRED     InstantMatchStatus = 5
+)
+
+// Enum value maps for InstantMatchStatus.
+var (
+	InstantMatchStatus_name = map[int32]string{
+		0: "INSTANT_MATCH_STATUS_UNSPECIFIED",
+		1: "INSTANT_MATCH_STATUS_PENDING",
+		2: "INSTANT_MATCH_STATUS_MATCHED",
+		3: "INSTANT_MATCH_STATUS_ACCEPTED",
+		4: "INSTANT_MATCH_STATUS_CANCELLED",
+		5: "INSTANT_MATCH_STATUS_EXPIRED",
+	}
+	InstantMatchStatus_value = map[string]int32{
+		"INSTANT_MATCH_STATUS_UNSPECIFIED": 0,
+		"INSTANT_MATCH_STATUS_PENDING":     1,
+		"INSTANT_MATCH_STATUS_MATCHED":     2,
+		"INSTANT_MATCH_STATUS_ACCEPTED":    3,
+		"INSTANT_MATCH_STATUS_CANCELLED":   4,
+		"INSTANT_MATCH_STATUS_EXPIRED":     5,
+	}
+)
+
+func (x InstantMatchStatus) Enum() *InstantMatchStatus {
+	p := new(InstantMatchStatus)
+	*p = x
+	return p
+}
+
+func (x InstantMatchStatus) String() string {
+	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
+}
+
+func (InstantMatchStatus) Descriptor() protoreflect.EnumDescriptor {
+	return file_trip_proto_enumTypes[6].Descriptor()
+}
+
+func (InstantMatchStatus) Type() protoreflect.EnumType {
+	return &file_trip_proto_enumTypes[6]
+}
+
+func (x InstantMatchStatus) Number() protoreflect.EnumNumber {
+	return protoreflect.EnumNumber(x)
+}
+
+// Deprecated: Use InstantMatchStatus.Descriptor instead.
+func (InstantMatchStatus) EnumDescriptor() ([]byte, []int) {
+	return file_trip_proto_rawDescGZIP(), []int{6}
+}
+
+type NegotiationSessionStatus int32
+
+const (
+	NegotiationSessionStatus_NEGOTIATION_SESSION_STATUS_UNSPECIFIED NegotiationSessionStatus = 0
+	NegotiationSessionStatus_NEGOTIATION_SESSION_STATUS_ACTIVE      NegotiationSessionStatus = 1
+	NegotiationSessionStatus_NEGOTIATION_SESSION_STATUS_COMPLETED   NegotiationSessionStatus = 2
+	NegotiationSessionStatus_NEGOTIATION_SESSION_STATUS_TIMEOUT     NegotiationSessionStatus = 3
+	NegotiationSessionStatus_NEGOTIATION_SESSION_STATUS_CANCELLED   NegotiationSessionStatus = 4
+)
+
+// Enum value maps for NegotiationSessionStatus.
+var (
+	NegotiationSessionStatus_name = map[int32]string{
+		0: "NEGOTIATION_SESSION_STATUS_UNSPECIFIED",
+		1: "NEGOTIATION_SESSION_STATUS_ACTIVE",
+		2: "NEGOTIATION_SESSION_STATUS_COMPLETED",
+		3: "NEGOTIATION_SESSION_STATUS_TIMEOUT",
+		4: "NEGOTIATION_SESSION_STATUS_CANCELLED",
+	}
+	NegotiationSessionStatus_value = map[string]int32{
+		"NEGOTIATION_SESSION_STATUS_UNSPECIFIED": 0,
+		"NEGOTIATION_SESSION_STATUS_ACTIVE":      1,
+		"NEGOTIATION_SESSION_STATUS_COMPLETED":   2,
+		"NEGOTIATION_SESSION_STATUS_TIMEOUT":     3,
+		"NEGOTIATION_SESSION_STATUS_CANCELLED":   4,
+	}
+)
+
+func (x NegotiationSessionStatus) Enum() *NegotiationSessionStatus {
+	p := new(NegotiationSessionStatus)
+	*p = x
+	return p
+}
+
+func (x NegotiationSessionStatus) String() string {
+	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
+}
+
+func (NegotiationSessionStatus) Descriptor() protoreflect.EnumDescriptor {
+	return file_trip_proto_enumTypes[7].Descriptor()
+}
+
+func (NegotiationSessionStatus) Type() protoreflect.EnumType {
+	return &file_trip_proto_enumTypes[7]
+}
+
+func (x NegotiationSessionStatus) Number() protoreflect.EnumNumber {
+	return protoreflect.EnumNumber(x)
+}
+
+// Deprecated: Use NegotiationSessionStatus.Descriptor instead.
+func (NegotiationSessionStatus) EnumDescriptor() ([]byte, []int) {
+	return file_trip_proto_rawDescGZIP(), []int{7}
+}
+
+type OfferStatus int32
+
+const (
+	OfferStatus_OFFER_STATUS_UNSPECIFIED OfferStatus = 0
+	OfferStatus_OFFER_STATUS_PENDING     OfferStatus = 1
+	OfferStatus_OFFER_STATUS_ACCEPTED    OfferStatus = 2
+	OfferStatus_OFFER_STATUS_DECLINED    OfferStatus = 3
+	OfferStatus_OFFER_STATUS_COUNTERED   OfferStatus = 4
+	OfferStatus_OFFER_STATUS_EXPIRED     OfferStatus = 5
+)
+
+// Enum value maps for OfferStatus.
+var (
+	OfferStatus_name = map[int32]string{
+		0: "OFFER_STATUS_UNSPECIFIED",
+		1: "OFFER_STATUS_PENDING",
+		2: "OFFER_STATUS_ACCEPTED",
+		3: "OFFER_STATUS_DECLINED",
+		4: "OFFER_STATUS_COUNTERED",
+		5: "OFFER_STATUS_EXPIRED",
+	}
+	OfferStatus_value = map[string]int32{
+		"OFFER_STATUS_UNSPECIFIED": 0,
+		"OFFER_STATUS_PENDING":     1,
+		"OFFER_STATUS_ACCEPTED":    2,
+		"OFFER_STATUS_DECLINED":    3,
+		"OFFER_STATUS_COUNTERED":   4,
+		"OFFER_STATUS_EXPIRED":     5,
+	}
+)
+
+func (x OfferStatus) Enum() *OfferStatus {
+	p := new(OfferStatus)
+	*p = x
+	return p
+}
+
+func (x OfferStatus) String() string {
+	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
+}
+
+func (OfferStatus) Descriptor() protoreflect.EnumDescriptor {
+	return file_trip_proto_enumTypes[8].Descriptor()
+}
+
+func (OfferStatus) Type() protoreflect.EnumType {
+	return &file_trip_proto_enumTypes[8]
+}
+
+func (x OfferStatus) Number() protoreflect.EnumNumber {
+	return protoreflect.EnumNumber(x)
+}
+
+// Deprecated: Use OfferStatus.Descriptor instead.
+func (OfferStatus) EnumDescriptor() ([]byte, []int) {
+	return file_trip_proto_rawDescGZIP(), []int{8}
+}
+
+type NegotiationAction int32
+
+const (
+	NegotiationAction_NEGOTIATION_ACTION_UNSPECIFIED NegotiationAction = 0
+	NegotiationAction_NEGOTIATION_ACTION_OFFER       NegotiationAction = 1
+	NegotiationAction_NEGOTIATION_ACTION_COUNTER     NegotiationAction = 2
+	NegotiationAction_NEGOTIATION_ACTION_ACCEPT      NegotiationAction = 3
+	NegotiationAction_NEGOTIATION_ACTION_DECLINE     NegotiationAction = 4
+)
+
+// Enum value maps for NegotiationAction.
+var (
+	NegotiationAction_name = map[int32]string{
+		0: "NEGOTIATION_ACTION_UNSPECIFIED",
+		1: "NEGOTIATION_ACTION_OFFER",
+		2: "NEGOTIATION_ACTION_COUNTER",
+		3: "NEGOTIATION_ACTION_ACCEPT",
+		4: "NEGOTIATION_ACTION_DECLINE",
+	}
+	NegotiationAction_value = map[string]int32{
+		"NEGOTIATION_ACTION_UNSPECIFIED": 0,
+		"NEGOTIATION_ACTION_OFFER":       1,
+		"NEGOTIATION_ACTION_COUNTER":     2,
+		"NEGOTIATION_ACTION_ACCEPT":      3,
+		"NEGOTIATION_ACTION_DECLINE":     4,
+	}
+)
+
+func (x NegotiationAction) Enum() *NegotiationAction {
+	p := new(NegotiationAction)
+	*p = x
+	return p
+}
+
+func (x NegotiationAction) String() string {
+	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
+}
+
+func (NegotiationAction) Descriptor() protoreflect.EnumDescriptor {
+	return file_trip_proto_enumTypes[9].Descriptor()
+}
+
+func (NegotiationAction) Type() protoreflect.EnumType {
+	return &file_trip_proto_enumTypes[9]
+}
+
+func (x NegotiationAction) Number() protoreflect.EnumNumber {
+	return protoreflect.EnumNumber(x)
+}
+
+// Deprecated: Use NegotiationAction.Descriptor instead.
+func (NegotiationAction) EnumDescriptor() ([]byte, []int) {
+	return file_trip_proto_rawDescGZIP(), []int{9}
+}
+
 type Trip struct {
 	state                  protoimpl.MessageState `protogen:"open.v1"`
 	TripId                 string                 `protobuf:"bytes,1,opt,name=trip_id,json=tripId,proto3" json:"trip_id,omitempty"`
@@ -555,8 +885,7 @@ type BidOrOfferRequest struct {
 	UserId       string                 `protobuf:"bytes,2,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"` // driver or rider
 	PriceModel   PriceModel             `protobuf:"varint,3,opt,name=price_model,json=priceModel,proto3,enum=trip.PriceModel" json:"price_model,omitempty"`
 	ProposedFare float64                `protobuf:"fixed64,4,opt,name=proposed_fare,json=proposedFare,proto3" json:"proposed_fare,omitempty"`
-	// "DRIVER" or "RIDER" (for Flex Fare negotiation)
-	Role string `protobuf:"bytes,5,opt,name=role,proto3" json:"role,omitempty"`
+	Role         UserRole               `protobuf:"varint,5,opt,name=role,proto3,enum=trip.UserRole" json:"role,omitempty"` // DRIVER or RIDER (for Flex Fare negotiation)
 	// Automatic Bidding: future proxy bidding support
 	MaxBidLimit   float64 `protobuf:"fixed64,6,opt,name=max_bid_limit,json=maxBidLimit,proto3" json:"max_bid_limit,omitempty"` // optional
 	MinBidLimit   float64 `protobuf:"fixed64,7,opt,name=min_bid_limit,json=minBidLimit,proto3" json:"min_bid_limit,omitempty"` // optional
@@ -622,11 +951,11 @@ func (x *BidOrOfferRequest) GetProposedFare() float64 {
 	return 0
 }
 
-func (x *BidOrOfferRequest) GetRole() string {
+func (x *BidOrOfferRequest) GetRole() UserRole {
 	if x != nil {
 		return x.Role
 	}
-	return ""
+	return UserRole_USER_ROLE_UNSPECIFIED
 }
 
 func (x *BidOrOfferRequest) GetMaxBidLimit() float64 {
@@ -1574,7 +1903,7 @@ type BiddingSession struct {
 	SessionId        string                 `protobuf:"bytes,1,opt,name=session_id,json=sessionId,proto3" json:"session_id,omitempty"`
 	TripId           string                 `protobuf:"bytes,2,opt,name=trip_id,json=tripId,proto3" json:"trip_id,omitempty"`
 	RiderId          string                 `protobuf:"bytes,3,opt,name=rider_id,json=riderId,proto3" json:"rider_id,omitempty"`
-	Status           string                 `protobuf:"bytes,4,opt,name=status,proto3" json:"status,omitempty"` // "active", "expired", "assigned", "cancelled"
+	Status           BiddingSessionStatus   `protobuf:"varint,4,opt,name=status,proto3,enum=trip.BiddingSessionStatus" json:"status,omitempty"`
 	CurrentLowestBid float64                `protobuf:"fixed64,5,opt,name=current_lowest_bid,json=currentLowestBid,proto3" json:"current_lowest_bid,omitempty"`
 	SecondsRemaining int32                  `protobuf:"varint,6,opt,name=seconds_remaining,json=secondsRemaining,proto3" json:"seconds_remaining,omitempty"`
 	BidCount         int32                  `protobuf:"varint,7,opt,name=bid_count,json=bidCount,proto3" json:"bid_count,omitempty"`
@@ -1636,11 +1965,11 @@ func (x *BiddingSession) GetRiderId() string {
 	return ""
 }
 
-func (x *BiddingSession) GetStatus() string {
+func (x *BiddingSession) GetStatus() BiddingSessionStatus {
 	if x != nil {
 		return x.Status
 	}
-	return ""
+	return BiddingSessionStatus_BIDDING_SESSION_STATUS_UNSPECIFIED
 }
 
 func (x *BiddingSession) GetCurrentLowestBid() float64 {
@@ -2029,7 +2358,7 @@ type InstantMatchResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	TripId        string                 `protobuf:"bytes,1,opt,name=trip_id,json=tripId,proto3" json:"trip_id,omitempty"`
 	DriverId      string                 `protobuf:"bytes,2,opt,name=driver_id,json=driverId,proto3" json:"driver_id,omitempty"`
-	Status        string                 `protobuf:"bytes,3,opt,name=status,proto3" json:"status,omitempty"`
+	Status        InstantMatchStatus     `protobuf:"varint,3,opt,name=status,proto3,enum=trip.InstantMatchStatus" json:"status,omitempty"`
 	Message       string                 `protobuf:"bytes,4,opt,name=message,proto3" json:"message,omitempty"`
 	EstimatedTime int32                  `protobuf:"varint,5,opt,name=estimated_time,json=estimatedTime,proto3" json:"estimated_time,omitempty"`
 	Distance      float64                `protobuf:"fixed64,6,opt,name=distance,proto3" json:"distance,omitempty"`
@@ -2082,11 +2411,11 @@ func (x *InstantMatchResponse) GetDriverId() string {
 	return ""
 }
 
-func (x *InstantMatchResponse) GetStatus() string {
+func (x *InstantMatchResponse) GetStatus() InstantMatchStatus {
 	if x != nil {
 		return x.Status
 	}
-	return ""
+	return InstantMatchStatus_INSTANT_MATCH_STATUS_UNSPECIFIED
 }
 
 func (x *InstantMatchResponse) GetMessage() string {
@@ -2172,7 +2501,7 @@ func (x *GetInstantMatchStatusRequest) GetRiderId() string {
 type GetInstantMatchStatusResponse struct {
 	state            protoimpl.MessageState `protogen:"open.v1"`
 	TripId           string                 `protobuf:"bytes,1,opt,name=trip_id,json=tripId,proto3" json:"trip_id,omitempty"`
-	Status           string                 `protobuf:"bytes,2,opt,name=status,proto3" json:"status,omitempty"`
+	Status           InstantMatchStatus     `protobuf:"varint,2,opt,name=status,proto3,enum=trip.InstantMatchStatus" json:"status,omitempty"`
 	DriversNotified  int32                  `protobuf:"varint,3,opt,name=drivers_notified,json=driversNotified,proto3" json:"drivers_notified,omitempty"`
 	SecondsRemaining int32                  `protobuf:"varint,4,opt,name=seconds_remaining,json=secondsRemaining,proto3" json:"seconds_remaining,omitempty"`
 	AssignedDriverId string                 `protobuf:"bytes,5,opt,name=assigned_driver_id,json=assignedDriverId,proto3" json:"assigned_driver_id,omitempty"`
@@ -2219,11 +2548,11 @@ func (x *GetInstantMatchStatusResponse) GetTripId() string {
 	return ""
 }
 
-func (x *GetInstantMatchStatusResponse) GetStatus() string {
+func (x *GetInstantMatchStatusResponse) GetStatus() InstantMatchStatus {
 	if x != nil {
 		return x.Status
 	}
-	return ""
+	return InstantMatchStatus_INSTANT_MATCH_STATUS_UNSPECIFIED
 }
 
 func (x *GetInstantMatchStatusResponse) GetDriversNotified() int32 {
@@ -2646,23 +2975,23 @@ func (x *DriverInfo) GetDistance() float64 {
 }
 
 type NegotiationSession struct {
-	state              protoimpl.MessageState `protogen:"open.v1"`
-	SessionId          string                 `protobuf:"bytes,1,opt,name=session_id,json=sessionId,proto3" json:"session_id,omitempty"`
-	TripId             string                 `protobuf:"bytes,2,opt,name=trip_id,json=tripId,proto3" json:"trip_id,omitempty"`
-	RiderId            string                 `protobuf:"bytes,3,opt,name=rider_id,json=riderId,proto3" json:"rider_id,omitempty"`
-	Status             string                 `protobuf:"bytes,4,opt,name=status,proto3" json:"status,omitempty"` // "active", "completed", "timeout", "cancelled"
-	StartLocation      []byte                 `protobuf:"bytes,5,opt,name=start_location,json=startLocation,proto3" json:"start_location,omitempty"`
-	EndLocation        []byte                 `protobuf:"bytes,6,opt,name=end_location,json=endLocation,proto3" json:"end_location,omitempty"`
-	RiderOffer         *float64               `protobuf:"fixed64,7,opt,name=rider_offer,json=riderOffer,proto3,oneof" json:"rider_offer,omitempty"`
-	AllowOffers        bool                   `protobuf:"varint,8,opt,name=allow_offers,json=allowOffers,proto3" json:"allow_offers,omitempty"`
-	CurrentOffers      []*Offer               `protobuf:"bytes,9,rep,name=current_offers,json=currentOffers,proto3" json:"current_offers,omitempty"`
-	NegotiationHistory []*NegotiationRound    `protobuf:"bytes,10,rep,name=negotiation_history,json=negotiationHistory,proto3" json:"negotiation_history,omitempty"`
-	AssignedDriverId   *string                `protobuf:"bytes,11,opt,name=assigned_driver_id,json=assignedDriverId,proto3,oneof" json:"assigned_driver_id,omitempty"`
-	FinalFare          *float64               `protobuf:"fixed64,12,opt,name=final_fare,json=finalFare,proto3,oneof" json:"final_fare,omitempty"`
-	SecondsRemaining   int32                  `protobuf:"varint,13,opt,name=seconds_remaining,json=secondsRemaining,proto3" json:"seconds_remaining,omitempty"`
-	Metadata           map[string]string      `protobuf:"bytes,14,rep,name=metadata,proto3" json:"metadata,omitempty" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"bytes,2,opt,name=value"`
-	CreatedAt          int64                  `protobuf:"varint,15,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
-	UpdatedAt          int64                  `protobuf:"varint,16,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at,omitempty"`
+	state              protoimpl.MessageState   `protogen:"open.v1"`
+	SessionId          string                   `protobuf:"bytes,1,opt,name=session_id,json=sessionId,proto3" json:"session_id,omitempty"`
+	TripId             string                   `protobuf:"bytes,2,opt,name=trip_id,json=tripId,proto3" json:"trip_id,omitempty"`
+	RiderId            string                   `protobuf:"bytes,3,opt,name=rider_id,json=riderId,proto3" json:"rider_id,omitempty"`
+	Status             NegotiationSessionStatus `protobuf:"varint,4,opt,name=status,proto3,enum=trip.NegotiationSessionStatus" json:"status,omitempty"`
+	StartLocation      []byte                   `protobuf:"bytes,5,opt,name=start_location,json=startLocation,proto3" json:"start_location,omitempty"`
+	EndLocation        []byte                   `protobuf:"bytes,6,opt,name=end_location,json=endLocation,proto3" json:"end_location,omitempty"`
+	RiderOffer         *float64                 `protobuf:"fixed64,7,opt,name=rider_offer,json=riderOffer,proto3,oneof" json:"rider_offer,omitempty"`
+	AllowOffers        bool                     `protobuf:"varint,8,opt,name=allow_offers,json=allowOffers,proto3" json:"allow_offers,omitempty"`
+	CurrentOffers      []*Offer                 `protobuf:"bytes,9,rep,name=current_offers,json=currentOffers,proto3" json:"current_offers,omitempty"`
+	NegotiationHistory []*NegotiationRound      `protobuf:"bytes,10,rep,name=negotiation_history,json=negotiationHistory,proto3" json:"negotiation_history,omitempty"`
+	AssignedDriverId   *string                  `protobuf:"bytes,11,opt,name=assigned_driver_id,json=assignedDriverId,proto3,oneof" json:"assigned_driver_id,omitempty"`
+	FinalFare          *float64                 `protobuf:"fixed64,12,opt,name=final_fare,json=finalFare,proto3,oneof" json:"final_fare,omitempty"`
+	SecondsRemaining   int32                    `protobuf:"varint,13,opt,name=seconds_remaining,json=secondsRemaining,proto3" json:"seconds_remaining,omitempty"`
+	Metadata           map[string]string        `protobuf:"bytes,14,rep,name=metadata,proto3" json:"metadata,omitempty" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"bytes,2,opt,name=value"`
+	CreatedAt          int64                    `protobuf:"varint,15,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
+	UpdatedAt          int64                    `protobuf:"varint,16,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at,omitempty"`
 	unknownFields      protoimpl.UnknownFields
 	sizeCache          protoimpl.SizeCache
 }
@@ -2718,11 +3047,11 @@ func (x *NegotiationSession) GetRiderId() string {
 	return ""
 }
 
-func (x *NegotiationSession) GetStatus() string {
+func (x *NegotiationSession) GetStatus() NegotiationSessionStatus {
 	if x != nil {
 		return x.Status
 	}
-	return ""
+	return NegotiationSessionStatus_NEGOTIATION_SESSION_STATUS_UNSPECIFIED
 }
 
 func (x *NegotiationSession) GetStartLocation() []byte {
@@ -2816,7 +3145,7 @@ type Offer struct {
 	DriverName      string                 `protobuf:"bytes,3,opt,name=driver_name,json=driverName,proto3" json:"driver_name,omitempty"`
 	DriverRating    float64                `protobuf:"fixed64,4,opt,name=driver_rating,json=driverRating,proto3" json:"driver_rating,omitempty"`
 	Amount          float64                `protobuf:"fixed64,5,opt,name=amount,proto3" json:"amount,omitempty"`
-	Status          string                 `protobuf:"bytes,6,opt,name=status,proto3" json:"status,omitempty"` // "pending", "accepted", "declined", "countered", "expired"
+	Status          OfferStatus            `protobuf:"varint,6,opt,name=status,proto3,enum=trip.OfferStatus" json:"status,omitempty"`
 	Message         string                 `protobuf:"bytes,7,opt,name=message,proto3" json:"message,omitempty"`
 	SubmittedAt     int64                  `protobuf:"varint,8,opt,name=submitted_at,json=submittedAt,proto3" json:"submitted_at,omitempty"`
 	ExpiresAt       int64                  `protobuf:"varint,9,opt,name=expires_at,json=expiresAt,proto3" json:"expires_at,omitempty"`
@@ -2891,11 +3220,11 @@ func (x *Offer) GetAmount() float64 {
 	return 0
 }
 
-func (x *Offer) GetStatus() string {
+func (x *Offer) GetStatus() OfferStatus {
 	if x != nil {
 		return x.Status
 	}
-	return ""
+	return OfferStatus_OFFER_STATUS_UNSPECIFIED
 }
 
 func (x *Offer) GetMessage() string {
@@ -2940,7 +3269,7 @@ type NegotiationRound struct {
 	CounterId     *string                `protobuf:"bytes,3,opt,name=counter_id,json=counterId,proto3,oneof" json:"counter_id,omitempty"`
 	FromUserId    string                 `protobuf:"bytes,4,opt,name=from_user_id,json=fromUserId,proto3" json:"from_user_id,omitempty"`
 	ToUserId      string                 `protobuf:"bytes,5,opt,name=to_user_id,json=toUserId,proto3" json:"to_user_id,omitempty"`
-	Action        string                 `protobuf:"bytes,6,opt,name=action,proto3" json:"action,omitempty"` // "offer", "counter", "accept", "decline"
+	Action        NegotiationAction      `protobuf:"varint,6,opt,name=action,proto3,enum=trip.NegotiationAction" json:"action,omitempty"`
 	Amount        float64                `protobuf:"fixed64,7,opt,name=amount,proto3" json:"amount,omitempty"`
 	Message       string                 `protobuf:"bytes,8,opt,name=message,proto3" json:"message,omitempty"`
 	Timestamp     int64                  `protobuf:"varint,9,opt,name=timestamp,proto3" json:"timestamp,omitempty"`
@@ -3013,11 +3342,11 @@ func (x *NegotiationRound) GetToUserId() string {
 	return ""
 }
 
-func (x *NegotiationRound) GetAction() string {
+func (x *NegotiationRound) GetAction() NegotiationAction {
 	if x != nil {
 		return x.Action
 	}
-	return ""
+	return NegotiationAction_NEGOTIATION_ACTION_UNSPECIFIED
 }
 
 func (x *NegotiationRound) GetAmount() float64 {
@@ -3325,7 +3654,7 @@ type RespondToOfferRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	SessionId     string                 `protobuf:"bytes,1,opt,name=session_id,json=sessionId,proto3" json:"session_id,omitempty"`
 	OfferId       string                 `protobuf:"bytes,2,opt,name=offer_id,json=offerId,proto3" json:"offer_id,omitempty"`
-	Action        string                 `protobuf:"bytes,3,opt,name=action,proto3" json:"action,omitempty"` // "accept", "decline", "counter"
+	Action        NegotiationAction      `protobuf:"varint,3,opt,name=action,proto3,enum=trip.NegotiationAction" json:"action,omitempty"`
 	CounterAmount *float64               `protobuf:"fixed64,4,opt,name=counter_amount,json=counterAmount,proto3,oneof" json:"counter_amount,omitempty"`
 	Message       string                 `protobuf:"bytes,5,opt,name=message,proto3" json:"message,omitempty"`
 	unknownFields protoimpl.UnknownFields
@@ -3376,11 +3705,11 @@ func (x *RespondToOfferRequest) GetOfferId() string {
 	return ""
 }
 
-func (x *RespondToOfferRequest) GetAction() string {
+func (x *RespondToOfferRequest) GetAction() NegotiationAction {
 	if x != nil {
 		return x.Action
 	}
-	return ""
+	return NegotiationAction_NEGOTIATION_ACTION_UNSPECIFIED
 }
 
 func (x *RespondToOfferRequest) GetCounterAmount() float64 {
@@ -3453,7 +3782,7 @@ type DriverRespondToCounterRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	SessionId     string                 `protobuf:"bytes,1,opt,name=session_id,json=sessionId,proto3" json:"session_id,omitempty"`
 	CounterId     string                 `protobuf:"bytes,2,opt,name=counter_id,json=counterId,proto3" json:"counter_id,omitempty"`
-	Action        string                 `protobuf:"bytes,3,opt,name=action,proto3" json:"action,omitempty"` // "accept", "decline", "counter"
+	Action        NegotiationAction      `protobuf:"varint,3,opt,name=action,proto3,enum=trip.NegotiationAction" json:"action,omitempty"`
 	CounterAmount *float64               `protobuf:"fixed64,4,opt,name=counter_amount,json=counterAmount,proto3,oneof" json:"counter_amount,omitempty"`
 	Message       string                 `protobuf:"bytes,5,opt,name=message,proto3" json:"message,omitempty"`
 	unknownFields protoimpl.UnknownFields
@@ -3504,11 +3833,11 @@ func (x *DriverRespondToCounterRequest) GetCounterId() string {
 	return ""
 }
 
-func (x *DriverRespondToCounterRequest) GetAction() string {
+func (x *DriverRespondToCounterRequest) GetAction() NegotiationAction {
 	if x != nil {
 		return x.Action
 	}
-	return ""
+	return NegotiationAction_NEGOTIATION_ACTION_UNSPECIFIED
 }
 
 func (x *DriverRespondToCounterRequest) GetCounterAmount() float64 {
@@ -3823,14 +4152,14 @@ const file_trip_proto_rawDesc = "" +
 	"\fTripResponse\x12\x18\n" +
 	"\amessage\x18\x01 \x01(\tR\amessage\x12\x1e\n" +
 	"\x04trip\x18\x02 \x01(\v2\n" +
-	".trip.TripR\x04trip\"\xf9\x01\n" +
+	".trip.TripR\x04trip\"\x89\x02\n" +
 	"\x11BidOrOfferRequest\x12\x17\n" +
 	"\atrip_id\x18\x01 \x01(\tR\x06tripId\x12\x17\n" +
 	"\auser_id\x18\x02 \x01(\tR\x06userId\x121\n" +
 	"\vprice_model\x18\x03 \x01(\x0e2\x10.trip.PriceModelR\n" +
 	"priceModel\x12#\n" +
-	"\rproposed_fare\x18\x04 \x01(\x01R\fproposedFare\x12\x12\n" +
-	"\x04role\x18\x05 \x01(\tR\x04role\x12\"\n" +
+	"\rproposed_fare\x18\x04 \x01(\x01R\fproposedFare\x12\"\n" +
+	"\x04role\x18\x05 \x01(\x0e2\x0e.trip.UserRoleR\x04role\x12\"\n" +
 	"\rmax_bid_limit\x18\x06 \x01(\x01R\vmaxBidLimit\x12\"\n" +
 	"\rmin_bid_limit\x18\a \x01(\x01R\vminBidLimit\"\xee\x02\n" +
 	"\x12BidOrOfferResponse\x12\x17\n" +
@@ -3908,13 +4237,13 @@ const file_trip_proto_rawDesc = "" +
 	"final_fare\x18\x02 \x01(\x01R\tfinalFare\x12\x18\n" +
 	"\amessage\x18\x03 \x01(\tR\amessage\x12\x1e\n" +
 	"\x04trip\x18\x04 \x01(\v2\n" +
-	".trip.TripR\x04trip\"\x8f\x03\n" +
+	".trip.TripR\x04trip\"\xab\x03\n" +
 	"\x0eBiddingSession\x12\x1d\n" +
 	"\n" +
 	"session_id\x18\x01 \x01(\tR\tsessionId\x12\x17\n" +
 	"\atrip_id\x18\x02 \x01(\tR\x06tripId\x12\x19\n" +
-	"\brider_id\x18\x03 \x01(\tR\ariderId\x12\x16\n" +
-	"\x06status\x18\x04 \x01(\tR\x06status\x12,\n" +
+	"\brider_id\x18\x03 \x01(\tR\ariderId\x122\n" +
+	"\x06status\x18\x04 \x01(\x0e2\x1a.trip.BiddingSessionStatusR\x06status\x12,\n" +
 	"\x12current_lowest_bid\x18\x05 \x01(\x01R\x10currentLowestBid\x12+\n" +
 	"\x11seconds_remaining\x18\x06 \x01(\x05R\x10secondsRemaining\x12\x1b\n" +
 	"\tbid_count\x18\a \x01(\x05R\bbidCount\x121\n" +
@@ -3943,21 +4272,21 @@ const file_trip_proto_rawDesc = "" +
 	"\amessage\x18\x02 \x01(\tR\amessage\"K\n" +
 	"\x13InstantMatchRequest\x12\x17\n" +
 	"\atrip_id\x18\x01 \x01(\tR\x06tripId\x12\x1b\n" +
-	"\tdriver_id\x18\x02 \x01(\tR\bdriverId\"\xd7\x01\n" +
+	"\tdriver_id\x18\x02 \x01(\tR\bdriverId\"\xf1\x01\n" +
 	"\x14InstantMatchResponse\x12\x17\n" +
 	"\atrip_id\x18\x01 \x01(\tR\x06tripId\x12\x1b\n" +
-	"\tdriver_id\x18\x02 \x01(\tR\bdriverId\x12\x16\n" +
-	"\x06status\x18\x03 \x01(\tR\x06status\x12\x18\n" +
+	"\tdriver_id\x18\x02 \x01(\tR\bdriverId\x120\n" +
+	"\x06status\x18\x03 \x01(\x0e2\x18.trip.InstantMatchStatusR\x06status\x12\x18\n" +
 	"\amessage\x18\x04 \x01(\tR\amessage\x12%\n" +
 	"\x0eestimated_time\x18\x05 \x01(\x05R\restimatedTime\x12\x1a\n" +
 	"\bdistance\x18\x06 \x01(\x01R\bdistance\x12\x14\n" +
 	"\x05price\x18\a \x01(\x01R\x05price\"R\n" +
 	"\x1cGetInstantMatchStatusRequest\x12\x17\n" +
 	"\atrip_id\x18\x01 \x01(\tR\x06tripId\x12\x19\n" +
-	"\brider_id\x18\x02 \x01(\tR\ariderId\"\xa3\x02\n" +
+	"\brider_id\x18\x02 \x01(\tR\ariderId\"\xbd\x02\n" +
 	"\x1dGetInstantMatchStatusResponse\x12\x17\n" +
-	"\atrip_id\x18\x01 \x01(\tR\x06tripId\x12\x16\n" +
-	"\x06status\x18\x02 \x01(\tR\x06status\x12)\n" +
+	"\atrip_id\x18\x01 \x01(\tR\x06tripId\x120\n" +
+	"\x06status\x18\x02 \x01(\x0e2\x18.trip.InstantMatchStatusR\x06status\x12)\n" +
 	"\x10drivers_notified\x18\x03 \x01(\x05R\x0fdriversNotified\x12+\n" +
 	"\x11seconds_remaining\x18\x04 \x01(\x05R\x10secondsRemaining\x12,\n" +
 	"\x12assigned_driver_id\x18\x05 \x01(\tR\x10assignedDriverId\x121\n" +
@@ -3992,13 +4321,13 @@ const file_trip_proto_rawDesc = "" +
 	"\fvehicle_type\x18\x05 \x01(\tR\vvehicleType\x12!\n" +
 	"\fvehicle_info\x18\x06 \x01(\tR\vvehicleInfo\x12\x10\n" +
 	"\x03eta\x18\a \x01(\x05R\x03eta\x12\x1a\n" +
-	"\bdistance\x18\b \x01(\x01R\bdistance\"\x88\x06\n" +
+	"\bdistance\x18\b \x01(\x01R\bdistance\"\xa8\x06\n" +
 	"\x12NegotiationSession\x12\x1d\n" +
 	"\n" +
 	"session_id\x18\x01 \x01(\tR\tsessionId\x12\x17\n" +
 	"\atrip_id\x18\x02 \x01(\tR\x06tripId\x12\x19\n" +
-	"\brider_id\x18\x03 \x01(\tR\ariderId\x12\x16\n" +
-	"\x06status\x18\x04 \x01(\tR\x06status\x12%\n" +
+	"\brider_id\x18\x03 \x01(\tR\ariderId\x126\n" +
+	"\x06status\x18\x04 \x01(\x0e2\x1e.trip.NegotiationSessionStatusR\x06status\x12%\n" +
 	"\x0estart_location\x18\x05 \x01(\fR\rstartLocation\x12!\n" +
 	"\fend_location\x18\x06 \x01(\fR\vendLocation\x12$\n" +
 	"\vrider_offer\x18\a \x01(\x01H\x00R\n" +
@@ -4021,15 +4350,15 @@ const file_trip_proto_rawDesc = "" +
 	"\x05value\x18\x02 \x01(\tR\x05value:\x028\x01B\x0e\n" +
 	"\f_rider_offerB\x15\n" +
 	"\x13_assigned_driver_idB\r\n" +
-	"\v_final_fare\"\x82\x03\n" +
+	"\v_final_fare\"\x95\x03\n" +
 	"\x05Offer\x12\x19\n" +
 	"\boffer_id\x18\x01 \x01(\tR\aofferId\x12\x1b\n" +
 	"\tdriver_id\x18\x02 \x01(\tR\bdriverId\x12\x1f\n" +
 	"\vdriver_name\x18\x03 \x01(\tR\n" +
 	"driverName\x12#\n" +
 	"\rdriver_rating\x18\x04 \x01(\x01R\fdriverRating\x12\x16\n" +
-	"\x06amount\x18\x05 \x01(\x01R\x06amount\x12\x16\n" +
-	"\x06status\x18\x06 \x01(\tR\x06status\x12\x18\n" +
+	"\x06amount\x18\x05 \x01(\x01R\x06amount\x12)\n" +
+	"\x06status\x18\x06 \x01(\x0e2\x11.trip.OfferStatusR\x06status\x12\x18\n" +
 	"\amessage\x18\a \x01(\tR\amessage\x12!\n" +
 	"\fsubmitted_at\x18\b \x01(\x03R\vsubmittedAt\x12\x1d\n" +
 	"\n" +
@@ -4037,7 +4366,7 @@ const file_trip_proto_rawDesc = "" +
 	"\x10is_counter_offer\x18\n" +
 	" \x01(\bR\x0eisCounterOffer\x12/\n" +
 	"\x11original_offer_id\x18\v \x01(\tH\x00R\x0foriginalOfferId\x88\x01\x01B\x14\n" +
-	"\x12_original_offer_id\"\xa3\x02\n" +
+	"\x12_original_offer_id\"\xbc\x02\n" +
 	"\x10NegotiationRound\x12\x19\n" +
 	"\bround_id\x18\x01 \x01(\tR\aroundId\x12\x19\n" +
 	"\boffer_id\x18\x02 \x01(\tR\aofferId\x12\"\n" +
@@ -4046,8 +4375,8 @@ const file_trip_proto_rawDesc = "" +
 	"\ffrom_user_id\x18\x04 \x01(\tR\n" +
 	"fromUserId\x12\x1c\n" +
 	"\n" +
-	"to_user_id\x18\x05 \x01(\tR\btoUserId\x12\x16\n" +
-	"\x06action\x18\x06 \x01(\tR\x06action\x12\x16\n" +
+	"to_user_id\x18\x05 \x01(\tR\btoUserId\x12/\n" +
+	"\x06action\x18\x06 \x01(\x0e2\x17.trip.NegotiationActionR\x06action\x12\x16\n" +
 	"\x06amount\x18\a \x01(\x01R\x06amount\x12\x18\n" +
 	"\amessage\x18\b \x01(\tR\amessage\x12\x1c\n" +
 	"\ttimestamp\x18\t \x01(\x03R\ttimestampB\r\n" +
@@ -4080,24 +4409,24 @@ const file_trip_proto_rawDesc = "" +
 	"\amessage\x18\x04 \x01(\tR\amessage\"E\n" +
 	"\x13SubmitOfferResponse\x12\x18\n" +
 	"\asuccess\x18\x01 \x01(\bR\asuccess\x12\x14\n" +
-	"\x05error\x18\x02 \x01(\tR\x05error\"\xc2\x01\n" +
+	"\x05error\x18\x02 \x01(\tR\x05error\"\xdb\x01\n" +
 	"\x15RespondToOfferRequest\x12\x1d\n" +
 	"\n" +
 	"session_id\x18\x01 \x01(\tR\tsessionId\x12\x19\n" +
-	"\boffer_id\x18\x02 \x01(\tR\aofferId\x12\x16\n" +
-	"\x06action\x18\x03 \x01(\tR\x06action\x12*\n" +
+	"\boffer_id\x18\x02 \x01(\tR\aofferId\x12/\n" +
+	"\x06action\x18\x03 \x01(\x0e2\x17.trip.NegotiationActionR\x06action\x12*\n" +
 	"\x0ecounter_amount\x18\x04 \x01(\x01H\x00R\rcounterAmount\x88\x01\x01\x12\x18\n" +
 	"\amessage\x18\x05 \x01(\tR\amessageB\x11\n" +
 	"\x0f_counter_amount\"H\n" +
 	"\x16RespondToOfferResponse\x12\x18\n" +
 	"\asuccess\x18\x01 \x01(\bR\asuccess\x12\x14\n" +
-	"\x05error\x18\x02 \x01(\tR\x05error\"\xce\x01\n" +
+	"\x05error\x18\x02 \x01(\tR\x05error\"\xe7\x01\n" +
 	"\x1dDriverRespondToCounterRequest\x12\x1d\n" +
 	"\n" +
 	"session_id\x18\x01 \x01(\tR\tsessionId\x12\x1d\n" +
 	"\n" +
-	"counter_id\x18\x02 \x01(\tR\tcounterId\x12\x16\n" +
-	"\x06action\x18\x03 \x01(\tR\x06action\x12*\n" +
+	"counter_id\x18\x02 \x01(\tR\tcounterId\x12/\n" +
+	"\x06action\x18\x03 \x01(\x0e2\x17.trip.NegotiationActionR\x06action\x12*\n" +
 	"\x0ecounter_amount\x18\x04 \x01(\x01H\x00R\rcounterAmount\x88\x01\x01\x12\x18\n" +
 	"\amessage\x18\x05 \x01(\tR\amessageB\x11\n" +
 	"\x0f_counter_amount\"P\n" +
@@ -4154,7 +4483,43 @@ const file_trip_proto_rawDesc = "" +
 	"\x1cNEGOTIATION_STATUS_COUNTERED\x10\x02\x12\x1e\n" +
 	"\x1aNEGOTIATION_STATUS_PENDING\x10\x03\x12\x1f\n" +
 	"\x1bNEGOTIATION_STATUS_ACCEPTED\x10\x04\x12\x1f\n" +
-	"\x1bNEGOTIATION_STATUS_REJECTED\x10\x052\xd0\v\n" +
+	"\x1bNEGOTIATION_STATUS_REJECTED\x10\x05*P\n" +
+	"\bUserRole\x12\x19\n" +
+	"\x15USER_ROLE_UNSPECIFIED\x10\x00\x12\x13\n" +
+	"\x0fUSER_ROLE_RIDER\x10\x01\x12\x14\n" +
+	"\x10USER_ROLE_DRIVER\x10\x02*\xd0\x01\n" +
+	"\x14BiddingSessionStatus\x12&\n" +
+	"\"BIDDING_SESSION_STATUS_UNSPECIFIED\x10\x00\x12!\n" +
+	"\x1dBIDDING_SESSION_STATUS_ACTIVE\x10\x01\x12\"\n" +
+	"\x1eBIDDING_SESSION_STATUS_EXPIRED\x10\x02\x12#\n" +
+	"\x1fBIDDING_SESSION_STATUS_ASSIGNED\x10\x03\x12$\n" +
+	" BIDDING_SESSION_STATUS_CANCELLED\x10\x04*\xe7\x01\n" +
+	"\x12InstantMatchStatus\x12$\n" +
+	" INSTANT_MATCH_STATUS_UNSPECIFIED\x10\x00\x12 \n" +
+	"\x1cINSTANT_MATCH_STATUS_PENDING\x10\x01\x12 \n" +
+	"\x1cINSTANT_MATCH_STATUS_MATCHED\x10\x02\x12!\n" +
+	"\x1dINSTANT_MATCH_STATUS_ACCEPTED\x10\x03\x12\"\n" +
+	"\x1eINSTANT_MATCH_STATUS_CANCELLED\x10\x04\x12 \n" +
+	"\x1cINSTANT_MATCH_STATUS_EXPIRED\x10\x05*\xe9\x01\n" +
+	"\x18NegotiationSessionStatus\x12*\n" +
+	"&NEGOTIATION_SESSION_STATUS_UNSPECIFIED\x10\x00\x12%\n" +
+	"!NEGOTIATION_SESSION_STATUS_ACTIVE\x10\x01\x12(\n" +
+	"$NEGOTIATION_SESSION_STATUS_COMPLETED\x10\x02\x12&\n" +
+	"\"NEGOTIATION_SESSION_STATUS_TIMEOUT\x10\x03\x12(\n" +
+	"$NEGOTIATION_SESSION_STATUS_CANCELLED\x10\x04*\xb1\x01\n" +
+	"\vOfferStatus\x12\x1c\n" +
+	"\x18OFFER_STATUS_UNSPECIFIED\x10\x00\x12\x18\n" +
+	"\x14OFFER_STATUS_PENDING\x10\x01\x12\x19\n" +
+	"\x15OFFER_STATUS_ACCEPTED\x10\x02\x12\x19\n" +
+	"\x15OFFER_STATUS_DECLINED\x10\x03\x12\x1a\n" +
+	"\x16OFFER_STATUS_COUNTERED\x10\x04\x12\x18\n" +
+	"\x14OFFER_STATUS_EXPIRED\x10\x05*\xb4\x01\n" +
+	"\x11NegotiationAction\x12\"\n" +
+	"\x1eNEGOTIATION_ACTION_UNSPECIFIED\x10\x00\x12\x1c\n" +
+	"\x18NEGOTIATION_ACTION_OFFER\x10\x01\x12\x1e\n" +
+	"\x1aNEGOTIATION_ACTION_COUNTER\x10\x02\x12\x1d\n" +
+	"\x19NEGOTIATION_ACTION_ACCEPT\x10\x03\x12\x1e\n" +
+	"\x1aNEGOTIATION_ACTION_DECLINE\x10\x042\xd0\v\n" +
 	"\vTripService\x125\n" +
 	"\n" +
 	"CreateTrip\x12\x11.trip.TripRequest\x1a\x12.trip.TripResponse\"\x00\x12G\n" +
@@ -4197,66 +4562,72 @@ func file_trip_proto_rawDescGZIP() []byte {
 	return file_trip_proto_rawDescData
 }
 
-var file_trip_proto_enumTypes = make([]protoimpl.EnumInfo, 4)
+var file_trip_proto_enumTypes = make([]protoimpl.EnumInfo, 10)
 var file_trip_proto_msgTypes = make([]protoimpl.MessageInfo, 53)
 var file_trip_proto_goTypes = []any{
 	(PriceModel)(0),                            // 0: trip.PriceModel
 	(TripStatus)(0),                            // 1: trip.TripStatus
 	(PaymentStatus)(0),                         // 2: trip.PaymentStatus
 	(NegotiationStatus)(0),                     // 3: trip.NegotiationStatus
-	(*Trip)(nil),                               // 4: trip.Trip
-	(*TripRequest)(nil),                        // 5: trip.TripRequest
-	(*TripResponse)(nil),                       // 6: trip.TripResponse
-	(*BidOrOfferRequest)(nil),                  // 7: trip.BidOrOfferRequest
-	(*BidOrOfferResponse)(nil),                 // 8: trip.BidOrOfferResponse
-	(*AcceptOfferRequest)(nil),                 // 9: trip.AcceptOfferRequest
-	(*AcceptOfferResponse)(nil),                // 10: trip.AcceptOfferResponse
-	(*InstantAcceptRequest)(nil),               // 11: trip.InstantAcceptRequest
-	(*InstantAcceptResponse)(nil),              // 12: trip.InstantAcceptResponse
-	(*GetTripRequest)(nil),                     // 13: trip.GetTripRequest
-	(*GetActiveTripsRequest)(nil),              // 14: trip.GetActiveTripsRequest
-	(*GetActiveTripsByRiderRequest)(nil),       // 15: trip.GetActiveTripsByRiderRequest
-	(*GetActiveTripsResponse)(nil),             // 16: trip.GetActiveTripsResponse
-	(*AcceptTripRequest)(nil),                  // 17: trip.AcceptTripRequest
-	(*AcceptTripResponse)(nil),                 // 18: trip.AcceptTripResponse
-	(*CancelTripRequest)(nil),                  // 19: trip.CancelTripRequest
-	(*CancelTripResponse)(nil),                 // 20: trip.CancelTripResponse
-	(*CompleteTripRequest)(nil),                // 21: trip.CompleteTripRequest
-	(*CompleteTripResponse)(nil),               // 22: trip.CompleteTripResponse
-	(*BiddingSession)(nil),                     // 23: trip.BiddingSession
-	(*GetBiddingSessionRequest)(nil),           // 24: trip.GetBiddingSessionRequest
-	(*GetBiddingSessionResponse)(nil),          // 25: trip.GetBiddingSessionResponse
-	(*GetBiddingSessionsByRiderRequest)(nil),   // 26: trip.GetBiddingSessionsByRiderRequest
-	(*GetBiddingSessionsByRiderResponse)(nil),  // 27: trip.GetBiddingSessionsByRiderResponse
-	(*GetBiddingSessionsByDriverRequest)(nil),  // 28: trip.GetBiddingSessionsByDriverRequest
-	(*GetBiddingSessionsByDriverResponse)(nil), // 29: trip.GetBiddingSessionsByDriverResponse
-	(*InstantMatchRequest)(nil),                // 30: trip.InstantMatchRequest
-	(*InstantMatchResponse)(nil),               // 31: trip.InstantMatchResponse
-	(*GetInstantMatchStatusRequest)(nil),       // 32: trip.GetInstantMatchStatusRequest
-	(*GetInstantMatchStatusResponse)(nil),      // 33: trip.GetInstantMatchStatusResponse
-	(*CancelInstantMatchRequest)(nil),          // 34: trip.CancelInstantMatchRequest
-	(*CancelInstantMatchResponse)(nil),         // 35: trip.CancelInstantMatchResponse
-	(*GetTripHistoryByRiderRequest)(nil),       // 36: trip.GetTripHistoryByRiderRequest
-	(*GetTripHistoryByDriverRequest)(nil),      // 37: trip.GetTripHistoryByDriverRequest
-	(*GetTripHistoryResponse)(nil),             // 38: trip.GetTripHistoryResponse
-	(*DriverInfo)(nil),                         // 39: trip.DriverInfo
-	(*NegotiationSession)(nil),                 // 40: trip.NegotiationSession
-	(*Offer)(nil),                              // 41: trip.Offer
-	(*NegotiationRound)(nil),                   // 42: trip.NegotiationRound
-	(*CreateNegotiationSessionRequest)(nil),    // 43: trip.CreateNegotiationSessionRequest
-	(*CreateNegotiationSessionResponse)(nil),   // 44: trip.CreateNegotiationSessionResponse
-	(*SubmitOfferRequest)(nil),                 // 45: trip.SubmitOfferRequest
-	(*SubmitOfferResponse)(nil),                // 46: trip.SubmitOfferResponse
-	(*RespondToOfferRequest)(nil),              // 47: trip.RespondToOfferRequest
-	(*RespondToOfferResponse)(nil),             // 48: trip.RespondToOfferResponse
-	(*DriverRespondToCounterRequest)(nil),      // 49: trip.DriverRespondToCounterRequest
-	(*DriverRespondToCounterResponse)(nil),     // 50: trip.DriverRespondToCounterResponse
-	(*GetNegotiationSessionRequest)(nil),       // 51: trip.GetNegotiationSessionRequest
-	(*GetNegotiationSessionResponse)(nil),      // 52: trip.GetNegotiationSessionResponse
-	(*CancelNegotiationRequest)(nil),           // 53: trip.CancelNegotiationRequest
-	(*CancelNegotiationResponse)(nil),          // 54: trip.CancelNegotiationResponse
-	nil,                                        // 55: trip.NegotiationSession.MetadataEntry
-	nil,                                        // 56: trip.CreateNegotiationSessionRequest.MetadataEntry
+	(UserRole)(0),                              // 4: trip.UserRole
+	(BiddingSessionStatus)(0),                  // 5: trip.BiddingSessionStatus
+	(InstantMatchStatus)(0),                    // 6: trip.InstantMatchStatus
+	(NegotiationSessionStatus)(0),              // 7: trip.NegotiationSessionStatus
+	(OfferStatus)(0),                           // 8: trip.OfferStatus
+	(NegotiationAction)(0),                     // 9: trip.NegotiationAction
+	(*Trip)(nil),                               // 10: trip.Trip
+	(*TripRequest)(nil),                        // 11: trip.TripRequest
+	(*TripResponse)(nil),                       // 12: trip.TripResponse
+	(*BidOrOfferRequest)(nil),                  // 13: trip.BidOrOfferRequest
+	(*BidOrOfferResponse)(nil),                 // 14: trip.BidOrOfferResponse
+	(*AcceptOfferRequest)(nil),                 // 15: trip.AcceptOfferRequest
+	(*AcceptOfferResponse)(nil),                // 16: trip.AcceptOfferResponse
+	(*InstantAcceptRequest)(nil),               // 17: trip.InstantAcceptRequest
+	(*InstantAcceptResponse)(nil),              // 18: trip.InstantAcceptResponse
+	(*GetTripRequest)(nil),                     // 19: trip.GetTripRequest
+	(*GetActiveTripsRequest)(nil),              // 20: trip.GetActiveTripsRequest
+	(*GetActiveTripsByRiderRequest)(nil),       // 21: trip.GetActiveTripsByRiderRequest
+	(*GetActiveTripsResponse)(nil),             // 22: trip.GetActiveTripsResponse
+	(*AcceptTripRequest)(nil),                  // 23: trip.AcceptTripRequest
+	(*AcceptTripResponse)(nil),                 // 24: trip.AcceptTripResponse
+	(*CancelTripRequest)(nil),                  // 25: trip.CancelTripRequest
+	(*CancelTripResponse)(nil),                 // 26: trip.CancelTripResponse
+	(*CompleteTripRequest)(nil),                // 27: trip.CompleteTripRequest
+	(*CompleteTripResponse)(nil),               // 28: trip.CompleteTripResponse
+	(*BiddingSession)(nil),                     // 29: trip.BiddingSession
+	(*GetBiddingSessionRequest)(nil),           // 30: trip.GetBiddingSessionRequest
+	(*GetBiddingSessionResponse)(nil),          // 31: trip.GetBiddingSessionResponse
+	(*GetBiddingSessionsByRiderRequest)(nil),   // 32: trip.GetBiddingSessionsByRiderRequest
+	(*GetBiddingSessionsByRiderResponse)(nil),  // 33: trip.GetBiddingSessionsByRiderResponse
+	(*GetBiddingSessionsByDriverRequest)(nil),  // 34: trip.GetBiddingSessionsByDriverRequest
+	(*GetBiddingSessionsByDriverResponse)(nil), // 35: trip.GetBiddingSessionsByDriverResponse
+	(*InstantMatchRequest)(nil),                // 36: trip.InstantMatchRequest
+	(*InstantMatchResponse)(nil),               // 37: trip.InstantMatchResponse
+	(*GetInstantMatchStatusRequest)(nil),       // 38: trip.GetInstantMatchStatusRequest
+	(*GetInstantMatchStatusResponse)(nil),      // 39: trip.GetInstantMatchStatusResponse
+	(*CancelInstantMatchRequest)(nil),          // 40: trip.CancelInstantMatchRequest
+	(*CancelInstantMatchResponse)(nil),         // 41: trip.CancelInstantMatchResponse
+	(*GetTripHistoryByRiderRequest)(nil),       // 42: trip.GetTripHistoryByRiderRequest
+	(*GetTripHistoryByDriverRequest)(nil),      // 43: trip.GetTripHistoryByDriverRequest
+	(*GetTripHistoryResponse)(nil),             // 44: trip.GetTripHistoryResponse
+	(*DriverInfo)(nil),                         // 45: trip.DriverInfo
+	(*NegotiationSession)(nil),                 // 46: trip.NegotiationSession
+	(*Offer)(nil),                              // 47: trip.Offer
+	(*NegotiationRound)(nil),                   // 48: trip.NegotiationRound
+	(*CreateNegotiationSessionRequest)(nil),    // 49: trip.CreateNegotiationSessionRequest
+	(*CreateNegotiationSessionResponse)(nil),   // 50: trip.CreateNegotiationSessionResponse
+	(*SubmitOfferRequest)(nil),                 // 51: trip.SubmitOfferRequest
+	(*SubmitOfferResponse)(nil),                // 52: trip.SubmitOfferResponse
+	(*RespondToOfferRequest)(nil),              // 53: trip.RespondToOfferRequest
+	(*RespondToOfferResponse)(nil),             // 54: trip.RespondToOfferResponse
+	(*DriverRespondToCounterRequest)(nil),      // 55: trip.DriverRespondToCounterRequest
+	(*DriverRespondToCounterResponse)(nil),     // 56: trip.DriverRespondToCounterResponse
+	(*GetNegotiationSessionRequest)(nil),       // 57: trip.GetNegotiationSessionRequest
+	(*GetNegotiationSessionResponse)(nil),      // 58: trip.GetNegotiationSessionResponse
+	(*CancelNegotiationRequest)(nil),           // 59: trip.CancelNegotiationRequest
+	(*CancelNegotiationResponse)(nil),          // 60: trip.CancelNegotiationResponse
+	nil,                                        // 61: trip.NegotiationSession.MetadataEntry
+	nil,                                        // 62: trip.CreateNegotiationSessionRequest.MetadataEntry
 }
 var file_trip_proto_depIdxs = []int32{
 	0,  // 0: trip.Trip.price_model:type_name -> trip.PriceModel
@@ -4265,82 +4636,91 @@ var file_trip_proto_depIdxs = []int32{
 	0,  // 3: trip.TripRequest.price_model:type_name -> trip.PriceModel
 	1,  // 4: trip.TripRequest.status:type_name -> trip.TripStatus
 	2,  // 5: trip.TripRequest.payment_status:type_name -> trip.PaymentStatus
-	4,  // 6: trip.TripResponse.trip:type_name -> trip.Trip
+	10, // 6: trip.TripResponse.trip:type_name -> trip.Trip
 	0,  // 7: trip.BidOrOfferRequest.price_model:type_name -> trip.PriceModel
-	0,  // 8: trip.BidOrOfferResponse.price_model:type_name -> trip.PriceModel
-	3,  // 9: trip.BidOrOfferResponse.negotiation_status:type_name -> trip.NegotiationStatus
-	4,  // 10: trip.BidOrOfferResponse.trip:type_name -> trip.Trip
-	0,  // 11: trip.AcceptOfferRequest.price_model:type_name -> trip.PriceModel
-	4,  // 12: trip.AcceptOfferResponse.trip:type_name -> trip.Trip
-	4,  // 13: trip.InstantAcceptResponse.trip:type_name -> trip.Trip
-	4,  // 14: trip.GetActiveTripsResponse.trips:type_name -> trip.Trip
-	4,  // 15: trip.AcceptTripResponse.trip:type_name -> trip.Trip
-	4,  // 16: trip.CancelTripResponse.trip:type_name -> trip.Trip
-	4,  // 17: trip.CompleteTripResponse.trip:type_name -> trip.Trip
-	23, // 18: trip.GetBiddingSessionResponse.session:type_name -> trip.BiddingSession
-	23, // 19: trip.GetBiddingSessionsByRiderResponse.sessions:type_name -> trip.BiddingSession
-	23, // 20: trip.GetBiddingSessionsByDriverResponse.sessions:type_name -> trip.BiddingSession
-	39, // 21: trip.GetInstantMatchStatusResponse.driver_info:type_name -> trip.DriverInfo
-	4,  // 22: trip.GetTripHistoryResponse.trips:type_name -> trip.Trip
-	41, // 23: trip.NegotiationSession.current_offers:type_name -> trip.Offer
-	42, // 24: trip.NegotiationSession.negotiation_history:type_name -> trip.NegotiationRound
-	55, // 25: trip.NegotiationSession.metadata:type_name -> trip.NegotiationSession.MetadataEntry
-	56, // 26: trip.CreateNegotiationSessionRequest.metadata:type_name -> trip.CreateNegotiationSessionRequest.MetadataEntry
-	40, // 27: trip.CreateNegotiationSessionResponse.session:type_name -> trip.NegotiationSession
-	40, // 28: trip.GetNegotiationSessionResponse.session:type_name -> trip.NegotiationSession
-	5,  // 29: trip.TripService.CreateTrip:input_type -> trip.TripRequest
-	7,  // 30: trip.TripService.SubmitBidOrOffer:input_type -> trip.BidOrOfferRequest
-	9,  // 31: trip.TripService.AcceptOffer:input_type -> trip.AcceptOfferRequest
-	11, // 32: trip.TripService.InstantAccept:input_type -> trip.InstantAcceptRequest
-	13, // 33: trip.TripService.GetTrip:input_type -> trip.GetTripRequest
-	14, // 34: trip.TripService.GetActiveTrips:input_type -> trip.GetActiveTripsRequest
-	15, // 35: trip.TripService.GetActiveTripsByRider:input_type -> trip.GetActiveTripsByRiderRequest
-	17, // 36: trip.TripService.AcceptTrip:input_type -> trip.AcceptTripRequest
-	19, // 37: trip.TripService.CancelTrip:input_type -> trip.CancelTripRequest
-	21, // 38: trip.TripService.CompleteTrip:input_type -> trip.CompleteTripRequest
-	24, // 39: trip.TripService.GetBiddingSession:input_type -> trip.GetBiddingSessionRequest
-	26, // 40: trip.TripService.GetBiddingSessionsByRider:input_type -> trip.GetBiddingSessionsByRiderRequest
-	28, // 41: trip.TripService.GetBiddingSessionsByDriver:input_type -> trip.GetBiddingSessionsByDriverRequest
-	30, // 42: trip.TripService.InstantMatch:input_type -> trip.InstantMatchRequest
-	32, // 43: trip.TripService.GetInstantMatchStatus:input_type -> trip.GetInstantMatchStatusRequest
-	34, // 44: trip.TripService.CancelInstantMatch:input_type -> trip.CancelInstantMatchRequest
-	36, // 45: trip.TripService.GetTripHistoryByRider:input_type -> trip.GetTripHistoryByRiderRequest
-	37, // 46: trip.TripService.GetTripHistoryByDriver:input_type -> trip.GetTripHistoryByDriverRequest
-	43, // 47: trip.NegotiationService.CreateNegotiationSession:input_type -> trip.CreateNegotiationSessionRequest
-	45, // 48: trip.NegotiationService.SubmitOffer:input_type -> trip.SubmitOfferRequest
-	47, // 49: trip.NegotiationService.RespondToOffer:input_type -> trip.RespondToOfferRequest
-	49, // 50: trip.NegotiationService.DriverRespondToCounter:input_type -> trip.DriverRespondToCounterRequest
-	51, // 51: trip.NegotiationService.GetNegotiationSession:input_type -> trip.GetNegotiationSessionRequest
-	53, // 52: trip.NegotiationService.CancelNegotiation:input_type -> trip.CancelNegotiationRequest
-	6,  // 53: trip.TripService.CreateTrip:output_type -> trip.TripResponse
-	8,  // 54: trip.TripService.SubmitBidOrOffer:output_type -> trip.BidOrOfferResponse
-	10, // 55: trip.TripService.AcceptOffer:output_type -> trip.AcceptOfferResponse
-	12, // 56: trip.TripService.InstantAccept:output_type -> trip.InstantAcceptResponse
-	6,  // 57: trip.TripService.GetTrip:output_type -> trip.TripResponse
-	16, // 58: trip.TripService.GetActiveTrips:output_type -> trip.GetActiveTripsResponse
-	16, // 59: trip.TripService.GetActiveTripsByRider:output_type -> trip.GetActiveTripsResponse
-	18, // 60: trip.TripService.AcceptTrip:output_type -> trip.AcceptTripResponse
-	20, // 61: trip.TripService.CancelTrip:output_type -> trip.CancelTripResponse
-	22, // 62: trip.TripService.CompleteTrip:output_type -> trip.CompleteTripResponse
-	25, // 63: trip.TripService.GetBiddingSession:output_type -> trip.GetBiddingSessionResponse
-	27, // 64: trip.TripService.GetBiddingSessionsByRider:output_type -> trip.GetBiddingSessionsByRiderResponse
-	29, // 65: trip.TripService.GetBiddingSessionsByDriver:output_type -> trip.GetBiddingSessionsByDriverResponse
-	31, // 66: trip.TripService.InstantMatch:output_type -> trip.InstantMatchResponse
-	33, // 67: trip.TripService.GetInstantMatchStatus:output_type -> trip.GetInstantMatchStatusResponse
-	35, // 68: trip.TripService.CancelInstantMatch:output_type -> trip.CancelInstantMatchResponse
-	38, // 69: trip.TripService.GetTripHistoryByRider:output_type -> trip.GetTripHistoryResponse
-	38, // 70: trip.TripService.GetTripHistoryByDriver:output_type -> trip.GetTripHistoryResponse
-	44, // 71: trip.NegotiationService.CreateNegotiationSession:output_type -> trip.CreateNegotiationSessionResponse
-	46, // 72: trip.NegotiationService.SubmitOffer:output_type -> trip.SubmitOfferResponse
-	48, // 73: trip.NegotiationService.RespondToOffer:output_type -> trip.RespondToOfferResponse
-	50, // 74: trip.NegotiationService.DriverRespondToCounter:output_type -> trip.DriverRespondToCounterResponse
-	52, // 75: trip.NegotiationService.GetNegotiationSession:output_type -> trip.GetNegotiationSessionResponse
-	54, // 76: trip.NegotiationService.CancelNegotiation:output_type -> trip.CancelNegotiationResponse
-	53, // [53:77] is the sub-list for method output_type
-	29, // [29:53] is the sub-list for method input_type
-	29, // [29:29] is the sub-list for extension type_name
-	29, // [29:29] is the sub-list for extension extendee
-	0,  // [0:29] is the sub-list for field type_name
+	4,  // 8: trip.BidOrOfferRequest.role:type_name -> trip.UserRole
+	0,  // 9: trip.BidOrOfferResponse.price_model:type_name -> trip.PriceModel
+	3,  // 10: trip.BidOrOfferResponse.negotiation_status:type_name -> trip.NegotiationStatus
+	10, // 11: trip.BidOrOfferResponse.trip:type_name -> trip.Trip
+	0,  // 12: trip.AcceptOfferRequest.price_model:type_name -> trip.PriceModel
+	10, // 13: trip.AcceptOfferResponse.trip:type_name -> trip.Trip
+	10, // 14: trip.InstantAcceptResponse.trip:type_name -> trip.Trip
+	10, // 15: trip.GetActiveTripsResponse.trips:type_name -> trip.Trip
+	10, // 16: trip.AcceptTripResponse.trip:type_name -> trip.Trip
+	10, // 17: trip.CancelTripResponse.trip:type_name -> trip.Trip
+	10, // 18: trip.CompleteTripResponse.trip:type_name -> trip.Trip
+	5,  // 19: trip.BiddingSession.status:type_name -> trip.BiddingSessionStatus
+	29, // 20: trip.GetBiddingSessionResponse.session:type_name -> trip.BiddingSession
+	29, // 21: trip.GetBiddingSessionsByRiderResponse.sessions:type_name -> trip.BiddingSession
+	29, // 22: trip.GetBiddingSessionsByDriverResponse.sessions:type_name -> trip.BiddingSession
+	6,  // 23: trip.InstantMatchResponse.status:type_name -> trip.InstantMatchStatus
+	6,  // 24: trip.GetInstantMatchStatusResponse.status:type_name -> trip.InstantMatchStatus
+	45, // 25: trip.GetInstantMatchStatusResponse.driver_info:type_name -> trip.DriverInfo
+	10, // 26: trip.GetTripHistoryResponse.trips:type_name -> trip.Trip
+	7,  // 27: trip.NegotiationSession.status:type_name -> trip.NegotiationSessionStatus
+	47, // 28: trip.NegotiationSession.current_offers:type_name -> trip.Offer
+	48, // 29: trip.NegotiationSession.negotiation_history:type_name -> trip.NegotiationRound
+	61, // 30: trip.NegotiationSession.metadata:type_name -> trip.NegotiationSession.MetadataEntry
+	8,  // 31: trip.Offer.status:type_name -> trip.OfferStatus
+	9,  // 32: trip.NegotiationRound.action:type_name -> trip.NegotiationAction
+	62, // 33: trip.CreateNegotiationSessionRequest.metadata:type_name -> trip.CreateNegotiationSessionRequest.MetadataEntry
+	46, // 34: trip.CreateNegotiationSessionResponse.session:type_name -> trip.NegotiationSession
+	9,  // 35: trip.RespondToOfferRequest.action:type_name -> trip.NegotiationAction
+	9,  // 36: trip.DriverRespondToCounterRequest.action:type_name -> trip.NegotiationAction
+	46, // 37: trip.GetNegotiationSessionResponse.session:type_name -> trip.NegotiationSession
+	11, // 38: trip.TripService.CreateTrip:input_type -> trip.TripRequest
+	13, // 39: trip.TripService.SubmitBidOrOffer:input_type -> trip.BidOrOfferRequest
+	15, // 40: trip.TripService.AcceptOffer:input_type -> trip.AcceptOfferRequest
+	17, // 41: trip.TripService.InstantAccept:input_type -> trip.InstantAcceptRequest
+	19, // 42: trip.TripService.GetTrip:input_type -> trip.GetTripRequest
+	20, // 43: trip.TripService.GetActiveTrips:input_type -> trip.GetActiveTripsRequest
+	21, // 44: trip.TripService.GetActiveTripsByRider:input_type -> trip.GetActiveTripsByRiderRequest
+	23, // 45: trip.TripService.AcceptTrip:input_type -> trip.AcceptTripRequest
+	25, // 46: trip.TripService.CancelTrip:input_type -> trip.CancelTripRequest
+	27, // 47: trip.TripService.CompleteTrip:input_type -> trip.CompleteTripRequest
+	30, // 48: trip.TripService.GetBiddingSession:input_type -> trip.GetBiddingSessionRequest
+	32, // 49: trip.TripService.GetBiddingSessionsByRider:input_type -> trip.GetBiddingSessionsByRiderRequest
+	34, // 50: trip.TripService.GetBiddingSessionsByDriver:input_type -> trip.GetBiddingSessionsByDriverRequest
+	36, // 51: trip.TripService.InstantMatch:input_type -> trip.InstantMatchRequest
+	38, // 52: trip.TripService.GetInstantMatchStatus:input_type -> trip.GetInstantMatchStatusRequest
+	40, // 53: trip.TripService.CancelInstantMatch:input_type -> trip.CancelInstantMatchRequest
+	42, // 54: trip.TripService.GetTripHistoryByRider:input_type -> trip.GetTripHistoryByRiderRequest
+	43, // 55: trip.TripService.GetTripHistoryByDriver:input_type -> trip.GetTripHistoryByDriverRequest
+	49, // 56: trip.NegotiationService.CreateNegotiationSession:input_type -> trip.CreateNegotiationSessionRequest
+	51, // 57: trip.NegotiationService.SubmitOffer:input_type -> trip.SubmitOfferRequest
+	53, // 58: trip.NegotiationService.RespondToOffer:input_type -> trip.RespondToOfferRequest
+	55, // 59: trip.NegotiationService.DriverRespondToCounter:input_type -> trip.DriverRespondToCounterRequest
+	57, // 60: trip.NegotiationService.GetNegotiationSession:input_type -> trip.GetNegotiationSessionRequest
+	59, // 61: trip.NegotiationService.CancelNegotiation:input_type -> trip.CancelNegotiationRequest
+	12, // 62: trip.TripService.CreateTrip:output_type -> trip.TripResponse
+	14, // 63: trip.TripService.SubmitBidOrOffer:output_type -> trip.BidOrOfferResponse
+	16, // 64: trip.TripService.AcceptOffer:output_type -> trip.AcceptOfferResponse
+	18, // 65: trip.TripService.InstantAccept:output_type -> trip.InstantAcceptResponse
+	12, // 66: trip.TripService.GetTrip:output_type -> trip.TripResponse
+	22, // 67: trip.TripService.GetActiveTrips:output_type -> trip.GetActiveTripsResponse
+	22, // 68: trip.TripService.GetActiveTripsByRider:output_type -> trip.GetActiveTripsResponse
+	24, // 69: trip.TripService.AcceptTrip:output_type -> trip.AcceptTripResponse
+	26, // 70: trip.TripService.CancelTrip:output_type -> trip.CancelTripResponse
+	28, // 71: trip.TripService.CompleteTrip:output_type -> trip.CompleteTripResponse
+	31, // 72: trip.TripService.GetBiddingSession:output_type -> trip.GetBiddingSessionResponse
+	33, // 73: trip.TripService.GetBiddingSessionsByRider:output_type -> trip.GetBiddingSessionsByRiderResponse
+	35, // 74: trip.TripService.GetBiddingSessionsByDriver:output_type -> trip.GetBiddingSessionsByDriverResponse
+	37, // 75: trip.TripService.InstantMatch:output_type -> trip.InstantMatchResponse
+	39, // 76: trip.TripService.GetInstantMatchStatus:output_type -> trip.GetInstantMatchStatusResponse
+	41, // 77: trip.TripService.CancelInstantMatch:output_type -> trip.CancelInstantMatchResponse
+	44, // 78: trip.TripService.GetTripHistoryByRider:output_type -> trip.GetTripHistoryResponse
+	44, // 79: trip.TripService.GetTripHistoryByDriver:output_type -> trip.GetTripHistoryResponse
+	50, // 80: trip.NegotiationService.CreateNegotiationSession:output_type -> trip.CreateNegotiationSessionResponse
+	52, // 81: trip.NegotiationService.SubmitOffer:output_type -> trip.SubmitOfferResponse
+	54, // 82: trip.NegotiationService.RespondToOffer:output_type -> trip.RespondToOfferResponse
+	56, // 83: trip.NegotiationService.DriverRespondToCounter:output_type -> trip.DriverRespondToCounterResponse
+	58, // 84: trip.NegotiationService.GetNegotiationSession:output_type -> trip.GetNegotiationSessionResponse
+	60, // 85: trip.NegotiationService.CancelNegotiation:output_type -> trip.CancelNegotiationResponse
+	62, // [62:86] is the sub-list for method output_type
+	38, // [38:62] is the sub-list for method input_type
+	38, // [38:38] is the sub-list for extension type_name
+	38, // [38:38] is the sub-list for extension extendee
+	0,  // [0:38] is the sub-list for field type_name
 }
 
 func init() { file_trip_proto_init() }
@@ -4364,7 +4744,7 @@ func file_trip_proto_init() {
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_trip_proto_rawDesc), len(file_trip_proto_rawDesc)),
-			NumEnums:      4,
+			NumEnums:      10,
 			NumMessages:   53,
 			NumExtensions: 0,
 			NumServices:   2,
