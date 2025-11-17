@@ -33,15 +33,15 @@ const (
 // Payment service definition
 type PaymentServiceClient interface {
 	// Process a payment
-	ProcessPayment(ctx context.Context, in *ProcessPaymentRequest, opts ...grpc.CallOption) (*ProcessPaymentResponse, error)
+	ProcessPayment(ctx context.Context, in *RqProcessPayment, opts ...grpc.CallOption) (*RsProcessPayment, error)
 	// Get payment status
-	GetPaymentStatus(ctx context.Context, in *GetPaymentStatusRequest, opts ...grpc.CallOption) (*GetPaymentStatusResponse, error)
+	GetPaymentStatus(ctx context.Context, in *RqGetPaymentStatus, opts ...grpc.CallOption) (*RsGetPaymentStatus, error)
 	// Process refund
-	ProcessRefund(ctx context.Context, in *ProcessRefundRequest, opts ...grpc.CallOption) (*ProcessRefundResponse, error)
+	ProcessRefund(ctx context.Context, in *RqProcessRefund, opts ...grpc.CallOption) (*RsProcessRefund, error)
 	// Get payment history
-	GetPaymentHistory(ctx context.Context, in *GetPaymentHistoryRequest, opts ...grpc.CallOption) (*GetPaymentHistoryResponse, error)
+	GetPaymentHistory(ctx context.Context, in *RqGetPaymentHistory, opts ...grpc.CallOption) (*RsGetPaymentHistory, error)
 	// Handle webhook
-	HandleWebhook(ctx context.Context, in *HandleWebhookRequest, opts ...grpc.CallOption) (*HandleWebhookResponse, error)
+	HandleWebhook(ctx context.Context, in *RqHandleWebhook, opts ...grpc.CallOption) (*RsHandleWebhook, error)
 }
 
 type paymentServiceClient struct {
@@ -52,9 +52,9 @@ func NewPaymentServiceClient(cc grpc.ClientConnInterface) PaymentServiceClient {
 	return &paymentServiceClient{cc}
 }
 
-func (c *paymentServiceClient) ProcessPayment(ctx context.Context, in *ProcessPaymentRequest, opts ...grpc.CallOption) (*ProcessPaymentResponse, error) {
+func (c *paymentServiceClient) ProcessPayment(ctx context.Context, in *RqProcessPayment, opts ...grpc.CallOption) (*RsProcessPayment, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(ProcessPaymentResponse)
+	out := new(RsProcessPayment)
 	err := c.cc.Invoke(ctx, PaymentService_ProcessPayment_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
@@ -62,9 +62,9 @@ func (c *paymentServiceClient) ProcessPayment(ctx context.Context, in *ProcessPa
 	return out, nil
 }
 
-func (c *paymentServiceClient) GetPaymentStatus(ctx context.Context, in *GetPaymentStatusRequest, opts ...grpc.CallOption) (*GetPaymentStatusResponse, error) {
+func (c *paymentServiceClient) GetPaymentStatus(ctx context.Context, in *RqGetPaymentStatus, opts ...grpc.CallOption) (*RsGetPaymentStatus, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(GetPaymentStatusResponse)
+	out := new(RsGetPaymentStatus)
 	err := c.cc.Invoke(ctx, PaymentService_GetPaymentStatus_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
@@ -72,9 +72,9 @@ func (c *paymentServiceClient) GetPaymentStatus(ctx context.Context, in *GetPaym
 	return out, nil
 }
 
-func (c *paymentServiceClient) ProcessRefund(ctx context.Context, in *ProcessRefundRequest, opts ...grpc.CallOption) (*ProcessRefundResponse, error) {
+func (c *paymentServiceClient) ProcessRefund(ctx context.Context, in *RqProcessRefund, opts ...grpc.CallOption) (*RsProcessRefund, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(ProcessRefundResponse)
+	out := new(RsProcessRefund)
 	err := c.cc.Invoke(ctx, PaymentService_ProcessRefund_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
@@ -82,9 +82,9 @@ func (c *paymentServiceClient) ProcessRefund(ctx context.Context, in *ProcessRef
 	return out, nil
 }
 
-func (c *paymentServiceClient) GetPaymentHistory(ctx context.Context, in *GetPaymentHistoryRequest, opts ...grpc.CallOption) (*GetPaymentHistoryResponse, error) {
+func (c *paymentServiceClient) GetPaymentHistory(ctx context.Context, in *RqGetPaymentHistory, opts ...grpc.CallOption) (*RsGetPaymentHistory, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(GetPaymentHistoryResponse)
+	out := new(RsGetPaymentHistory)
 	err := c.cc.Invoke(ctx, PaymentService_GetPaymentHistory_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
@@ -92,9 +92,9 @@ func (c *paymentServiceClient) GetPaymentHistory(ctx context.Context, in *GetPay
 	return out, nil
 }
 
-func (c *paymentServiceClient) HandleWebhook(ctx context.Context, in *HandleWebhookRequest, opts ...grpc.CallOption) (*HandleWebhookResponse, error) {
+func (c *paymentServiceClient) HandleWebhook(ctx context.Context, in *RqHandleWebhook, opts ...grpc.CallOption) (*RsHandleWebhook, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(HandleWebhookResponse)
+	out := new(RsHandleWebhook)
 	err := c.cc.Invoke(ctx, PaymentService_HandleWebhook_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
@@ -109,15 +109,15 @@ func (c *paymentServiceClient) HandleWebhook(ctx context.Context, in *HandleWebh
 // Payment service definition
 type PaymentServiceServer interface {
 	// Process a payment
-	ProcessPayment(context.Context, *ProcessPaymentRequest) (*ProcessPaymentResponse, error)
+	ProcessPayment(context.Context, *RqProcessPayment) (*RsProcessPayment, error)
 	// Get payment status
-	GetPaymentStatus(context.Context, *GetPaymentStatusRequest) (*GetPaymentStatusResponse, error)
+	GetPaymentStatus(context.Context, *RqGetPaymentStatus) (*RsGetPaymentStatus, error)
 	// Process refund
-	ProcessRefund(context.Context, *ProcessRefundRequest) (*ProcessRefundResponse, error)
+	ProcessRefund(context.Context, *RqProcessRefund) (*RsProcessRefund, error)
 	// Get payment history
-	GetPaymentHistory(context.Context, *GetPaymentHistoryRequest) (*GetPaymentHistoryResponse, error)
+	GetPaymentHistory(context.Context, *RqGetPaymentHistory) (*RsGetPaymentHistory, error)
 	// Handle webhook
-	HandleWebhook(context.Context, *HandleWebhookRequest) (*HandleWebhookResponse, error)
+	HandleWebhook(context.Context, *RqHandleWebhook) (*RsHandleWebhook, error)
 	mustEmbedUnimplementedPaymentServiceServer()
 }
 
@@ -128,19 +128,19 @@ type PaymentServiceServer interface {
 // pointer dereference when methods are called.
 type UnimplementedPaymentServiceServer struct{}
 
-func (UnimplementedPaymentServiceServer) ProcessPayment(context.Context, *ProcessPaymentRequest) (*ProcessPaymentResponse, error) {
+func (UnimplementedPaymentServiceServer) ProcessPayment(context.Context, *RqProcessPayment) (*RsProcessPayment, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ProcessPayment not implemented")
 }
-func (UnimplementedPaymentServiceServer) GetPaymentStatus(context.Context, *GetPaymentStatusRequest) (*GetPaymentStatusResponse, error) {
+func (UnimplementedPaymentServiceServer) GetPaymentStatus(context.Context, *RqGetPaymentStatus) (*RsGetPaymentStatus, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetPaymentStatus not implemented")
 }
-func (UnimplementedPaymentServiceServer) ProcessRefund(context.Context, *ProcessRefundRequest) (*ProcessRefundResponse, error) {
+func (UnimplementedPaymentServiceServer) ProcessRefund(context.Context, *RqProcessRefund) (*RsProcessRefund, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ProcessRefund not implemented")
 }
-func (UnimplementedPaymentServiceServer) GetPaymentHistory(context.Context, *GetPaymentHistoryRequest) (*GetPaymentHistoryResponse, error) {
+func (UnimplementedPaymentServiceServer) GetPaymentHistory(context.Context, *RqGetPaymentHistory) (*RsGetPaymentHistory, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetPaymentHistory not implemented")
 }
-func (UnimplementedPaymentServiceServer) HandleWebhook(context.Context, *HandleWebhookRequest) (*HandleWebhookResponse, error) {
+func (UnimplementedPaymentServiceServer) HandleWebhook(context.Context, *RqHandleWebhook) (*RsHandleWebhook, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method HandleWebhook not implemented")
 }
 func (UnimplementedPaymentServiceServer) mustEmbedUnimplementedPaymentServiceServer() {}
@@ -165,7 +165,7 @@ func RegisterPaymentServiceServer(s grpc.ServiceRegistrar, srv PaymentServiceSer
 }
 
 func _PaymentService_ProcessPayment_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(ProcessPaymentRequest)
+	in := new(RqProcessPayment)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -177,13 +177,13 @@ func _PaymentService_ProcessPayment_Handler(srv interface{}, ctx context.Context
 		FullMethod: PaymentService_ProcessPayment_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(PaymentServiceServer).ProcessPayment(ctx, req.(*ProcessPaymentRequest))
+		return srv.(PaymentServiceServer).ProcessPayment(ctx, req.(*RqProcessPayment))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _PaymentService_GetPaymentStatus_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetPaymentStatusRequest)
+	in := new(RqGetPaymentStatus)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -195,13 +195,13 @@ func _PaymentService_GetPaymentStatus_Handler(srv interface{}, ctx context.Conte
 		FullMethod: PaymentService_GetPaymentStatus_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(PaymentServiceServer).GetPaymentStatus(ctx, req.(*GetPaymentStatusRequest))
+		return srv.(PaymentServiceServer).GetPaymentStatus(ctx, req.(*RqGetPaymentStatus))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _PaymentService_ProcessRefund_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(ProcessRefundRequest)
+	in := new(RqProcessRefund)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -213,13 +213,13 @@ func _PaymentService_ProcessRefund_Handler(srv interface{}, ctx context.Context,
 		FullMethod: PaymentService_ProcessRefund_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(PaymentServiceServer).ProcessRefund(ctx, req.(*ProcessRefundRequest))
+		return srv.(PaymentServiceServer).ProcessRefund(ctx, req.(*RqProcessRefund))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _PaymentService_GetPaymentHistory_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetPaymentHistoryRequest)
+	in := new(RqGetPaymentHistory)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -231,13 +231,13 @@ func _PaymentService_GetPaymentHistory_Handler(srv interface{}, ctx context.Cont
 		FullMethod: PaymentService_GetPaymentHistory_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(PaymentServiceServer).GetPaymentHistory(ctx, req.(*GetPaymentHistoryRequest))
+		return srv.(PaymentServiceServer).GetPaymentHistory(ctx, req.(*RqGetPaymentHistory))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _PaymentService_HandleWebhook_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(HandleWebhookRequest)
+	in := new(RqHandleWebhook)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -249,7 +249,7 @@ func _PaymentService_HandleWebhook_Handler(srv interface{}, ctx context.Context,
 		FullMethod: PaymentService_HandleWebhook_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(PaymentServiceServer).HandleWebhook(ctx, req.(*HandleWebhookRequest))
+		return srv.(PaymentServiceServer).HandleWebhook(ctx, req.(*RqHandleWebhook))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -300,13 +300,13 @@ const (
 // Wallet service definition
 type WalletServiceClient interface {
 	// Get wallet balance
-	GetWalletBalance(ctx context.Context, in *GetWalletBalanceRequest, opts ...grpc.CallOption) (*GetWalletBalanceResponse, error)
+	GetWalletBalance(ctx context.Context, in *RqGetWalletBalance, opts ...grpc.CallOption) (*RsGetWalletBalance, error)
 	// Top up wallet
-	TopupWallet(ctx context.Context, in *TopupWalletRequest, opts ...grpc.CallOption) (*TopupWalletResponse, error)
+	TopupWallet(ctx context.Context, in *RqTopupWallet, opts ...grpc.CallOption) (*RsTopupWallet, error)
 	// Withdraw from wallet
-	WithdrawFromWallet(ctx context.Context, in *WithdrawFromWalletRequest, opts ...grpc.CallOption) (*WithdrawFromWalletResponse, error)
+	WithdrawFromWallet(ctx context.Context, in *RqWithdrawFromWallet, opts ...grpc.CallOption) (*RsWithdrawFromWallet, error)
 	// Get wallet transactions
-	GetWalletTransactions(ctx context.Context, in *GetWalletTransactionsRequest, opts ...grpc.CallOption) (*GetWalletTransactionsResponse, error)
+	GetWalletTransactions(ctx context.Context, in *RqGetWalletTransactions, opts ...grpc.CallOption) (*RsGetWalletTransactions, error)
 }
 
 type walletServiceClient struct {
@@ -317,9 +317,9 @@ func NewWalletServiceClient(cc grpc.ClientConnInterface) WalletServiceClient {
 	return &walletServiceClient{cc}
 }
 
-func (c *walletServiceClient) GetWalletBalance(ctx context.Context, in *GetWalletBalanceRequest, opts ...grpc.CallOption) (*GetWalletBalanceResponse, error) {
+func (c *walletServiceClient) GetWalletBalance(ctx context.Context, in *RqGetWalletBalance, opts ...grpc.CallOption) (*RsGetWalletBalance, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(GetWalletBalanceResponse)
+	out := new(RsGetWalletBalance)
 	err := c.cc.Invoke(ctx, WalletService_GetWalletBalance_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
@@ -327,9 +327,9 @@ func (c *walletServiceClient) GetWalletBalance(ctx context.Context, in *GetWalle
 	return out, nil
 }
 
-func (c *walletServiceClient) TopupWallet(ctx context.Context, in *TopupWalletRequest, opts ...grpc.CallOption) (*TopupWalletResponse, error) {
+func (c *walletServiceClient) TopupWallet(ctx context.Context, in *RqTopupWallet, opts ...grpc.CallOption) (*RsTopupWallet, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(TopupWalletResponse)
+	out := new(RsTopupWallet)
 	err := c.cc.Invoke(ctx, WalletService_TopupWallet_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
@@ -337,9 +337,9 @@ func (c *walletServiceClient) TopupWallet(ctx context.Context, in *TopupWalletRe
 	return out, nil
 }
 
-func (c *walletServiceClient) WithdrawFromWallet(ctx context.Context, in *WithdrawFromWalletRequest, opts ...grpc.CallOption) (*WithdrawFromWalletResponse, error) {
+func (c *walletServiceClient) WithdrawFromWallet(ctx context.Context, in *RqWithdrawFromWallet, opts ...grpc.CallOption) (*RsWithdrawFromWallet, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(WithdrawFromWalletResponse)
+	out := new(RsWithdrawFromWallet)
 	err := c.cc.Invoke(ctx, WalletService_WithdrawFromWallet_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
@@ -347,9 +347,9 @@ func (c *walletServiceClient) WithdrawFromWallet(ctx context.Context, in *Withdr
 	return out, nil
 }
 
-func (c *walletServiceClient) GetWalletTransactions(ctx context.Context, in *GetWalletTransactionsRequest, opts ...grpc.CallOption) (*GetWalletTransactionsResponse, error) {
+func (c *walletServiceClient) GetWalletTransactions(ctx context.Context, in *RqGetWalletTransactions, opts ...grpc.CallOption) (*RsGetWalletTransactions, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(GetWalletTransactionsResponse)
+	out := new(RsGetWalletTransactions)
 	err := c.cc.Invoke(ctx, WalletService_GetWalletTransactions_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
@@ -364,13 +364,13 @@ func (c *walletServiceClient) GetWalletTransactions(ctx context.Context, in *Get
 // Wallet service definition
 type WalletServiceServer interface {
 	// Get wallet balance
-	GetWalletBalance(context.Context, *GetWalletBalanceRequest) (*GetWalletBalanceResponse, error)
+	GetWalletBalance(context.Context, *RqGetWalletBalance) (*RsGetWalletBalance, error)
 	// Top up wallet
-	TopupWallet(context.Context, *TopupWalletRequest) (*TopupWalletResponse, error)
+	TopupWallet(context.Context, *RqTopupWallet) (*RsTopupWallet, error)
 	// Withdraw from wallet
-	WithdrawFromWallet(context.Context, *WithdrawFromWalletRequest) (*WithdrawFromWalletResponse, error)
+	WithdrawFromWallet(context.Context, *RqWithdrawFromWallet) (*RsWithdrawFromWallet, error)
 	// Get wallet transactions
-	GetWalletTransactions(context.Context, *GetWalletTransactionsRequest) (*GetWalletTransactionsResponse, error)
+	GetWalletTransactions(context.Context, *RqGetWalletTransactions) (*RsGetWalletTransactions, error)
 	mustEmbedUnimplementedWalletServiceServer()
 }
 
@@ -381,16 +381,16 @@ type WalletServiceServer interface {
 // pointer dereference when methods are called.
 type UnimplementedWalletServiceServer struct{}
 
-func (UnimplementedWalletServiceServer) GetWalletBalance(context.Context, *GetWalletBalanceRequest) (*GetWalletBalanceResponse, error) {
+func (UnimplementedWalletServiceServer) GetWalletBalance(context.Context, *RqGetWalletBalance) (*RsGetWalletBalance, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetWalletBalance not implemented")
 }
-func (UnimplementedWalletServiceServer) TopupWallet(context.Context, *TopupWalletRequest) (*TopupWalletResponse, error) {
+func (UnimplementedWalletServiceServer) TopupWallet(context.Context, *RqTopupWallet) (*RsTopupWallet, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method TopupWallet not implemented")
 }
-func (UnimplementedWalletServiceServer) WithdrawFromWallet(context.Context, *WithdrawFromWalletRequest) (*WithdrawFromWalletResponse, error) {
+func (UnimplementedWalletServiceServer) WithdrawFromWallet(context.Context, *RqWithdrawFromWallet) (*RsWithdrawFromWallet, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method WithdrawFromWallet not implemented")
 }
-func (UnimplementedWalletServiceServer) GetWalletTransactions(context.Context, *GetWalletTransactionsRequest) (*GetWalletTransactionsResponse, error) {
+func (UnimplementedWalletServiceServer) GetWalletTransactions(context.Context, *RqGetWalletTransactions) (*RsGetWalletTransactions, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetWalletTransactions not implemented")
 }
 func (UnimplementedWalletServiceServer) mustEmbedUnimplementedWalletServiceServer() {}
@@ -415,7 +415,7 @@ func RegisterWalletServiceServer(s grpc.ServiceRegistrar, srv WalletServiceServe
 }
 
 func _WalletService_GetWalletBalance_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetWalletBalanceRequest)
+	in := new(RqGetWalletBalance)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -427,13 +427,13 @@ func _WalletService_GetWalletBalance_Handler(srv interface{}, ctx context.Contex
 		FullMethod: WalletService_GetWalletBalance_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(WalletServiceServer).GetWalletBalance(ctx, req.(*GetWalletBalanceRequest))
+		return srv.(WalletServiceServer).GetWalletBalance(ctx, req.(*RqGetWalletBalance))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _WalletService_TopupWallet_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(TopupWalletRequest)
+	in := new(RqTopupWallet)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -445,13 +445,13 @@ func _WalletService_TopupWallet_Handler(srv interface{}, ctx context.Context, de
 		FullMethod: WalletService_TopupWallet_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(WalletServiceServer).TopupWallet(ctx, req.(*TopupWalletRequest))
+		return srv.(WalletServiceServer).TopupWallet(ctx, req.(*RqTopupWallet))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _WalletService_WithdrawFromWallet_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(WithdrawFromWalletRequest)
+	in := new(RqWithdrawFromWallet)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -463,13 +463,13 @@ func _WalletService_WithdrawFromWallet_Handler(srv interface{}, ctx context.Cont
 		FullMethod: WalletService_WithdrawFromWallet_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(WalletServiceServer).WithdrawFromWallet(ctx, req.(*WithdrawFromWalletRequest))
+		return srv.(WalletServiceServer).WithdrawFromWallet(ctx, req.(*RqWithdrawFromWallet))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _WalletService_GetWalletTransactions_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetWalletTransactionsRequest)
+	in := new(RqGetWalletTransactions)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -481,7 +481,7 @@ func _WalletService_GetWalletTransactions_Handler(srv interface{}, ctx context.C
 		FullMethod: WalletService_GetWalletTransactions_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(WalletServiceServer).GetWalletTransactions(ctx, req.(*GetWalletTransactionsRequest))
+		return srv.(WalletServiceServer).GetWalletTransactions(ctx, req.(*RqGetWalletTransactions))
 	}
 	return interceptor(ctx, in, info, handler)
 }
