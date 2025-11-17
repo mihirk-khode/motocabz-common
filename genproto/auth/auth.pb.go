@@ -726,7 +726,7 @@ func (x *RsParseToken) GetValid() bool {
 type RqUserAuth struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	UserId        string                 `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
-	Role          *RsEnum                `protobuf:"bytes,2,opt,name=role,proto3" json:"role,omitempty"`
+	Role          *RqEnum                `protobuf:"bytes,2,opt,name=role,proto3" json:"role,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -768,9 +768,53 @@ func (x *RqUserAuth) GetUserId() string {
 	return ""
 }
 
-func (x *RqUserAuth) GetRole() *RsEnum {
+func (x *RqUserAuth) GetRole() *RqEnum {
 	if x != nil {
 		return x.Role
+	}
+	return nil
+}
+
+type RsUserAuth struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Token         *RsToken               `protobuf:"bytes,1,opt,name=token,proto3" json:"token,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *RsUserAuth) Reset() {
+	*x = RsUserAuth{}
+	mi := &file_auth_proto_msgTypes[14]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *RsUserAuth) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*RsUserAuth) ProtoMessage() {}
+
+func (x *RsUserAuth) ProtoReflect() protoreflect.Message {
+	mi := &file_auth_proto_msgTypes[14]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use RsUserAuth.ProtoReflect.Descriptor instead.
+func (*RsUserAuth) Descriptor() ([]byte, []int) {
+	return file_auth_proto_rawDescGZIP(), []int{14}
+}
+
+func (x *RsUserAuth) GetToken() *RsToken {
+	if x != nil {
+		return x.Token
 	}
 	return nil
 }
@@ -827,7 +871,10 @@ const file_auth_proto_rawDesc = "" +
 	"\n" +
 	"RqUserAuth\x12\x17\n" +
 	"\auser_id\x18\x01 \x01(\tR\x06userId\x12 \n" +
-	"\x04role\x18\x02 \x01(\v2\f.auth.RsEnumR\x04role2\x82\x03\n" +
+	"\x04role\x18\x02 \x01(\v2\f.auth.RqEnumR\x04role\"1\n" +
+	"\n" +
+	"RsUserAuth\x12#\n" +
+	"\x05token\x18\x01 \x01(\v2\r.auth.RsTokenR\x05token2\x85\x03\n" +
 	"\vAuthService\x12-\n" +
 	"\aSendOTP\x12\x0f.auth.RqSendOtp\x1a\x0f.auth.RsSendOtp\"\x00\x123\n" +
 	"\tVerifyOTP\x12\x11.auth.RqVerifyOtp\x1a\x11.auth.RsVerifyOtp\"\x00\x128\n" +
@@ -835,8 +882,8 @@ const file_auth_proto_rawDesc = "" +
 	"\vGoogleLogin\x12\x12.auth.RqGoogleAuth\x1a\x12.auth.RsGoogleAuth\"\x00\x125\n" +
 	"\fRefreshToken\x12\x14.auth.RqRefreshToken\x1a\r.auth.RsToken\"\x00\x126\n" +
 	"\n" +
-	"ParseToken\x12\x12.auth.RqParseToken\x1a\x12.auth.RsParseToken\"\x00\x12-\n" +
-	"\bUserAuth\x12\x10.auth.RqUserAuth\x1a\r.auth.RsToken\"\x00B\x1bZ\x19common/genproto/auth;authb\x06proto3"
+	"ParseToken\x12\x12.auth.RqParseToken\x1a\x12.auth.RsParseToken\"\x00\x120\n" +
+	"\bUserAuth\x12\x10.auth.RqUserAuth\x1a\x10.auth.RsUserAuth\"\x00B\x1bZ\x19common/genproto/auth;authb\x06proto3"
 
 var (
 	file_auth_proto_rawDescOnce sync.Once
@@ -850,7 +897,7 @@ func file_auth_proto_rawDescGZIP() []byte {
 	return file_auth_proto_rawDescData
 }
 
-var file_auth_proto_msgTypes = make([]protoimpl.MessageInfo, 14)
+var file_auth_proto_msgTypes = make([]protoimpl.MessageInfo, 15)
 var file_auth_proto_goTypes = []any{
 	(*Enum)(nil),           // 0: auth.Enum
 	(*RsEnum)(nil),         // 1: auth.RsEnum
@@ -866,6 +913,7 @@ var file_auth_proto_goTypes = []any{
 	(*RqParseToken)(nil),   // 11: auth.RqParseToken
 	(*RsParseToken)(nil),   // 12: auth.RsParseToken
 	(*RqUserAuth)(nil),     // 13: auth.RqUserAuth
+	(*RsUserAuth)(nil),     // 14: auth.RsUserAuth
 }
 var file_auth_proto_depIdxs = []int32{
 	0,  // 0: auth.RsEnum.enum:type_name -> auth.Enum
@@ -873,26 +921,27 @@ var file_auth_proto_depIdxs = []int32{
 	2,  // 2: auth.RqVerifyOtp.role:type_name -> auth.RqEnum
 	2,  // 3: auth.RqGoogleAuth.role:type_name -> auth.RqEnum
 	1,  // 4: auth.RsParseToken.role:type_name -> auth.RsEnum
-	1,  // 5: auth.RqUserAuth.role:type_name -> auth.RsEnum
-	3,  // 6: auth.AuthService.SendOTP:input_type -> auth.RqSendOtp
-	5,  // 7: auth.AuthService.VerifyOTP:input_type -> auth.RqVerifyOtp
-	7,  // 8: auth.AuthService.GoogleSignup:input_type -> auth.RqGoogleAuth
-	7,  // 9: auth.AuthService.GoogleLogin:input_type -> auth.RqGoogleAuth
-	9,  // 10: auth.AuthService.RefreshToken:input_type -> auth.RqRefreshToken
-	11, // 11: auth.AuthService.ParseToken:input_type -> auth.RqParseToken
-	13, // 12: auth.AuthService.UserAuth:input_type -> auth.RqUserAuth
-	4,  // 13: auth.AuthService.SendOTP:output_type -> auth.RsSendOtp
-	6,  // 14: auth.AuthService.VerifyOTP:output_type -> auth.RsVerifyOtp
-	8,  // 15: auth.AuthService.GoogleSignup:output_type -> auth.RsGoogleAuth
-	8,  // 16: auth.AuthService.GoogleLogin:output_type -> auth.RsGoogleAuth
-	10, // 17: auth.AuthService.RefreshToken:output_type -> auth.RsToken
-	12, // 18: auth.AuthService.ParseToken:output_type -> auth.RsParseToken
-	10, // 19: auth.AuthService.UserAuth:output_type -> auth.RsToken
-	13, // [13:20] is the sub-list for method output_type
-	6,  // [6:13] is the sub-list for method input_type
-	6,  // [6:6] is the sub-list for extension type_name
-	6,  // [6:6] is the sub-list for extension extendee
-	0,  // [0:6] is the sub-list for field type_name
+	2,  // 5: auth.RqUserAuth.role:type_name -> auth.RqEnum
+	10, // 6: auth.RsUserAuth.token:type_name -> auth.RsToken
+	3,  // 7: auth.AuthService.SendOTP:input_type -> auth.RqSendOtp
+	5,  // 8: auth.AuthService.VerifyOTP:input_type -> auth.RqVerifyOtp
+	7,  // 9: auth.AuthService.GoogleSignup:input_type -> auth.RqGoogleAuth
+	7,  // 10: auth.AuthService.GoogleLogin:input_type -> auth.RqGoogleAuth
+	9,  // 11: auth.AuthService.RefreshToken:input_type -> auth.RqRefreshToken
+	11, // 12: auth.AuthService.ParseToken:input_type -> auth.RqParseToken
+	13, // 13: auth.AuthService.UserAuth:input_type -> auth.RqUserAuth
+	4,  // 14: auth.AuthService.SendOTP:output_type -> auth.RsSendOtp
+	6,  // 15: auth.AuthService.VerifyOTP:output_type -> auth.RsVerifyOtp
+	8,  // 16: auth.AuthService.GoogleSignup:output_type -> auth.RsGoogleAuth
+	8,  // 17: auth.AuthService.GoogleLogin:output_type -> auth.RsGoogleAuth
+	10, // 18: auth.AuthService.RefreshToken:output_type -> auth.RsToken
+	12, // 19: auth.AuthService.ParseToken:output_type -> auth.RsParseToken
+	14, // 20: auth.AuthService.UserAuth:output_type -> auth.RsUserAuth
+	14, // [14:21] is the sub-list for method output_type
+	7,  // [7:14] is the sub-list for method input_type
+	7,  // [7:7] is the sub-list for extension type_name
+	7,  // [7:7] is the sub-list for extension extendee
+	0,  // [0:7] is the sub-list for field type_name
 }
 
 func init() { file_auth_proto_init() }
@@ -906,7 +955,7 @@ func file_auth_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_auth_proto_rawDesc), len(file_auth_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   14,
+			NumMessages:   15,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

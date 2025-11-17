@@ -47,7 +47,7 @@ type AuthServiceClient interface {
 	// Parse token to get user id, role, expires at and valid
 	ParseToken(ctx context.Context, in *RqParseToken, opts ...grpc.CallOption) (*RsParseToken, error)
 	// User auth
-	UserAuth(ctx context.Context, in *RqUserAuth, opts ...grpc.CallOption) (*RsToken, error)
+	UserAuth(ctx context.Context, in *RqUserAuth, opts ...grpc.CallOption) (*RsUserAuth, error)
 }
 
 type authServiceClient struct {
@@ -118,9 +118,9 @@ func (c *authServiceClient) ParseToken(ctx context.Context, in *RqParseToken, op
 	return out, nil
 }
 
-func (c *authServiceClient) UserAuth(ctx context.Context, in *RqUserAuth, opts ...grpc.CallOption) (*RsToken, error) {
+func (c *authServiceClient) UserAuth(ctx context.Context, in *RqUserAuth, opts ...grpc.CallOption) (*RsUserAuth, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(RsToken)
+	out := new(RsUserAuth)
 	err := c.cc.Invoke(ctx, AuthService_UserAuth_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
@@ -147,7 +147,7 @@ type AuthServiceServer interface {
 	// Parse token to get user id, role, expires at and valid
 	ParseToken(context.Context, *RqParseToken) (*RsParseToken, error)
 	// User auth
-	UserAuth(context.Context, *RqUserAuth) (*RsToken, error)
+	UserAuth(context.Context, *RqUserAuth) (*RsUserAuth, error)
 	mustEmbedUnimplementedAuthServiceServer()
 }
 
@@ -176,7 +176,7 @@ func (UnimplementedAuthServiceServer) RefreshToken(context.Context, *RqRefreshTo
 func (UnimplementedAuthServiceServer) ParseToken(context.Context, *RqParseToken) (*RsParseToken, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ParseToken not implemented")
 }
-func (UnimplementedAuthServiceServer) UserAuth(context.Context, *RqUserAuth) (*RsToken, error) {
+func (UnimplementedAuthServiceServer) UserAuth(context.Context, *RqUserAuth) (*RsUserAuth, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UserAuth not implemented")
 }
 func (UnimplementedAuthServiceServer) mustEmbedUnimplementedAuthServiceServer() {}
