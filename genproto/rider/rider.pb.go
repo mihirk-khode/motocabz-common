@@ -704,15 +704,16 @@ func (x *RsGetRiderPreferences) GetLanguage() *RsEnum {
 
 // Update rider preferences request
 type RqUpdateRiderPreferences struct {
-	state                protoimpl.MessageState `protogen:"open.v1"`
-	RiderId              string                 `protobuf:"bytes,1,opt,name=rider_id,json=riderId,proto3" json:"rider_id,omitempty"`
-	PreferredVehicleType *RqEnum                `protobuf:"bytes,2,opt,name=preferred_vehicle_type,json=preferredVehicleType,proto3" json:"preferred_vehicle_type,omitempty"`
-	InstantMatchEnabled  bool                   `protobuf:"varint,3,opt,name=instant_match_enabled,json=instantMatchEnabled,proto3" json:"instant_match_enabled,omitempty"`
-	PaymentMethod        *RqEnum                `protobuf:"bytes,4,opt,name=payment_method,json=paymentMethod,proto3" json:"payment_method,omitempty"`
-	NotificationsEnabled bool                   `protobuf:"varint,5,opt,name=notifications_enabled,json=notificationsEnabled,proto3" json:"notifications_enabled,omitempty"`
-	Language             *RqEnum                `protobuf:"bytes,6,opt,name=language,proto3" json:"language,omitempty"`
-	unknownFields        protoimpl.UnknownFields
-	sizeCache            protoimpl.SizeCache
+	state                    protoimpl.MessageState `protogen:"open.v1"`
+	RiderId                  string                 `protobuf:"bytes,1,opt,name=rider_id,json=riderId,proto3" json:"rider_id,omitempty"`
+	PreferredVehicleType     *RqEnum                `protobuf:"bytes,2,opt,name=preferred_vehicle_type,json=preferredVehicleType,proto3" json:"preferred_vehicle_type,omitempty"`
+	PreferredVehicleCategory *RqEnum                `protobuf:"bytes,3,opt,name=preferred_vehicle_category,json=preferredVehicleCategory,proto3" json:"preferred_vehicle_category,omitempty"`
+	InstantMatchEnabled      bool                   `protobuf:"varint,4,opt,name=instant_match_enabled,json=instantMatchEnabled,proto3" json:"instant_match_enabled,omitempty"`
+	PaymentMethod            *RqEnum                `protobuf:"bytes,5,opt,name=payment_method,json=paymentMethod,proto3" json:"payment_method,omitempty"`
+	NotificationsEnabled     bool                   `protobuf:"varint,6,opt,name=notifications_enabled,json=notificationsEnabled,proto3" json:"notifications_enabled,omitempty"`
+	Language                 *RqEnum                `protobuf:"bytes,7,opt,name=language,proto3" json:"language,omitempty"`
+	unknownFields            protoimpl.UnknownFields
+	sizeCache                protoimpl.SizeCache
 }
 
 func (x *RqUpdateRiderPreferences) Reset() {
@@ -755,6 +756,13 @@ func (x *RqUpdateRiderPreferences) GetRiderId() string {
 func (x *RqUpdateRiderPreferences) GetPreferredVehicleType() *RqEnum {
 	if x != nil {
 		return x.PreferredVehicleType
+	}
+	return nil
+}
+
+func (x *RqUpdateRiderPreferences) GetPreferredVehicleCategory() *RqEnum {
+	if x != nil {
+		return x.PreferredVehicleCategory
 	}
 	return nil
 }
@@ -897,14 +905,15 @@ const file_rider_proto_rawDesc = "" +
 	"\x15instant_match_enabled\x18\x03 \x01(\bR\x13instantMatchEnabled\x124\n" +
 	"\x0epayment_method\x18\x04 \x01(\v2\r.rider.RsEnumR\rpaymentMethod\x123\n" +
 	"\x15notifications_enabled\x18\x05 \x01(\bR\x14notificationsEnabled\x12)\n" +
-	"\blanguage\x18\x06 \x01(\v2\r.rider.RsEnumR\blanguage\"\xc4\x02\n" +
+	"\blanguage\x18\x06 \x01(\v2\r.rider.RsEnumR\blanguage\"\x91\x03\n" +
 	"\x18RqUpdateRiderPreferences\x12\x19\n" +
 	"\brider_id\x18\x01 \x01(\tR\ariderId\x12C\n" +
-	"\x16preferred_vehicle_type\x18\x02 \x01(\v2\r.rider.RqEnumR\x14preferredVehicleType\x122\n" +
-	"\x15instant_match_enabled\x18\x03 \x01(\bR\x13instantMatchEnabled\x124\n" +
-	"\x0epayment_method\x18\x04 \x01(\v2\r.rider.RqEnumR\rpaymentMethod\x123\n" +
-	"\x15notifications_enabled\x18\x05 \x01(\bR\x14notificationsEnabled\x12)\n" +
-	"\blanguage\x18\x06 \x01(\v2\r.rider.RqEnumR\blanguage\"N\n" +
+	"\x16preferred_vehicle_type\x18\x02 \x01(\v2\r.rider.RqEnumR\x14preferredVehicleType\x12K\n" +
+	"\x1apreferred_vehicle_category\x18\x03 \x01(\v2\r.rider.RqEnumR\x18preferredVehicleCategory\x122\n" +
+	"\x15instant_match_enabled\x18\x04 \x01(\bR\x13instantMatchEnabled\x124\n" +
+	"\x0epayment_method\x18\x05 \x01(\v2\r.rider.RqEnumR\rpaymentMethod\x123\n" +
+	"\x15notifications_enabled\x18\x06 \x01(\bR\x14notificationsEnabled\x12)\n" +
+	"\blanguage\x18\a \x01(\v2\r.rider.RqEnumR\blanguage\"N\n" +
 	"\x18RsUpdateRiderPreferences\x12\x18\n" +
 	"\asuccess\x18\x01 \x01(\bR\asuccess\x12\x18\n" +
 	"\amessage\x18\x02 \x01(\tR\amessage2\xc7\x02\n" +
@@ -952,21 +961,22 @@ var file_rider_proto_depIdxs = []int32{
 	1,  // 7: rider.RsGetRiderPreferences.payment_method:type_name -> rider.RsEnum
 	1,  // 8: rider.RsGetRiderPreferences.language:type_name -> rider.RsEnum
 	2,  // 9: rider.RqUpdateRiderPreferences.preferred_vehicle_type:type_name -> rider.RqEnum
-	2,  // 10: rider.RqUpdateRiderPreferences.payment_method:type_name -> rider.RqEnum
-	2,  // 11: rider.RqUpdateRiderPreferences.language:type_name -> rider.RqEnum
-	3,  // 12: rider.RiderService.GetRiderInfo:input_type -> rider.RqGetRiderInfo
-	5,  // 13: rider.RiderService.GetTripHistory:input_type -> rider.RqGetTripHistory
-	8,  // 14: rider.RiderService.GetRiderPreferences:input_type -> rider.RqGetRiderPreferences
-	10, // 15: rider.RiderService.UpdateRiderPreferences:input_type -> rider.RqUpdateRiderPreferences
-	4,  // 16: rider.RiderService.GetRiderInfo:output_type -> rider.RsGetRiderInfo
-	6,  // 17: rider.RiderService.GetTripHistory:output_type -> rider.RsGetTripHistory
-	9,  // 18: rider.RiderService.GetRiderPreferences:output_type -> rider.RsGetRiderPreferences
-	11, // 19: rider.RiderService.UpdateRiderPreferences:output_type -> rider.RsUpdateRiderPreferences
-	16, // [16:20] is the sub-list for method output_type
-	12, // [12:16] is the sub-list for method input_type
-	12, // [12:12] is the sub-list for extension type_name
-	12, // [12:12] is the sub-list for extension extendee
-	0,  // [0:12] is the sub-list for field type_name
+	2,  // 10: rider.RqUpdateRiderPreferences.preferred_vehicle_category:type_name -> rider.RqEnum
+	2,  // 11: rider.RqUpdateRiderPreferences.payment_method:type_name -> rider.RqEnum
+	2,  // 12: rider.RqUpdateRiderPreferences.language:type_name -> rider.RqEnum
+	3,  // 13: rider.RiderService.GetRiderInfo:input_type -> rider.RqGetRiderInfo
+	5,  // 14: rider.RiderService.GetTripHistory:input_type -> rider.RqGetTripHistory
+	8,  // 15: rider.RiderService.GetRiderPreferences:input_type -> rider.RqGetRiderPreferences
+	10, // 16: rider.RiderService.UpdateRiderPreferences:input_type -> rider.RqUpdateRiderPreferences
+	4,  // 17: rider.RiderService.GetRiderInfo:output_type -> rider.RsGetRiderInfo
+	6,  // 18: rider.RiderService.GetTripHistory:output_type -> rider.RsGetTripHistory
+	9,  // 19: rider.RiderService.GetRiderPreferences:output_type -> rider.RsGetRiderPreferences
+	11, // 20: rider.RiderService.UpdateRiderPreferences:output_type -> rider.RsUpdateRiderPreferences
+	17, // [17:21] is the sub-list for method output_type
+	13, // [13:17] is the sub-list for method input_type
+	13, // [13:13] is the sub-list for extension type_name
+	13, // [13:13] is the sub-list for extension extendee
+	0,  // [0:13] is the sub-list for field type_name
 }
 
 func init() { file_rider_proto_init() }
