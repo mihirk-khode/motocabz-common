@@ -272,51 +272,10 @@ func ValidateStruct(v interface{}) []ValidationError {
 
 // Custom validation functions for specific business logic
 
-// ValidateTripStatus validates trip status
-func ValidateTripStatus(status string) *ValidationError {
-	allowedStatuses := []string{
-		"TRIP_STATUS_UNSPECIFIED",
-		"TRIP_STATUS_PENDING",
-		"TRIP_STATUS_ACCEPTED",
-		"TRIP_STATUS_IN_PROGRESS",
-		"TRIP_STATUS_COMPLETED",
-		"TRIP_STATUS_CANCELLED",
-	}
-	return ValidateEnum(status, "status", allowedStatuses)
-}
-
-// ValidatePaymentStatus validates payment status
-func ValidatePaymentStatus(status string) *ValidationError {
-	allowedStatuses := []string{
-		"PAYMENT_STATUS_UNSPECIFIED",
-		"PAYMENT_STATUS_PENDING",
-		"PAYMENT_STATUS_COMPLETED",
-		"PAYMENT_STATUS_FAILED",
-		"PAYMENT_STATUS_REFUNDED",
-	}
-	return ValidateEnum(status, "paymentStatus", allowedStatuses)
-}
-
-// ValidatePriceModel validates price model
-func ValidatePriceModel(model string) *ValidationError {
-	allowedModels := []string{
-		"AUTOMATIC_FARE",
-		"FLEX_FARE",
-		"INSTANT_MATCH",
-	}
-	return ValidateEnum(model, "priceModel", allowedModels)
-}
-
-// ValidateBiddingStatus validates bidding session status
-func ValidateBiddingStatus(status string) *ValidationError {
-	allowedStatuses := []string{
-		"active",
-		"expired",
-		"assigned",
-		"cancelled",
-	}
-	return ValidateEnum(status, "status", allowedStatuses)
-}
+// ValidateTripStatus, ValidatePaymentStatus, ValidatePriceModel, and ValidateBiddingStatus
+// have been moved to Common/validation/constants.go to use standardized constants.
+// These functions are kept here for backward compatibility but delegate to the new implementations.
+// Deprecated: Use the functions in constants.go which use standardized constants from Common/constants.go
 
 // ValidateUserType validates user type
 func ValidateUserType(userType string) *ValidationError {

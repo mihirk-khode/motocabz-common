@@ -6,6 +6,8 @@ const (
 	ServiceIdentity = "identity-service"
 	ServiceDriver   = "driver-service"
 	ServiceRider    = "rider-service"
+	ServicePayment  = "payment-service"
+	ServiceAdmin    = "admin-service"
 )
 
 // HTTP Methods
@@ -28,6 +30,8 @@ const (
 	Rider        = "/rider"
 	Driver       = "/driver"
 	Trip         = "/trip"
+	Payment      = "/payment"
+	Admin        = "/admin"
 	WebSocket    = "/ws"
 )
 
@@ -48,6 +52,8 @@ const (
 	DomainBiddingSession = "biddingSession"
 	DomainBooking        = "booking"
 	DomainBidding        = "bidding"
+	DomainPayment        = "payment"
+	DomainAdmin          = "admin"
 )
 
 // Environment Variables
@@ -107,22 +113,24 @@ const (
 	NotificationTypeBidRejected      = "BID_REJECTED"
 )
 
-// Event Types
+// Legacy Event Types (deprecated - use lowercase dot notation below)
+// These are kept for backward compatibility during migration
 const (
-	EventTypeTripCreated           = "TripCreated"
-	EventTypeTripUpdated           = "TripUpdated"
-	EventTypeTripCancelled         = "TripCancelled"
-	EventTypeTripCompleted         = "TripCompleted"
-	EventTypeTripOptionsUpdated    = "TripOptionsUpdated"
-	EventTypeBiddingSessionStarted = "BiddingSessionStarted"
-	EventTypeBidReceived           = "BidReceived"
-	EventTypeBiddingSessionEnded   = "BiddingSessionEnded"
-	EventTypeDriverAssigned        = "DriverAssigned"
-	EventTypeBidSubmitted          = "BidSubmitted"
-	EventTypeBidAccepted           = "BidAccepted"
-	EventTypeBidRejected           = "BidRejected"
-	EventTypeBidCountered          = "BidCountered"
-	EventTypeInstantMatched        = "InstantMatched"
+	// Deprecated: Use EventTypeTripCreated = "trip.created" instead
+	EventTypeTripCreatedLegacy           = "TripCreated"
+	EventTypeTripUpdatedLegacy           = "TripUpdated"
+	EventTypeTripCancelledLegacy         = "TripCancelled"
+	EventTypeTripCompletedLegacy         = "TripCompleted"
+	EventTypeTripOptionsUpdatedLegacy    = "TripOptionsUpdated"
+	EventTypeBiddingSessionStartedLegacy = "BiddingSessionStarted"
+	EventTypeBidReceivedLegacy           = "BidReceived"
+	EventTypeBiddingSessionEndedLegacy   = "BiddingSessionEnded"
+	EventTypeDriverAssignedLegacy        = "DriverAssigned"
+	EventTypeBidSubmittedLegacy          = "BidSubmitted"
+	EventTypeBidAcceptedLegacy           = "BidAccepted"
+	EventTypeBidRejectedLegacy           = "BidRejected"
+	EventTypeBidCounteredLegacy          = "BidCountered"
+	EventTypeInstantMatchedLegacy        = "InstantMatched"
 )
 
 // Aggregate Types
@@ -133,45 +141,73 @@ const (
 	AggregateTypeBidding        = "Bidding"
 )
 
-// User Types
+// User Types / Roles
 const (
 	UserTypeDriver = "driver"
 	UserTypeRider  = "rider"
 	UserTypeAdmin  = "admin"
+
+	// User Roles (alternative naming)
+	UserRoleAdmin  = "admin"
+	UserRoleDriver = "driver"
+	UserRoleRider  = "rider"
 )
 
-// Trip Status
+// Trip Status - Standardized values matching database enums
 const (
+	TripStatusDraft              = "DRAFT"
+	TripStatusRequested          = "REQUESTED"
+	TripStatusSearchingForDriver = "SEARCHING_FOR_DRIVER"
+	TripStatusOfferPhase         = "OFFER_PHASE"
+	TripStatusAssigned           = "ASSIGNED"
+	TripStatusDriverEnRoute      = "DRIVER_EN_ROUTE"
+	TripStatusDriverArrived      = "DRIVER_ARRIVED"
+	TripStatusInProgress         = "IN_PROGRESS"
+	TripStatusCompleted          = "COMPLETED"
+	TripStatusCancelled          = "CANCELLED"
+	TripStatusFailed             = "FAILED"
+
+	// Legacy constants for backward compatibility (deprecated)
 	TripStatusUnspecified = "TRIP_STATUS_UNSPECIFIED"
 	TripStatusPending     = "TRIP_STATUS_PENDING"
 	TripStatusAccepted    = "TRIP_STATUS_ACCEPTED"
-	TripStatusInProgress  = "TRIP_STATUS_IN_PROGRESS"
-	TripStatusCompleted   = "TRIP_STATUS_COMPLETED"
-	TripStatusCancelled   = "TRIP_STATUS_CANCELLED"
 )
 
-// Payment Status
+// Payment Status - Standardized values
 const (
+	PaymentStatusPending    = "PENDING"
+	PaymentStatusProcessing = "PROCESSING"
+	PaymentStatusCompleted  = "COMPLETED"
+	PaymentStatusFailed     = "FAILED"
+	PaymentStatusCancelled  = "CANCELLED"
+	PaymentStatusRefunded   = "REFUNDED"
+
+	// Legacy constants for backward compatibility (deprecated)
 	PaymentStatusUnspecified = "PAYMENT_STATUS_UNSPECIFIED"
-	PaymentStatusPending     = "PAYMENT_STATUS_PENDING"
-	PaymentStatusCompleted   = "PAYMENT_STATUS_COMPLETED"
-	PaymentStatusFailed      = "PAYMENT_STATUS_FAILED"
-	PaymentStatusRefunded    = "PAYMENT_STATUS_REFUNDED"
 )
 
-// Price Models
+// Fare Models / Price Models - Standardized values
 const (
+	FareModelInstantMatch  = "INSTANT_MATCH"
+	FareModelFlexFare      = "FLEX_FARE"
+	FareModelAutomaticFare = "AUTOMATIC_FARE"
+
+	// Legacy constants for backward compatibility (deprecated)
 	PriceModelAutomaticFare = "AUTOMATIC_FARE"
 	PriceModelFlexFare      = "FLEX_FARE"
 	PriceModelInstantMatch  = "INSTANT_MATCH"
 )
 
-// Bidding Session Status
+// Bidding Session Status - Standardized values
 const (
 	BiddingStatusActive    = "active"
 	BiddingStatusExpired   = "expired"
 	BiddingStatusAssigned  = "assigned"
 	BiddingStatusCancelled = "cancelled"
+	BiddingStatusCompleted = "completed"
+	BiddingStatusFailed    = "failed"
+	BiddingStatusPending   = "pending"
+	BiddingStatusStarted   = "started"
 )
 
 // Location Validation
@@ -197,9 +233,10 @@ const (
 	TopicBookingEvents       = "booking.events"
 	TopicDriverEvents        = "driver.events"
 	TopicIdentityEvents      = "identity.events"
+	TopicPaymentEvents       = "payment.events"
+	TopicBiddingEvents       = "bidding.events"
 	TopicDriverNotifications = "driver.notifications"
 	TopicRiderNotifications  = "rider.notifications"
-	TopicBiddingEvents       = "bidding.events"
 )
 
 // Dapr Components
@@ -243,4 +280,204 @@ const (
 	MsgBiddingStarted        = "Bidding started successfully"
 	MsgDriverAssigned        = "Driver assigned successfully"
 	MsgConnectionEstablished = "Connection established successfully"
+	MsgDriverApproved        = "Driver approved successfully"
+	MsgDriverRejected        = "Driver rejected successfully"
+	MsgPaymentProcessed      = "Payment processed successfully"
+)
+
+// ==================== DRIVER STATUS ====================
+// Driver operational status
+const (
+	DriverStatusOnline    = "online"
+	DriverStatusOffline   = "offline"
+	DriverStatusAvailable = "available"
+	DriverStatusBusy      = "busy"
+	DriverStatusInactive  = "inactive"
+)
+
+// ==================== DRIVER APPROVAL STATUS ====================
+// Driver approval/verification status (for admin management)
+const (
+	DriverApprovalStatusPendingReview = "pending_review"
+	DriverApprovalStatusApproved      = "approved"
+	DriverApprovalStatusRejected      = "rejected"
+	DriverApprovalStatusSuspended     = "suspended"
+)
+
+// ==================== VEHICLE CLASS / CATEGORY ====================
+const (
+	VehicleClassClassic = "CLASSIC"
+	VehicleClassComfort = "COMFORT"
+	VehicleClassLuxury  = "LUXURY"
+	VehicleClassMinivan = "MINIVAN"
+)
+
+// ==================== PAYMENT METHODS ====================
+const (
+	PaymentMethodCash     = "CASH"
+	PaymentMethodWallet   = "WALLET"
+	PaymentMethodTelebirr = "TELEBIRR"
+	PaymentMethodCard     = "CARD"
+	PaymentMethodStripe   = "STRIPE"
+	PaymentMethodPayPal   = "PAYPAL"
+)
+
+// ==================== COMPLAINT STATUS ====================
+// Support ticket/complaint status
+const (
+	ComplaintStatusOpen       = "open"
+	ComplaintStatusAssigned   = "assigned"
+	ComplaintStatusInProgress = "in_progress"
+	ComplaintStatusResolved   = "resolved"
+	ComplaintStatusClosed     = "closed"
+)
+
+// ==================== COMPLAINT PRIORITY ====================
+const (
+	ComplaintPriorityLow    = "low"
+	ComplaintPriorityMedium = "medium"
+	ComplaintPriorityHigh   = "high"
+	ComplaintPriorityUrgent = "urgent"
+)
+
+// ==================== ADMIN ROLES ====================
+const (
+	AdminRoleSuperAdmin = "super_admin"
+	AdminRoleAdmin      = "admin"
+	AdminRoleOps        = "ops"
+	AdminRoleSupport    = "support"
+)
+
+// ==================== DOCUMENT TYPES ====================
+const (
+	DocumentTypeLicense      = "LICENSE"
+	DocumentTypeTIN          = "TIN"
+	DocumentTypeID           = "ID"
+	DocumentTypePassport     = "PASSPORT"
+	DocumentTypeInsurance    = "INSURANCE"
+	DocumentTypeRegistration = "REGISTRATION"
+)
+
+// ==================== ADDRESS TYPES ====================
+const (
+	AddressTypeHome  = "HOME"
+	AddressTypeWork  = "WORK"
+	AddressTypeOther = "OTHER"
+)
+
+// ==================== PROVIDERS ====================
+const (
+	ProviderGoogle = "GOOGLE"
+	ProviderManual = "MANUAL"
+	ProviderPhone  = "PHONE"
+)
+
+// ==================== DEVICE TYPES ====================
+const (
+	DeviceTypeAndroid = "ANDROID"
+	DeviceTypeIOS     = "IOS"
+	DeviceTypeWeb     = "WEB"
+)
+
+// ==================== SUBSCRIPTION TYPES ====================
+const (
+	SubscriptionTypeNone       = "NONE"
+	SubscriptionTypeBasic      = "BASIC"
+	SubscriptionTypePremium    = "PREMIUM"
+	SubscriptionTypeEnterprise = "ENTERPRISE"
+)
+
+// ==================== NEGOTIATION STATUS ====================
+// Flex Fare negotiation status
+const (
+	NegotiationStatusOffered  = "OFFERED"
+	NegotiationStatusCounter  = "COUNTERED"
+	NegotiationStatusPending  = "PENDING"
+	NegotiationStatusAccepted = "ACCEPTED"
+	NegotiationStatusRejected = "REJECTED"
+)
+
+// ==================== WALLET STATUS ====================
+const (
+	WalletStatusActive    = "ACTIVE"
+	WalletStatusSuspended = "SUSPENDED"
+	WalletStatusClosed    = "CLOSED"
+	WalletStatusFrozen    = "FROZEN"
+)
+
+// ==================== WALLET TRANSACTION TYPES ====================
+const (
+	WalletTransactionTypeCredit   = "CREDIT"
+	WalletTransactionTypeDebit    = "DEBIT"
+	WalletTransactionTypeFreeze   = "FREEZE"
+	WalletTransactionTypeUnfreeze = "UNFREEZE"
+)
+
+// ==================== WALLET TRANSACTION REASONS ====================
+const (
+	WalletTransactionReasonRidePayment = "ride_payment"
+	WalletTransactionReasonRefund      = "refund"
+	WalletTransactionReasonBonus       = "bonus"
+	WalletTransactionReasonTopUp       = "top_up"
+	WalletTransactionReasonWithdrawal  = "withdrawal"
+	WalletTransactionReasonPromo       = "promo"
+)
+
+// ==================== COMMISSION RATES ====================
+const (
+	DefaultCommissionPercent      = 15.0 // 15% default commission
+	SubscriptionCommissionPercent = 0.0  // 0% for subscription drivers
+)
+
+// ==================== CURRENCY ====================
+const (
+	DefaultCurrency = "ETB"
+)
+
+// ==================== EVENT TYPES ====================
+// Event types matching Common/events/registry.go (lowercase with dots)
+const (
+	EventTypeTripCreated    = "trip.created"
+	EventTypeTripAccepted   = "trip.accepted"
+	EventTypeTripCancelled  = "trip.cancelled"
+	EventTypeTripCompleted  = "trip.completed"
+	EventTypeTripInProgress = "trip.in_progress"
+	EventTypeTripUpdated    = "trip.updated"
+
+	EventTypeBookingCreated   = "booking.created"
+	EventTypeBookingConfirmed = "booking.confirmed"
+	EventTypeBookingCancelled = "booking.cancelled"
+
+	EventTypeDriverOnline   = "driver.online"
+	EventTypeDriverOffline  = "driver.offline"
+	EventTypeDriverLocation = "driver.location"
+	EventTypeDriverStatus   = "driver.status"
+
+	EventTypeRiderCreated = "rider.created"
+	EventTypeRiderUpdated = "rider.updated"
+
+	EventTypePaymentInitiated = "payment.initiated"
+	EventTypePaymentCompleted = "payment.completed"
+	EventTypePaymentFailed    = "payment.failed"
+	EventTypePaymentRefunded  = "payment.refunded"
+
+	EventTypeBiddingStarted = "bidding.started"
+	EventTypeBiddingEnded   = "bidding.ended"
+	EventTypeBidSubmitted   = "bid.submitted"
+	EventTypeBidAccepted    = "bid.accepted"
+	EventTypeBidRejected    = "bid.rejected"
+
+	EventTypeUserCreated = "user.created"
+	EventTypeUserUpdated = "user.updated"
+	EventTypeUserDeleted = "user.deleted"
+
+	EventTypeDriverNotification = "driver.notification"
+	EventTypeRiderNotification  = "rider.notification"
+)
+
+// ==================== OPEN TELEMETRY ENVIRONMENT VARIABLES ====================
+const (
+	EnvOTELExporterEndpoint = "OTEL_EXPORTER_OTLP_ENDPOINT"
+	EnvOTELSamplingRate     = "OTEL_SAMPLING_RATE"
+	EnvEnvironment          = "ENVIRONMENT"
 )

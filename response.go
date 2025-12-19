@@ -19,13 +19,14 @@ type ErrorInfo struct {
 	CodeText string      `json:"codeText"`
 	Message  string      `json:"message"`
 	ErrorMsg interface{} `json:"errorMsg,omitempty"`
-	Details  interface{} `json:"details,omitempty"`
+	TraceID  string      `json:"traceId,omitempty"`
 }
 
 // MetaInfo represents metadata for API responses
 type MetaInfo struct {
 	Timestamp   time.Time   `json:"timestamp"`
 	RequestID   string      `json:"requestId,omitempty"`
+	TraceID     string      `json:"traceId,omitempty"`
 	Version     string      `json:"version,omitempty"`
 	Environment string      `json:"environment,omitempty"`
 	Pagination  *Pagination `json:"pagination,omitempty"`
@@ -83,6 +84,17 @@ func RsOKMeta(data interface{}, msg string, meta *MetaInfo) RsBase {
 }
 
 func RsErr(code int, msg string, errMsg interface{}) RsBase {
+	return RsErrWithTraceID(code, msg, errMsg, "")
+}
+
+// RsErrWithTraceID creates an error response with trace ID
+func RsErrWithTraceID(code int, msg string, errMsg interface{}, traceID string) RsBase {
+	meta := &MetaInfo{
+		Timestamp: time.Now(),
+	}
+	if traceID != "" {
+		meta.TraceID = traceID
+	}
 	return RsBase{
 		ApiVersion: "v1",
 		Error: &ErrorInfo{
@@ -91,13 +103,22 @@ func RsErr(code int, msg string, errMsg interface{}) RsBase {
 			Message:  msg,
 			ErrorMsg: errMsg,
 		},
-		Meta: &MetaInfo{
-			Timestamp: time.Now(),
-		},
+		Meta: meta,
 	}
 }
 
 func RsErrDetails(code int, msg string, errMsg interface{}, details interface{}) RsBase {
+	return RsErrDetailsWithTraceID(code, msg, errMsg, details, "")
+}
+
+// RsErrDetailsWithTraceID creates an error response with details and trace ID
+func RsErrDetailsWithTraceID(code int, msg string, errMsg interface{}, details interface{}, traceID string) RsBase {
+	meta := &MetaInfo{
+		Timestamp: time.Now(),
+	}
+	if traceID != "" {
+		meta.TraceID = traceID
+	}
 	return RsBase{
 		ApiVersion: "v1",
 		Error: &ErrorInfo{
@@ -105,15 +126,23 @@ func RsErrDetails(code int, msg string, errMsg interface{}, details interface{})
 			CodeText: http.StatusText(code),
 			Message:  msg,
 			ErrorMsg: errMsg,
-			Details:  details,
 		},
-		Meta: &MetaInfo{
-			Timestamp: time.Now(),
-		},
+		Meta: meta,
 	}
 }
 
 func RsValidationErr(validationErrors []ValidationError) RsBase {
+	return RsValidationErrWithTraceID(validationErrors, "")
+}
+
+// RsValidationErrWithTraceID creates a validation error response with trace ID
+func RsValidationErrWithTraceID(validationErrors []ValidationError, traceID string) RsBase {
+	meta := &MetaInfo{
+		Timestamp: time.Now(),
+	}
+	if traceID != "" {
+		meta.TraceID = traceID
+	}
 	return RsBase{
 		ApiVersion: "v1",
 		Error: &ErrorInfo{
@@ -122,9 +151,7 @@ func RsValidationErr(validationErrors []ValidationError) RsBase {
 			Message:  "Validation failed",
 			Details:  validationErrors,
 		},
-		Meta: &MetaInfo{
-			Timestamp: time.Now(),
-		},
+		Meta: meta,
 	}
 }
 

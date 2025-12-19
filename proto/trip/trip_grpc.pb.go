@@ -37,7 +37,6 @@ const (
 	TripService_CancelInstantMatch_FullMethodName         = "/trip.TripService/CancelInstantMatch"
 	TripService_GetTripHistoryByRider_FullMethodName      = "/trip.TripService/GetTripHistoryByRider"
 	TripService_GetTripHistoryByDriver_FullMethodName     = "/trip.TripService/GetTripHistoryByDriver"
-	TripService_IsTripActive_FullMethodName               = "/trip.TripService/IsTripActive"
 )
 
 // TripServiceClient is the client API for TripService service.
@@ -62,7 +61,6 @@ type TripServiceClient interface {
 	CancelInstantMatch(ctx context.Context, in *RqCancelInstantMatch, opts ...grpc.CallOption) (*RsCancelInstantMatch, error)
 	GetTripHistoryByRider(ctx context.Context, in *RqGetTripHistoryByRider, opts ...grpc.CallOption) (*RsGetTripHistory, error)
 	GetTripHistoryByDriver(ctx context.Context, in *RqGetTripHistoryByDriver, opts ...grpc.CallOption) (*RsGetTripHistory, error)
-	IsTripActive(ctx context.Context, in *RqGetTrip, opts ...grpc.CallOption) (*RsIsTripActive, error)
 }
 
 type tripServiceClient struct {
@@ -253,16 +251,6 @@ func (c *tripServiceClient) GetTripHistoryByDriver(ctx context.Context, in *RqGe
 	return out, nil
 }
 
-func (c *tripServiceClient) IsTripActive(ctx context.Context, in *RqGetTrip, opts ...grpc.CallOption) (*RsIsTripActive, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(RsIsTripActive)
-	err := c.cc.Invoke(ctx, TripService_IsTripActive_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
 // TripServiceServer is the server API for TripService service.
 // All implementations must embed UnimplementedTripServiceServer
 // for forward compatibility.
@@ -285,7 +273,6 @@ type TripServiceServer interface {
 	CancelInstantMatch(context.Context, *RqCancelInstantMatch) (*RsCancelInstantMatch, error)
 	GetTripHistoryByRider(context.Context, *RqGetTripHistoryByRider) (*RsGetTripHistory, error)
 	GetTripHistoryByDriver(context.Context, *RqGetTripHistoryByDriver) (*RsGetTripHistory, error)
-	IsTripActive(context.Context, *RqGetTrip) (*RsIsTripActive, error)
 	mustEmbedUnimplementedTripServiceServer()
 }
 
@@ -349,9 +336,6 @@ func (UnimplementedTripServiceServer) GetTripHistoryByRider(context.Context, *Rq
 }
 func (UnimplementedTripServiceServer) GetTripHistoryByDriver(context.Context, *RqGetTripHistoryByDriver) (*RsGetTripHistory, error) {
 	return nil, status.Error(codes.Unimplemented, "method GetTripHistoryByDriver not implemented")
-}
-func (UnimplementedTripServiceServer) IsTripActive(context.Context, *RqGetTrip) (*RsIsTripActive, error) {
-	return nil, status.Error(codes.Unimplemented, "method IsTripActive not implemented")
 }
 func (UnimplementedTripServiceServer) mustEmbedUnimplementedTripServiceServer() {}
 func (UnimplementedTripServiceServer) testEmbeddedByValue()                     {}
@@ -698,24 +682,6 @@ func _TripService_GetTripHistoryByDriver_Handler(srv interface{}, ctx context.Co
 	return interceptor(ctx, in, info, handler)
 }
 
-func _TripService_IsTripActive_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(RqGetTrip)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(TripServiceServer).IsTripActive(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: TripService_IsTripActive_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(TripServiceServer).IsTripActive(ctx, req.(*RqGetTrip))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
 // TripService_ServiceDesc is the grpc.ServiceDesc for TripService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -794,10 +760,6 @@ var TripService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetTripHistoryByDriver",
 			Handler:    _TripService_GetTripHistoryByDriver_Handler,
-		},
-		{
-			MethodName: "IsTripActive",
-			Handler:    _TripService_IsTripActive_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

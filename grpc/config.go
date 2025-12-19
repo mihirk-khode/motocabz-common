@@ -26,6 +26,10 @@ var Services = map[string]ServiceConfig{
 		Name: "rider-service",
 		Port: "50005", // Rider service gRPC port (from Kubernetes service)
 	},
+	"admin-service": {
+		Name: "admin-service",
+		Port: "50008", // Admin service gRPC port (from Kubernetes service)
+	},
 }
 
 // GetServiceConfig returns the ServiceConfig for a given service name.
