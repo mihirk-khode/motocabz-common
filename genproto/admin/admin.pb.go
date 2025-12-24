@@ -76,27 +76,27 @@ func (ApprovalStatus) EnumDescriptor() ([]byte, []int) {
 }
 
 // --- Admin Authentication ---
-type RqValidateAdminToken struct {
+type ValidateAdminTokenRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Token         string                 `protobuf:"bytes,1,opt,name=token,proto3" json:"token,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *RqValidateAdminToken) Reset() {
-	*x = RqValidateAdminToken{}
+func (x *ValidateAdminTokenRequest) Reset() {
+	*x = ValidateAdminTokenRequest{}
 	mi := &file_admin_admin_proto_msgTypes[0]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *RqValidateAdminToken) String() string {
+func (x *ValidateAdminTokenRequest) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*RqValidateAdminToken) ProtoMessage() {}
+func (*ValidateAdminTokenRequest) ProtoMessage() {}
 
-func (x *RqValidateAdminToken) ProtoReflect() protoreflect.Message {
+func (x *ValidateAdminTokenRequest) ProtoReflect() protoreflect.Message {
 	mi := &file_admin_admin_proto_msgTypes[0]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -108,19 +108,19 @@ func (x *RqValidateAdminToken) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use RqValidateAdminToken.ProtoReflect.Descriptor instead.
-func (*RqValidateAdminToken) Descriptor() ([]byte, []int) {
+// Deprecated: Use ValidateAdminTokenRequest.ProtoReflect.Descriptor instead.
+func (*ValidateAdminTokenRequest) Descriptor() ([]byte, []int) {
 	return file_admin_admin_proto_rawDescGZIP(), []int{0}
 }
 
-func (x *RqValidateAdminToken) GetToken() string {
+func (x *ValidateAdminTokenRequest) GetToken() string {
 	if x != nil {
 		return x.Token
 	}
 	return ""
 }
 
-type RsValidateAdminToken struct {
+type ValidateAdminTokenResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Valid         bool                   `protobuf:"varint,1,opt,name=valid,proto3" json:"valid,omitempty"`
 	AdminId       string                 `protobuf:"bytes,2,opt,name=admin_id,json=adminId,proto3" json:"admin_id,omitempty"`
@@ -130,20 +130,20 @@ type RsValidateAdminToken struct {
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *RsValidateAdminToken) Reset() {
-	*x = RsValidateAdminToken{}
+func (x *ValidateAdminTokenResponse) Reset() {
+	*x = ValidateAdminTokenResponse{}
 	mi := &file_admin_admin_proto_msgTypes[1]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *RsValidateAdminToken) String() string {
+func (x *ValidateAdminTokenResponse) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*RsValidateAdminToken) ProtoMessage() {}
+func (*ValidateAdminTokenResponse) ProtoMessage() {}
 
-func (x *RsValidateAdminToken) ProtoReflect() protoreflect.Message {
+func (x *ValidateAdminTokenResponse) ProtoReflect() protoreflect.Message {
 	mi := &file_admin_admin_proto_msgTypes[1]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -155,60 +155,60 @@ func (x *RsValidateAdminToken) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use RsValidateAdminToken.ProtoReflect.Descriptor instead.
-func (*RsValidateAdminToken) Descriptor() ([]byte, []int) {
+// Deprecated: Use ValidateAdminTokenResponse.ProtoReflect.Descriptor instead.
+func (*ValidateAdminTokenResponse) Descriptor() ([]byte, []int) {
 	return file_admin_admin_proto_rawDescGZIP(), []int{1}
 }
 
-func (x *RsValidateAdminToken) GetValid() bool {
+func (x *ValidateAdminTokenResponse) GetValid() bool {
 	if x != nil {
 		return x.Valid
 	}
 	return false
 }
 
-func (x *RsValidateAdminToken) GetAdminId() string {
+func (x *ValidateAdminTokenResponse) GetAdminId() string {
 	if x != nil {
 		return x.AdminId
 	}
 	return ""
 }
 
-func (x *RsValidateAdminToken) GetRole() string {
+func (x *ValidateAdminTokenResponse) GetRole() string {
 	if x != nil {
 		return x.Role
 	}
 	return ""
 }
 
-func (x *RsValidateAdminToken) GetMessage() string {
+func (x *ValidateAdminTokenResponse) GetMessage() string {
 	if x != nil {
 		return x.Message
 	}
 	return ""
 }
 
-type RqGetAdminProfile struct {
+type GetAdminProfileRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	AdminId       string                 `protobuf:"bytes,1,opt,name=admin_id,json=adminId,proto3" json:"admin_id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *RqGetAdminProfile) Reset() {
-	*x = RqGetAdminProfile{}
+func (x *GetAdminProfileRequest) Reset() {
+	*x = GetAdminProfileRequest{}
 	mi := &file_admin_admin_proto_msgTypes[2]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *RqGetAdminProfile) String() string {
+func (x *GetAdminProfileRequest) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*RqGetAdminProfile) ProtoMessage() {}
+func (*GetAdminProfileRequest) ProtoMessage() {}
 
-func (x *RqGetAdminProfile) ProtoReflect() protoreflect.Message {
+func (x *GetAdminProfileRequest) ProtoReflect() protoreflect.Message {
 	mi := &file_admin_admin_proto_msgTypes[2]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -220,19 +220,19 @@ func (x *RqGetAdminProfile) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use RqGetAdminProfile.ProtoReflect.Descriptor instead.
-func (*RqGetAdminProfile) Descriptor() ([]byte, []int) {
+// Deprecated: Use GetAdminProfileRequest.ProtoReflect.Descriptor instead.
+func (*GetAdminProfileRequest) Descriptor() ([]byte, []int) {
 	return file_admin_admin_proto_rawDescGZIP(), []int{2}
 }
 
-func (x *RqGetAdminProfile) GetAdminId() string {
+func (x *GetAdminProfileRequest) GetAdminId() string {
 	if x != nil {
 		return x.AdminId
 	}
 	return ""
 }
 
-type RsGetAdminProfile struct {
+type GetAdminProfileResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
 	Email         string                 `protobuf:"bytes,2,opt,name=email,proto3" json:"email,omitempty"`
@@ -245,20 +245,20 @@ type RsGetAdminProfile struct {
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *RsGetAdminProfile) Reset() {
-	*x = RsGetAdminProfile{}
+func (x *GetAdminProfileResponse) Reset() {
+	*x = GetAdminProfileResponse{}
 	mi := &file_admin_admin_proto_msgTypes[3]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *RsGetAdminProfile) String() string {
+func (x *GetAdminProfileResponse) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*RsGetAdminProfile) ProtoMessage() {}
+func (*GetAdminProfileResponse) ProtoMessage() {}
 
-func (x *RsGetAdminProfile) ProtoReflect() protoreflect.Message {
+func (x *GetAdminProfileResponse) ProtoReflect() protoreflect.Message {
 	mi := &file_admin_admin_proto_msgTypes[3]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -270,61 +270,61 @@ func (x *RsGetAdminProfile) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use RsGetAdminProfile.ProtoReflect.Descriptor instead.
-func (*RsGetAdminProfile) Descriptor() ([]byte, []int) {
+// Deprecated: Use GetAdminProfileResponse.ProtoReflect.Descriptor instead.
+func (*GetAdminProfileResponse) Descriptor() ([]byte, []int) {
 	return file_admin_admin_proto_rawDescGZIP(), []int{3}
 }
 
-func (x *RsGetAdminProfile) GetId() string {
+func (x *GetAdminProfileResponse) GetId() string {
 	if x != nil {
 		return x.Id
 	}
 	return ""
 }
 
-func (x *RsGetAdminProfile) GetEmail() string {
+func (x *GetAdminProfileResponse) GetEmail() string {
 	if x != nil {
 		return x.Email
 	}
 	return ""
 }
 
-func (x *RsGetAdminProfile) GetName() string {
+func (x *GetAdminProfileResponse) GetName() string {
 	if x != nil {
 		return x.Name
 	}
 	return ""
 }
 
-func (x *RsGetAdminProfile) GetRole() string {
+func (x *GetAdminProfileResponse) GetRole() string {
 	if x != nil {
 		return x.Role
 	}
 	return ""
 }
 
-func (x *RsGetAdminProfile) GetIsActive() bool {
+func (x *GetAdminProfileResponse) GetIsActive() bool {
 	if x != nil {
 		return x.IsActive
 	}
 	return false
 }
 
-func (x *RsGetAdminProfile) GetCreatedAt() string {
+func (x *GetAdminProfileResponse) GetCreatedAt() string {
 	if x != nil {
 		return x.CreatedAt
 	}
 	return ""
 }
 
-func (x *RsGetAdminProfile) GetUpdatedAt() string {
+func (x *GetAdminProfileResponse) GetUpdatedAt() string {
 	if x != nil {
 		return x.UpdatedAt
 	}
 	return ""
 }
 
-type RqCheckAdminPermission struct {
+type CheckAdminPermissionRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	AdminId       string                 `protobuf:"bytes,1,opt,name=admin_id,json=adminId,proto3" json:"admin_id,omitempty"`
 	Permission    string                 `protobuf:"bytes,2,opt,name=permission,proto3" json:"permission,omitempty"`
@@ -332,20 +332,20 @@ type RqCheckAdminPermission struct {
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *RqCheckAdminPermission) Reset() {
-	*x = RqCheckAdminPermission{}
+func (x *CheckAdminPermissionRequest) Reset() {
+	*x = CheckAdminPermissionRequest{}
 	mi := &file_admin_admin_proto_msgTypes[4]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *RqCheckAdminPermission) String() string {
+func (x *CheckAdminPermissionRequest) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*RqCheckAdminPermission) ProtoMessage() {}
+func (*CheckAdminPermissionRequest) ProtoMessage() {}
 
-func (x *RqCheckAdminPermission) ProtoReflect() protoreflect.Message {
+func (x *CheckAdminPermissionRequest) ProtoReflect() protoreflect.Message {
 	mi := &file_admin_admin_proto_msgTypes[4]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -357,26 +357,26 @@ func (x *RqCheckAdminPermission) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use RqCheckAdminPermission.ProtoReflect.Descriptor instead.
-func (*RqCheckAdminPermission) Descriptor() ([]byte, []int) {
+// Deprecated: Use CheckAdminPermissionRequest.ProtoReflect.Descriptor instead.
+func (*CheckAdminPermissionRequest) Descriptor() ([]byte, []int) {
 	return file_admin_admin_proto_rawDescGZIP(), []int{4}
 }
 
-func (x *RqCheckAdminPermission) GetAdminId() string {
+func (x *CheckAdminPermissionRequest) GetAdminId() string {
 	if x != nil {
 		return x.AdminId
 	}
 	return ""
 }
 
-func (x *RqCheckAdminPermission) GetPermission() string {
+func (x *CheckAdminPermissionRequest) GetPermission() string {
 	if x != nil {
 		return x.Permission
 	}
 	return ""
 }
 
-type RsCheckAdminPermission struct {
+type CheckAdminPermissionResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Allowed       bool                   `protobuf:"varint,1,opt,name=allowed,proto3" json:"allowed,omitempty"`
 	Message       string                 `protobuf:"bytes,2,opt,name=message,proto3" json:"message,omitempty"`
@@ -384,20 +384,20 @@ type RsCheckAdminPermission struct {
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *RsCheckAdminPermission) Reset() {
-	*x = RsCheckAdminPermission{}
+func (x *CheckAdminPermissionResponse) Reset() {
+	*x = CheckAdminPermissionResponse{}
 	mi := &file_admin_admin_proto_msgTypes[5]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *RsCheckAdminPermission) String() string {
+func (x *CheckAdminPermissionResponse) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*RsCheckAdminPermission) ProtoMessage() {}
+func (*CheckAdminPermissionResponse) ProtoMessage() {}
 
-func (x *RsCheckAdminPermission) ProtoReflect() protoreflect.Message {
+func (x *CheckAdminPermissionResponse) ProtoReflect() protoreflect.Message {
 	mi := &file_admin_admin_proto_msgTypes[5]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -409,19 +409,19 @@ func (x *RsCheckAdminPermission) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use RsCheckAdminPermission.ProtoReflect.Descriptor instead.
-func (*RsCheckAdminPermission) Descriptor() ([]byte, []int) {
+// Deprecated: Use CheckAdminPermissionResponse.ProtoReflect.Descriptor instead.
+func (*CheckAdminPermissionResponse) Descriptor() ([]byte, []int) {
 	return file_admin_admin_proto_rawDescGZIP(), []int{5}
 }
 
-func (x *RsCheckAdminPermission) GetAllowed() bool {
+func (x *CheckAdminPermissionResponse) GetAllowed() bool {
 	if x != nil {
 		return x.Allowed
 	}
 	return false
 }
 
-func (x *RsCheckAdminPermission) GetMessage() string {
+func (x *CheckAdminPermissionResponse) GetMessage() string {
 	if x != nil {
 		return x.Message
 	}
@@ -670,7 +670,7 @@ func (x *DriverDocument) GetIsDeleted() bool {
 }
 
 // --- Driver management ---
-type RqListDrivers struct {
+type ListDriversRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Status        string                 `protobuf:"bytes,1,opt,name=status,proto3" json:"status,omitempty"`
 	Role          string                 `protobuf:"bytes,2,opt,name=role,proto3" json:"role,omitempty"`
@@ -680,20 +680,20 @@ type RqListDrivers struct {
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *RqListDrivers) Reset() {
-	*x = RqListDrivers{}
+func (x *ListDriversRequest) Reset() {
+	*x = ListDriversRequest{}
 	mi := &file_admin_admin_proto_msgTypes[8]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *RqListDrivers) String() string {
+func (x *ListDriversRequest) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*RqListDrivers) ProtoMessage() {}
+func (*ListDriversRequest) ProtoMessage() {}
 
-func (x *RqListDrivers) ProtoReflect() protoreflect.Message {
+func (x *ListDriversRequest) ProtoReflect() protoreflect.Message {
 	mi := &file_admin_admin_proto_msgTypes[8]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -705,40 +705,40 @@ func (x *RqListDrivers) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use RqListDrivers.ProtoReflect.Descriptor instead.
-func (*RqListDrivers) Descriptor() ([]byte, []int) {
+// Deprecated: Use ListDriversRequest.ProtoReflect.Descriptor instead.
+func (*ListDriversRequest) Descriptor() ([]byte, []int) {
 	return file_admin_admin_proto_rawDescGZIP(), []int{8}
 }
 
-func (x *RqListDrivers) GetStatus() string {
+func (x *ListDriversRequest) GetStatus() string {
 	if x != nil {
 		return x.Status
 	}
 	return ""
 }
 
-func (x *RqListDrivers) GetRole() string {
+func (x *ListDriversRequest) GetRole() string {
 	if x != nil {
 		return x.Role
 	}
 	return ""
 }
 
-func (x *RqListDrivers) GetLimit() int32 {
+func (x *ListDriversRequest) GetLimit() int32 {
 	if x != nil {
 		return x.Limit
 	}
 	return 0
 }
 
-func (x *RqListDrivers) GetOffset() int32 {
+func (x *ListDriversRequest) GetOffset() int32 {
 	if x != nil {
 		return x.Offset
 	}
 	return 0
 }
 
-type RsListDrivers struct {
+type ListDriversResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Drivers       []*DriverInfo          `protobuf:"bytes,1,rep,name=drivers,proto3" json:"drivers,omitempty"`
 	Total         int32                  `protobuf:"varint,2,opt,name=total,proto3" json:"total,omitempty"`
@@ -746,20 +746,20 @@ type RsListDrivers struct {
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *RsListDrivers) Reset() {
-	*x = RsListDrivers{}
+func (x *ListDriversResponse) Reset() {
+	*x = ListDriversResponse{}
 	mi := &file_admin_admin_proto_msgTypes[9]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *RsListDrivers) String() string {
+func (x *ListDriversResponse) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*RsListDrivers) ProtoMessage() {}
+func (*ListDriversResponse) ProtoMessage() {}
 
-func (x *RsListDrivers) ProtoReflect() protoreflect.Message {
+func (x *ListDriversResponse) ProtoReflect() protoreflect.Message {
 	mi := &file_admin_admin_proto_msgTypes[9]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -771,46 +771,46 @@ func (x *RsListDrivers) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use RsListDrivers.ProtoReflect.Descriptor instead.
-func (*RsListDrivers) Descriptor() ([]byte, []int) {
+// Deprecated: Use ListDriversResponse.ProtoReflect.Descriptor instead.
+func (*ListDriversResponse) Descriptor() ([]byte, []int) {
 	return file_admin_admin_proto_rawDescGZIP(), []int{9}
 }
 
-func (x *RsListDrivers) GetDrivers() []*DriverInfo {
+func (x *ListDriversResponse) GetDrivers() []*DriverInfo {
 	if x != nil {
 		return x.Drivers
 	}
 	return nil
 }
 
-func (x *RsListDrivers) GetTotal() int32 {
+func (x *ListDriversResponse) GetTotal() int32 {
 	if x != nil {
 		return x.Total
 	}
 	return 0
 }
 
-type RqGetDriver struct {
+type GetDriverRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	DriverId      string                 `protobuf:"bytes,1,opt,name=driver_id,json=driverId,proto3" json:"driver_id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *RqGetDriver) Reset() {
-	*x = RqGetDriver{}
+func (x *GetDriverRequest) Reset() {
+	*x = GetDriverRequest{}
 	mi := &file_admin_admin_proto_msgTypes[10]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *RqGetDriver) String() string {
+func (x *GetDriverRequest) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*RqGetDriver) ProtoMessage() {}
+func (*GetDriverRequest) ProtoMessage() {}
 
-func (x *RqGetDriver) ProtoReflect() protoreflect.Message {
+func (x *GetDriverRequest) ProtoReflect() protoreflect.Message {
 	mi := &file_admin_admin_proto_msgTypes[10]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -822,39 +822,39 @@ func (x *RqGetDriver) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use RqGetDriver.ProtoReflect.Descriptor instead.
-func (*RqGetDriver) Descriptor() ([]byte, []int) {
+// Deprecated: Use GetDriverRequest.ProtoReflect.Descriptor instead.
+func (*GetDriverRequest) Descriptor() ([]byte, []int) {
 	return file_admin_admin_proto_rawDescGZIP(), []int{10}
 }
 
-func (x *RqGetDriver) GetDriverId() string {
+func (x *GetDriverRequest) GetDriverId() string {
 	if x != nil {
 		return x.DriverId
 	}
 	return ""
 }
 
-type RsGetDriver struct {
+type GetDriverResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Driver        *DriverInfo            `protobuf:"bytes,1,opt,name=driver,proto3" json:"driver,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *RsGetDriver) Reset() {
-	*x = RsGetDriver{}
+func (x *GetDriverResponse) Reset() {
+	*x = GetDriverResponse{}
 	mi := &file_admin_admin_proto_msgTypes[11]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *RsGetDriver) String() string {
+func (x *GetDriverResponse) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*RsGetDriver) ProtoMessage() {}
+func (*GetDriverResponse) ProtoMessage() {}
 
-func (x *RsGetDriver) ProtoReflect() protoreflect.Message {
+func (x *GetDriverResponse) ProtoReflect() protoreflect.Message {
 	mi := &file_admin_admin_proto_msgTypes[11]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -866,39 +866,39 @@ func (x *RsGetDriver) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use RsGetDriver.ProtoReflect.Descriptor instead.
-func (*RsGetDriver) Descriptor() ([]byte, []int) {
+// Deprecated: Use GetDriverResponse.ProtoReflect.Descriptor instead.
+func (*GetDriverResponse) Descriptor() ([]byte, []int) {
 	return file_admin_admin_proto_rawDescGZIP(), []int{11}
 }
 
-func (x *RsGetDriver) GetDriver() *DriverInfo {
+func (x *GetDriverResponse) GetDriver() *DriverInfo {
 	if x != nil {
 		return x.Driver
 	}
 	return nil
 }
 
-type RqApproveDriver struct {
+type ApproveDriverRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	DriverId      string                 `protobuf:"bytes,1,opt,name=driver_id,json=driverId,proto3" json:"driver_id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *RqApproveDriver) Reset() {
-	*x = RqApproveDriver{}
+func (x *ApproveDriverRequest) Reset() {
+	*x = ApproveDriverRequest{}
 	mi := &file_admin_admin_proto_msgTypes[12]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *RqApproveDriver) String() string {
+func (x *ApproveDriverRequest) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*RqApproveDriver) ProtoMessage() {}
+func (*ApproveDriverRequest) ProtoMessage() {}
 
-func (x *RqApproveDriver) ProtoReflect() protoreflect.Message {
+func (x *ApproveDriverRequest) ProtoReflect() protoreflect.Message {
 	mi := &file_admin_admin_proto_msgTypes[12]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -910,19 +910,19 @@ func (x *RqApproveDriver) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use RqApproveDriver.ProtoReflect.Descriptor instead.
-func (*RqApproveDriver) Descriptor() ([]byte, []int) {
+// Deprecated: Use ApproveDriverRequest.ProtoReflect.Descriptor instead.
+func (*ApproveDriverRequest) Descriptor() ([]byte, []int) {
 	return file_admin_admin_proto_rawDescGZIP(), []int{12}
 }
 
-func (x *RqApproveDriver) GetDriverId() string {
+func (x *ApproveDriverRequest) GetDriverId() string {
 	if x != nil {
 		return x.DriverId
 	}
 	return ""
 }
 
-type RsApproveDriver struct {
+type ApproveDriverResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Success       bool                   `protobuf:"varint,1,opt,name=success,proto3" json:"success,omitempty"`
 	Message       string                 `protobuf:"bytes,2,opt,name=message,proto3" json:"message,omitempty"`
@@ -930,20 +930,20 @@ type RsApproveDriver struct {
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *RsApproveDriver) Reset() {
-	*x = RsApproveDriver{}
+func (x *ApproveDriverResponse) Reset() {
+	*x = ApproveDriverResponse{}
 	mi := &file_admin_admin_proto_msgTypes[13]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *RsApproveDriver) String() string {
+func (x *ApproveDriverResponse) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*RsApproveDriver) ProtoMessage() {}
+func (*ApproveDriverResponse) ProtoMessage() {}
 
-func (x *RsApproveDriver) ProtoReflect() protoreflect.Message {
+func (x *ApproveDriverResponse) ProtoReflect() protoreflect.Message {
 	mi := &file_admin_admin_proto_msgTypes[13]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -955,26 +955,26 @@ func (x *RsApproveDriver) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use RsApproveDriver.ProtoReflect.Descriptor instead.
-func (*RsApproveDriver) Descriptor() ([]byte, []int) {
+// Deprecated: Use ApproveDriverResponse.ProtoReflect.Descriptor instead.
+func (*ApproveDriverResponse) Descriptor() ([]byte, []int) {
 	return file_admin_admin_proto_rawDescGZIP(), []int{13}
 }
 
-func (x *RsApproveDriver) GetSuccess() bool {
+func (x *ApproveDriverResponse) GetSuccess() bool {
 	if x != nil {
 		return x.Success
 	}
 	return false
 }
 
-func (x *RsApproveDriver) GetMessage() string {
+func (x *ApproveDriverResponse) GetMessage() string {
 	if x != nil {
 		return x.Message
 	}
 	return ""
 }
 
-type RqRejectDriver struct {
+type RejectDriverRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	DriverId      string                 `protobuf:"bytes,1,opt,name=driver_id,json=driverId,proto3" json:"driver_id,omitempty"`
 	Reason        string                 `protobuf:"bytes,2,opt,name=reason,proto3" json:"reason,omitempty"`
@@ -982,20 +982,20 @@ type RqRejectDriver struct {
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *RqRejectDriver) Reset() {
-	*x = RqRejectDriver{}
+func (x *RejectDriverRequest) Reset() {
+	*x = RejectDriverRequest{}
 	mi := &file_admin_admin_proto_msgTypes[14]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *RqRejectDriver) String() string {
+func (x *RejectDriverRequest) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*RqRejectDriver) ProtoMessage() {}
+func (*RejectDriverRequest) ProtoMessage() {}
 
-func (x *RqRejectDriver) ProtoReflect() protoreflect.Message {
+func (x *RejectDriverRequest) ProtoReflect() protoreflect.Message {
 	mi := &file_admin_admin_proto_msgTypes[14]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -1007,26 +1007,26 @@ func (x *RqRejectDriver) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use RqRejectDriver.ProtoReflect.Descriptor instead.
-func (*RqRejectDriver) Descriptor() ([]byte, []int) {
+// Deprecated: Use RejectDriverRequest.ProtoReflect.Descriptor instead.
+func (*RejectDriverRequest) Descriptor() ([]byte, []int) {
 	return file_admin_admin_proto_rawDescGZIP(), []int{14}
 }
 
-func (x *RqRejectDriver) GetDriverId() string {
+func (x *RejectDriverRequest) GetDriverId() string {
 	if x != nil {
 		return x.DriverId
 	}
 	return ""
 }
 
-func (x *RqRejectDriver) GetReason() string {
+func (x *RejectDriverRequest) GetReason() string {
 	if x != nil {
 		return x.Reason
 	}
 	return ""
 }
 
-type RsRejectDriver struct {
+type RejectDriverResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Success       bool                   `protobuf:"varint,1,opt,name=success,proto3" json:"success,omitempty"`
 	Message       string                 `protobuf:"bytes,2,opt,name=message,proto3" json:"message,omitempty"`
@@ -1034,20 +1034,20 @@ type RsRejectDriver struct {
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *RsRejectDriver) Reset() {
-	*x = RsRejectDriver{}
+func (x *RejectDriverResponse) Reset() {
+	*x = RejectDriverResponse{}
 	mi := &file_admin_admin_proto_msgTypes[15]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *RsRejectDriver) String() string {
+func (x *RejectDriverResponse) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*RsRejectDriver) ProtoMessage() {}
+func (*RejectDriverResponse) ProtoMessage() {}
 
-func (x *RsRejectDriver) ProtoReflect() protoreflect.Message {
+func (x *RejectDriverResponse) ProtoReflect() protoreflect.Message {
 	mi := &file_admin_admin_proto_msgTypes[15]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -1059,26 +1059,26 @@ func (x *RsRejectDriver) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use RsRejectDriver.ProtoReflect.Descriptor instead.
-func (*RsRejectDriver) Descriptor() ([]byte, []int) {
+// Deprecated: Use RejectDriverResponse.ProtoReflect.Descriptor instead.
+func (*RejectDriverResponse) Descriptor() ([]byte, []int) {
 	return file_admin_admin_proto_rawDescGZIP(), []int{15}
 }
 
-func (x *RsRejectDriver) GetSuccess() bool {
+func (x *RejectDriverResponse) GetSuccess() bool {
 	if x != nil {
 		return x.Success
 	}
 	return false
 }
 
-func (x *RsRejectDriver) GetMessage() string {
+func (x *RejectDriverResponse) GetMessage() string {
 	if x != nil {
 		return x.Message
 	}
 	return ""
 }
 
-type RqSuspendDriver struct {
+type SuspendDriverRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	DriverId      string                 `protobuf:"bytes,1,opt,name=driver_id,json=driverId,proto3" json:"driver_id,omitempty"`
 	Reason        string                 `protobuf:"bytes,2,opt,name=reason,proto3" json:"reason,omitempty"`
@@ -1086,20 +1086,20 @@ type RqSuspendDriver struct {
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *RqSuspendDriver) Reset() {
-	*x = RqSuspendDriver{}
+func (x *SuspendDriverRequest) Reset() {
+	*x = SuspendDriverRequest{}
 	mi := &file_admin_admin_proto_msgTypes[16]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *RqSuspendDriver) String() string {
+func (x *SuspendDriverRequest) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*RqSuspendDriver) ProtoMessage() {}
+func (*SuspendDriverRequest) ProtoMessage() {}
 
-func (x *RqSuspendDriver) ProtoReflect() protoreflect.Message {
+func (x *SuspendDriverRequest) ProtoReflect() protoreflect.Message {
 	mi := &file_admin_admin_proto_msgTypes[16]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -1111,26 +1111,26 @@ func (x *RqSuspendDriver) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use RqSuspendDriver.ProtoReflect.Descriptor instead.
-func (*RqSuspendDriver) Descriptor() ([]byte, []int) {
+// Deprecated: Use SuspendDriverRequest.ProtoReflect.Descriptor instead.
+func (*SuspendDriverRequest) Descriptor() ([]byte, []int) {
 	return file_admin_admin_proto_rawDescGZIP(), []int{16}
 }
 
-func (x *RqSuspendDriver) GetDriverId() string {
+func (x *SuspendDriverRequest) GetDriverId() string {
 	if x != nil {
 		return x.DriverId
 	}
 	return ""
 }
 
-func (x *RqSuspendDriver) GetReason() string {
+func (x *SuspendDriverRequest) GetReason() string {
 	if x != nil {
 		return x.Reason
 	}
 	return ""
 }
 
-type RsSuspendDriver struct {
+type SuspendDriverResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Success       bool                   `protobuf:"varint,1,opt,name=success,proto3" json:"success,omitempty"`
 	Message       string                 `protobuf:"bytes,2,opt,name=message,proto3" json:"message,omitempty"`
@@ -1138,20 +1138,20 @@ type RsSuspendDriver struct {
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *RsSuspendDriver) Reset() {
-	*x = RsSuspendDriver{}
+func (x *SuspendDriverResponse) Reset() {
+	*x = SuspendDriverResponse{}
 	mi := &file_admin_admin_proto_msgTypes[17]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *RsSuspendDriver) String() string {
+func (x *SuspendDriverResponse) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*RsSuspendDriver) ProtoMessage() {}
+func (*SuspendDriverResponse) ProtoMessage() {}
 
-func (x *RsSuspendDriver) ProtoReflect() protoreflect.Message {
+func (x *SuspendDriverResponse) ProtoReflect() protoreflect.Message {
 	mi := &file_admin_admin_proto_msgTypes[17]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -1163,46 +1163,46 @@ func (x *RsSuspendDriver) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use RsSuspendDriver.ProtoReflect.Descriptor instead.
-func (*RsSuspendDriver) Descriptor() ([]byte, []int) {
+// Deprecated: Use SuspendDriverResponse.ProtoReflect.Descriptor instead.
+func (*SuspendDriverResponse) Descriptor() ([]byte, []int) {
 	return file_admin_admin_proto_rawDescGZIP(), []int{17}
 }
 
-func (x *RsSuspendDriver) GetSuccess() bool {
+func (x *SuspendDriverResponse) GetSuccess() bool {
 	if x != nil {
 		return x.Success
 	}
 	return false
 }
 
-func (x *RsSuspendDriver) GetMessage() string {
+func (x *SuspendDriverResponse) GetMessage() string {
 	if x != nil {
 		return x.Message
 	}
 	return ""
 }
 
-type RqActivateDriver struct {
+type ActivateDriverRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	DriverId      string                 `protobuf:"bytes,1,opt,name=driver_id,json=driverId,proto3" json:"driver_id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *RqActivateDriver) Reset() {
-	*x = RqActivateDriver{}
+func (x *ActivateDriverRequest) Reset() {
+	*x = ActivateDriverRequest{}
 	mi := &file_admin_admin_proto_msgTypes[18]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *RqActivateDriver) String() string {
+func (x *ActivateDriverRequest) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*RqActivateDriver) ProtoMessage() {}
+func (*ActivateDriverRequest) ProtoMessage() {}
 
-func (x *RqActivateDriver) ProtoReflect() protoreflect.Message {
+func (x *ActivateDriverRequest) ProtoReflect() protoreflect.Message {
 	mi := &file_admin_admin_proto_msgTypes[18]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -1214,19 +1214,19 @@ func (x *RqActivateDriver) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use RqActivateDriver.ProtoReflect.Descriptor instead.
-func (*RqActivateDriver) Descriptor() ([]byte, []int) {
+// Deprecated: Use ActivateDriverRequest.ProtoReflect.Descriptor instead.
+func (*ActivateDriverRequest) Descriptor() ([]byte, []int) {
 	return file_admin_admin_proto_rawDescGZIP(), []int{18}
 }
 
-func (x *RqActivateDriver) GetDriverId() string {
+func (x *ActivateDriverRequest) GetDriverId() string {
 	if x != nil {
 		return x.DriverId
 	}
 	return ""
 }
 
-type RsActivateDriver struct {
+type ActivateDriverResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Success       bool                   `protobuf:"varint,1,opt,name=success,proto3" json:"success,omitempty"`
 	Message       string                 `protobuf:"bytes,2,opt,name=message,proto3" json:"message,omitempty"`
@@ -1234,20 +1234,20 @@ type RsActivateDriver struct {
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *RsActivateDriver) Reset() {
-	*x = RsActivateDriver{}
+func (x *ActivateDriverResponse) Reset() {
+	*x = ActivateDriverResponse{}
 	mi := &file_admin_admin_proto_msgTypes[19]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *RsActivateDriver) String() string {
+func (x *ActivateDriverResponse) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*RsActivateDriver) ProtoMessage() {}
+func (*ActivateDriverResponse) ProtoMessage() {}
 
-func (x *RsActivateDriver) ProtoReflect() protoreflect.Message {
+func (x *ActivateDriverResponse) ProtoReflect() protoreflect.Message {
 	mi := &file_admin_admin_proto_msgTypes[19]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -1259,46 +1259,46 @@ func (x *RsActivateDriver) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use RsActivateDriver.ProtoReflect.Descriptor instead.
-func (*RsActivateDriver) Descriptor() ([]byte, []int) {
+// Deprecated: Use ActivateDriverResponse.ProtoReflect.Descriptor instead.
+func (*ActivateDriverResponse) Descriptor() ([]byte, []int) {
 	return file_admin_admin_proto_rawDescGZIP(), []int{19}
 }
 
-func (x *RsActivateDriver) GetSuccess() bool {
+func (x *ActivateDriverResponse) GetSuccess() bool {
 	if x != nil {
 		return x.Success
 	}
 	return false
 }
 
-func (x *RsActivateDriver) GetMessage() string {
+func (x *ActivateDriverResponse) GetMessage() string {
 	if x != nil {
 		return x.Message
 	}
 	return ""
 }
 
-type RqGetDriverDocuments struct {
+type GetDriverDocumentsRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	DriverId      string                 `protobuf:"bytes,1,opt,name=driver_id,json=driverId,proto3" json:"driver_id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *RqGetDriverDocuments) Reset() {
-	*x = RqGetDriverDocuments{}
+func (x *GetDriverDocumentsRequest) Reset() {
+	*x = GetDriverDocumentsRequest{}
 	mi := &file_admin_admin_proto_msgTypes[20]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *RqGetDriverDocuments) String() string {
+func (x *GetDriverDocumentsRequest) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*RqGetDriverDocuments) ProtoMessage() {}
+func (*GetDriverDocumentsRequest) ProtoMessage() {}
 
-func (x *RqGetDriverDocuments) ProtoReflect() protoreflect.Message {
+func (x *GetDriverDocumentsRequest) ProtoReflect() protoreflect.Message {
 	mi := &file_admin_admin_proto_msgTypes[20]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -1310,39 +1310,39 @@ func (x *RqGetDriverDocuments) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use RqGetDriverDocuments.ProtoReflect.Descriptor instead.
-func (*RqGetDriverDocuments) Descriptor() ([]byte, []int) {
+// Deprecated: Use GetDriverDocumentsRequest.ProtoReflect.Descriptor instead.
+func (*GetDriverDocumentsRequest) Descriptor() ([]byte, []int) {
 	return file_admin_admin_proto_rawDescGZIP(), []int{20}
 }
 
-func (x *RqGetDriverDocuments) GetDriverId() string {
+func (x *GetDriverDocumentsRequest) GetDriverId() string {
 	if x != nil {
 		return x.DriverId
 	}
 	return ""
 }
 
-type RsGetDriverDocuments struct {
+type GetDriverDocumentsResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Documents     []*DriverDocument      `protobuf:"bytes,1,rep,name=documents,proto3" json:"documents,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *RsGetDriverDocuments) Reset() {
-	*x = RsGetDriverDocuments{}
+func (x *GetDriverDocumentsResponse) Reset() {
+	*x = GetDriverDocumentsResponse{}
 	mi := &file_admin_admin_proto_msgTypes[21]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *RsGetDriverDocuments) String() string {
+func (x *GetDriverDocumentsResponse) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*RsGetDriverDocuments) ProtoMessage() {}
+func (*GetDriverDocumentsResponse) ProtoMessage() {}
 
-func (x *RsGetDriverDocuments) ProtoReflect() protoreflect.Message {
+func (x *GetDriverDocumentsResponse) ProtoReflect() protoreflect.Message {
 	mi := &file_admin_admin_proto_msgTypes[21]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -1354,19 +1354,19 @@ func (x *RsGetDriverDocuments) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use RsGetDriverDocuments.ProtoReflect.Descriptor instead.
-func (*RsGetDriverDocuments) Descriptor() ([]byte, []int) {
+// Deprecated: Use GetDriverDocumentsResponse.ProtoReflect.Descriptor instead.
+func (*GetDriverDocumentsResponse) Descriptor() ([]byte, []int) {
 	return file_admin_admin_proto_rawDescGZIP(), []int{21}
 }
 
-func (x *RsGetDriverDocuments) GetDocuments() []*DriverDocument {
+func (x *GetDriverDocumentsResponse) GetDocuments() []*DriverDocument {
 	if x != nil {
 		return x.Documents
 	}
 	return nil
 }
 
-type RqApproveDriverDocument struct {
+type ApproveDriverDocumentRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	DriverId      string                 `protobuf:"bytes,1,opt,name=driver_id,json=driverId,proto3" json:"driver_id,omitempty"`
 	DocumentId    string                 `protobuf:"bytes,2,opt,name=document_id,json=documentId,proto3" json:"document_id,omitempty"`
@@ -1374,20 +1374,20 @@ type RqApproveDriverDocument struct {
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *RqApproveDriverDocument) Reset() {
-	*x = RqApproveDriverDocument{}
+func (x *ApproveDriverDocumentRequest) Reset() {
+	*x = ApproveDriverDocumentRequest{}
 	mi := &file_admin_admin_proto_msgTypes[22]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *RqApproveDriverDocument) String() string {
+func (x *ApproveDriverDocumentRequest) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*RqApproveDriverDocument) ProtoMessage() {}
+func (*ApproveDriverDocumentRequest) ProtoMessage() {}
 
-func (x *RqApproveDriverDocument) ProtoReflect() protoreflect.Message {
+func (x *ApproveDriverDocumentRequest) ProtoReflect() protoreflect.Message {
 	mi := &file_admin_admin_proto_msgTypes[22]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -1399,26 +1399,26 @@ func (x *RqApproveDriverDocument) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use RqApproveDriverDocument.ProtoReflect.Descriptor instead.
-func (*RqApproveDriverDocument) Descriptor() ([]byte, []int) {
+// Deprecated: Use ApproveDriverDocumentRequest.ProtoReflect.Descriptor instead.
+func (*ApproveDriverDocumentRequest) Descriptor() ([]byte, []int) {
 	return file_admin_admin_proto_rawDescGZIP(), []int{22}
 }
 
-func (x *RqApproveDriverDocument) GetDriverId() string {
+func (x *ApproveDriverDocumentRequest) GetDriverId() string {
 	if x != nil {
 		return x.DriverId
 	}
 	return ""
 }
 
-func (x *RqApproveDriverDocument) GetDocumentId() string {
+func (x *ApproveDriverDocumentRequest) GetDocumentId() string {
 	if x != nil {
 		return x.DocumentId
 	}
 	return ""
 }
 
-type RsApproveDriverDocument struct {
+type ApproveDriverDocumentResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Success       bool                   `protobuf:"varint,1,opt,name=success,proto3" json:"success,omitempty"`
 	Message       string                 `protobuf:"bytes,2,opt,name=message,proto3" json:"message,omitempty"`
@@ -1426,20 +1426,20 @@ type RsApproveDriverDocument struct {
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *RsApproveDriverDocument) Reset() {
-	*x = RsApproveDriverDocument{}
+func (x *ApproveDriverDocumentResponse) Reset() {
+	*x = ApproveDriverDocumentResponse{}
 	mi := &file_admin_admin_proto_msgTypes[23]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *RsApproveDriverDocument) String() string {
+func (x *ApproveDriverDocumentResponse) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*RsApproveDriverDocument) ProtoMessage() {}
+func (*ApproveDriverDocumentResponse) ProtoMessage() {}
 
-func (x *RsApproveDriverDocument) ProtoReflect() protoreflect.Message {
+func (x *ApproveDriverDocumentResponse) ProtoReflect() protoreflect.Message {
 	mi := &file_admin_admin_proto_msgTypes[23]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -1451,26 +1451,26 @@ func (x *RsApproveDriverDocument) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use RsApproveDriverDocument.ProtoReflect.Descriptor instead.
-func (*RsApproveDriverDocument) Descriptor() ([]byte, []int) {
+// Deprecated: Use ApproveDriverDocumentResponse.ProtoReflect.Descriptor instead.
+func (*ApproveDriverDocumentResponse) Descriptor() ([]byte, []int) {
 	return file_admin_admin_proto_rawDescGZIP(), []int{23}
 }
 
-func (x *RsApproveDriverDocument) GetSuccess() bool {
+func (x *ApproveDriverDocumentResponse) GetSuccess() bool {
 	if x != nil {
 		return x.Success
 	}
 	return false
 }
 
-func (x *RsApproveDriverDocument) GetMessage() string {
+func (x *ApproveDriverDocumentResponse) GetMessage() string {
 	if x != nil {
 		return x.Message
 	}
 	return ""
 }
 
-type RqRejectDriverDocument struct {
+type RejectDriverDocumentRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	DriverId      string                 `protobuf:"bytes,1,opt,name=driver_id,json=driverId,proto3" json:"driver_id,omitempty"`
 	DocumentId    string                 `protobuf:"bytes,2,opt,name=document_id,json=documentId,proto3" json:"document_id,omitempty"`
@@ -1479,20 +1479,20 @@ type RqRejectDriverDocument struct {
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *RqRejectDriverDocument) Reset() {
-	*x = RqRejectDriverDocument{}
+func (x *RejectDriverDocumentRequest) Reset() {
+	*x = RejectDriverDocumentRequest{}
 	mi := &file_admin_admin_proto_msgTypes[24]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *RqRejectDriverDocument) String() string {
+func (x *RejectDriverDocumentRequest) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*RqRejectDriverDocument) ProtoMessage() {}
+func (*RejectDriverDocumentRequest) ProtoMessage() {}
 
-func (x *RqRejectDriverDocument) ProtoReflect() protoreflect.Message {
+func (x *RejectDriverDocumentRequest) ProtoReflect() protoreflect.Message {
 	mi := &file_admin_admin_proto_msgTypes[24]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -1504,33 +1504,33 @@ func (x *RqRejectDriverDocument) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use RqRejectDriverDocument.ProtoReflect.Descriptor instead.
-func (*RqRejectDriverDocument) Descriptor() ([]byte, []int) {
+// Deprecated: Use RejectDriverDocumentRequest.ProtoReflect.Descriptor instead.
+func (*RejectDriverDocumentRequest) Descriptor() ([]byte, []int) {
 	return file_admin_admin_proto_rawDescGZIP(), []int{24}
 }
 
-func (x *RqRejectDriverDocument) GetDriverId() string {
+func (x *RejectDriverDocumentRequest) GetDriverId() string {
 	if x != nil {
 		return x.DriverId
 	}
 	return ""
 }
 
-func (x *RqRejectDriverDocument) GetDocumentId() string {
+func (x *RejectDriverDocumentRequest) GetDocumentId() string {
 	if x != nil {
 		return x.DocumentId
 	}
 	return ""
 }
 
-func (x *RqRejectDriverDocument) GetReason() string {
+func (x *RejectDriverDocumentRequest) GetReason() string {
 	if x != nil {
 		return x.Reason
 	}
 	return ""
 }
 
-type RsRejectDriverDocument struct {
+type RejectDriverDocumentResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Success       bool                   `protobuf:"varint,1,opt,name=success,proto3" json:"success,omitempty"`
 	Message       string                 `protobuf:"bytes,2,opt,name=message,proto3" json:"message,omitempty"`
@@ -1538,20 +1538,20 @@ type RsRejectDriverDocument struct {
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *RsRejectDriverDocument) Reset() {
-	*x = RsRejectDriverDocument{}
+func (x *RejectDriverDocumentResponse) Reset() {
+	*x = RejectDriverDocumentResponse{}
 	mi := &file_admin_admin_proto_msgTypes[25]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *RsRejectDriverDocument) String() string {
+func (x *RejectDriverDocumentResponse) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*RsRejectDriverDocument) ProtoMessage() {}
+func (*RejectDriverDocumentResponse) ProtoMessage() {}
 
-func (x *RsRejectDriverDocument) ProtoReflect() protoreflect.Message {
+func (x *RejectDriverDocumentResponse) ProtoReflect() protoreflect.Message {
 	mi := &file_admin_admin_proto_msgTypes[25]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -1563,46 +1563,46 @@ func (x *RsRejectDriverDocument) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use RsRejectDriverDocument.ProtoReflect.Descriptor instead.
-func (*RsRejectDriverDocument) Descriptor() ([]byte, []int) {
+// Deprecated: Use RejectDriverDocumentResponse.ProtoReflect.Descriptor instead.
+func (*RejectDriverDocumentResponse) Descriptor() ([]byte, []int) {
 	return file_admin_admin_proto_rawDescGZIP(), []int{25}
 }
 
-func (x *RsRejectDriverDocument) GetSuccess() bool {
+func (x *RejectDriverDocumentResponse) GetSuccess() bool {
 	if x != nil {
 		return x.Success
 	}
 	return false
 }
 
-func (x *RsRejectDriverDocument) GetMessage() string {
+func (x *RejectDriverDocumentResponse) GetMessage() string {
 	if x != nil {
 		return x.Message
 	}
 	return ""
 }
 
-type RqDeleteDriver struct {
+type DeleteDriverRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	DriverId      string                 `protobuf:"bytes,1,opt,name=driver_id,json=driverId,proto3" json:"driver_id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *RqDeleteDriver) Reset() {
-	*x = RqDeleteDriver{}
+func (x *DeleteDriverRequest) Reset() {
+	*x = DeleteDriverRequest{}
 	mi := &file_admin_admin_proto_msgTypes[26]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *RqDeleteDriver) String() string {
+func (x *DeleteDriverRequest) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*RqDeleteDriver) ProtoMessage() {}
+func (*DeleteDriverRequest) ProtoMessage() {}
 
-func (x *RqDeleteDriver) ProtoReflect() protoreflect.Message {
+func (x *DeleteDriverRequest) ProtoReflect() protoreflect.Message {
 	mi := &file_admin_admin_proto_msgTypes[26]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -1614,19 +1614,19 @@ func (x *RqDeleteDriver) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use RqDeleteDriver.ProtoReflect.Descriptor instead.
-func (*RqDeleteDriver) Descriptor() ([]byte, []int) {
+// Deprecated: Use DeleteDriverRequest.ProtoReflect.Descriptor instead.
+func (*DeleteDriverRequest) Descriptor() ([]byte, []int) {
 	return file_admin_admin_proto_rawDescGZIP(), []int{26}
 }
 
-func (x *RqDeleteDriver) GetDriverId() string {
+func (x *DeleteDriverRequest) GetDriverId() string {
 	if x != nil {
 		return x.DriverId
 	}
 	return ""
 }
 
-type RsDeleteDriver struct {
+type DeleteDriverResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Success       bool                   `protobuf:"varint,1,opt,name=success,proto3" json:"success,omitempty"`
 	Message       string                 `protobuf:"bytes,2,opt,name=message,proto3" json:"message,omitempty"`
@@ -1634,20 +1634,20 @@ type RsDeleteDriver struct {
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *RsDeleteDriver) Reset() {
-	*x = RsDeleteDriver{}
+func (x *DeleteDriverResponse) Reset() {
+	*x = DeleteDriverResponse{}
 	mi := &file_admin_admin_proto_msgTypes[27]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *RsDeleteDriver) String() string {
+func (x *DeleteDriverResponse) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*RsDeleteDriver) ProtoMessage() {}
+func (*DeleteDriverResponse) ProtoMessage() {}
 
-func (x *RsDeleteDriver) ProtoReflect() protoreflect.Message {
+func (x *DeleteDriverResponse) ProtoReflect() protoreflect.Message {
 	mi := &file_admin_admin_proto_msgTypes[27]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -1659,19 +1659,19 @@ func (x *RsDeleteDriver) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use RsDeleteDriver.ProtoReflect.Descriptor instead.
-func (*RsDeleteDriver) Descriptor() ([]byte, []int) {
+// Deprecated: Use DeleteDriverResponse.ProtoReflect.Descriptor instead.
+func (*DeleteDriverResponse) Descriptor() ([]byte, []int) {
 	return file_admin_admin_proto_rawDescGZIP(), []int{27}
 }
 
-func (x *RsDeleteDriver) GetSuccess() bool {
+func (x *DeleteDriverResponse) GetSuccess() bool {
 	if x != nil {
 		return x.Success
 	}
 	return false
 }
 
-func (x *RsDeleteDriver) GetMessage() string {
+func (x *DeleteDriverResponse) GetMessage() string {
 	if x != nil {
 		return x.Message
 	}
@@ -1679,7 +1679,7 @@ func (x *RsDeleteDriver) GetMessage() string {
 }
 
 // --- Driver document management ---
-type RqListDriverDocuments struct {
+type ListDriverDocumentsRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	DriverId      string                 `protobuf:"bytes,1,opt,name=driver_id,json=driverId,proto3" json:"driver_id,omitempty"`
 	Limit         int32                  `protobuf:"varint,2,opt,name=limit,proto3" json:"limit,omitempty"`
@@ -1688,20 +1688,20 @@ type RqListDriverDocuments struct {
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *RqListDriverDocuments) Reset() {
-	*x = RqListDriverDocuments{}
+func (x *ListDriverDocumentsRequest) Reset() {
+	*x = ListDriverDocumentsRequest{}
 	mi := &file_admin_admin_proto_msgTypes[28]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *RqListDriverDocuments) String() string {
+func (x *ListDriverDocumentsRequest) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*RqListDriverDocuments) ProtoMessage() {}
+func (*ListDriverDocumentsRequest) ProtoMessage() {}
 
-func (x *RqListDriverDocuments) ProtoReflect() protoreflect.Message {
+func (x *ListDriverDocumentsRequest) ProtoReflect() protoreflect.Message {
 	mi := &file_admin_admin_proto_msgTypes[28]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -1713,33 +1713,33 @@ func (x *RqListDriverDocuments) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use RqListDriverDocuments.ProtoReflect.Descriptor instead.
-func (*RqListDriverDocuments) Descriptor() ([]byte, []int) {
+// Deprecated: Use ListDriverDocumentsRequest.ProtoReflect.Descriptor instead.
+func (*ListDriverDocumentsRequest) Descriptor() ([]byte, []int) {
 	return file_admin_admin_proto_rawDescGZIP(), []int{28}
 }
 
-func (x *RqListDriverDocuments) GetDriverId() string {
+func (x *ListDriverDocumentsRequest) GetDriverId() string {
 	if x != nil {
 		return x.DriverId
 	}
 	return ""
 }
 
-func (x *RqListDriverDocuments) GetLimit() int32 {
+func (x *ListDriverDocumentsRequest) GetLimit() int32 {
 	if x != nil {
 		return x.Limit
 	}
 	return 0
 }
 
-func (x *RqListDriverDocuments) GetOffset() int32 {
+func (x *ListDriverDocumentsRequest) GetOffset() int32 {
 	if x != nil {
 		return x.Offset
 	}
 	return 0
 }
 
-type RsListDriverDocuments struct {
+type ListDriverDocumentsResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Documents     []*DriverDocument      `protobuf:"bytes,1,rep,name=documents,proto3" json:"documents,omitempty"`
 	Total         int32                  `protobuf:"varint,2,opt,name=total,proto3" json:"total,omitempty"`
@@ -1747,20 +1747,20 @@ type RsListDriverDocuments struct {
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *RsListDriverDocuments) Reset() {
-	*x = RsListDriverDocuments{}
+func (x *ListDriverDocumentsResponse) Reset() {
+	*x = ListDriverDocumentsResponse{}
 	mi := &file_admin_admin_proto_msgTypes[29]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *RsListDriverDocuments) String() string {
+func (x *ListDriverDocumentsResponse) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*RsListDriverDocuments) ProtoMessage() {}
+func (*ListDriverDocumentsResponse) ProtoMessage() {}
 
-func (x *RsListDriverDocuments) ProtoReflect() protoreflect.Message {
+func (x *ListDriverDocumentsResponse) ProtoReflect() protoreflect.Message {
 	mi := &file_admin_admin_proto_msgTypes[29]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -1772,26 +1772,26 @@ func (x *RsListDriverDocuments) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use RsListDriverDocuments.ProtoReflect.Descriptor instead.
-func (*RsListDriverDocuments) Descriptor() ([]byte, []int) {
+// Deprecated: Use ListDriverDocumentsResponse.ProtoReflect.Descriptor instead.
+func (*ListDriverDocumentsResponse) Descriptor() ([]byte, []int) {
 	return file_admin_admin_proto_rawDescGZIP(), []int{29}
 }
 
-func (x *RsListDriverDocuments) GetDocuments() []*DriverDocument {
+func (x *ListDriverDocumentsResponse) GetDocuments() []*DriverDocument {
 	if x != nil {
 		return x.Documents
 	}
 	return nil
 }
 
-func (x *RsListDriverDocuments) GetTotal() int32 {
+func (x *ListDriverDocumentsResponse) GetTotal() int32 {
 	if x != nil {
 		return x.Total
 	}
 	return 0
 }
 
-type RqGetDriverDocument struct {
+type GetDriverDocumentRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	DriverId      string                 `protobuf:"bytes,1,opt,name=driver_id,json=driverId,proto3" json:"driver_id,omitempty"`
 	DocumentId    string                 `protobuf:"bytes,2,opt,name=document_id,json=documentId,proto3" json:"document_id,omitempty"`
@@ -1799,20 +1799,20 @@ type RqGetDriverDocument struct {
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *RqGetDriverDocument) Reset() {
-	*x = RqGetDriverDocument{}
+func (x *GetDriverDocumentRequest) Reset() {
+	*x = GetDriverDocumentRequest{}
 	mi := &file_admin_admin_proto_msgTypes[30]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *RqGetDriverDocument) String() string {
+func (x *GetDriverDocumentRequest) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*RqGetDriverDocument) ProtoMessage() {}
+func (*GetDriverDocumentRequest) ProtoMessage() {}
 
-func (x *RqGetDriverDocument) ProtoReflect() protoreflect.Message {
+func (x *GetDriverDocumentRequest) ProtoReflect() protoreflect.Message {
 	mi := &file_admin_admin_proto_msgTypes[30]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -1824,26 +1824,26 @@ func (x *RqGetDriverDocument) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use RqGetDriverDocument.ProtoReflect.Descriptor instead.
-func (*RqGetDriverDocument) Descriptor() ([]byte, []int) {
+// Deprecated: Use GetDriverDocumentRequest.ProtoReflect.Descriptor instead.
+func (*GetDriverDocumentRequest) Descriptor() ([]byte, []int) {
 	return file_admin_admin_proto_rawDescGZIP(), []int{30}
 }
 
-func (x *RqGetDriverDocument) GetDriverId() string {
+func (x *GetDriverDocumentRequest) GetDriverId() string {
 	if x != nil {
 		return x.DriverId
 	}
 	return ""
 }
 
-func (x *RqGetDriverDocument) GetDocumentId() string {
+func (x *GetDriverDocumentRequest) GetDocumentId() string {
 	if x != nil {
 		return x.DocumentId
 	}
 	return ""
 }
 
-type RsGetDriverDocument struct {
+type GetDriverDocumentResponse struct {
 	state           protoimpl.MessageState `protogen:"open.v1"`
 	Id              string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
 	DriverId        string                 `protobuf:"bytes,2,opt,name=driver_id,json=driverId,proto3" json:"driver_id,omitempty"`
@@ -1859,20 +1859,20 @@ type RsGetDriverDocument struct {
 	sizeCache       protoimpl.SizeCache
 }
 
-func (x *RsGetDriverDocument) Reset() {
-	*x = RsGetDriverDocument{}
+func (x *GetDriverDocumentResponse) Reset() {
+	*x = GetDriverDocumentResponse{}
 	mi := &file_admin_admin_proto_msgTypes[31]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *RsGetDriverDocument) String() string {
+func (x *GetDriverDocumentResponse) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*RsGetDriverDocument) ProtoMessage() {}
+func (*GetDriverDocumentResponse) ProtoMessage() {}
 
-func (x *RsGetDriverDocument) ProtoReflect() protoreflect.Message {
+func (x *GetDriverDocumentResponse) ProtoReflect() protoreflect.Message {
 	mi := &file_admin_admin_proto_msgTypes[31]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -1884,82 +1884,82 @@ func (x *RsGetDriverDocument) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use RsGetDriverDocument.ProtoReflect.Descriptor instead.
-func (*RsGetDriverDocument) Descriptor() ([]byte, []int) {
+// Deprecated: Use GetDriverDocumentResponse.ProtoReflect.Descriptor instead.
+func (*GetDriverDocumentResponse) Descriptor() ([]byte, []int) {
 	return file_admin_admin_proto_rawDescGZIP(), []int{31}
 }
 
-func (x *RsGetDriverDocument) GetId() string {
+func (x *GetDriverDocumentResponse) GetId() string {
 	if x != nil {
 		return x.Id
 	}
 	return ""
 }
 
-func (x *RsGetDriverDocument) GetDriverId() string {
+func (x *GetDriverDocumentResponse) GetDriverId() string {
 	if x != nil {
 		return x.DriverId
 	}
 	return ""
 }
 
-func (x *RsGetDriverDocument) GetType() *Enum {
+func (x *GetDriverDocumentResponse) GetType() *Enum {
 	if x != nil {
 		return x.Type
 	}
 	return nil
 }
 
-func (x *RsGetDriverDocument) GetFrontUrl() string {
+func (x *GetDriverDocumentResponse) GetFrontUrl() string {
 	if x != nil {
 		return x.FrontUrl
 	}
 	return ""
 }
 
-func (x *RsGetDriverDocument) GetBackUrl() string {
+func (x *GetDriverDocumentResponse) GetBackUrl() string {
 	if x != nil {
 		return x.BackUrl
 	}
 	return ""
 }
 
-func (x *RsGetDriverDocument) GetIsApproved() bool {
+func (x *GetDriverDocumentResponse) GetIsApproved() bool {
 	if x != nil {
 		return x.IsApproved
 	}
 	return false
 }
 
-func (x *RsGetDriverDocument) GetUploadedAt() *timestamppb.Timestamp {
+func (x *GetDriverDocumentResponse) GetUploadedAt() *timestamppb.Timestamp {
 	if x != nil {
 		return x.UploadedAt
 	}
 	return nil
 }
 
-func (x *RsGetDriverDocument) GetVerifiedAt() *timestamppb.Timestamp {
+func (x *GetDriverDocumentResponse) GetVerifiedAt() *timestamppb.Timestamp {
 	if x != nil {
 		return x.VerifiedAt
 	}
 	return nil
 }
 
-func (x *RsGetDriverDocument) GetRejectedAt() *timestamppb.Timestamp {
+func (x *GetDriverDocumentResponse) GetRejectedAt() *timestamppb.Timestamp {
 	if x != nil {
 		return x.RejectedAt
 	}
 	return nil
 }
 
-func (x *RsGetDriverDocument) GetRejectionReason() string {
+func (x *GetDriverDocumentResponse) GetRejectionReason() string {
 	if x != nil {
 		return x.RejectionReason
 	}
 	return ""
 }
 
-type RqDeleteDriverDocument struct {
+type DeleteDriverDocumentRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	DriverId      string                 `protobuf:"bytes,1,opt,name=driver_id,json=driverId,proto3" json:"driver_id,omitempty"`
 	DocumentId    string                 `protobuf:"bytes,2,opt,name=document_id,json=documentId,proto3" json:"document_id,omitempty"`
@@ -1967,20 +1967,20 @@ type RqDeleteDriverDocument struct {
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *RqDeleteDriverDocument) Reset() {
-	*x = RqDeleteDriverDocument{}
+func (x *DeleteDriverDocumentRequest) Reset() {
+	*x = DeleteDriverDocumentRequest{}
 	mi := &file_admin_admin_proto_msgTypes[32]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *RqDeleteDriverDocument) String() string {
+func (x *DeleteDriverDocumentRequest) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*RqDeleteDriverDocument) ProtoMessage() {}
+func (*DeleteDriverDocumentRequest) ProtoMessage() {}
 
-func (x *RqDeleteDriverDocument) ProtoReflect() protoreflect.Message {
+func (x *DeleteDriverDocumentRequest) ProtoReflect() protoreflect.Message {
 	mi := &file_admin_admin_proto_msgTypes[32]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -1992,26 +1992,26 @@ func (x *RqDeleteDriverDocument) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use RqDeleteDriverDocument.ProtoReflect.Descriptor instead.
-func (*RqDeleteDriverDocument) Descriptor() ([]byte, []int) {
+// Deprecated: Use DeleteDriverDocumentRequest.ProtoReflect.Descriptor instead.
+func (*DeleteDriverDocumentRequest) Descriptor() ([]byte, []int) {
 	return file_admin_admin_proto_rawDescGZIP(), []int{32}
 }
 
-func (x *RqDeleteDriverDocument) GetDriverId() string {
+func (x *DeleteDriverDocumentRequest) GetDriverId() string {
 	if x != nil {
 		return x.DriverId
 	}
 	return ""
 }
 
-func (x *RqDeleteDriverDocument) GetDocumentId() string {
+func (x *DeleteDriverDocumentRequest) GetDocumentId() string {
 	if x != nil {
 		return x.DocumentId
 	}
 	return ""
 }
 
-type RsDeleteDriverDocument struct {
+type DeleteDriverDocumentResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Success       bool                   `protobuf:"varint,1,opt,name=success,proto3" json:"success,omitempty"`
 	Message       string                 `protobuf:"bytes,2,opt,name=message,proto3" json:"message,omitempty"`
@@ -2019,20 +2019,20 @@ type RsDeleteDriverDocument struct {
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *RsDeleteDriverDocument) Reset() {
-	*x = RsDeleteDriverDocument{}
+func (x *DeleteDriverDocumentResponse) Reset() {
+	*x = DeleteDriverDocumentResponse{}
 	mi := &file_admin_admin_proto_msgTypes[33]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *RsDeleteDriverDocument) String() string {
+func (x *DeleteDriverDocumentResponse) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*RsDeleteDriverDocument) ProtoMessage() {}
+func (*DeleteDriverDocumentResponse) ProtoMessage() {}
 
-func (x *RsDeleteDriverDocument) ProtoReflect() protoreflect.Message {
+func (x *DeleteDriverDocumentResponse) ProtoReflect() protoreflect.Message {
 	mi := &file_admin_admin_proto_msgTypes[33]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -2044,19 +2044,19 @@ func (x *RsDeleteDriverDocument) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use RsDeleteDriverDocument.ProtoReflect.Descriptor instead.
-func (*RsDeleteDriverDocument) Descriptor() ([]byte, []int) {
+// Deprecated: Use DeleteDriverDocumentResponse.ProtoReflect.Descriptor instead.
+func (*DeleteDriverDocumentResponse) Descriptor() ([]byte, []int) {
 	return file_admin_admin_proto_rawDescGZIP(), []int{33}
 }
 
-func (x *RsDeleteDriverDocument) GetSuccess() bool {
+func (x *DeleteDriverDocumentResponse) GetSuccess() bool {
 	if x != nil {
 		return x.Success
 	}
 	return false
 }
 
-func (x *RsDeleteDriverDocument) GetMessage() string {
+func (x *DeleteDriverDocumentResponse) GetMessage() string {
 	if x != nil {
 		return x.Message
 	}
@@ -2132,7 +2132,7 @@ func (x *Enum) GetCategory() string {
 	return ""
 }
 
-type RsListEnums struct {
+type ListEnumsResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Enums         []*Enum                `protobuf:"bytes,1,rep,name=enums,proto3" json:"enums,omitempty"`
 	Total         int32                  `protobuf:"varint,2,opt,name=total,proto3" json:"total,omitempty"`
@@ -2140,20 +2140,20 @@ type RsListEnums struct {
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *RsListEnums) Reset() {
-	*x = RsListEnums{}
+func (x *ListEnumsResponse) Reset() {
+	*x = ListEnumsResponse{}
 	mi := &file_admin_admin_proto_msgTypes[35]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *RsListEnums) String() string {
+func (x *ListEnumsResponse) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*RsListEnums) ProtoMessage() {}
+func (*ListEnumsResponse) ProtoMessage() {}
 
-func (x *RsListEnums) ProtoReflect() protoreflect.Message {
+func (x *ListEnumsResponse) ProtoReflect() protoreflect.Message {
 	mi := &file_admin_admin_proto_msgTypes[35]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -2165,46 +2165,46 @@ func (x *RsListEnums) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use RsListEnums.ProtoReflect.Descriptor instead.
-func (*RsListEnums) Descriptor() ([]byte, []int) {
+// Deprecated: Use ListEnumsResponse.ProtoReflect.Descriptor instead.
+func (*ListEnumsResponse) Descriptor() ([]byte, []int) {
 	return file_admin_admin_proto_rawDescGZIP(), []int{35}
 }
 
-func (x *RsListEnums) GetEnums() []*Enum {
+func (x *ListEnumsResponse) GetEnums() []*Enum {
 	if x != nil {
 		return x.Enums
 	}
 	return nil
 }
 
-func (x *RsListEnums) GetTotal() int32 {
+func (x *ListEnumsResponse) GetTotal() int32 {
 	if x != nil {
 		return x.Total
 	}
 	return 0
 }
 
-type RqGetEnum struct {
+type GetEnumRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	EnumId        string                 `protobuf:"bytes,1,opt,name=enum_id,json=enumId,proto3" json:"enum_id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *RqGetEnum) Reset() {
-	*x = RqGetEnum{}
+func (x *GetEnumRequest) Reset() {
+	*x = GetEnumRequest{}
 	mi := &file_admin_admin_proto_msgTypes[36]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *RqGetEnum) String() string {
+func (x *GetEnumRequest) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*RqGetEnum) ProtoMessage() {}
+func (*GetEnumRequest) ProtoMessage() {}
 
-func (x *RqGetEnum) ProtoReflect() protoreflect.Message {
+func (x *GetEnumRequest) ProtoReflect() protoreflect.Message {
 	mi := &file_admin_admin_proto_msgTypes[36]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -2216,39 +2216,39 @@ func (x *RqGetEnum) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use RqGetEnum.ProtoReflect.Descriptor instead.
-func (*RqGetEnum) Descriptor() ([]byte, []int) {
+// Deprecated: Use GetEnumRequest.ProtoReflect.Descriptor instead.
+func (*GetEnumRequest) Descriptor() ([]byte, []int) {
 	return file_admin_admin_proto_rawDescGZIP(), []int{36}
 }
 
-func (x *RqGetEnum) GetEnumId() string {
+func (x *GetEnumRequest) GetEnumId() string {
 	if x != nil {
 		return x.EnumId
 	}
 	return ""
 }
 
-type RsGetEnum struct {
+type GetEnumResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Enum          *Enum                  `protobuf:"bytes,1,opt,name=enum,proto3" json:"enum,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *RsGetEnum) Reset() {
-	*x = RsGetEnum{}
+func (x *GetEnumResponse) Reset() {
+	*x = GetEnumResponse{}
 	mi := &file_admin_admin_proto_msgTypes[37]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *RsGetEnum) String() string {
+func (x *GetEnumResponse) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*RsGetEnum) ProtoMessage() {}
+func (*GetEnumResponse) ProtoMessage() {}
 
-func (x *RsGetEnum) ProtoReflect() protoreflect.Message {
+func (x *GetEnumResponse) ProtoReflect() protoreflect.Message {
 	mi := &file_admin_admin_proto_msgTypes[37]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -2260,12 +2260,12 @@ func (x *RsGetEnum) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use RsGetEnum.ProtoReflect.Descriptor instead.
-func (*RsGetEnum) Descriptor() ([]byte, []int) {
+// Deprecated: Use GetEnumResponse.ProtoReflect.Descriptor instead.
+func (*GetEnumResponse) Descriptor() ([]byte, []int) {
 	return file_admin_admin_proto_rawDescGZIP(), []int{37}
 }
 
-func (x *RsGetEnum) GetEnum() *Enum {
+func (x *GetEnumResponse) GetEnum() *Enum {
 	if x != nil {
 		return x.Enum
 	}
@@ -2276,17 +2276,17 @@ var File_admin_admin_proto protoreflect.FileDescriptor
 
 const file_admin_admin_proto_rawDesc = "" +
 	"\n" +
-	"\x11admin/admin.proto\x12\x05admin\x1a\x1fgoogle/protobuf/timestamp.proto\",\n" +
-	"\x14RqValidateAdminToken\x12\x14\n" +
-	"\x05token\x18\x01 \x01(\tR\x05token\"u\n" +
-	"\x14RsValidateAdminToken\x12\x14\n" +
+	"\x11admin/admin.proto\x12\x05admin\x1a\x1fgoogle/protobuf/timestamp.proto\"1\n" +
+	"\x19ValidateAdminTokenRequest\x12\x14\n" +
+	"\x05token\x18\x01 \x01(\tR\x05token\"{\n" +
+	"\x1aValidateAdminTokenResponse\x12\x14\n" +
 	"\x05valid\x18\x01 \x01(\bR\x05valid\x12\x19\n" +
 	"\badmin_id\x18\x02 \x01(\tR\aadminId\x12\x12\n" +
 	"\x04role\x18\x03 \x01(\tR\x04role\x12\x18\n" +
-	"\amessage\x18\x04 \x01(\tR\amessage\".\n" +
-	"\x11RqGetAdminProfile\x12\x19\n" +
-	"\badmin_id\x18\x01 \x01(\tR\aadminId\"\xbc\x01\n" +
-	"\x11RsGetAdminProfile\x12\x0e\n" +
+	"\amessage\x18\x04 \x01(\tR\amessage\"3\n" +
+	"\x16GetAdminProfileRequest\x12\x19\n" +
+	"\badmin_id\x18\x01 \x01(\tR\aadminId\"\xc2\x01\n" +
+	"\x17GetAdminProfileResponse\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12\x14\n" +
 	"\x05email\x18\x02 \x01(\tR\x05email\x12\x12\n" +
 	"\x04name\x18\x03 \x01(\tR\x04name\x12\x12\n" +
@@ -2295,13 +2295,13 @@ const file_admin_admin_proto_rawDesc = "" +
 	"\n" +
 	"created_at\x18\x06 \x01(\tR\tcreatedAt\x12\x1d\n" +
 	"\n" +
-	"updated_at\x18\a \x01(\tR\tupdatedAt\"S\n" +
-	"\x16RqCheckAdminPermission\x12\x19\n" +
+	"updated_at\x18\a \x01(\tR\tupdatedAt\"X\n" +
+	"\x1bCheckAdminPermissionRequest\x12\x19\n" +
 	"\badmin_id\x18\x01 \x01(\tR\aadminId\x12\x1e\n" +
 	"\n" +
 	"permission\x18\x02 \x01(\tR\n" +
-	"permission\"L\n" +
-	"\x16RsCheckAdminPermission\x12\x18\n" +
+	"permission\"R\n" +
+	"\x1cCheckAdminPermissionResponse\x12\x18\n" +
 	"\aallowed\x18\x01 \x01(\bR\aallowed\x12\x18\n" +
 	"\amessage\x18\x02 \x01(\tR\amessage\"\xe3\x02\n" +
 	"\n" +
@@ -2337,77 +2337,77 @@ const file_admin_admin_proto_rawDesc = "" +
 	"\x10rejection_reason\x18\n" +
 	" \x01(\tR\x0frejectionReason\x12\x1d\n" +
 	"\n" +
-	"is_deleted\x18\v \x01(\bR\tisDeleted\"i\n" +
-	"\rRqListDrivers\x12\x16\n" +
+	"is_deleted\x18\v \x01(\bR\tisDeleted\"n\n" +
+	"\x12ListDriversRequest\x12\x16\n" +
 	"\x06status\x18\x01 \x01(\tR\x06status\x12\x12\n" +
 	"\x04role\x18\x02 \x01(\tR\x04role\x12\x14\n" +
 	"\x05limit\x18\x03 \x01(\x05R\x05limit\x12\x16\n" +
-	"\x06offset\x18\x04 \x01(\x05R\x06offset\"R\n" +
-	"\rRsListDrivers\x12+\n" +
+	"\x06offset\x18\x04 \x01(\x05R\x06offset\"X\n" +
+	"\x13ListDriversResponse\x12+\n" +
 	"\adrivers\x18\x01 \x03(\v2\x11.admin.DriverInfoR\adrivers\x12\x14\n" +
-	"\x05total\x18\x02 \x01(\x05R\x05total\"*\n" +
-	"\vRqGetDriver\x12\x1b\n" +
-	"\tdriver_id\x18\x01 \x01(\tR\bdriverId\"8\n" +
-	"\vRsGetDriver\x12)\n" +
-	"\x06driver\x18\x01 \x01(\v2\x11.admin.DriverInfoR\x06driver\".\n" +
-	"\x0fRqApproveDriver\x12\x1b\n" +
-	"\tdriver_id\x18\x01 \x01(\tR\bdriverId\"E\n" +
-	"\x0fRsApproveDriver\x12\x18\n" +
-	"\asuccess\x18\x01 \x01(\bR\asuccess\x12\x18\n" +
-	"\amessage\x18\x02 \x01(\tR\amessage\"E\n" +
-	"\x0eRqRejectDriver\x12\x1b\n" +
-	"\tdriver_id\x18\x01 \x01(\tR\bdriverId\x12\x16\n" +
-	"\x06reason\x18\x02 \x01(\tR\x06reason\"D\n" +
-	"\x0eRsRejectDriver\x12\x18\n" +
-	"\asuccess\x18\x01 \x01(\bR\asuccess\x12\x18\n" +
-	"\amessage\x18\x02 \x01(\tR\amessage\"F\n" +
-	"\x0fRqSuspendDriver\x12\x1b\n" +
-	"\tdriver_id\x18\x01 \x01(\tR\bdriverId\x12\x16\n" +
-	"\x06reason\x18\x02 \x01(\tR\x06reason\"E\n" +
-	"\x0fRsSuspendDriver\x12\x18\n" +
-	"\asuccess\x18\x01 \x01(\bR\asuccess\x12\x18\n" +
-	"\amessage\x18\x02 \x01(\tR\amessage\"/\n" +
-	"\x10RqActivateDriver\x12\x1b\n" +
-	"\tdriver_id\x18\x01 \x01(\tR\bdriverId\"F\n" +
-	"\x10RsActivateDriver\x12\x18\n" +
-	"\asuccess\x18\x01 \x01(\bR\asuccess\x12\x18\n" +
-	"\amessage\x18\x02 \x01(\tR\amessage\"3\n" +
-	"\x14RqGetDriverDocuments\x12\x1b\n" +
+	"\x05total\x18\x02 \x01(\x05R\x05total\"/\n" +
+	"\x10GetDriverRequest\x12\x1b\n" +
+	"\tdriver_id\x18\x01 \x01(\tR\bdriverId\">\n" +
+	"\x11GetDriverResponse\x12)\n" +
+	"\x06driver\x18\x01 \x01(\v2\x11.admin.DriverInfoR\x06driver\"3\n" +
+	"\x14ApproveDriverRequest\x12\x1b\n" +
 	"\tdriver_id\x18\x01 \x01(\tR\bdriverId\"K\n" +
-	"\x14RsGetDriverDocuments\x123\n" +
-	"\tdocuments\x18\x01 \x03(\v2\x15.admin.DriverDocumentR\tdocuments\"W\n" +
-	"\x17RqApproveDriverDocument\x12\x1b\n" +
+	"\x15ApproveDriverResponse\x12\x18\n" +
+	"\asuccess\x18\x01 \x01(\bR\asuccess\x12\x18\n" +
+	"\amessage\x18\x02 \x01(\tR\amessage\"J\n" +
+	"\x13RejectDriverRequest\x12\x1b\n" +
+	"\tdriver_id\x18\x01 \x01(\tR\bdriverId\x12\x16\n" +
+	"\x06reason\x18\x02 \x01(\tR\x06reason\"J\n" +
+	"\x14RejectDriverResponse\x12\x18\n" +
+	"\asuccess\x18\x01 \x01(\bR\asuccess\x12\x18\n" +
+	"\amessage\x18\x02 \x01(\tR\amessage\"K\n" +
+	"\x14SuspendDriverRequest\x12\x1b\n" +
+	"\tdriver_id\x18\x01 \x01(\tR\bdriverId\x12\x16\n" +
+	"\x06reason\x18\x02 \x01(\tR\x06reason\"K\n" +
+	"\x15SuspendDriverResponse\x12\x18\n" +
+	"\asuccess\x18\x01 \x01(\bR\asuccess\x12\x18\n" +
+	"\amessage\x18\x02 \x01(\tR\amessage\"4\n" +
+	"\x15ActivateDriverRequest\x12\x1b\n" +
+	"\tdriver_id\x18\x01 \x01(\tR\bdriverId\"L\n" +
+	"\x16ActivateDriverResponse\x12\x18\n" +
+	"\asuccess\x18\x01 \x01(\bR\asuccess\x12\x18\n" +
+	"\amessage\x18\x02 \x01(\tR\amessage\"8\n" +
+	"\x19GetDriverDocumentsRequest\x12\x1b\n" +
+	"\tdriver_id\x18\x01 \x01(\tR\bdriverId\"Q\n" +
+	"\x1aGetDriverDocumentsResponse\x123\n" +
+	"\tdocuments\x18\x01 \x03(\v2\x15.admin.DriverDocumentR\tdocuments\"\\\n" +
+	"\x1cApproveDriverDocumentRequest\x12\x1b\n" +
 	"\tdriver_id\x18\x01 \x01(\tR\bdriverId\x12\x1f\n" +
 	"\vdocument_id\x18\x02 \x01(\tR\n" +
-	"documentId\"M\n" +
-	"\x17RsApproveDriverDocument\x12\x18\n" +
+	"documentId\"S\n" +
+	"\x1dApproveDriverDocumentResponse\x12\x18\n" +
 	"\asuccess\x18\x01 \x01(\bR\asuccess\x12\x18\n" +
-	"\amessage\x18\x02 \x01(\tR\amessage\"n\n" +
-	"\x16RqRejectDriverDocument\x12\x1b\n" +
+	"\amessage\x18\x02 \x01(\tR\amessage\"s\n" +
+	"\x1bRejectDriverDocumentRequest\x12\x1b\n" +
 	"\tdriver_id\x18\x01 \x01(\tR\bdriverId\x12\x1f\n" +
 	"\vdocument_id\x18\x02 \x01(\tR\n" +
 	"documentId\x12\x16\n" +
-	"\x06reason\x18\x03 \x01(\tR\x06reason\"L\n" +
-	"\x16RsRejectDriverDocument\x12\x18\n" +
+	"\x06reason\x18\x03 \x01(\tR\x06reason\"R\n" +
+	"\x1cRejectDriverDocumentResponse\x12\x18\n" +
 	"\asuccess\x18\x01 \x01(\bR\asuccess\x12\x18\n" +
-	"\amessage\x18\x02 \x01(\tR\amessage\"-\n" +
-	"\x0eRqDeleteDriver\x12\x1b\n" +
-	"\tdriver_id\x18\x01 \x01(\tR\bdriverId\"D\n" +
-	"\x0eRsDeleteDriver\x12\x18\n" +
+	"\amessage\x18\x02 \x01(\tR\amessage\"2\n" +
+	"\x13DeleteDriverRequest\x12\x1b\n" +
+	"\tdriver_id\x18\x01 \x01(\tR\bdriverId\"J\n" +
+	"\x14DeleteDriverResponse\x12\x18\n" +
 	"\asuccess\x18\x01 \x01(\bR\asuccess\x12\x18\n" +
-	"\amessage\x18\x02 \x01(\tR\amessage\"b\n" +
-	"\x15RqListDriverDocuments\x12\x1b\n" +
+	"\amessage\x18\x02 \x01(\tR\amessage\"g\n" +
+	"\x1aListDriverDocumentsRequest\x12\x1b\n" +
 	"\tdriver_id\x18\x01 \x01(\tR\bdriverId\x12\x14\n" +
 	"\x05limit\x18\x02 \x01(\x05R\x05limit\x12\x16\n" +
-	"\x06offset\x18\x03 \x01(\x05R\x06offset\"b\n" +
-	"\x15RsListDriverDocuments\x123\n" +
+	"\x06offset\x18\x03 \x01(\x05R\x06offset\"h\n" +
+	"\x1bListDriverDocumentsResponse\x123\n" +
 	"\tdocuments\x18\x01 \x03(\v2\x15.admin.DriverDocumentR\tdocuments\x12\x14\n" +
-	"\x05total\x18\x02 \x01(\x05R\x05total\"S\n" +
-	"\x13RqGetDriverDocument\x12\x1b\n" +
+	"\x05total\x18\x02 \x01(\x05R\x05total\"X\n" +
+	"\x18GetDriverDocumentRequest\x12\x1b\n" +
 	"\tdriver_id\x18\x01 \x01(\tR\bdriverId\x12\x1f\n" +
 	"\vdocument_id\x18\x02 \x01(\tR\n" +
-	"documentId\"\x9e\x03\n" +
-	"\x13RsGetDriverDocument\x12\x0e\n" +
+	"documentId\"\xa4\x03\n" +
+	"\x19GetDriverDocumentResponse\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12\x1b\n" +
 	"\tdriver_id\x18\x02 \x01(\tR\bdriverId\x12\x1f\n" +
 	"\x04type\x18\x03 \x01(\v2\v.admin.EnumR\x04type\x12\x1b\n" +
@@ -2422,49 +2422,49 @@ const file_admin_admin_proto_rawDesc = "" +
 	"\vrejected_at\x18\t \x01(\v2\x1a.google.protobuf.TimestampR\n" +
 	"rejectedAt\x12)\n" +
 	"\x10rejection_reason\x18\n" +
-	" \x01(\tR\x0frejectionReason\"V\n" +
-	"\x16RqDeleteDriverDocument\x12\x1b\n" +
+	" \x01(\tR\x0frejectionReason\"[\n" +
+	"\x1bDeleteDriverDocumentRequest\x12\x1b\n" +
 	"\tdriver_id\x18\x01 \x01(\tR\bdriverId\x12\x1f\n" +
 	"\vdocument_id\x18\x02 \x01(\tR\n" +
-	"documentId\"L\n" +
-	"\x16RsDeleteDriverDocument\x12\x18\n" +
+	"documentId\"R\n" +
+	"\x1cDeleteDriverDocumentResponse\x12\x18\n" +
 	"\asuccess\x18\x01 \x01(\bR\asuccess\x12\x18\n" +
 	"\amessage\x18\x02 \x01(\tR\amessage\"Z\n" +
 	"\x04Enum\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\x05R\x02id\x12\x12\n" +
 	"\x04name\x18\x02 \x01(\tR\x04name\x12\x12\n" +
 	"\x04type\x18\x03 \x01(\tR\x04type\x12\x1a\n" +
-	"\bcategory\x18\x04 \x01(\tR\bcategory\"F\n" +
-	"\vRsListEnums\x12!\n" +
+	"\bcategory\x18\x04 \x01(\tR\bcategory\"L\n" +
+	"\x11ListEnumsResponse\x12!\n" +
 	"\x05enums\x18\x01 \x03(\v2\v.admin.EnumR\x05enums\x12\x14\n" +
-	"\x05total\x18\x02 \x01(\x05R\x05total\"$\n" +
-	"\tRqGetEnum\x12\x17\n" +
-	"\aenum_id\x18\x01 \x01(\tR\x06enumId\",\n" +
-	"\tRsGetEnum\x12\x1f\n" +
+	"\x05total\x18\x02 \x01(\x05R\x05total\")\n" +
+	"\x0eGetEnumRequest\x12\x17\n" +
+	"\aenum_id\x18\x01 \x01(\tR\x06enumId\"2\n" +
+	"\x0fGetEnumResponse\x12\x1f\n" +
 	"\x04enum\x18\x01 \x01(\v2\v.admin.EnumR\x04enum*\x8a\x01\n" +
 	"\x0eApprovalStatus\x12\x1f\n" +
 	"\x1bAPPROVAL_STATUS_UNSPECIFIED\x10\x00\x12\x1b\n" +
 	"\x17APPROVAL_STATUS_PENDING\x10\x01\x12\x1c\n" +
 	"\x18APPROVAL_STATUS_APPROVED\x10\x02\x12\x1c\n" +
-	"\x18APPROVAL_STATUS_REJECTED\x10\x032\xd1\t\n" +
-	"\fAdminService\x12N\n" +
-	"\x12ValidateAdminToken\x12\x1b.admin.RqValidateAdminToken\x1a\x1b.admin.RsValidateAdminToken\x12E\n" +
-	"\x0fGetAdminProfile\x12\x18.admin.RqGetAdminProfile\x1a\x18.admin.RsGetAdminProfile\x12T\n" +
-	"\x14CheckAdminPermission\x12\x1d.admin.RqCheckAdminPermission\x1a\x1d.admin.RsCheckAdminPermission\x129\n" +
-	"\vListDrivers\x12\x14.admin.RqListDrivers\x1a\x14.admin.RsListDrivers\x123\n" +
-	"\tGetDriver\x12\x12.admin.RqGetDriver\x1a\x12.admin.RsGetDriver\x12?\n" +
-	"\rApproveDriver\x12\x16.admin.RqApproveDriver\x1a\x16.admin.RsApproveDriver\x12<\n" +
-	"\fRejectDriver\x12\x15.admin.RqRejectDriver\x1a\x15.admin.RsRejectDriver\x12?\n" +
-	"\rSuspendDriver\x12\x16.admin.RqSuspendDriver\x1a\x16.admin.RsSuspendDriver\x12B\n" +
-	"\x0eActivateDriver\x12\x17.admin.RqActivateDriver\x1a\x17.admin.RsActivateDriver\x12N\n" +
-	"\x12GetDriverDocuments\x12\x1b.admin.RqGetDriverDocuments\x1a\x1b.admin.RsGetDriverDocuments\x12W\n" +
-	"\x15ApproveDriverDocument\x12\x1e.admin.RqApproveDriverDocument\x1a\x1e.admin.RsApproveDriverDocument\x12T\n" +
-	"\x14RejectDriverDocument\x12\x1d.admin.RqRejectDriverDocument\x1a\x1d.admin.RsRejectDriverDocument\x12<\n" +
-	"\fDeleteDriver\x12\x15.admin.RqDeleteDriver\x1a\x15.admin.RsDeleteDriver\x12Q\n" +
-	"\x13ListDriverDocuments\x12\x1c.admin.RqListDriverDocuments\x1a\x1c.admin.RsListDriverDocuments\x12K\n" +
-	"\x11GetDriverDocument\x12\x1a.admin.RqGetDriverDocument\x1a\x1a.admin.RsGetDriverDocument\x12T\n" +
-	"\x14DeleteDriverDocument\x12\x1d.admin.RqDeleteDriverDocument\x1a\x1d.admin.RsDeleteDriverDocument\x12-\n" +
-	"\aGetEnum\x12\x10.admin.RqGetEnum\x1a\x10.admin.RsGetEnumB>Z<github.com/mihirk-khode/motocabz-common/genproto/admin;adminb\x06proto3"
+	"\x18APPROVAL_STATUS_REJECTED\x10\x032\x8c\v\n" +
+	"\fAdminService\x12Y\n" +
+	"\x12ValidateAdminToken\x12 .admin.ValidateAdminTokenRequest\x1a!.admin.ValidateAdminTokenResponse\x12P\n" +
+	"\x0fGetAdminProfile\x12\x1d.admin.GetAdminProfileRequest\x1a\x1e.admin.GetAdminProfileResponse\x12_\n" +
+	"\x14CheckAdminPermission\x12\".admin.CheckAdminPermissionRequest\x1a#.admin.CheckAdminPermissionResponse\x12D\n" +
+	"\vListDrivers\x12\x19.admin.ListDriversRequest\x1a\x1a.admin.ListDriversResponse\x12>\n" +
+	"\tGetDriver\x12\x17.admin.GetDriverRequest\x1a\x18.admin.GetDriverResponse\x12J\n" +
+	"\rApproveDriver\x12\x1b.admin.ApproveDriverRequest\x1a\x1c.admin.ApproveDriverResponse\x12G\n" +
+	"\fRejectDriver\x12\x1a.admin.RejectDriverRequest\x1a\x1b.admin.RejectDriverResponse\x12J\n" +
+	"\rSuspendDriver\x12\x1b.admin.SuspendDriverRequest\x1a\x1c.admin.SuspendDriverResponse\x12M\n" +
+	"\x0eActivateDriver\x12\x1c.admin.ActivateDriverRequest\x1a\x1d.admin.ActivateDriverResponse\x12Y\n" +
+	"\x12GetDriverDocuments\x12 .admin.GetDriverDocumentsRequest\x1a!.admin.GetDriverDocumentsResponse\x12b\n" +
+	"\x15ApproveDriverDocument\x12#.admin.ApproveDriverDocumentRequest\x1a$.admin.ApproveDriverDocumentResponse\x12_\n" +
+	"\x14RejectDriverDocument\x12\".admin.RejectDriverDocumentRequest\x1a#.admin.RejectDriverDocumentResponse\x12G\n" +
+	"\fDeleteDriver\x12\x1a.admin.DeleteDriverRequest\x1a\x1b.admin.DeleteDriverResponse\x12\\\n" +
+	"\x13ListDriverDocuments\x12!.admin.ListDriverDocumentsRequest\x1a\".admin.ListDriverDocumentsResponse\x12V\n" +
+	"\x11GetDriverDocument\x12\x1f.admin.GetDriverDocumentRequest\x1a .admin.GetDriverDocumentResponse\x12_\n" +
+	"\x14DeleteDriverDocument\x12\".admin.DeleteDriverDocumentRequest\x1a#.admin.DeleteDriverDocumentResponse\x128\n" +
+	"\aGetEnum\x12\x15.admin.GetEnumRequest\x1a\x16.admin.GetEnumResponseB>Z<github.com/mihirk-khode/motocabz-common/genproto/admin;adminb\x06proto3"
 
 var (
 	file_admin_admin_proto_rawDescOnce sync.Once
@@ -2481,46 +2481,46 @@ func file_admin_admin_proto_rawDescGZIP() []byte {
 var file_admin_admin_proto_enumTypes = make([]protoimpl.EnumInfo, 1)
 var file_admin_admin_proto_msgTypes = make([]protoimpl.MessageInfo, 38)
 var file_admin_admin_proto_goTypes = []any{
-	(ApprovalStatus)(0),             // 0: admin.ApprovalStatus
-	(*RqValidateAdminToken)(nil),    // 1: admin.RqValidateAdminToken
-	(*RsValidateAdminToken)(nil),    // 2: admin.RsValidateAdminToken
-	(*RqGetAdminProfile)(nil),       // 3: admin.RqGetAdminProfile
-	(*RsGetAdminProfile)(nil),       // 4: admin.RsGetAdminProfile
-	(*RqCheckAdminPermission)(nil),  // 5: admin.RqCheckAdminPermission
-	(*RsCheckAdminPermission)(nil),  // 6: admin.RsCheckAdminPermission
-	(*DriverInfo)(nil),              // 7: admin.DriverInfo
-	(*DriverDocument)(nil),          // 8: admin.DriverDocument
-	(*RqListDrivers)(nil),           // 9: admin.RqListDrivers
-	(*RsListDrivers)(nil),           // 10: admin.RsListDrivers
-	(*RqGetDriver)(nil),             // 11: admin.RqGetDriver
-	(*RsGetDriver)(nil),             // 12: admin.RsGetDriver
-	(*RqApproveDriver)(nil),         // 13: admin.RqApproveDriver
-	(*RsApproveDriver)(nil),         // 14: admin.RsApproveDriver
-	(*RqRejectDriver)(nil),          // 15: admin.RqRejectDriver
-	(*RsRejectDriver)(nil),          // 16: admin.RsRejectDriver
-	(*RqSuspendDriver)(nil),         // 17: admin.RqSuspendDriver
-	(*RsSuspendDriver)(nil),         // 18: admin.RsSuspendDriver
-	(*RqActivateDriver)(nil),        // 19: admin.RqActivateDriver
-	(*RsActivateDriver)(nil),        // 20: admin.RsActivateDriver
-	(*RqGetDriverDocuments)(nil),    // 21: admin.RqGetDriverDocuments
-	(*RsGetDriverDocuments)(nil),    // 22: admin.RsGetDriverDocuments
-	(*RqApproveDriverDocument)(nil), // 23: admin.RqApproveDriverDocument
-	(*RsApproveDriverDocument)(nil), // 24: admin.RsApproveDriverDocument
-	(*RqRejectDriverDocument)(nil),  // 25: admin.RqRejectDriverDocument
-	(*RsRejectDriverDocument)(nil),  // 26: admin.RsRejectDriverDocument
-	(*RqDeleteDriver)(nil),          // 27: admin.RqDeleteDriver
-	(*RsDeleteDriver)(nil),          // 28: admin.RsDeleteDriver
-	(*RqListDriverDocuments)(nil),   // 29: admin.RqListDriverDocuments
-	(*RsListDriverDocuments)(nil),   // 30: admin.RsListDriverDocuments
-	(*RqGetDriverDocument)(nil),     // 31: admin.RqGetDriverDocument
-	(*RsGetDriverDocument)(nil),     // 32: admin.RsGetDriverDocument
-	(*RqDeleteDriverDocument)(nil),  // 33: admin.RqDeleteDriverDocument
-	(*RsDeleteDriverDocument)(nil),  // 34: admin.RsDeleteDriverDocument
-	(*Enum)(nil),                    // 35: admin.Enum
-	(*RsListEnums)(nil),             // 36: admin.RsListEnums
-	(*RqGetEnum)(nil),               // 37: admin.RqGetEnum
-	(*RsGetEnum)(nil),               // 38: admin.RsGetEnum
-	(*timestamppb.Timestamp)(nil),   // 39: google.protobuf.Timestamp
+	(ApprovalStatus)(0),                   // 0: admin.ApprovalStatus
+	(*ValidateAdminTokenRequest)(nil),     // 1: admin.ValidateAdminTokenRequest
+	(*ValidateAdminTokenResponse)(nil),    // 2: admin.ValidateAdminTokenResponse
+	(*GetAdminProfileRequest)(nil),        // 3: admin.GetAdminProfileRequest
+	(*GetAdminProfileResponse)(nil),       // 4: admin.GetAdminProfileResponse
+	(*CheckAdminPermissionRequest)(nil),   // 5: admin.CheckAdminPermissionRequest
+	(*CheckAdminPermissionResponse)(nil),  // 6: admin.CheckAdminPermissionResponse
+	(*DriverInfo)(nil),                    // 7: admin.DriverInfo
+	(*DriverDocument)(nil),                // 8: admin.DriverDocument
+	(*ListDriversRequest)(nil),            // 9: admin.ListDriversRequest
+	(*ListDriversResponse)(nil),           // 10: admin.ListDriversResponse
+	(*GetDriverRequest)(nil),              // 11: admin.GetDriverRequest
+	(*GetDriverResponse)(nil),             // 12: admin.GetDriverResponse
+	(*ApproveDriverRequest)(nil),          // 13: admin.ApproveDriverRequest
+	(*ApproveDriverResponse)(nil),         // 14: admin.ApproveDriverResponse
+	(*RejectDriverRequest)(nil),           // 15: admin.RejectDriverRequest
+	(*RejectDriverResponse)(nil),          // 16: admin.RejectDriverResponse
+	(*SuspendDriverRequest)(nil),          // 17: admin.SuspendDriverRequest
+	(*SuspendDriverResponse)(nil),         // 18: admin.SuspendDriverResponse
+	(*ActivateDriverRequest)(nil),         // 19: admin.ActivateDriverRequest
+	(*ActivateDriverResponse)(nil),        // 20: admin.ActivateDriverResponse
+	(*GetDriverDocumentsRequest)(nil),     // 21: admin.GetDriverDocumentsRequest
+	(*GetDriverDocumentsResponse)(nil),    // 22: admin.GetDriverDocumentsResponse
+	(*ApproveDriverDocumentRequest)(nil),  // 23: admin.ApproveDriverDocumentRequest
+	(*ApproveDriverDocumentResponse)(nil), // 24: admin.ApproveDriverDocumentResponse
+	(*RejectDriverDocumentRequest)(nil),   // 25: admin.RejectDriverDocumentRequest
+	(*RejectDriverDocumentResponse)(nil),  // 26: admin.RejectDriverDocumentResponse
+	(*DeleteDriverRequest)(nil),           // 27: admin.DeleteDriverRequest
+	(*DeleteDriverResponse)(nil),          // 28: admin.DeleteDriverResponse
+	(*ListDriverDocumentsRequest)(nil),    // 29: admin.ListDriverDocumentsRequest
+	(*ListDriverDocumentsResponse)(nil),   // 30: admin.ListDriverDocumentsResponse
+	(*GetDriverDocumentRequest)(nil),      // 31: admin.GetDriverDocumentRequest
+	(*GetDriverDocumentResponse)(nil),     // 32: admin.GetDriverDocumentResponse
+	(*DeleteDriverDocumentRequest)(nil),   // 33: admin.DeleteDriverDocumentRequest
+	(*DeleteDriverDocumentResponse)(nil),  // 34: admin.DeleteDriverDocumentResponse
+	(*Enum)(nil),                          // 35: admin.Enum
+	(*ListEnumsResponse)(nil),             // 36: admin.ListEnumsResponse
+	(*GetEnumRequest)(nil),                // 37: admin.GetEnumRequest
+	(*GetEnumResponse)(nil),               // 38: admin.GetEnumResponse
+	(*timestamppb.Timestamp)(nil),         // 39: google.protobuf.Timestamp
 }
 var file_admin_admin_proto_depIdxs = []int32{
 	0,  // 0: admin.DriverInfo.approval_status:type_name -> admin.ApprovalStatus
@@ -2529,50 +2529,50 @@ var file_admin_admin_proto_depIdxs = []int32{
 	39, // 3: admin.DriverDocument.uploaded_at:type_name -> google.protobuf.Timestamp
 	39, // 4: admin.DriverDocument.verified_at:type_name -> google.protobuf.Timestamp
 	39, // 5: admin.DriverDocument.rejected_at:type_name -> google.protobuf.Timestamp
-	7,  // 6: admin.RsListDrivers.drivers:type_name -> admin.DriverInfo
-	7,  // 7: admin.RsGetDriver.driver:type_name -> admin.DriverInfo
-	8,  // 8: admin.RsGetDriverDocuments.documents:type_name -> admin.DriverDocument
-	8,  // 9: admin.RsListDriverDocuments.documents:type_name -> admin.DriverDocument
-	35, // 10: admin.RsGetDriverDocument.type:type_name -> admin.Enum
-	39, // 11: admin.RsGetDriverDocument.uploaded_at:type_name -> google.protobuf.Timestamp
-	39, // 12: admin.RsGetDriverDocument.verified_at:type_name -> google.protobuf.Timestamp
-	39, // 13: admin.RsGetDriverDocument.rejected_at:type_name -> google.protobuf.Timestamp
-	35, // 14: admin.RsListEnums.enums:type_name -> admin.Enum
-	35, // 15: admin.RsGetEnum.enum:type_name -> admin.Enum
-	1,  // 16: admin.AdminService.ValidateAdminToken:input_type -> admin.RqValidateAdminToken
-	3,  // 17: admin.AdminService.GetAdminProfile:input_type -> admin.RqGetAdminProfile
-	5,  // 18: admin.AdminService.CheckAdminPermission:input_type -> admin.RqCheckAdminPermission
-	9,  // 19: admin.AdminService.ListDrivers:input_type -> admin.RqListDrivers
-	11, // 20: admin.AdminService.GetDriver:input_type -> admin.RqGetDriver
-	13, // 21: admin.AdminService.ApproveDriver:input_type -> admin.RqApproveDriver
-	15, // 22: admin.AdminService.RejectDriver:input_type -> admin.RqRejectDriver
-	17, // 23: admin.AdminService.SuspendDriver:input_type -> admin.RqSuspendDriver
-	19, // 24: admin.AdminService.ActivateDriver:input_type -> admin.RqActivateDriver
-	21, // 25: admin.AdminService.GetDriverDocuments:input_type -> admin.RqGetDriverDocuments
-	23, // 26: admin.AdminService.ApproveDriverDocument:input_type -> admin.RqApproveDriverDocument
-	25, // 27: admin.AdminService.RejectDriverDocument:input_type -> admin.RqRejectDriverDocument
-	27, // 28: admin.AdminService.DeleteDriver:input_type -> admin.RqDeleteDriver
-	29, // 29: admin.AdminService.ListDriverDocuments:input_type -> admin.RqListDriverDocuments
-	31, // 30: admin.AdminService.GetDriverDocument:input_type -> admin.RqGetDriverDocument
-	33, // 31: admin.AdminService.DeleteDriverDocument:input_type -> admin.RqDeleteDriverDocument
-	37, // 32: admin.AdminService.GetEnum:input_type -> admin.RqGetEnum
-	2,  // 33: admin.AdminService.ValidateAdminToken:output_type -> admin.RsValidateAdminToken
-	4,  // 34: admin.AdminService.GetAdminProfile:output_type -> admin.RsGetAdminProfile
-	6,  // 35: admin.AdminService.CheckAdminPermission:output_type -> admin.RsCheckAdminPermission
-	10, // 36: admin.AdminService.ListDrivers:output_type -> admin.RsListDrivers
-	12, // 37: admin.AdminService.GetDriver:output_type -> admin.RsGetDriver
-	14, // 38: admin.AdminService.ApproveDriver:output_type -> admin.RsApproveDriver
-	16, // 39: admin.AdminService.RejectDriver:output_type -> admin.RsRejectDriver
-	18, // 40: admin.AdminService.SuspendDriver:output_type -> admin.RsSuspendDriver
-	20, // 41: admin.AdminService.ActivateDriver:output_type -> admin.RsActivateDriver
-	22, // 42: admin.AdminService.GetDriverDocuments:output_type -> admin.RsGetDriverDocuments
-	24, // 43: admin.AdminService.ApproveDriverDocument:output_type -> admin.RsApproveDriverDocument
-	26, // 44: admin.AdminService.RejectDriverDocument:output_type -> admin.RsRejectDriverDocument
-	28, // 45: admin.AdminService.DeleteDriver:output_type -> admin.RsDeleteDriver
-	30, // 46: admin.AdminService.ListDriverDocuments:output_type -> admin.RsListDriverDocuments
-	32, // 47: admin.AdminService.GetDriverDocument:output_type -> admin.RsGetDriverDocument
-	34, // 48: admin.AdminService.DeleteDriverDocument:output_type -> admin.RsDeleteDriverDocument
-	38, // 49: admin.AdminService.GetEnum:output_type -> admin.RsGetEnum
+	7,  // 6: admin.ListDriversResponse.drivers:type_name -> admin.DriverInfo
+	7,  // 7: admin.GetDriverResponse.driver:type_name -> admin.DriverInfo
+	8,  // 8: admin.GetDriverDocumentsResponse.documents:type_name -> admin.DriverDocument
+	8,  // 9: admin.ListDriverDocumentsResponse.documents:type_name -> admin.DriverDocument
+	35, // 10: admin.GetDriverDocumentResponse.type:type_name -> admin.Enum
+	39, // 11: admin.GetDriverDocumentResponse.uploaded_at:type_name -> google.protobuf.Timestamp
+	39, // 12: admin.GetDriverDocumentResponse.verified_at:type_name -> google.protobuf.Timestamp
+	39, // 13: admin.GetDriverDocumentResponse.rejected_at:type_name -> google.protobuf.Timestamp
+	35, // 14: admin.ListEnumsResponse.enums:type_name -> admin.Enum
+	35, // 15: admin.GetEnumResponse.enum:type_name -> admin.Enum
+	1,  // 16: admin.AdminService.ValidateAdminToken:input_type -> admin.ValidateAdminTokenRequest
+	3,  // 17: admin.AdminService.GetAdminProfile:input_type -> admin.GetAdminProfileRequest
+	5,  // 18: admin.AdminService.CheckAdminPermission:input_type -> admin.CheckAdminPermissionRequest
+	9,  // 19: admin.AdminService.ListDrivers:input_type -> admin.ListDriversRequest
+	11, // 20: admin.AdminService.GetDriver:input_type -> admin.GetDriverRequest
+	13, // 21: admin.AdminService.ApproveDriver:input_type -> admin.ApproveDriverRequest
+	15, // 22: admin.AdminService.RejectDriver:input_type -> admin.RejectDriverRequest
+	17, // 23: admin.AdminService.SuspendDriver:input_type -> admin.SuspendDriverRequest
+	19, // 24: admin.AdminService.ActivateDriver:input_type -> admin.ActivateDriverRequest
+	21, // 25: admin.AdminService.GetDriverDocuments:input_type -> admin.GetDriverDocumentsRequest
+	23, // 26: admin.AdminService.ApproveDriverDocument:input_type -> admin.ApproveDriverDocumentRequest
+	25, // 27: admin.AdminService.RejectDriverDocument:input_type -> admin.RejectDriverDocumentRequest
+	27, // 28: admin.AdminService.DeleteDriver:input_type -> admin.DeleteDriverRequest
+	29, // 29: admin.AdminService.ListDriverDocuments:input_type -> admin.ListDriverDocumentsRequest
+	31, // 30: admin.AdminService.GetDriverDocument:input_type -> admin.GetDriverDocumentRequest
+	33, // 31: admin.AdminService.DeleteDriverDocument:input_type -> admin.DeleteDriverDocumentRequest
+	37, // 32: admin.AdminService.GetEnum:input_type -> admin.GetEnumRequest
+	2,  // 33: admin.AdminService.ValidateAdminToken:output_type -> admin.ValidateAdminTokenResponse
+	4,  // 34: admin.AdminService.GetAdminProfile:output_type -> admin.GetAdminProfileResponse
+	6,  // 35: admin.AdminService.CheckAdminPermission:output_type -> admin.CheckAdminPermissionResponse
+	10, // 36: admin.AdminService.ListDrivers:output_type -> admin.ListDriversResponse
+	12, // 37: admin.AdminService.GetDriver:output_type -> admin.GetDriverResponse
+	14, // 38: admin.AdminService.ApproveDriver:output_type -> admin.ApproveDriverResponse
+	16, // 39: admin.AdminService.RejectDriver:output_type -> admin.RejectDriverResponse
+	18, // 40: admin.AdminService.SuspendDriver:output_type -> admin.SuspendDriverResponse
+	20, // 41: admin.AdminService.ActivateDriver:output_type -> admin.ActivateDriverResponse
+	22, // 42: admin.AdminService.GetDriverDocuments:output_type -> admin.GetDriverDocumentsResponse
+	24, // 43: admin.AdminService.ApproveDriverDocument:output_type -> admin.ApproveDriverDocumentResponse
+	26, // 44: admin.AdminService.RejectDriverDocument:output_type -> admin.RejectDriverDocumentResponse
+	28, // 45: admin.AdminService.DeleteDriver:output_type -> admin.DeleteDriverResponse
+	30, // 46: admin.AdminService.ListDriverDocuments:output_type -> admin.ListDriverDocumentsResponse
+	32, // 47: admin.AdminService.GetDriverDocument:output_type -> admin.GetDriverDocumentResponse
+	34, // 48: admin.AdminService.DeleteDriverDocument:output_type -> admin.DeleteDriverDocumentResponse
+	38, // 49: admin.AdminService.GetEnum:output_type -> admin.GetEnumResponse
 	33, // [33:50] is the sub-list for method output_type
 	16, // [16:33] is the sub-list for method input_type
 	16, // [16:16] is the sub-list for extension type_name

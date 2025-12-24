@@ -19,50 +19,48 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	TripService_CreateTrip_FullMethodName                 = "/trip.TripService/CreateTrip"
-	TripService_SubmitBidOrOffer_FullMethodName           = "/trip.TripService/SubmitBidOrOffer"
-	TripService_AcceptOffer_FullMethodName                = "/trip.TripService/AcceptOffer"
-	TripService_InstantAccept_FullMethodName              = "/trip.TripService/InstantAccept"
-	TripService_GetTrip_FullMethodName                    = "/trip.TripService/GetTrip"
-	TripService_GetActiveTrips_FullMethodName             = "/trip.TripService/GetActiveTrips"
-	TripService_GetActiveTripsByRider_FullMethodName      = "/trip.TripService/GetActiveTripsByRider"
-	TripService_AcceptTrip_FullMethodName                 = "/trip.TripService/AcceptTrip"
-	TripService_CancelTrip_FullMethodName                 = "/trip.TripService/CancelTrip"
-	TripService_CompleteTrip_FullMethodName               = "/trip.TripService/CompleteTrip"
-	TripService_GetBiddingSession_FullMethodName          = "/trip.TripService/GetBiddingSession"
-	TripService_GetBiddingSessionsByRider_FullMethodName  = "/trip.TripService/GetBiddingSessionsByRider"
-	TripService_GetBiddingSessionsByDriver_FullMethodName = "/trip.TripService/GetBiddingSessionsByDriver"
-	TripService_InstantMatch_FullMethodName               = "/trip.TripService/InstantMatch"
-	TripService_GetInstantMatchStatus_FullMethodName      = "/trip.TripService/GetInstantMatchStatus"
-	TripService_CancelInstantMatch_FullMethodName         = "/trip.TripService/CancelInstantMatch"
-	TripService_GetTripHistoryByRider_FullMethodName      = "/trip.TripService/GetTripHistoryByRider"
-	TripService_GetTripHistoryByDriver_FullMethodName     = "/trip.TripService/GetTripHistoryByDriver"
-	TripService_IsTripActive_FullMethodName               = "/trip.TripService/IsTripActive"
+	TripService_CreateTrip_FullMethodName        = "/trip.TripService/CreateTrip"
+	TripService_SubmitBidOrOffer_FullMethodName  = "/trip.TripService/SubmitBidOrOffer"
+	TripService_AcceptOffer_FullMethodName       = "/trip.TripService/AcceptOffer"
+	TripService_GetTrip_FullMethodName           = "/trip.TripService/GetTrip"
+	TripService_GetActiveTrips_FullMethodName    = "/trip.TripService/GetActiveTrips"
+	TripService_AcceptTrip_FullMethodName        = "/trip.TripService/AcceptTrip"
+	TripService_CancelTrip_FullMethodName        = "/trip.TripService/CancelTrip"
+	TripService_CompleteTrip_FullMethodName      = "/trip.TripService/CompleteTrip"
+	TripService_GetBiddingSession_FullMethodName = "/trip.TripService/GetBiddingSession"
+	TripService_GetTripHistory_FullMethodName    = "/trip.TripService/GetTripHistory"
+	TripService_IsTripActive_FullMethodName      = "/trip.TripService/IsTripActive"
+	TripService_CreateRating_FullMethodName      = "/trip.TripService/CreateRating"
+	TripService_GetRating_FullMethodName         = "/trip.TripService/GetRating"
+	TripService_ListRating_FullMethodName        = "/trip.TripService/ListRating"
+	TripService_DeleteRating_FullMethodName      = "/trip.TripService/DeleteRating"
+	TripService_UpdateRating_FullMethodName      = "/trip.TripService/UpdateRating"
 )
 
 // TripServiceClient is the client API for TripService service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type TripServiceClient interface {
-	CreateTrip(ctx context.Context, in *RqTrip, opts ...grpc.CallOption) (*RsTrip, error)
-	SubmitBidOrOffer(ctx context.Context, in *RqBidOrOffer, opts ...grpc.CallOption) (*RsBidOrOffer, error)
-	AcceptOffer(ctx context.Context, in *RqAcceptOffer, opts ...grpc.CallOption) (*RsAcceptOffer, error)
-	InstantAccept(ctx context.Context, in *RqInstantAccept, opts ...grpc.CallOption) (*RsInstantAccept, error)
-	GetTrip(ctx context.Context, in *RqGetTrip, opts ...grpc.CallOption) (*RsTrip, error)
-	GetActiveTrips(ctx context.Context, in *RqGetActiveTrips, opts ...grpc.CallOption) (*RsGetActiveTrips, error)
-	GetActiveTripsByRider(ctx context.Context, in *RqGetActiveTripsByRider, opts ...grpc.CallOption) (*RsGetActiveTrips, error)
-	AcceptTrip(ctx context.Context, in *RqAcceptTrip, opts ...grpc.CallOption) (*RsAcceptTrip, error)
-	CancelTrip(ctx context.Context, in *RqCancelTrip, opts ...grpc.CallOption) (*RsCancelTrip, error)
-	CompleteTrip(ctx context.Context, in *RqCompleteTrip, opts ...grpc.CallOption) (*RsCompleteTrip, error)
-	GetBiddingSession(ctx context.Context, in *RqGetBiddingSession, opts ...grpc.CallOption) (*RsGetBiddingSession, error)
-	GetBiddingSessionsByRider(ctx context.Context, in *RqGetBiddingSessionsByRider, opts ...grpc.CallOption) (*RsGetBiddingSessionsByRider, error)
-	GetBiddingSessionsByDriver(ctx context.Context, in *RqGetBiddingSessionsByDriver, opts ...grpc.CallOption) (*RsGetBiddingSessionsByDriver, error)
-	InstantMatch(ctx context.Context, in *RqInstantMatch, opts ...grpc.CallOption) (*RsInstantMatch, error)
-	GetInstantMatchStatus(ctx context.Context, in *RqGetInstantMatchStatus, opts ...grpc.CallOption) (*RsGetInstantMatchStatus, error)
-	CancelInstantMatch(ctx context.Context, in *RqCancelInstantMatch, opts ...grpc.CallOption) (*RsCancelInstantMatch, error)
-	GetTripHistoryByRider(ctx context.Context, in *RqGetTripHistoryByRider, opts ...grpc.CallOption) (*RsGetTripHistory, error)
-	GetTripHistoryByDriver(ctx context.Context, in *RqGetTripHistoryByDriver, opts ...grpc.CallOption) (*RsGetTripHistory, error)
-	IsTripActive(ctx context.Context, in *RqGetTrip, opts ...grpc.CallOption) (*RsIsTripActive, error)
+	// Trips
+	CreateTrip(ctx context.Context, in *TripRequest, opts ...grpc.CallOption) (*TripResponse, error)
+	SubmitBidOrOffer(ctx context.Context, in *BidOrOfferRequest, opts ...grpc.CallOption) (*BidOrOfferResponse, error)
+	AcceptOffer(ctx context.Context, in *AcceptOfferRequest, opts ...grpc.CallOption) (*AcceptOfferResponse, error)
+	GetTrip(ctx context.Context, in *GetTripRequest, opts ...grpc.CallOption) (*TripResponse, error)
+	GetActiveTrips(ctx context.Context, in *TripFilterRequest, opts ...grpc.CallOption) (*ListTripResponse, error)
+	AcceptTrip(ctx context.Context, in *AcceptTripRequest, opts ...grpc.CallOption) (*TripResponse, error)
+	CancelTrip(ctx context.Context, in *CancelTripRequest, opts ...grpc.CallOption) (*CancelTripResponse, error)
+	CompleteTrip(ctx context.Context, in *CompleteTripRequest, opts ...grpc.CallOption) (*CompleteTripResponse, error)
+	// Bidding Session
+	GetBiddingSession(ctx context.Context, in *BiddingSessionFilterRequest, opts ...grpc.CallOption) (*BiddingSessionResponse, error)
+	//Trip History
+	GetTripHistory(ctx context.Context, in *TripHistoryFilterRequest, opts ...grpc.CallOption) (*TripHistoryResponse, error)
+	IsTripActive(ctx context.Context, in *GetTripRequest, opts ...grpc.CallOption) (*TripResponse, error)
+	//Rating
+	CreateRating(ctx context.Context, in *RatingRequest, opts ...grpc.CallOption) (*RatingResponse, error)
+	GetRating(ctx context.Context, in *GetRatingRequest, opts ...grpc.CallOption) (*RatingResponse, error)
+	ListRating(ctx context.Context, in *ListRatingRequest, opts ...grpc.CallOption) (*ListRatingResponse, error)
+	DeleteRating(ctx context.Context, in *DeleteRatingRequest, opts ...grpc.CallOption) (*DeleteRatingResponse, error)
+	UpdateRating(ctx context.Context, in *UpdateRatingRequest, opts ...grpc.CallOption) (*RatingResponse, error)
 }
 
 type tripServiceClient struct {
@@ -73,9 +71,9 @@ func NewTripServiceClient(cc grpc.ClientConnInterface) TripServiceClient {
 	return &tripServiceClient{cc}
 }
 
-func (c *tripServiceClient) CreateTrip(ctx context.Context, in *RqTrip, opts ...grpc.CallOption) (*RsTrip, error) {
+func (c *tripServiceClient) CreateTrip(ctx context.Context, in *TripRequest, opts ...grpc.CallOption) (*TripResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(RsTrip)
+	out := new(TripResponse)
 	err := c.cc.Invoke(ctx, TripService_CreateTrip_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
@@ -83,9 +81,9 @@ func (c *tripServiceClient) CreateTrip(ctx context.Context, in *RqTrip, opts ...
 	return out, nil
 }
 
-func (c *tripServiceClient) SubmitBidOrOffer(ctx context.Context, in *RqBidOrOffer, opts ...grpc.CallOption) (*RsBidOrOffer, error) {
+func (c *tripServiceClient) SubmitBidOrOffer(ctx context.Context, in *BidOrOfferRequest, opts ...grpc.CallOption) (*BidOrOfferResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(RsBidOrOffer)
+	out := new(BidOrOfferResponse)
 	err := c.cc.Invoke(ctx, TripService_SubmitBidOrOffer_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
@@ -93,9 +91,9 @@ func (c *tripServiceClient) SubmitBidOrOffer(ctx context.Context, in *RqBidOrOff
 	return out, nil
 }
 
-func (c *tripServiceClient) AcceptOffer(ctx context.Context, in *RqAcceptOffer, opts ...grpc.CallOption) (*RsAcceptOffer, error) {
+func (c *tripServiceClient) AcceptOffer(ctx context.Context, in *AcceptOfferRequest, opts ...grpc.CallOption) (*AcceptOfferResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(RsAcceptOffer)
+	out := new(AcceptOfferResponse)
 	err := c.cc.Invoke(ctx, TripService_AcceptOffer_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
@@ -103,19 +101,9 @@ func (c *tripServiceClient) AcceptOffer(ctx context.Context, in *RqAcceptOffer, 
 	return out, nil
 }
 
-func (c *tripServiceClient) InstantAccept(ctx context.Context, in *RqInstantAccept, opts ...grpc.CallOption) (*RsInstantAccept, error) {
+func (c *tripServiceClient) GetTrip(ctx context.Context, in *GetTripRequest, opts ...grpc.CallOption) (*TripResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(RsInstantAccept)
-	err := c.cc.Invoke(ctx, TripService_InstantAccept_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *tripServiceClient) GetTrip(ctx context.Context, in *RqGetTrip, opts ...grpc.CallOption) (*RsTrip, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(RsTrip)
+	out := new(TripResponse)
 	err := c.cc.Invoke(ctx, TripService_GetTrip_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
@@ -123,9 +111,9 @@ func (c *tripServiceClient) GetTrip(ctx context.Context, in *RqGetTrip, opts ...
 	return out, nil
 }
 
-func (c *tripServiceClient) GetActiveTrips(ctx context.Context, in *RqGetActiveTrips, opts ...grpc.CallOption) (*RsGetActiveTrips, error) {
+func (c *tripServiceClient) GetActiveTrips(ctx context.Context, in *TripFilterRequest, opts ...grpc.CallOption) (*ListTripResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(RsGetActiveTrips)
+	out := new(ListTripResponse)
 	err := c.cc.Invoke(ctx, TripService_GetActiveTrips_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
@@ -133,19 +121,9 @@ func (c *tripServiceClient) GetActiveTrips(ctx context.Context, in *RqGetActiveT
 	return out, nil
 }
 
-func (c *tripServiceClient) GetActiveTripsByRider(ctx context.Context, in *RqGetActiveTripsByRider, opts ...grpc.CallOption) (*RsGetActiveTrips, error) {
+func (c *tripServiceClient) AcceptTrip(ctx context.Context, in *AcceptTripRequest, opts ...grpc.CallOption) (*TripResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(RsGetActiveTrips)
-	err := c.cc.Invoke(ctx, TripService_GetActiveTripsByRider_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *tripServiceClient) AcceptTrip(ctx context.Context, in *RqAcceptTrip, opts ...grpc.CallOption) (*RsAcceptTrip, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(RsAcceptTrip)
+	out := new(TripResponse)
 	err := c.cc.Invoke(ctx, TripService_AcceptTrip_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
@@ -153,9 +131,9 @@ func (c *tripServiceClient) AcceptTrip(ctx context.Context, in *RqAcceptTrip, op
 	return out, nil
 }
 
-func (c *tripServiceClient) CancelTrip(ctx context.Context, in *RqCancelTrip, opts ...grpc.CallOption) (*RsCancelTrip, error) {
+func (c *tripServiceClient) CancelTrip(ctx context.Context, in *CancelTripRequest, opts ...grpc.CallOption) (*CancelTripResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(RsCancelTrip)
+	out := new(CancelTripResponse)
 	err := c.cc.Invoke(ctx, TripService_CancelTrip_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
@@ -163,9 +141,9 @@ func (c *tripServiceClient) CancelTrip(ctx context.Context, in *RqCancelTrip, op
 	return out, nil
 }
 
-func (c *tripServiceClient) CompleteTrip(ctx context.Context, in *RqCompleteTrip, opts ...grpc.CallOption) (*RsCompleteTrip, error) {
+func (c *tripServiceClient) CompleteTrip(ctx context.Context, in *CompleteTripRequest, opts ...grpc.CallOption) (*CompleteTripResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(RsCompleteTrip)
+	out := new(CompleteTripResponse)
 	err := c.cc.Invoke(ctx, TripService_CompleteTrip_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
@@ -173,9 +151,9 @@ func (c *tripServiceClient) CompleteTrip(ctx context.Context, in *RqCompleteTrip
 	return out, nil
 }
 
-func (c *tripServiceClient) GetBiddingSession(ctx context.Context, in *RqGetBiddingSession, opts ...grpc.CallOption) (*RsGetBiddingSession, error) {
+func (c *tripServiceClient) GetBiddingSession(ctx context.Context, in *BiddingSessionFilterRequest, opts ...grpc.CallOption) (*BiddingSessionResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(RsGetBiddingSession)
+	out := new(BiddingSessionResponse)
 	err := c.cc.Invoke(ctx, TripService_GetBiddingSession_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
@@ -183,80 +161,70 @@ func (c *tripServiceClient) GetBiddingSession(ctx context.Context, in *RqGetBidd
 	return out, nil
 }
 
-func (c *tripServiceClient) GetBiddingSessionsByRider(ctx context.Context, in *RqGetBiddingSessionsByRider, opts ...grpc.CallOption) (*RsGetBiddingSessionsByRider, error) {
+func (c *tripServiceClient) GetTripHistory(ctx context.Context, in *TripHistoryFilterRequest, opts ...grpc.CallOption) (*TripHistoryResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(RsGetBiddingSessionsByRider)
-	err := c.cc.Invoke(ctx, TripService_GetBiddingSessionsByRider_FullMethodName, in, out, cOpts...)
+	out := new(TripHistoryResponse)
+	err := c.cc.Invoke(ctx, TripService_GetTripHistory_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *tripServiceClient) GetBiddingSessionsByDriver(ctx context.Context, in *RqGetBiddingSessionsByDriver, opts ...grpc.CallOption) (*RsGetBiddingSessionsByDriver, error) {
+func (c *tripServiceClient) IsTripActive(ctx context.Context, in *GetTripRequest, opts ...grpc.CallOption) (*TripResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(RsGetBiddingSessionsByDriver)
-	err := c.cc.Invoke(ctx, TripService_GetBiddingSessionsByDriver_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *tripServiceClient) InstantMatch(ctx context.Context, in *RqInstantMatch, opts ...grpc.CallOption) (*RsInstantMatch, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(RsInstantMatch)
-	err := c.cc.Invoke(ctx, TripService_InstantMatch_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *tripServiceClient) GetInstantMatchStatus(ctx context.Context, in *RqGetInstantMatchStatus, opts ...grpc.CallOption) (*RsGetInstantMatchStatus, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(RsGetInstantMatchStatus)
-	err := c.cc.Invoke(ctx, TripService_GetInstantMatchStatus_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *tripServiceClient) CancelInstantMatch(ctx context.Context, in *RqCancelInstantMatch, opts ...grpc.CallOption) (*RsCancelInstantMatch, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(RsCancelInstantMatch)
-	err := c.cc.Invoke(ctx, TripService_CancelInstantMatch_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *tripServiceClient) GetTripHistoryByRider(ctx context.Context, in *RqGetTripHistoryByRider, opts ...grpc.CallOption) (*RsGetTripHistory, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(RsGetTripHistory)
-	err := c.cc.Invoke(ctx, TripService_GetTripHistoryByRider_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *tripServiceClient) GetTripHistoryByDriver(ctx context.Context, in *RqGetTripHistoryByDriver, opts ...grpc.CallOption) (*RsGetTripHistory, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(RsGetTripHistory)
-	err := c.cc.Invoke(ctx, TripService_GetTripHistoryByDriver_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *tripServiceClient) IsTripActive(ctx context.Context, in *RqGetTrip, opts ...grpc.CallOption) (*RsIsTripActive, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(RsIsTripActive)
+	out := new(TripResponse)
 	err := c.cc.Invoke(ctx, TripService_IsTripActive_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *tripServiceClient) CreateRating(ctx context.Context, in *RatingRequest, opts ...grpc.CallOption) (*RatingResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(RatingResponse)
+	err := c.cc.Invoke(ctx, TripService_CreateRating_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *tripServiceClient) GetRating(ctx context.Context, in *GetRatingRequest, opts ...grpc.CallOption) (*RatingResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(RatingResponse)
+	err := c.cc.Invoke(ctx, TripService_GetRating_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *tripServiceClient) ListRating(ctx context.Context, in *ListRatingRequest, opts ...grpc.CallOption) (*ListRatingResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(ListRatingResponse)
+	err := c.cc.Invoke(ctx, TripService_ListRating_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *tripServiceClient) DeleteRating(ctx context.Context, in *DeleteRatingRequest, opts ...grpc.CallOption) (*DeleteRatingResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(DeleteRatingResponse)
+	err := c.cc.Invoke(ctx, TripService_DeleteRating_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *tripServiceClient) UpdateRating(ctx context.Context, in *UpdateRatingRequest, opts ...grpc.CallOption) (*RatingResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(RatingResponse)
+	err := c.cc.Invoke(ctx, TripService_UpdateRating_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -267,25 +235,26 @@ func (c *tripServiceClient) IsTripActive(ctx context.Context, in *RqGetTrip, opt
 // All implementations must embed UnimplementedTripServiceServer
 // for forward compatibility.
 type TripServiceServer interface {
-	CreateTrip(context.Context, *RqTrip) (*RsTrip, error)
-	SubmitBidOrOffer(context.Context, *RqBidOrOffer) (*RsBidOrOffer, error)
-	AcceptOffer(context.Context, *RqAcceptOffer) (*RsAcceptOffer, error)
-	InstantAccept(context.Context, *RqInstantAccept) (*RsInstantAccept, error)
-	GetTrip(context.Context, *RqGetTrip) (*RsTrip, error)
-	GetActiveTrips(context.Context, *RqGetActiveTrips) (*RsGetActiveTrips, error)
-	GetActiveTripsByRider(context.Context, *RqGetActiveTripsByRider) (*RsGetActiveTrips, error)
-	AcceptTrip(context.Context, *RqAcceptTrip) (*RsAcceptTrip, error)
-	CancelTrip(context.Context, *RqCancelTrip) (*RsCancelTrip, error)
-	CompleteTrip(context.Context, *RqCompleteTrip) (*RsCompleteTrip, error)
-	GetBiddingSession(context.Context, *RqGetBiddingSession) (*RsGetBiddingSession, error)
-	GetBiddingSessionsByRider(context.Context, *RqGetBiddingSessionsByRider) (*RsGetBiddingSessionsByRider, error)
-	GetBiddingSessionsByDriver(context.Context, *RqGetBiddingSessionsByDriver) (*RsGetBiddingSessionsByDriver, error)
-	InstantMatch(context.Context, *RqInstantMatch) (*RsInstantMatch, error)
-	GetInstantMatchStatus(context.Context, *RqGetInstantMatchStatus) (*RsGetInstantMatchStatus, error)
-	CancelInstantMatch(context.Context, *RqCancelInstantMatch) (*RsCancelInstantMatch, error)
-	GetTripHistoryByRider(context.Context, *RqGetTripHistoryByRider) (*RsGetTripHistory, error)
-	GetTripHistoryByDriver(context.Context, *RqGetTripHistoryByDriver) (*RsGetTripHistory, error)
-	IsTripActive(context.Context, *RqGetTrip) (*RsIsTripActive, error)
+	// Trips
+	CreateTrip(context.Context, *TripRequest) (*TripResponse, error)
+	SubmitBidOrOffer(context.Context, *BidOrOfferRequest) (*BidOrOfferResponse, error)
+	AcceptOffer(context.Context, *AcceptOfferRequest) (*AcceptOfferResponse, error)
+	GetTrip(context.Context, *GetTripRequest) (*TripResponse, error)
+	GetActiveTrips(context.Context, *TripFilterRequest) (*ListTripResponse, error)
+	AcceptTrip(context.Context, *AcceptTripRequest) (*TripResponse, error)
+	CancelTrip(context.Context, *CancelTripRequest) (*CancelTripResponse, error)
+	CompleteTrip(context.Context, *CompleteTripRequest) (*CompleteTripResponse, error)
+	// Bidding Session
+	GetBiddingSession(context.Context, *BiddingSessionFilterRequest) (*BiddingSessionResponse, error)
+	//Trip History
+	GetTripHistory(context.Context, *TripHistoryFilterRequest) (*TripHistoryResponse, error)
+	IsTripActive(context.Context, *GetTripRequest) (*TripResponse, error)
+	//Rating
+	CreateRating(context.Context, *RatingRequest) (*RatingResponse, error)
+	GetRating(context.Context, *GetRatingRequest) (*RatingResponse, error)
+	ListRating(context.Context, *ListRatingRequest) (*ListRatingResponse, error)
+	DeleteRating(context.Context, *DeleteRatingRequest) (*DeleteRatingResponse, error)
+	UpdateRating(context.Context, *UpdateRatingRequest) (*RatingResponse, error)
 	mustEmbedUnimplementedTripServiceServer()
 }
 
@@ -296,62 +265,53 @@ type TripServiceServer interface {
 // pointer dereference when methods are called.
 type UnimplementedTripServiceServer struct{}
 
-func (UnimplementedTripServiceServer) CreateTrip(context.Context, *RqTrip) (*RsTrip, error) {
+func (UnimplementedTripServiceServer) CreateTrip(context.Context, *TripRequest) (*TripResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method CreateTrip not implemented")
 }
-func (UnimplementedTripServiceServer) SubmitBidOrOffer(context.Context, *RqBidOrOffer) (*RsBidOrOffer, error) {
+func (UnimplementedTripServiceServer) SubmitBidOrOffer(context.Context, *BidOrOfferRequest) (*BidOrOfferResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method SubmitBidOrOffer not implemented")
 }
-func (UnimplementedTripServiceServer) AcceptOffer(context.Context, *RqAcceptOffer) (*RsAcceptOffer, error) {
+func (UnimplementedTripServiceServer) AcceptOffer(context.Context, *AcceptOfferRequest) (*AcceptOfferResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method AcceptOffer not implemented")
 }
-func (UnimplementedTripServiceServer) InstantAccept(context.Context, *RqInstantAccept) (*RsInstantAccept, error) {
-	return nil, status.Error(codes.Unimplemented, "method InstantAccept not implemented")
-}
-func (UnimplementedTripServiceServer) GetTrip(context.Context, *RqGetTrip) (*RsTrip, error) {
+func (UnimplementedTripServiceServer) GetTrip(context.Context, *GetTripRequest) (*TripResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method GetTrip not implemented")
 }
-func (UnimplementedTripServiceServer) GetActiveTrips(context.Context, *RqGetActiveTrips) (*RsGetActiveTrips, error) {
+func (UnimplementedTripServiceServer) GetActiveTrips(context.Context, *TripFilterRequest) (*ListTripResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method GetActiveTrips not implemented")
 }
-func (UnimplementedTripServiceServer) GetActiveTripsByRider(context.Context, *RqGetActiveTripsByRider) (*RsGetActiveTrips, error) {
-	return nil, status.Error(codes.Unimplemented, "method GetActiveTripsByRider not implemented")
-}
-func (UnimplementedTripServiceServer) AcceptTrip(context.Context, *RqAcceptTrip) (*RsAcceptTrip, error) {
+func (UnimplementedTripServiceServer) AcceptTrip(context.Context, *AcceptTripRequest) (*TripResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method AcceptTrip not implemented")
 }
-func (UnimplementedTripServiceServer) CancelTrip(context.Context, *RqCancelTrip) (*RsCancelTrip, error) {
+func (UnimplementedTripServiceServer) CancelTrip(context.Context, *CancelTripRequest) (*CancelTripResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method CancelTrip not implemented")
 }
-func (UnimplementedTripServiceServer) CompleteTrip(context.Context, *RqCompleteTrip) (*RsCompleteTrip, error) {
+func (UnimplementedTripServiceServer) CompleteTrip(context.Context, *CompleteTripRequest) (*CompleteTripResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method CompleteTrip not implemented")
 }
-func (UnimplementedTripServiceServer) GetBiddingSession(context.Context, *RqGetBiddingSession) (*RsGetBiddingSession, error) {
+func (UnimplementedTripServiceServer) GetBiddingSession(context.Context, *BiddingSessionFilterRequest) (*BiddingSessionResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method GetBiddingSession not implemented")
 }
-func (UnimplementedTripServiceServer) GetBiddingSessionsByRider(context.Context, *RqGetBiddingSessionsByRider) (*RsGetBiddingSessionsByRider, error) {
-	return nil, status.Error(codes.Unimplemented, "method GetBiddingSessionsByRider not implemented")
+func (UnimplementedTripServiceServer) GetTripHistory(context.Context, *TripHistoryFilterRequest) (*TripHistoryResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method GetTripHistory not implemented")
 }
-func (UnimplementedTripServiceServer) GetBiddingSessionsByDriver(context.Context, *RqGetBiddingSessionsByDriver) (*RsGetBiddingSessionsByDriver, error) {
-	return nil, status.Error(codes.Unimplemented, "method GetBiddingSessionsByDriver not implemented")
-}
-func (UnimplementedTripServiceServer) InstantMatch(context.Context, *RqInstantMatch) (*RsInstantMatch, error) {
-	return nil, status.Error(codes.Unimplemented, "method InstantMatch not implemented")
-}
-func (UnimplementedTripServiceServer) GetInstantMatchStatus(context.Context, *RqGetInstantMatchStatus) (*RsGetInstantMatchStatus, error) {
-	return nil, status.Error(codes.Unimplemented, "method GetInstantMatchStatus not implemented")
-}
-func (UnimplementedTripServiceServer) CancelInstantMatch(context.Context, *RqCancelInstantMatch) (*RsCancelInstantMatch, error) {
-	return nil, status.Error(codes.Unimplemented, "method CancelInstantMatch not implemented")
-}
-func (UnimplementedTripServiceServer) GetTripHistoryByRider(context.Context, *RqGetTripHistoryByRider) (*RsGetTripHistory, error) {
-	return nil, status.Error(codes.Unimplemented, "method GetTripHistoryByRider not implemented")
-}
-func (UnimplementedTripServiceServer) GetTripHistoryByDriver(context.Context, *RqGetTripHistoryByDriver) (*RsGetTripHistory, error) {
-	return nil, status.Error(codes.Unimplemented, "method GetTripHistoryByDriver not implemented")
-}
-func (UnimplementedTripServiceServer) IsTripActive(context.Context, *RqGetTrip) (*RsIsTripActive, error) {
+func (UnimplementedTripServiceServer) IsTripActive(context.Context, *GetTripRequest) (*TripResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method IsTripActive not implemented")
+}
+func (UnimplementedTripServiceServer) CreateRating(context.Context, *RatingRequest) (*RatingResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method CreateRating not implemented")
+}
+func (UnimplementedTripServiceServer) GetRating(context.Context, *GetRatingRequest) (*RatingResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method GetRating not implemented")
+}
+func (UnimplementedTripServiceServer) ListRating(context.Context, *ListRatingRequest) (*ListRatingResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method ListRating not implemented")
+}
+func (UnimplementedTripServiceServer) DeleteRating(context.Context, *DeleteRatingRequest) (*DeleteRatingResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method DeleteRating not implemented")
+}
+func (UnimplementedTripServiceServer) UpdateRating(context.Context, *UpdateRatingRequest) (*RatingResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method UpdateRating not implemented")
 }
 func (UnimplementedTripServiceServer) mustEmbedUnimplementedTripServiceServer() {}
 func (UnimplementedTripServiceServer) testEmbeddedByValue()                     {}
@@ -375,7 +335,7 @@ func RegisterTripServiceServer(s grpc.ServiceRegistrar, srv TripServiceServer) {
 }
 
 func _TripService_CreateTrip_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(RqTrip)
+	in := new(TripRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -387,13 +347,13 @@ func _TripService_CreateTrip_Handler(srv interface{}, ctx context.Context, dec f
 		FullMethod: TripService_CreateTrip_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(TripServiceServer).CreateTrip(ctx, req.(*RqTrip))
+		return srv.(TripServiceServer).CreateTrip(ctx, req.(*TripRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _TripService_SubmitBidOrOffer_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(RqBidOrOffer)
+	in := new(BidOrOfferRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -405,13 +365,13 @@ func _TripService_SubmitBidOrOffer_Handler(srv interface{}, ctx context.Context,
 		FullMethod: TripService_SubmitBidOrOffer_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(TripServiceServer).SubmitBidOrOffer(ctx, req.(*RqBidOrOffer))
+		return srv.(TripServiceServer).SubmitBidOrOffer(ctx, req.(*BidOrOfferRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _TripService_AcceptOffer_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(RqAcceptOffer)
+	in := new(AcceptOfferRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -423,31 +383,13 @@ func _TripService_AcceptOffer_Handler(srv interface{}, ctx context.Context, dec 
 		FullMethod: TripService_AcceptOffer_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(TripServiceServer).AcceptOffer(ctx, req.(*RqAcceptOffer))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _TripService_InstantAccept_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(RqInstantAccept)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(TripServiceServer).InstantAccept(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: TripService_InstantAccept_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(TripServiceServer).InstantAccept(ctx, req.(*RqInstantAccept))
+		return srv.(TripServiceServer).AcceptOffer(ctx, req.(*AcceptOfferRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _TripService_GetTrip_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(RqGetTrip)
+	in := new(GetTripRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -459,13 +401,13 @@ func _TripService_GetTrip_Handler(srv interface{}, ctx context.Context, dec func
 		FullMethod: TripService_GetTrip_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(TripServiceServer).GetTrip(ctx, req.(*RqGetTrip))
+		return srv.(TripServiceServer).GetTrip(ctx, req.(*GetTripRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _TripService_GetActiveTrips_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(RqGetActiveTrips)
+	in := new(TripFilterRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -477,31 +419,13 @@ func _TripService_GetActiveTrips_Handler(srv interface{}, ctx context.Context, d
 		FullMethod: TripService_GetActiveTrips_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(TripServiceServer).GetActiveTrips(ctx, req.(*RqGetActiveTrips))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _TripService_GetActiveTripsByRider_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(RqGetActiveTripsByRider)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(TripServiceServer).GetActiveTripsByRider(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: TripService_GetActiveTripsByRider_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(TripServiceServer).GetActiveTripsByRider(ctx, req.(*RqGetActiveTripsByRider))
+		return srv.(TripServiceServer).GetActiveTrips(ctx, req.(*TripFilterRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _TripService_AcceptTrip_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(RqAcceptTrip)
+	in := new(AcceptTripRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -513,13 +437,13 @@ func _TripService_AcceptTrip_Handler(srv interface{}, ctx context.Context, dec f
 		FullMethod: TripService_AcceptTrip_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(TripServiceServer).AcceptTrip(ctx, req.(*RqAcceptTrip))
+		return srv.(TripServiceServer).AcceptTrip(ctx, req.(*AcceptTripRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _TripService_CancelTrip_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(RqCancelTrip)
+	in := new(CancelTripRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -531,13 +455,13 @@ func _TripService_CancelTrip_Handler(srv interface{}, ctx context.Context, dec f
 		FullMethod: TripService_CancelTrip_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(TripServiceServer).CancelTrip(ctx, req.(*RqCancelTrip))
+		return srv.(TripServiceServer).CancelTrip(ctx, req.(*CancelTripRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _TripService_CompleteTrip_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(RqCompleteTrip)
+	in := new(CompleteTripRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -549,13 +473,13 @@ func _TripService_CompleteTrip_Handler(srv interface{}, ctx context.Context, dec
 		FullMethod: TripService_CompleteTrip_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(TripServiceServer).CompleteTrip(ctx, req.(*RqCompleteTrip))
+		return srv.(TripServiceServer).CompleteTrip(ctx, req.(*CompleteTripRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _TripService_GetBiddingSession_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(RqGetBiddingSession)
+	in := new(BiddingSessionFilterRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -567,139 +491,31 @@ func _TripService_GetBiddingSession_Handler(srv interface{}, ctx context.Context
 		FullMethod: TripService_GetBiddingSession_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(TripServiceServer).GetBiddingSession(ctx, req.(*RqGetBiddingSession))
+		return srv.(TripServiceServer).GetBiddingSession(ctx, req.(*BiddingSessionFilterRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _TripService_GetBiddingSessionsByRider_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(RqGetBiddingSessionsByRider)
+func _TripService_GetTripHistory_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(TripHistoryFilterRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(TripServiceServer).GetBiddingSessionsByRider(ctx, in)
+		return srv.(TripServiceServer).GetTripHistory(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: TripService_GetBiddingSessionsByRider_FullMethodName,
+		FullMethod: TripService_GetTripHistory_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(TripServiceServer).GetBiddingSessionsByRider(ctx, req.(*RqGetBiddingSessionsByRider))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _TripService_GetBiddingSessionsByDriver_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(RqGetBiddingSessionsByDriver)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(TripServiceServer).GetBiddingSessionsByDriver(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: TripService_GetBiddingSessionsByDriver_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(TripServiceServer).GetBiddingSessionsByDriver(ctx, req.(*RqGetBiddingSessionsByDriver))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _TripService_InstantMatch_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(RqInstantMatch)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(TripServiceServer).InstantMatch(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: TripService_InstantMatch_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(TripServiceServer).InstantMatch(ctx, req.(*RqInstantMatch))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _TripService_GetInstantMatchStatus_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(RqGetInstantMatchStatus)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(TripServiceServer).GetInstantMatchStatus(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: TripService_GetInstantMatchStatus_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(TripServiceServer).GetInstantMatchStatus(ctx, req.(*RqGetInstantMatchStatus))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _TripService_CancelInstantMatch_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(RqCancelInstantMatch)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(TripServiceServer).CancelInstantMatch(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: TripService_CancelInstantMatch_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(TripServiceServer).CancelInstantMatch(ctx, req.(*RqCancelInstantMatch))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _TripService_GetTripHistoryByRider_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(RqGetTripHistoryByRider)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(TripServiceServer).GetTripHistoryByRider(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: TripService_GetTripHistoryByRider_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(TripServiceServer).GetTripHistoryByRider(ctx, req.(*RqGetTripHistoryByRider))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _TripService_GetTripHistoryByDriver_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(RqGetTripHistoryByDriver)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(TripServiceServer).GetTripHistoryByDriver(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: TripService_GetTripHistoryByDriver_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(TripServiceServer).GetTripHistoryByDriver(ctx, req.(*RqGetTripHistoryByDriver))
+		return srv.(TripServiceServer).GetTripHistory(ctx, req.(*TripHistoryFilterRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _TripService_IsTripActive_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(RqGetTrip)
+	in := new(GetTripRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -711,7 +527,97 @@ func _TripService_IsTripActive_Handler(srv interface{}, ctx context.Context, dec
 		FullMethod: TripService_IsTripActive_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(TripServiceServer).IsTripActive(ctx, req.(*RqGetTrip))
+		return srv.(TripServiceServer).IsTripActive(ctx, req.(*GetTripRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _TripService_CreateRating_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(RatingRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(TripServiceServer).CreateRating(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: TripService_CreateRating_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(TripServiceServer).CreateRating(ctx, req.(*RatingRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _TripService_GetRating_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetRatingRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(TripServiceServer).GetRating(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: TripService_GetRating_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(TripServiceServer).GetRating(ctx, req.(*GetRatingRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _TripService_ListRating_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListRatingRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(TripServiceServer).ListRating(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: TripService_ListRating_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(TripServiceServer).ListRating(ctx, req.(*ListRatingRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _TripService_DeleteRating_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DeleteRatingRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(TripServiceServer).DeleteRating(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: TripService_DeleteRating_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(TripServiceServer).DeleteRating(ctx, req.(*DeleteRatingRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _TripService_UpdateRating_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdateRatingRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(TripServiceServer).UpdateRating(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: TripService_UpdateRating_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(TripServiceServer).UpdateRating(ctx, req.(*UpdateRatingRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -736,20 +642,12 @@ var TripService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _TripService_AcceptOffer_Handler,
 		},
 		{
-			MethodName: "InstantAccept",
-			Handler:    _TripService_InstantAccept_Handler,
-		},
-		{
 			MethodName: "GetTrip",
 			Handler:    _TripService_GetTrip_Handler,
 		},
 		{
 			MethodName: "GetActiveTrips",
 			Handler:    _TripService_GetActiveTrips_Handler,
-		},
-		{
-			MethodName: "GetActiveTripsByRider",
-			Handler:    _TripService_GetActiveTripsByRider_Handler,
 		},
 		{
 			MethodName: "AcceptTrip",
@@ -768,328 +666,32 @@ var TripService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _TripService_GetBiddingSession_Handler,
 		},
 		{
-			MethodName: "GetBiddingSessionsByRider",
-			Handler:    _TripService_GetBiddingSessionsByRider_Handler,
-		},
-		{
-			MethodName: "GetBiddingSessionsByDriver",
-			Handler:    _TripService_GetBiddingSessionsByDriver_Handler,
-		},
-		{
-			MethodName: "InstantMatch",
-			Handler:    _TripService_InstantMatch_Handler,
-		},
-		{
-			MethodName: "GetInstantMatchStatus",
-			Handler:    _TripService_GetInstantMatchStatus_Handler,
-		},
-		{
-			MethodName: "CancelInstantMatch",
-			Handler:    _TripService_CancelInstantMatch_Handler,
-		},
-		{
-			MethodName: "GetTripHistoryByRider",
-			Handler:    _TripService_GetTripHistoryByRider_Handler,
-		},
-		{
-			MethodName: "GetTripHistoryByDriver",
-			Handler:    _TripService_GetTripHistoryByDriver_Handler,
+			MethodName: "GetTripHistory",
+			Handler:    _TripService_GetTripHistory_Handler,
 		},
 		{
 			MethodName: "IsTripActive",
 			Handler:    _TripService_IsTripActive_Handler,
 		},
-	},
-	Streams:  []grpc.StreamDesc{},
-	Metadata: "trip/trip.proto",
-}
-
-const (
-	NegotiationService_CreateNegotiationSession_FullMethodName = "/trip.NegotiationService/CreateNegotiationSession"
-	NegotiationService_SubmitOffer_FullMethodName              = "/trip.NegotiationService/SubmitOffer"
-	NegotiationService_RespondToOffer_FullMethodName           = "/trip.NegotiationService/RespondToOffer"
-	NegotiationService_DriverRespondToCounter_FullMethodName   = "/trip.NegotiationService/DriverRespondToCounter"
-	NegotiationService_GetNegotiationSession_FullMethodName    = "/trip.NegotiationService/GetNegotiationSession"
-	NegotiationService_CancelNegotiation_FullMethodName        = "/trip.NegotiationService/CancelNegotiation"
-)
-
-// NegotiationServiceClient is the client API for NegotiationService service.
-//
-// For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
-type NegotiationServiceClient interface {
-	CreateNegotiationSession(ctx context.Context, in *RqCreateNegotiationSession, opts ...grpc.CallOption) (*RsCreateNegotiationSession, error)
-	SubmitOffer(ctx context.Context, in *RqSubmitOffer, opts ...grpc.CallOption) (*RsSubmitOffer, error)
-	RespondToOffer(ctx context.Context, in *RqRespondToOffer, opts ...grpc.CallOption) (*RsRespondToOffer, error)
-	DriverRespondToCounter(ctx context.Context, in *RqDriverRespondToCounter, opts ...grpc.CallOption) (*RsDriverRespondToCounter, error)
-	GetNegotiationSession(ctx context.Context, in *RqGetNegotiationSession, opts ...grpc.CallOption) (*RsGetNegotiationSession, error)
-	CancelNegotiation(ctx context.Context, in *RqCancelNegotiation, opts ...grpc.CallOption) (*RsCancelNegotiation, error)
-}
-
-type negotiationServiceClient struct {
-	cc grpc.ClientConnInterface
-}
-
-func NewNegotiationServiceClient(cc grpc.ClientConnInterface) NegotiationServiceClient {
-	return &negotiationServiceClient{cc}
-}
-
-func (c *negotiationServiceClient) CreateNegotiationSession(ctx context.Context, in *RqCreateNegotiationSession, opts ...grpc.CallOption) (*RsCreateNegotiationSession, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(RsCreateNegotiationSession)
-	err := c.cc.Invoke(ctx, NegotiationService_CreateNegotiationSession_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *negotiationServiceClient) SubmitOffer(ctx context.Context, in *RqSubmitOffer, opts ...grpc.CallOption) (*RsSubmitOffer, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(RsSubmitOffer)
-	err := c.cc.Invoke(ctx, NegotiationService_SubmitOffer_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *negotiationServiceClient) RespondToOffer(ctx context.Context, in *RqRespondToOffer, opts ...grpc.CallOption) (*RsRespondToOffer, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(RsRespondToOffer)
-	err := c.cc.Invoke(ctx, NegotiationService_RespondToOffer_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *negotiationServiceClient) DriverRespondToCounter(ctx context.Context, in *RqDriverRespondToCounter, opts ...grpc.CallOption) (*RsDriverRespondToCounter, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(RsDriverRespondToCounter)
-	err := c.cc.Invoke(ctx, NegotiationService_DriverRespondToCounter_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *negotiationServiceClient) GetNegotiationSession(ctx context.Context, in *RqGetNegotiationSession, opts ...grpc.CallOption) (*RsGetNegotiationSession, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(RsGetNegotiationSession)
-	err := c.cc.Invoke(ctx, NegotiationService_GetNegotiationSession_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *negotiationServiceClient) CancelNegotiation(ctx context.Context, in *RqCancelNegotiation, opts ...grpc.CallOption) (*RsCancelNegotiation, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(RsCancelNegotiation)
-	err := c.cc.Invoke(ctx, NegotiationService_CancelNegotiation_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-// NegotiationServiceServer is the server API for NegotiationService service.
-// All implementations must embed UnimplementedNegotiationServiceServer
-// for forward compatibility.
-type NegotiationServiceServer interface {
-	CreateNegotiationSession(context.Context, *RqCreateNegotiationSession) (*RsCreateNegotiationSession, error)
-	SubmitOffer(context.Context, *RqSubmitOffer) (*RsSubmitOffer, error)
-	RespondToOffer(context.Context, *RqRespondToOffer) (*RsRespondToOffer, error)
-	DriverRespondToCounter(context.Context, *RqDriverRespondToCounter) (*RsDriverRespondToCounter, error)
-	GetNegotiationSession(context.Context, *RqGetNegotiationSession) (*RsGetNegotiationSession, error)
-	CancelNegotiation(context.Context, *RqCancelNegotiation) (*RsCancelNegotiation, error)
-	mustEmbedUnimplementedNegotiationServiceServer()
-}
-
-// UnimplementedNegotiationServiceServer must be embedded to have
-// forward compatible implementations.
-//
-// NOTE: this should be embedded by value instead of pointer to avoid a nil
-// pointer dereference when methods are called.
-type UnimplementedNegotiationServiceServer struct{}
-
-func (UnimplementedNegotiationServiceServer) CreateNegotiationSession(context.Context, *RqCreateNegotiationSession) (*RsCreateNegotiationSession, error) {
-	return nil, status.Error(codes.Unimplemented, "method CreateNegotiationSession not implemented")
-}
-func (UnimplementedNegotiationServiceServer) SubmitOffer(context.Context, *RqSubmitOffer) (*RsSubmitOffer, error) {
-	return nil, status.Error(codes.Unimplemented, "method SubmitOffer not implemented")
-}
-func (UnimplementedNegotiationServiceServer) RespondToOffer(context.Context, *RqRespondToOffer) (*RsRespondToOffer, error) {
-	return nil, status.Error(codes.Unimplemented, "method RespondToOffer not implemented")
-}
-func (UnimplementedNegotiationServiceServer) DriverRespondToCounter(context.Context, *RqDriverRespondToCounter) (*RsDriverRespondToCounter, error) {
-	return nil, status.Error(codes.Unimplemented, "method DriverRespondToCounter not implemented")
-}
-func (UnimplementedNegotiationServiceServer) GetNegotiationSession(context.Context, *RqGetNegotiationSession) (*RsGetNegotiationSession, error) {
-	return nil, status.Error(codes.Unimplemented, "method GetNegotiationSession not implemented")
-}
-func (UnimplementedNegotiationServiceServer) CancelNegotiation(context.Context, *RqCancelNegotiation) (*RsCancelNegotiation, error) {
-	return nil, status.Error(codes.Unimplemented, "method CancelNegotiation not implemented")
-}
-func (UnimplementedNegotiationServiceServer) mustEmbedUnimplementedNegotiationServiceServer() {}
-func (UnimplementedNegotiationServiceServer) testEmbeddedByValue()                            {}
-
-// UnsafeNegotiationServiceServer may be embedded to opt out of forward compatibility for this service.
-// Use of this interface is not recommended, as added methods to NegotiationServiceServer will
-// result in compilation errors.
-type UnsafeNegotiationServiceServer interface {
-	mustEmbedUnimplementedNegotiationServiceServer()
-}
-
-func RegisterNegotiationServiceServer(s grpc.ServiceRegistrar, srv NegotiationServiceServer) {
-	// If the following call panics, it indicates UnimplementedNegotiationServiceServer was
-	// embedded by pointer and is nil.  This will cause panics if an
-	// unimplemented method is ever invoked, so we test this at initialization
-	// time to prevent it from happening at runtime later due to I/O.
-	if t, ok := srv.(interface{ testEmbeddedByValue() }); ok {
-		t.testEmbeddedByValue()
-	}
-	s.RegisterService(&NegotiationService_ServiceDesc, srv)
-}
-
-func _NegotiationService_CreateNegotiationSession_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(RqCreateNegotiationSession)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(NegotiationServiceServer).CreateNegotiationSession(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: NegotiationService_CreateNegotiationSession_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(NegotiationServiceServer).CreateNegotiationSession(ctx, req.(*RqCreateNegotiationSession))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _NegotiationService_SubmitOffer_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(RqSubmitOffer)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(NegotiationServiceServer).SubmitOffer(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: NegotiationService_SubmitOffer_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(NegotiationServiceServer).SubmitOffer(ctx, req.(*RqSubmitOffer))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _NegotiationService_RespondToOffer_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(RqRespondToOffer)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(NegotiationServiceServer).RespondToOffer(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: NegotiationService_RespondToOffer_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(NegotiationServiceServer).RespondToOffer(ctx, req.(*RqRespondToOffer))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _NegotiationService_DriverRespondToCounter_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(RqDriverRespondToCounter)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(NegotiationServiceServer).DriverRespondToCounter(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: NegotiationService_DriverRespondToCounter_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(NegotiationServiceServer).DriverRespondToCounter(ctx, req.(*RqDriverRespondToCounter))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _NegotiationService_GetNegotiationSession_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(RqGetNegotiationSession)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(NegotiationServiceServer).GetNegotiationSession(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: NegotiationService_GetNegotiationSession_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(NegotiationServiceServer).GetNegotiationSession(ctx, req.(*RqGetNegotiationSession))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _NegotiationService_CancelNegotiation_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(RqCancelNegotiation)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(NegotiationServiceServer).CancelNegotiation(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: NegotiationService_CancelNegotiation_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(NegotiationServiceServer).CancelNegotiation(ctx, req.(*RqCancelNegotiation))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-// NegotiationService_ServiceDesc is the grpc.ServiceDesc for NegotiationService service.
-// It's only intended for direct use with grpc.RegisterService,
-// and not to be introspected or modified (even as a copy)
-var NegotiationService_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "trip.NegotiationService",
-	HandlerType: (*NegotiationServiceServer)(nil),
-	Methods: []grpc.MethodDesc{
 		{
-			MethodName: "CreateNegotiationSession",
-			Handler:    _NegotiationService_CreateNegotiationSession_Handler,
+			MethodName: "CreateRating",
+			Handler:    _TripService_CreateRating_Handler,
 		},
 		{
-			MethodName: "SubmitOffer",
-			Handler:    _NegotiationService_SubmitOffer_Handler,
+			MethodName: "GetRating",
+			Handler:    _TripService_GetRating_Handler,
 		},
 		{
-			MethodName: "RespondToOffer",
-			Handler:    _NegotiationService_RespondToOffer_Handler,
+			MethodName: "ListRating",
+			Handler:    _TripService_ListRating_Handler,
 		},
 		{
-			MethodName: "DriverRespondToCounter",
-			Handler:    _NegotiationService_DriverRespondToCounter_Handler,
+			MethodName: "DeleteRating",
+			Handler:    _TripService_DeleteRating_Handler,
 		},
 		{
-			MethodName: "GetNegotiationSession",
-			Handler:    _NegotiationService_GetNegotiationSession_Handler,
-		},
-		{
-			MethodName: "CancelNegotiation",
-			Handler:    _NegotiationService_CancelNegotiation_Handler,
+			MethodName: "UpdateRating",
+			Handler:    _TripService_UpdateRating_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

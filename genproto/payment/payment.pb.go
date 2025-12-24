@@ -22,27 +22,27 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
-type RqEnum struct {
+type EnumRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	EnumType      string                 `protobuf:"bytes,1,opt,name=enum_type,json=enumType,proto3" json:"enum_type,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *RqEnum) Reset() {
-	*x = RqEnum{}
+func (x *EnumRequest) Reset() {
+	*x = EnumRequest{}
 	mi := &file_payment_payment_proto_msgTypes[0]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *RqEnum) String() string {
+func (x *EnumRequest) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*RqEnum) ProtoMessage() {}
+func (*EnumRequest) ProtoMessage() {}
 
-func (x *RqEnum) ProtoReflect() protoreflect.Message {
+func (x *EnumRequest) ProtoReflect() protoreflect.Message {
 	mi := &file_payment_payment_proto_msgTypes[0]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -54,19 +54,19 @@ func (x *RqEnum) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use RqEnum.ProtoReflect.Descriptor instead.
-func (*RqEnum) Descriptor() ([]byte, []int) {
+// Deprecated: Use EnumRequest.ProtoReflect.Descriptor instead.
+func (*EnumRequest) Descriptor() ([]byte, []int) {
 	return file_payment_payment_proto_rawDescGZIP(), []int{0}
 }
 
-func (x *RqEnum) GetEnumType() string {
+func (x *EnumRequest) GetEnumType() string {
 	if x != nil {
 		return x.EnumType
 	}
 	return ""
 }
 
-// ---------- ENUM VALUE REPRESENTATION ----------
+// Enum value representation
 type Enum struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Id            int32                  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
@@ -136,27 +136,27 @@ func (x *Enum) GetCategory() string {
 }
 
 // Enum response
-type RsEnum struct {
+type EnumResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Enum          []*Enum                `protobuf:"bytes,1,rep,name=enum,proto3" json:"enum,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *RsEnum) Reset() {
-	*x = RsEnum{}
+func (x *EnumResponse) Reset() {
+	*x = EnumResponse{}
 	mi := &file_payment_payment_proto_msgTypes[2]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *RsEnum) String() string {
+func (x *EnumResponse) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*RsEnum) ProtoMessage() {}
+func (*EnumResponse) ProtoMessage() {}
 
-func (x *RsEnum) ProtoReflect() protoreflect.Message {
+func (x *EnumResponse) ProtoReflect() protoreflect.Message {
 	mi := &file_payment_payment_proto_msgTypes[2]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -168,12 +168,12 @@ func (x *RsEnum) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use RsEnum.ProtoReflect.Descriptor instead.
-func (*RsEnum) Descriptor() ([]byte, []int) {
+// Deprecated: Use EnumResponse.ProtoReflect.Descriptor instead.
+func (*EnumResponse) Descriptor() ([]byte, []int) {
 	return file_payment_payment_proto_rawDescGZIP(), []int{2}
 }
 
-func (x *RsEnum) GetEnum() []*Enum {
+func (x *EnumResponse) GetEnum() []*Enum {
 	if x != nil {
 		return x.Enum
 	}
@@ -190,8 +190,8 @@ type Payment struct {
 	Amount               float64                `protobuf:"fixed64,5,opt,name=amount,proto3" json:"amount,omitempty"`
 	CommissionAmount     float64                `protobuf:"fixed64,6,opt,name=commission_amount,json=commissionAmount,proto3" json:"commission_amount,omitempty"`
 	DriverEarning        float64                `protobuf:"fixed64,7,opt,name=driver_earning,json=driverEarning,proto3" json:"driver_earning,omitempty"`
-	PaymentMethod        *RsEnum                `protobuf:"bytes,8,opt,name=payment_method,json=paymentMethod,proto3" json:"payment_method,omitempty"`
-	Status               *RsEnum                `protobuf:"bytes,9,opt,name=status,proto3" json:"status,omitempty"`
+	PaymentMethod        *EnumResponse          `protobuf:"bytes,8,opt,name=payment_method,json=paymentMethod,proto3" json:"payment_method,omitempty"`
+	Status               *EnumResponse          `protobuf:"bytes,9,opt,name=status,proto3" json:"status,omitempty"`
 	GatewayTransactionId string                 `protobuf:"bytes,10,opt,name=gateway_transaction_id,json=gatewayTransactionId,proto3" json:"gateway_transaction_id,omitempty"`
 	GatewayResponse      string                 `protobuf:"bytes,11,opt,name=gateway_response,json=gatewayResponse,proto3" json:"gateway_response,omitempty"`
 	ProcessedAt          *timestamppb.Timestamp `protobuf:"bytes,12,opt,name=processed_at,json=processedAt,proto3" json:"processed_at,omitempty"`
@@ -285,14 +285,14 @@ func (x *Payment) GetDriverEarning() float64 {
 	return 0
 }
 
-func (x *Payment) GetPaymentMethod() *RsEnum {
+func (x *Payment) GetPaymentMethod() *EnumResponse {
 	if x != nil {
 		return x.PaymentMethod
 	}
 	return nil
 }
 
-func (x *Payment) GetStatus() *RsEnum {
+func (x *Payment) GetStatus() *EnumResponse {
 	if x != nil {
 		return x.Status
 	}
@@ -375,9 +375,9 @@ type Transaction struct {
 	Id                   string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
 	PaymentId            string                 `protobuf:"bytes,2,opt,name=payment_id,json=paymentId,proto3" json:"payment_id,omitempty"`
 	GatewayTransactionId string                 `protobuf:"bytes,3,opt,name=gateway_transaction_id,json=gatewayTransactionId,proto3" json:"gateway_transaction_id,omitempty"`
-	Type                 *RsEnum                `protobuf:"bytes,4,opt,name=type,proto3" json:"type,omitempty"`
+	Type                 *EnumResponse          `protobuf:"bytes,4,opt,name=type,proto3" json:"type,omitempty"`
 	Amount               float64                `protobuf:"fixed64,5,opt,name=amount,proto3" json:"amount,omitempty"`
-	Status               *RsEnum                `protobuf:"bytes,6,opt,name=status,proto3" json:"status,omitempty"`
+	Status               *EnumResponse          `protobuf:"bytes,6,opt,name=status,proto3" json:"status,omitempty"`
 	GatewayResponse      string                 `protobuf:"bytes,7,opt,name=gateway_response,json=gatewayResponse,proto3" json:"gateway_response,omitempty"`
 	ProcessedAt          *timestamppb.Timestamp `protobuf:"bytes,8,opt,name=processed_at,json=processedAt,proto3" json:"processed_at,omitempty"`
 	FailureReason        string                 `protobuf:"bytes,9,opt,name=failure_reason,json=failureReason,proto3" json:"failure_reason,omitempty"`
@@ -439,7 +439,7 @@ func (x *Transaction) GetGatewayTransactionId() string {
 	return ""
 }
 
-func (x *Transaction) GetType() *RsEnum {
+func (x *Transaction) GetType() *EnumResponse {
 	if x != nil {
 		return x.Type
 	}
@@ -453,7 +453,7 @@ func (x *Transaction) GetAmount() float64 {
 	return 0
 }
 
-func (x *Transaction) GetStatus() *RsEnum {
+func (x *Transaction) GetStatus() *EnumResponse {
 	if x != nil {
 		return x.Status
 	}
@@ -508,7 +508,7 @@ type Refund struct {
 	Id              string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
 	PaymentId       string                 `protobuf:"bytes,2,opt,name=payment_id,json=paymentId,proto3" json:"payment_id,omitempty"`
 	Amount          float64                `protobuf:"fixed64,3,opt,name=amount,proto3" json:"amount,omitempty"`
-	Status          *RsEnum                `protobuf:"bytes,4,opt,name=status,proto3" json:"status,omitempty"`
+	Status          *EnumResponse          `protobuf:"bytes,4,opt,name=status,proto3" json:"status,omitempty"`
 	Reason          string                 `protobuf:"bytes,5,opt,name=reason,proto3" json:"reason,omitempty"`
 	GatewayRefundId string                 `protobuf:"bytes,6,opt,name=gateway_refund_id,json=gatewayRefundId,proto3" json:"gateway_refund_id,omitempty"`
 	GatewayResponse string                 `protobuf:"bytes,7,opt,name=gateway_response,json=gatewayResponse,proto3" json:"gateway_response,omitempty"`
@@ -572,7 +572,7 @@ func (x *Refund) GetAmount() float64 {
 	return 0
 }
 
-func (x *Refund) GetStatus() *RsEnum {
+func (x *Refund) GetStatus() *EnumResponse {
 	if x != nil {
 		return x.Status
 	}
@@ -640,10 +640,10 @@ type Wallet struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
 	UserId        string                 `protobuf:"bytes,2,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
-	UserType      *RsEnum                `protobuf:"bytes,3,opt,name=user_type,json=userType,proto3" json:"user_type,omitempty"`
+	UserType      *EnumResponse          `protobuf:"bytes,3,opt,name=user_type,json=userType,proto3" json:"user_type,omitempty"`
 	Balance       float64                `protobuf:"fixed64,4,opt,name=balance,proto3" json:"balance,omitempty"`
 	FrozenBalance float64                `protobuf:"fixed64,5,opt,name=frozen_balance,json=frozenBalance,proto3" json:"frozen_balance,omitempty"`
-	Status        *RsEnum                `protobuf:"bytes,6,opt,name=status,proto3" json:"status,omitempty"`
+	Status        *EnumResponse          `protobuf:"bytes,6,opt,name=status,proto3" json:"status,omitempty"`
 	Currency      string                 `protobuf:"bytes,7,opt,name=currency,proto3" json:"currency,omitempty"`
 	CreatedAt     *timestamppb.Timestamp `protobuf:"bytes,8,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
 	UpdatedAt     *timestamppb.Timestamp `protobuf:"bytes,9,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at,omitempty"`
@@ -695,7 +695,7 @@ func (x *Wallet) GetUserId() string {
 	return ""
 }
 
-func (x *Wallet) GetUserType() *RsEnum {
+func (x *Wallet) GetUserType() *EnumResponse {
 	if x != nil {
 		return x.UserType
 	}
@@ -716,7 +716,7 @@ func (x *Wallet) GetFrozenBalance() float64 {
 	return 0
 }
 
-func (x *Wallet) GetStatus() *RsEnum {
+func (x *Wallet) GetStatus() *EnumResponse {
 	if x != nil {
 		return x.Status
 	}
@@ -749,7 +749,7 @@ type WalletTransaction struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
 	WalletId      string                 `protobuf:"bytes,2,opt,name=wallet_id,json=walletId,proto3" json:"wallet_id,omitempty"`
-	Type          *RsEnum                `protobuf:"bytes,3,opt,name=type,proto3" json:"type,omitempty"`
+	Type          *EnumResponse          `protobuf:"bytes,3,opt,name=type,proto3" json:"type,omitempty"`
 	Amount        float64                `protobuf:"fixed64,4,opt,name=amount,proto3" json:"amount,omitempty"`
 	BalanceBefore float64                `protobuf:"fixed64,5,opt,name=balance_before,json=balanceBefore,proto3" json:"balance_before,omitempty"`
 	BalanceAfter  float64                `protobuf:"fixed64,6,opt,name=balance_after,json=balanceAfter,proto3" json:"balance_after,omitempty"`
@@ -806,7 +806,7 @@ func (x *WalletTransaction) GetWalletId() string {
 	return ""
 }
 
-func (x *WalletTransaction) GetType() *RsEnum {
+func (x *WalletTransaction) GetType() *EnumResponse {
 	if x != nil {
 		return x.Type
 	}
@@ -869,34 +869,34 @@ func (x *WalletTransaction) GetUpdatedAt() *timestamppb.Timestamp {
 	return nil
 }
 
-// RqProcessPayment
-type RqProcessPayment struct {
+// ProcessPayment
+type ProcessPaymentRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	TripId        string                 `protobuf:"bytes,1,opt,name=trip_id,json=tripId,proto3" json:"trip_id,omitempty"`
 	RiderId       string                 `protobuf:"bytes,2,opt,name=rider_id,json=riderId,proto3" json:"rider_id,omitempty"`
 	DriverId      string                 `protobuf:"bytes,3,opt,name=driver_id,json=driverId,proto3" json:"driver_id,omitempty"`
 	Amount        float64                `protobuf:"fixed64,4,opt,name=amount,proto3" json:"amount,omitempty"`
-	PaymentMethod *RqEnum                `protobuf:"bytes,5,opt,name=payment_method,json=paymentMethod,proto3" json:"payment_method,omitempty"`
+	PaymentMethod *EnumRequest           `protobuf:"bytes,5,opt,name=payment_method,json=paymentMethod,proto3" json:"payment_method,omitempty"`
 	Currency      string                 `protobuf:"bytes,6,opt,name=currency,proto3" json:"currency,omitempty"`
 	Metadata      map[string]string      `protobuf:"bytes,7,rep,name=metadata,proto3" json:"metadata,omitempty" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"bytes,2,opt,name=value"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *RqProcessPayment) Reset() {
-	*x = RqProcessPayment{}
+func (x *ProcessPaymentRequest) Reset() {
+	*x = ProcessPaymentRequest{}
 	mi := &file_payment_payment_proto_msgTypes[8]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *RqProcessPayment) String() string {
+func (x *ProcessPaymentRequest) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*RqProcessPayment) ProtoMessage() {}
+func (*ProcessPaymentRequest) ProtoMessage() {}
 
-func (x *RqProcessPayment) ProtoReflect() protoreflect.Message {
+func (x *ProcessPaymentRequest) ProtoReflect() protoreflect.Message {
 	mi := &file_payment_payment_proto_msgTypes[8]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -908,62 +908,61 @@ func (x *RqProcessPayment) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use RqProcessPayment.ProtoReflect.Descriptor instead.
-func (*RqProcessPayment) Descriptor() ([]byte, []int) {
+// Deprecated: Use ProcessPaymentRequest.ProtoReflect.Descriptor instead.
+func (*ProcessPaymentRequest) Descriptor() ([]byte, []int) {
 	return file_payment_payment_proto_rawDescGZIP(), []int{8}
 }
 
-func (x *RqProcessPayment) GetTripId() string {
+func (x *ProcessPaymentRequest) GetTripId() string {
 	if x != nil {
 		return x.TripId
 	}
 	return ""
 }
 
-func (x *RqProcessPayment) GetRiderId() string {
+func (x *ProcessPaymentRequest) GetRiderId() string {
 	if x != nil {
 		return x.RiderId
 	}
 	return ""
 }
 
-func (x *RqProcessPayment) GetDriverId() string {
+func (x *ProcessPaymentRequest) GetDriverId() string {
 	if x != nil {
 		return x.DriverId
 	}
 	return ""
 }
 
-func (x *RqProcessPayment) GetAmount() float64 {
+func (x *ProcessPaymentRequest) GetAmount() float64 {
 	if x != nil {
 		return x.Amount
 	}
 	return 0
 }
 
-func (x *RqProcessPayment) GetPaymentMethod() *RqEnum {
+func (x *ProcessPaymentRequest) GetPaymentMethod() *EnumRequest {
 	if x != nil {
 		return x.PaymentMethod
 	}
 	return nil
 }
 
-func (x *RqProcessPayment) GetCurrency() string {
+func (x *ProcessPaymentRequest) GetCurrency() string {
 	if x != nil {
 		return x.Currency
 	}
 	return ""
 }
 
-func (x *RqProcessPayment) GetMetadata() map[string]string {
+func (x *ProcessPaymentRequest) GetMetadata() map[string]string {
 	if x != nil {
 		return x.Metadata
 	}
 	return nil
 }
 
-// RsProcessPayment
-type RsProcessPayment struct {
+type ProcessPaymentResponse struct {
 	state                protoimpl.MessageState `protogen:"open.v1"`
 	Success              bool                   `protobuf:"varint,1,opt,name=success,proto3" json:"success,omitempty"`
 	Message              string                 `protobuf:"bytes,2,opt,name=message,proto3" json:"message,omitempty"`
@@ -974,20 +973,20 @@ type RsProcessPayment struct {
 	sizeCache            protoimpl.SizeCache
 }
 
-func (x *RsProcessPayment) Reset() {
-	*x = RsProcessPayment{}
+func (x *ProcessPaymentResponse) Reset() {
+	*x = ProcessPaymentResponse{}
 	mi := &file_payment_payment_proto_msgTypes[9]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *RsProcessPayment) String() string {
+func (x *ProcessPaymentResponse) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*RsProcessPayment) ProtoMessage() {}
+func (*ProcessPaymentResponse) ProtoMessage() {}
 
-func (x *RsProcessPayment) ProtoReflect() protoreflect.Message {
+func (x *ProcessPaymentResponse) ProtoReflect() protoreflect.Message {
 	mi := &file_payment_payment_proto_msgTypes[9]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -999,48 +998,48 @@ func (x *RsProcessPayment) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use RsProcessPayment.ProtoReflect.Descriptor instead.
-func (*RsProcessPayment) Descriptor() ([]byte, []int) {
+// Deprecated: Use ProcessPaymentResponse.ProtoReflect.Descriptor instead.
+func (*ProcessPaymentResponse) Descriptor() ([]byte, []int) {
 	return file_payment_payment_proto_rawDescGZIP(), []int{9}
 }
 
-func (x *RsProcessPayment) GetSuccess() bool {
+func (x *ProcessPaymentResponse) GetSuccess() bool {
 	if x != nil {
 		return x.Success
 	}
 	return false
 }
 
-func (x *RsProcessPayment) GetMessage() string {
+func (x *ProcessPaymentResponse) GetMessage() string {
 	if x != nil {
 		return x.Message
 	}
 	return ""
 }
 
-func (x *RsProcessPayment) GetPayment() *Payment {
+func (x *ProcessPaymentResponse) GetPayment() *Payment {
 	if x != nil {
 		return x.Payment
 	}
 	return nil
 }
 
-func (x *RsProcessPayment) GetGatewayTransactionId() string {
+func (x *ProcessPaymentResponse) GetGatewayTransactionId() string {
 	if x != nil {
 		return x.GatewayTransactionId
 	}
 	return ""
 }
 
-func (x *RsProcessPayment) GetPaymentUrl() string {
+func (x *ProcessPaymentResponse) GetPaymentUrl() string {
 	if x != nil {
 		return x.PaymentUrl
 	}
 	return ""
 }
 
-// RqGetPaymentStatus
-type RqGetPaymentStatus struct {
+// GetPaymentStatus
+type GetPaymentStatusRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	PaymentId     string                 `protobuf:"bytes,1,opt,name=payment_id,json=paymentId,proto3" json:"payment_id,omitempty"`
 	TripId        string                 `protobuf:"bytes,2,opt,name=trip_id,json=tripId,proto3" json:"trip_id,omitempty"` // Alternative identifier
@@ -1048,20 +1047,20 @@ type RqGetPaymentStatus struct {
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *RqGetPaymentStatus) Reset() {
-	*x = RqGetPaymentStatus{}
+func (x *GetPaymentStatusRequest) Reset() {
+	*x = GetPaymentStatusRequest{}
 	mi := &file_payment_payment_proto_msgTypes[10]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *RqGetPaymentStatus) String() string {
+func (x *GetPaymentStatusRequest) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*RqGetPaymentStatus) ProtoMessage() {}
+func (*GetPaymentStatusRequest) ProtoMessage() {}
 
-func (x *RqGetPaymentStatus) ProtoReflect() protoreflect.Message {
+func (x *GetPaymentStatusRequest) ProtoReflect() protoreflect.Message {
 	mi := &file_payment_payment_proto_msgTypes[10]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -1073,27 +1072,26 @@ func (x *RqGetPaymentStatus) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use RqGetPaymentStatus.ProtoReflect.Descriptor instead.
-func (*RqGetPaymentStatus) Descriptor() ([]byte, []int) {
+// Deprecated: Use GetPaymentStatusRequest.ProtoReflect.Descriptor instead.
+func (*GetPaymentStatusRequest) Descriptor() ([]byte, []int) {
 	return file_payment_payment_proto_rawDescGZIP(), []int{10}
 }
 
-func (x *RqGetPaymentStatus) GetPaymentId() string {
+func (x *GetPaymentStatusRequest) GetPaymentId() string {
 	if x != nil {
 		return x.PaymentId
 	}
 	return ""
 }
 
-func (x *RqGetPaymentStatus) GetTripId() string {
+func (x *GetPaymentStatusRequest) GetTripId() string {
 	if x != nil {
 		return x.TripId
 	}
 	return ""
 }
 
-// RsGetPaymentStatus
-type RsGetPaymentStatus struct {
+type GetPaymentStatusResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Success       bool                   `protobuf:"varint,1,opt,name=success,proto3" json:"success,omitempty"`
 	Message       string                 `protobuf:"bytes,2,opt,name=message,proto3" json:"message,omitempty"`
@@ -1102,20 +1100,20 @@ type RsGetPaymentStatus struct {
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *RsGetPaymentStatus) Reset() {
-	*x = RsGetPaymentStatus{}
+func (x *GetPaymentStatusResponse) Reset() {
+	*x = GetPaymentStatusResponse{}
 	mi := &file_payment_payment_proto_msgTypes[11]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *RsGetPaymentStatus) String() string {
+func (x *GetPaymentStatusResponse) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*RsGetPaymentStatus) ProtoMessage() {}
+func (*GetPaymentStatusResponse) ProtoMessage() {}
 
-func (x *RsGetPaymentStatus) ProtoReflect() protoreflect.Message {
+func (x *GetPaymentStatusResponse) ProtoReflect() protoreflect.Message {
 	mi := &file_payment_payment_proto_msgTypes[11]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -1127,57 +1125,57 @@ func (x *RsGetPaymentStatus) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use RsGetPaymentStatus.ProtoReflect.Descriptor instead.
-func (*RsGetPaymentStatus) Descriptor() ([]byte, []int) {
+// Deprecated: Use GetPaymentStatusResponse.ProtoReflect.Descriptor instead.
+func (*GetPaymentStatusResponse) Descriptor() ([]byte, []int) {
 	return file_payment_payment_proto_rawDescGZIP(), []int{11}
 }
 
-func (x *RsGetPaymentStatus) GetSuccess() bool {
+func (x *GetPaymentStatusResponse) GetSuccess() bool {
 	if x != nil {
 		return x.Success
 	}
 	return false
 }
 
-func (x *RsGetPaymentStatus) GetMessage() string {
+func (x *GetPaymentStatusResponse) GetMessage() string {
 	if x != nil {
 		return x.Message
 	}
 	return ""
 }
 
-func (x *RsGetPaymentStatus) GetPayment() *Payment {
+func (x *GetPaymentStatusResponse) GetPayment() *Payment {
 	if x != nil {
 		return x.Payment
 	}
 	return nil
 }
 
-// RqProcessRefund
-type RqProcessRefund struct {
+// ProcessRefund
+type ProcessRefundRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	PaymentId     string                 `protobuf:"bytes,1,opt,name=payment_id,json=paymentId,proto3" json:"payment_id,omitempty"`
-	Amount        float64                `protobuf:"fixed64,2,opt,name=amount,proto3" json:"amount,omitempty"` // Optional, if not provided, full refund
+	Amount        float64                `protobuf:"fixed64,2,opt,name=amount,proto3" json:"amount,omitempty"` // Optional, full refund if omitted
 	Reason        string                 `protobuf:"bytes,3,opt,name=reason,proto3" json:"reason,omitempty"`
 	RequestedBy   string                 `protobuf:"bytes,4,opt,name=requested_by,json=requestedBy,proto3" json:"requested_by,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *RqProcessRefund) Reset() {
-	*x = RqProcessRefund{}
+func (x *ProcessRefundRequest) Reset() {
+	*x = ProcessRefundRequest{}
 	mi := &file_payment_payment_proto_msgTypes[12]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *RqProcessRefund) String() string {
+func (x *ProcessRefundRequest) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*RqProcessRefund) ProtoMessage() {}
+func (*ProcessRefundRequest) ProtoMessage() {}
 
-func (x *RqProcessRefund) ProtoReflect() protoreflect.Message {
+func (x *ProcessRefundRequest) ProtoReflect() protoreflect.Message {
 	mi := &file_payment_payment_proto_msgTypes[12]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -1189,41 +1187,40 @@ func (x *RqProcessRefund) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use RqProcessRefund.ProtoReflect.Descriptor instead.
-func (*RqProcessRefund) Descriptor() ([]byte, []int) {
+// Deprecated: Use ProcessRefundRequest.ProtoReflect.Descriptor instead.
+func (*ProcessRefundRequest) Descriptor() ([]byte, []int) {
 	return file_payment_payment_proto_rawDescGZIP(), []int{12}
 }
 
-func (x *RqProcessRefund) GetPaymentId() string {
+func (x *ProcessRefundRequest) GetPaymentId() string {
 	if x != nil {
 		return x.PaymentId
 	}
 	return ""
 }
 
-func (x *RqProcessRefund) GetAmount() float64 {
+func (x *ProcessRefundRequest) GetAmount() float64 {
 	if x != nil {
 		return x.Amount
 	}
 	return 0
 }
 
-func (x *RqProcessRefund) GetReason() string {
+func (x *ProcessRefundRequest) GetReason() string {
 	if x != nil {
 		return x.Reason
 	}
 	return ""
 }
 
-func (x *RqProcessRefund) GetRequestedBy() string {
+func (x *ProcessRefundRequest) GetRequestedBy() string {
 	if x != nil {
 		return x.RequestedBy
 	}
 	return ""
 }
 
-// RsProcessRefund
-type RsProcessRefund struct {
+type ProcessRefundResponse struct {
 	state           protoimpl.MessageState `protogen:"open.v1"`
 	Success         bool                   `protobuf:"varint,1,opt,name=success,proto3" json:"success,omitempty"`
 	Message         string                 `protobuf:"bytes,2,opt,name=message,proto3" json:"message,omitempty"`
@@ -1233,20 +1230,20 @@ type RsProcessRefund struct {
 	sizeCache       protoimpl.SizeCache
 }
 
-func (x *RsProcessRefund) Reset() {
-	*x = RsProcessRefund{}
+func (x *ProcessRefundResponse) Reset() {
+	*x = ProcessRefundResponse{}
 	mi := &file_payment_payment_proto_msgTypes[13]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *RsProcessRefund) String() string {
+func (x *ProcessRefundResponse) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*RsProcessRefund) ProtoMessage() {}
+func (*ProcessRefundResponse) ProtoMessage() {}
 
-func (x *RsProcessRefund) ProtoReflect() protoreflect.Message {
+func (x *ProcessRefundResponse) ProtoReflect() protoreflect.Message {
 	mi := &file_payment_payment_proto_msgTypes[13]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -1258,67 +1255,67 @@ func (x *RsProcessRefund) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use RsProcessRefund.ProtoReflect.Descriptor instead.
-func (*RsProcessRefund) Descriptor() ([]byte, []int) {
+// Deprecated: Use ProcessRefundResponse.ProtoReflect.Descriptor instead.
+func (*ProcessRefundResponse) Descriptor() ([]byte, []int) {
 	return file_payment_payment_proto_rawDescGZIP(), []int{13}
 }
 
-func (x *RsProcessRefund) GetSuccess() bool {
+func (x *ProcessRefundResponse) GetSuccess() bool {
 	if x != nil {
 		return x.Success
 	}
 	return false
 }
 
-func (x *RsProcessRefund) GetMessage() string {
+func (x *ProcessRefundResponse) GetMessage() string {
 	if x != nil {
 		return x.Message
 	}
 	return ""
 }
 
-func (x *RsProcessRefund) GetRefund() *Refund {
+func (x *ProcessRefundResponse) GetRefund() *Refund {
 	if x != nil {
 		return x.Refund
 	}
 	return nil
 }
 
-func (x *RsProcessRefund) GetGatewayRefundId() string {
+func (x *ProcessRefundResponse) GetGatewayRefundId() string {
 	if x != nil {
 		return x.GatewayRefundId
 	}
 	return ""
 }
 
-// RqGetPaymentHistory
-type RqGetPaymentHistory struct {
+// GetPaymentHistory
+type GetPaymentHistoryRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	UserId        string                 `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
-	UserType      *RqEnum                `protobuf:"bytes,2,opt,name=user_type,json=userType,proto3" json:"user_type,omitempty"`
+	UserType      *EnumRequest           `protobuf:"bytes,2,opt,name=user_type,json=userType,proto3" json:"user_type,omitempty"`
 	Page          int32                  `protobuf:"varint,3,opt,name=page,proto3" json:"page,omitempty"`
 	Limit         int32                  `protobuf:"varint,4,opt,name=limit,proto3" json:"limit,omitempty"`
 	StartDate     *timestamppb.Timestamp `protobuf:"bytes,5,opt,name=start_date,json=startDate,proto3" json:"start_date,omitempty"`
 	EndDate       *timestamppb.Timestamp `protobuf:"bytes,6,opt,name=end_date,json=endDate,proto3" json:"end_date,omitempty"`
-	Status        *RqEnum                `protobuf:"bytes,7,opt,name=status,proto3" json:"status,omitempty"`
+	Status        *EnumRequest           `protobuf:"bytes,7,opt,name=status,proto3" json:"status,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *RqGetPaymentHistory) Reset() {
-	*x = RqGetPaymentHistory{}
+func (x *GetPaymentHistoryRequest) Reset() {
+	*x = GetPaymentHistoryRequest{}
 	mi := &file_payment_payment_proto_msgTypes[14]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *RqGetPaymentHistory) String() string {
+func (x *GetPaymentHistoryRequest) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*RqGetPaymentHistory) ProtoMessage() {}
+func (*GetPaymentHistoryRequest) ProtoMessage() {}
 
-func (x *RqGetPaymentHistory) ProtoReflect() protoreflect.Message {
+func (x *GetPaymentHistoryRequest) ProtoReflect() protoreflect.Message {
 	mi := &file_payment_payment_proto_msgTypes[14]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -1330,62 +1327,61 @@ func (x *RqGetPaymentHistory) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use RqGetPaymentHistory.ProtoReflect.Descriptor instead.
-func (*RqGetPaymentHistory) Descriptor() ([]byte, []int) {
+// Deprecated: Use GetPaymentHistoryRequest.ProtoReflect.Descriptor instead.
+func (*GetPaymentHistoryRequest) Descriptor() ([]byte, []int) {
 	return file_payment_payment_proto_rawDescGZIP(), []int{14}
 }
 
-func (x *RqGetPaymentHistory) GetUserId() string {
+func (x *GetPaymentHistoryRequest) GetUserId() string {
 	if x != nil {
 		return x.UserId
 	}
 	return ""
 }
 
-func (x *RqGetPaymentHistory) GetUserType() *RqEnum {
+func (x *GetPaymentHistoryRequest) GetUserType() *EnumRequest {
 	if x != nil {
 		return x.UserType
 	}
 	return nil
 }
 
-func (x *RqGetPaymentHistory) GetPage() int32 {
+func (x *GetPaymentHistoryRequest) GetPage() int32 {
 	if x != nil {
 		return x.Page
 	}
 	return 0
 }
 
-func (x *RqGetPaymentHistory) GetLimit() int32 {
+func (x *GetPaymentHistoryRequest) GetLimit() int32 {
 	if x != nil {
 		return x.Limit
 	}
 	return 0
 }
 
-func (x *RqGetPaymentHistory) GetStartDate() *timestamppb.Timestamp {
+func (x *GetPaymentHistoryRequest) GetStartDate() *timestamppb.Timestamp {
 	if x != nil {
 		return x.StartDate
 	}
 	return nil
 }
 
-func (x *RqGetPaymentHistory) GetEndDate() *timestamppb.Timestamp {
+func (x *GetPaymentHistoryRequest) GetEndDate() *timestamppb.Timestamp {
 	if x != nil {
 		return x.EndDate
 	}
 	return nil
 }
 
-func (x *RqGetPaymentHistory) GetStatus() *RqEnum {
+func (x *GetPaymentHistoryRequest) GetStatus() *EnumRequest {
 	if x != nil {
 		return x.Status
 	}
 	return nil
 }
 
-// RsGetPaymentHistory
-type RsGetPaymentHistory struct {
+type GetPaymentHistoryResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Success       bool                   `protobuf:"varint,1,opt,name=success,proto3" json:"success,omitempty"`
 	Message       string                 `protobuf:"bytes,2,opt,name=message,proto3" json:"message,omitempty"`
@@ -1397,20 +1393,20 @@ type RsGetPaymentHistory struct {
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *RsGetPaymentHistory) Reset() {
-	*x = RsGetPaymentHistory{}
+func (x *GetPaymentHistoryResponse) Reset() {
+	*x = GetPaymentHistoryResponse{}
 	mi := &file_payment_payment_proto_msgTypes[15]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *RsGetPaymentHistory) String() string {
+func (x *GetPaymentHistoryResponse) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*RsGetPaymentHistory) ProtoMessage() {}
+func (*GetPaymentHistoryResponse) ProtoMessage() {}
 
-func (x *RsGetPaymentHistory) ProtoReflect() protoreflect.Message {
+func (x *GetPaymentHistoryResponse) ProtoReflect() protoreflect.Message {
 	mi := &file_payment_payment_proto_msgTypes[15]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -1422,55 +1418,55 @@ func (x *RsGetPaymentHistory) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use RsGetPaymentHistory.ProtoReflect.Descriptor instead.
-func (*RsGetPaymentHistory) Descriptor() ([]byte, []int) {
+// Deprecated: Use GetPaymentHistoryResponse.ProtoReflect.Descriptor instead.
+func (*GetPaymentHistoryResponse) Descriptor() ([]byte, []int) {
 	return file_payment_payment_proto_rawDescGZIP(), []int{15}
 }
 
-func (x *RsGetPaymentHistory) GetSuccess() bool {
+func (x *GetPaymentHistoryResponse) GetSuccess() bool {
 	if x != nil {
 		return x.Success
 	}
 	return false
 }
 
-func (x *RsGetPaymentHistory) GetMessage() string {
+func (x *GetPaymentHistoryResponse) GetMessage() string {
 	if x != nil {
 		return x.Message
 	}
 	return ""
 }
 
-func (x *RsGetPaymentHistory) GetPayments() []*Payment {
+func (x *GetPaymentHistoryResponse) GetPayments() []*Payment {
 	if x != nil {
 		return x.Payments
 	}
 	return nil
 }
 
-func (x *RsGetPaymentHistory) GetTotal() int32 {
+func (x *GetPaymentHistoryResponse) GetTotal() int32 {
 	if x != nil {
 		return x.Total
 	}
 	return 0
 }
 
-func (x *RsGetPaymentHistory) GetPage() int32 {
+func (x *GetPaymentHistoryResponse) GetPage() int32 {
 	if x != nil {
 		return x.Page
 	}
 	return 0
 }
 
-func (x *RsGetPaymentHistory) GetLimit() int32 {
+func (x *GetPaymentHistoryResponse) GetLimit() int32 {
 	if x != nil {
 		return x.Limit
 	}
 	return 0
 }
 
-// RqHandleWebhook
-type RqHandleWebhook struct {
+// HandleWebhook
+type HandleWebhookRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Source        string                 `protobuf:"bytes,1,opt,name=source,proto3" json:"source,omitempty"` // gateway name
 	EventType     string                 `protobuf:"bytes,2,opt,name=event_type,json=eventType,proto3" json:"event_type,omitempty"`
@@ -1481,20 +1477,20 @@ type RqHandleWebhook struct {
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *RqHandleWebhook) Reset() {
-	*x = RqHandleWebhook{}
+func (x *HandleWebhookRequest) Reset() {
+	*x = HandleWebhookRequest{}
 	mi := &file_payment_payment_proto_msgTypes[16]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *RqHandleWebhook) String() string {
+func (x *HandleWebhookRequest) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*RqHandleWebhook) ProtoMessage() {}
+func (*HandleWebhookRequest) ProtoMessage() {}
 
-func (x *RqHandleWebhook) ProtoReflect() protoreflect.Message {
+func (x *HandleWebhookRequest) ProtoReflect() protoreflect.Message {
 	mi := &file_payment_payment_proto_msgTypes[16]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -1506,70 +1502,69 @@ func (x *RqHandleWebhook) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use RqHandleWebhook.ProtoReflect.Descriptor instead.
-func (*RqHandleWebhook) Descriptor() ([]byte, []int) {
+// Deprecated: Use HandleWebhookRequest.ProtoReflect.Descriptor instead.
+func (*HandleWebhookRequest) Descriptor() ([]byte, []int) {
 	return file_payment_payment_proto_rawDescGZIP(), []int{16}
 }
 
-func (x *RqHandleWebhook) GetSource() string {
+func (x *HandleWebhookRequest) GetSource() string {
 	if x != nil {
 		return x.Source
 	}
 	return ""
 }
 
-func (x *RqHandleWebhook) GetEventType() string {
+func (x *HandleWebhookRequest) GetEventType() string {
 	if x != nil {
 		return x.EventType
 	}
 	return ""
 }
 
-func (x *RqHandleWebhook) GetPayload() string {
+func (x *HandleWebhookRequest) GetPayload() string {
 	if x != nil {
 		return x.Payload
 	}
 	return ""
 }
 
-func (x *RqHandleWebhook) GetSignature() string {
+func (x *HandleWebhookRequest) GetSignature() string {
 	if x != nil {
 		return x.Signature
 	}
 	return ""
 }
 
-func (x *RqHandleWebhook) GetHeaders() map[string]string {
+func (x *HandleWebhookRequest) GetHeaders() map[string]string {
 	if x != nil {
 		return x.Headers
 	}
 	return nil
 }
 
-// RsHandleWebhook
-type RsHandleWebhook struct {
+type HandleWebhookResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Success       bool                   `protobuf:"varint,1,opt,name=success,proto3" json:"success,omitempty"`
 	Message       string                 `protobuf:"bytes,2,opt,name=message,proto3" json:"message,omitempty"`
-	Response      string                 `protobuf:"bytes,3,opt,name=response,proto3" json:"response,omitempty"` // JSON response to send back
+	Response      string                 `protobuf:"bytes,3,opt,name=response,proto3" json:"response,omitempty"` // JSON response
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *RsHandleWebhook) Reset() {
-	*x = RsHandleWebhook{}
+func (x *HandleWebhookResponse) Reset() {
+	*x = HandleWebhookResponse{}
 	mi := &file_payment_payment_proto_msgTypes[17]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *RsHandleWebhook) String() string {
+func (x *HandleWebhookResponse) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*RsHandleWebhook) ProtoMessage() {}
+func (*HandleWebhookResponse) ProtoMessage() {}
 
-func (x *RsHandleWebhook) ProtoReflect() protoreflect.Message {
+func (x *HandleWebhookResponse) ProtoReflect() protoreflect.Message {
 	mi := &file_payment_payment_proto_msgTypes[17]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -1581,55 +1576,54 @@ func (x *RsHandleWebhook) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use RsHandleWebhook.ProtoReflect.Descriptor instead.
-func (*RsHandleWebhook) Descriptor() ([]byte, []int) {
+// Deprecated: Use HandleWebhookResponse.ProtoReflect.Descriptor instead.
+func (*HandleWebhookResponse) Descriptor() ([]byte, []int) {
 	return file_payment_payment_proto_rawDescGZIP(), []int{17}
 }
 
-func (x *RsHandleWebhook) GetSuccess() bool {
+func (x *HandleWebhookResponse) GetSuccess() bool {
 	if x != nil {
 		return x.Success
 	}
 	return false
 }
 
-func (x *RsHandleWebhook) GetMessage() string {
+func (x *HandleWebhookResponse) GetMessage() string {
 	if x != nil {
 		return x.Message
 	}
 	return ""
 }
 
-func (x *RsHandleWebhook) GetResponse() string {
+func (x *HandleWebhookResponse) GetResponse() string {
 	if x != nil {
 		return x.Response
 	}
 	return ""
 }
 
-// RqGetWalletBalance
-type RqGetWalletBalance struct {
+type GetWalletBalanceRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	UserId        string                 `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
-	UserType      *RqEnum                `protobuf:"bytes,2,opt,name=user_type,json=userType,proto3" json:"user_type,omitempty"`
+	UserType      *EnumRequest           `protobuf:"bytes,2,opt,name=user_type,json=userType,proto3" json:"user_type,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *RqGetWalletBalance) Reset() {
-	*x = RqGetWalletBalance{}
+func (x *GetWalletBalanceRequest) Reset() {
+	*x = GetWalletBalanceRequest{}
 	mi := &file_payment_payment_proto_msgTypes[18]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *RqGetWalletBalance) String() string {
+func (x *GetWalletBalanceRequest) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*RqGetWalletBalance) ProtoMessage() {}
+func (*GetWalletBalanceRequest) ProtoMessage() {}
 
-func (x *RqGetWalletBalance) ProtoReflect() protoreflect.Message {
+func (x *GetWalletBalanceRequest) ProtoReflect() protoreflect.Message {
 	mi := &file_payment_payment_proto_msgTypes[18]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -1641,27 +1635,26 @@ func (x *RqGetWalletBalance) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use RqGetWalletBalance.ProtoReflect.Descriptor instead.
-func (*RqGetWalletBalance) Descriptor() ([]byte, []int) {
+// Deprecated: Use GetWalletBalanceRequest.ProtoReflect.Descriptor instead.
+func (*GetWalletBalanceRequest) Descriptor() ([]byte, []int) {
 	return file_payment_payment_proto_rawDescGZIP(), []int{18}
 }
 
-func (x *RqGetWalletBalance) GetUserId() string {
+func (x *GetWalletBalanceRequest) GetUserId() string {
 	if x != nil {
 		return x.UserId
 	}
 	return ""
 }
 
-func (x *RqGetWalletBalance) GetUserType() *RqEnum {
+func (x *GetWalletBalanceRequest) GetUserType() *EnumRequest {
 	if x != nil {
 		return x.UserType
 	}
 	return nil
 }
 
-// RsGetWalletBalance
-type RsGetWalletBalance struct {
+type GetWalletBalanceResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Success       bool                   `protobuf:"varint,1,opt,name=success,proto3" json:"success,omitempty"`
 	Message       string                 `protobuf:"bytes,2,opt,name=message,proto3" json:"message,omitempty"`
@@ -1670,20 +1663,20 @@ type RsGetWalletBalance struct {
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *RsGetWalletBalance) Reset() {
-	*x = RsGetWalletBalance{}
+func (x *GetWalletBalanceResponse) Reset() {
+	*x = GetWalletBalanceResponse{}
 	mi := &file_payment_payment_proto_msgTypes[19]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *RsGetWalletBalance) String() string {
+func (x *GetWalletBalanceResponse) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*RsGetWalletBalance) ProtoMessage() {}
+func (*GetWalletBalanceResponse) ProtoMessage() {}
 
-func (x *RsGetWalletBalance) ProtoReflect() protoreflect.Message {
+func (x *GetWalletBalanceResponse) ProtoReflect() protoreflect.Message {
 	mi := &file_payment_payment_proto_msgTypes[19]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -1695,59 +1688,58 @@ func (x *RsGetWalletBalance) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use RsGetWalletBalance.ProtoReflect.Descriptor instead.
-func (*RsGetWalletBalance) Descriptor() ([]byte, []int) {
+// Deprecated: Use GetWalletBalanceResponse.ProtoReflect.Descriptor instead.
+func (*GetWalletBalanceResponse) Descriptor() ([]byte, []int) {
 	return file_payment_payment_proto_rawDescGZIP(), []int{19}
 }
 
-func (x *RsGetWalletBalance) GetSuccess() bool {
+func (x *GetWalletBalanceResponse) GetSuccess() bool {
 	if x != nil {
 		return x.Success
 	}
 	return false
 }
 
-func (x *RsGetWalletBalance) GetMessage() string {
+func (x *GetWalletBalanceResponse) GetMessage() string {
 	if x != nil {
 		return x.Message
 	}
 	return ""
 }
 
-func (x *RsGetWalletBalance) GetWallet() *Wallet {
+func (x *GetWalletBalanceResponse) GetWallet() *Wallet {
 	if x != nil {
 		return x.Wallet
 	}
 	return nil
 }
 
-// RqTopupWallet
-type RqTopupWallet struct {
+type TopupWalletRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	UserId        string                 `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
-	UserType      *RqEnum                `protobuf:"bytes,2,opt,name=user_type,json=userType,proto3" json:"user_type,omitempty"`
+	UserType      *EnumRequest           `protobuf:"bytes,2,opt,name=user_type,json=userType,proto3" json:"user_type,omitempty"`
 	Amount        float64                `protobuf:"fixed64,3,opt,name=amount,proto3" json:"amount,omitempty"`
-	PaymentMethod *RqEnum                `protobuf:"bytes,4,opt,name=payment_method,json=paymentMethod,proto3" json:"payment_method,omitempty"`
+	PaymentMethod *EnumRequest           `protobuf:"bytes,4,opt,name=payment_method,json=paymentMethod,proto3" json:"payment_method,omitempty"`
 	Currency      string                 `protobuf:"bytes,5,opt,name=currency,proto3" json:"currency,omitempty"`
 	Metadata      map[string]string      `protobuf:"bytes,6,rep,name=metadata,proto3" json:"metadata,omitempty" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"bytes,2,opt,name=value"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *RqTopupWallet) Reset() {
-	*x = RqTopupWallet{}
+func (x *TopupWalletRequest) Reset() {
+	*x = TopupWalletRequest{}
 	mi := &file_payment_payment_proto_msgTypes[20]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *RqTopupWallet) String() string {
+func (x *TopupWalletRequest) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*RqTopupWallet) ProtoMessage() {}
+func (*TopupWalletRequest) ProtoMessage() {}
 
-func (x *RqTopupWallet) ProtoReflect() protoreflect.Message {
+func (x *TopupWalletRequest) ProtoReflect() protoreflect.Message {
 	mi := &file_payment_payment_proto_msgTypes[20]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -1759,55 +1751,54 @@ func (x *RqTopupWallet) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use RqTopupWallet.ProtoReflect.Descriptor instead.
-func (*RqTopupWallet) Descriptor() ([]byte, []int) {
+// Deprecated: Use TopupWalletRequest.ProtoReflect.Descriptor instead.
+func (*TopupWalletRequest) Descriptor() ([]byte, []int) {
 	return file_payment_payment_proto_rawDescGZIP(), []int{20}
 }
 
-func (x *RqTopupWallet) GetUserId() string {
+func (x *TopupWalletRequest) GetUserId() string {
 	if x != nil {
 		return x.UserId
 	}
 	return ""
 }
 
-func (x *RqTopupWallet) GetUserType() *RqEnum {
+func (x *TopupWalletRequest) GetUserType() *EnumRequest {
 	if x != nil {
 		return x.UserType
 	}
 	return nil
 }
 
-func (x *RqTopupWallet) GetAmount() float64 {
+func (x *TopupWalletRequest) GetAmount() float64 {
 	if x != nil {
 		return x.Amount
 	}
 	return 0
 }
 
-func (x *RqTopupWallet) GetPaymentMethod() *RqEnum {
+func (x *TopupWalletRequest) GetPaymentMethod() *EnumRequest {
 	if x != nil {
 		return x.PaymentMethod
 	}
 	return nil
 }
 
-func (x *RqTopupWallet) GetCurrency() string {
+func (x *TopupWalletRequest) GetCurrency() string {
 	if x != nil {
 		return x.Currency
 	}
 	return ""
 }
 
-func (x *RqTopupWallet) GetMetadata() map[string]string {
+func (x *TopupWalletRequest) GetMetadata() map[string]string {
 	if x != nil {
 		return x.Metadata
 	}
 	return nil
 }
 
-// RsTopupWallet
-type RsTopupWallet struct {
+type TopupWalletResponse struct {
 	state                protoimpl.MessageState `protogen:"open.v1"`
 	Success              bool                   `protobuf:"varint,1,opt,name=success,proto3" json:"success,omitempty"`
 	Message              string                 `protobuf:"bytes,2,opt,name=message,proto3" json:"message,omitempty"`
@@ -1818,20 +1809,20 @@ type RsTopupWallet struct {
 	sizeCache            protoimpl.SizeCache
 }
 
-func (x *RsTopupWallet) Reset() {
-	*x = RsTopupWallet{}
+func (x *TopupWalletResponse) Reset() {
+	*x = TopupWalletResponse{}
 	mi := &file_payment_payment_proto_msgTypes[21]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *RsTopupWallet) String() string {
+func (x *TopupWalletResponse) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*RsTopupWallet) ProtoMessage() {}
+func (*TopupWalletResponse) ProtoMessage() {}
 
-func (x *RsTopupWallet) ProtoReflect() protoreflect.Message {
+func (x *TopupWalletResponse) ProtoReflect() protoreflect.Message {
 	mi := &file_payment_payment_proto_msgTypes[21]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -1843,51 +1834,50 @@ func (x *RsTopupWallet) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use RsTopupWallet.ProtoReflect.Descriptor instead.
-func (*RsTopupWallet) Descriptor() ([]byte, []int) {
+// Deprecated: Use TopupWalletResponse.ProtoReflect.Descriptor instead.
+func (*TopupWalletResponse) Descriptor() ([]byte, []int) {
 	return file_payment_payment_proto_rawDescGZIP(), []int{21}
 }
 
-func (x *RsTopupWallet) GetSuccess() bool {
+func (x *TopupWalletResponse) GetSuccess() bool {
 	if x != nil {
 		return x.Success
 	}
 	return false
 }
 
-func (x *RsTopupWallet) GetMessage() string {
+func (x *TopupWalletResponse) GetMessage() string {
 	if x != nil {
 		return x.Message
 	}
 	return ""
 }
 
-func (x *RsTopupWallet) GetWallet() *Wallet {
+func (x *TopupWalletResponse) GetWallet() *Wallet {
 	if x != nil {
 		return x.Wallet
 	}
 	return nil
 }
 
-func (x *RsTopupWallet) GetGatewayTransactionId() string {
+func (x *TopupWalletResponse) GetGatewayTransactionId() string {
 	if x != nil {
 		return x.GatewayTransactionId
 	}
 	return ""
 }
 
-func (x *RsTopupWallet) GetPaymentUrl() string {
+func (x *TopupWalletResponse) GetPaymentUrl() string {
 	if x != nil {
 		return x.PaymentUrl
 	}
 	return ""
 }
 
-// RqWithdrawFromWallet
-type RqWithdrawFromWallet struct {
+type WithdrawFromWalletRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	UserId        string                 `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
-	UserType      *RqEnum                `protobuf:"bytes,2,opt,name=user_type,json=userType,proto3" json:"user_type,omitempty"`
+	UserType      *EnumRequest           `protobuf:"bytes,2,opt,name=user_type,json=userType,proto3" json:"user_type,omitempty"`
 	Amount        float64                `protobuf:"fixed64,3,opt,name=amount,proto3" json:"amount,omitempty"`
 	Description   string                 `protobuf:"bytes,4,opt,name=description,proto3" json:"description,omitempty"`
 	Metadata      map[string]string      `protobuf:"bytes,5,rep,name=metadata,proto3" json:"metadata,omitempty" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"bytes,2,opt,name=value"`
@@ -1895,20 +1885,20 @@ type RqWithdrawFromWallet struct {
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *RqWithdrawFromWallet) Reset() {
-	*x = RqWithdrawFromWallet{}
+func (x *WithdrawFromWalletRequest) Reset() {
+	*x = WithdrawFromWalletRequest{}
 	mi := &file_payment_payment_proto_msgTypes[22]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *RqWithdrawFromWallet) String() string {
+func (x *WithdrawFromWalletRequest) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*RqWithdrawFromWallet) ProtoMessage() {}
+func (*WithdrawFromWalletRequest) ProtoMessage() {}
 
-func (x *RqWithdrawFromWallet) ProtoReflect() protoreflect.Message {
+func (x *WithdrawFromWalletRequest) ProtoReflect() protoreflect.Message {
 	mi := &file_payment_payment_proto_msgTypes[22]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -1920,48 +1910,47 @@ func (x *RqWithdrawFromWallet) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use RqWithdrawFromWallet.ProtoReflect.Descriptor instead.
-func (*RqWithdrawFromWallet) Descriptor() ([]byte, []int) {
+// Deprecated: Use WithdrawFromWalletRequest.ProtoReflect.Descriptor instead.
+func (*WithdrawFromWalletRequest) Descriptor() ([]byte, []int) {
 	return file_payment_payment_proto_rawDescGZIP(), []int{22}
 }
 
-func (x *RqWithdrawFromWallet) GetUserId() string {
+func (x *WithdrawFromWalletRequest) GetUserId() string {
 	if x != nil {
 		return x.UserId
 	}
 	return ""
 }
 
-func (x *RqWithdrawFromWallet) GetUserType() *RqEnum {
+func (x *WithdrawFromWalletRequest) GetUserType() *EnumRequest {
 	if x != nil {
 		return x.UserType
 	}
 	return nil
 }
 
-func (x *RqWithdrawFromWallet) GetAmount() float64 {
+func (x *WithdrawFromWalletRequest) GetAmount() float64 {
 	if x != nil {
 		return x.Amount
 	}
 	return 0
 }
 
-func (x *RqWithdrawFromWallet) GetDescription() string {
+func (x *WithdrawFromWalletRequest) GetDescription() string {
 	if x != nil {
 		return x.Description
 	}
 	return ""
 }
 
-func (x *RqWithdrawFromWallet) GetMetadata() map[string]string {
+func (x *WithdrawFromWalletRequest) GetMetadata() map[string]string {
 	if x != nil {
 		return x.Metadata
 	}
 	return nil
 }
 
-// RsWithdrawFromWallet
-type RsWithdrawFromWallet struct {
+type WithdrawFromWalletResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Success       bool                   `protobuf:"varint,1,opt,name=success,proto3" json:"success,omitempty"`
 	Message       string                 `protobuf:"bytes,2,opt,name=message,proto3" json:"message,omitempty"`
@@ -1971,20 +1960,20 @@ type RsWithdrawFromWallet struct {
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *RsWithdrawFromWallet) Reset() {
-	*x = RsWithdrawFromWallet{}
+func (x *WithdrawFromWalletResponse) Reset() {
+	*x = WithdrawFromWalletResponse{}
 	mi := &file_payment_payment_proto_msgTypes[23]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *RsWithdrawFromWallet) String() string {
+func (x *WithdrawFromWalletResponse) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*RsWithdrawFromWallet) ProtoMessage() {}
+func (*WithdrawFromWalletResponse) ProtoMessage() {}
 
-func (x *RsWithdrawFromWallet) ProtoReflect() protoreflect.Message {
+func (x *WithdrawFromWalletResponse) ProtoReflect() protoreflect.Message {
 	mi := &file_payment_payment_proto_msgTypes[23]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -1996,67 +1985,66 @@ func (x *RsWithdrawFromWallet) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use RsWithdrawFromWallet.ProtoReflect.Descriptor instead.
-func (*RsWithdrawFromWallet) Descriptor() ([]byte, []int) {
+// Deprecated: Use WithdrawFromWalletResponse.ProtoReflect.Descriptor instead.
+func (*WithdrawFromWalletResponse) Descriptor() ([]byte, []int) {
 	return file_payment_payment_proto_rawDescGZIP(), []int{23}
 }
 
-func (x *RsWithdrawFromWallet) GetSuccess() bool {
+func (x *WithdrawFromWalletResponse) GetSuccess() bool {
 	if x != nil {
 		return x.Success
 	}
 	return false
 }
 
-func (x *RsWithdrawFromWallet) GetMessage() string {
+func (x *WithdrawFromWalletResponse) GetMessage() string {
 	if x != nil {
 		return x.Message
 	}
 	return ""
 }
 
-func (x *RsWithdrawFromWallet) GetWallet() *Wallet {
+func (x *WithdrawFromWalletResponse) GetWallet() *Wallet {
 	if x != nil {
 		return x.Wallet
 	}
 	return nil
 }
 
-func (x *RsWithdrawFromWallet) GetTransaction() *WalletTransaction {
+func (x *WithdrawFromWalletResponse) GetTransaction() *WalletTransaction {
 	if x != nil {
 		return x.Transaction
 	}
 	return nil
 }
 
-// RqGetWalletTransactions
-type RqGetWalletTransactions struct {
+type GetWalletTransactionsRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	UserId        string                 `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
-	UserType      *RqEnum                `protobuf:"bytes,2,opt,name=user_type,json=userType,proto3" json:"user_type,omitempty"`
+	UserType      *EnumRequest           `protobuf:"bytes,2,opt,name=user_type,json=userType,proto3" json:"user_type,omitempty"`
 	Page          int32                  `protobuf:"varint,3,opt,name=page,proto3" json:"page,omitempty"`
 	Limit         int32                  `protobuf:"varint,4,opt,name=limit,proto3" json:"limit,omitempty"`
 	StartDate     *timestamppb.Timestamp `protobuf:"bytes,5,opt,name=start_date,json=startDate,proto3" json:"start_date,omitempty"`
 	EndDate       *timestamppb.Timestamp `protobuf:"bytes,6,opt,name=end_date,json=endDate,proto3" json:"end_date,omitempty"`
-	Type          *RqEnum                `protobuf:"bytes,7,opt,name=type,proto3" json:"type,omitempty"`
+	Type          *EnumRequest           `protobuf:"bytes,7,opt,name=type,proto3" json:"type,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *RqGetWalletTransactions) Reset() {
-	*x = RqGetWalletTransactions{}
+func (x *GetWalletTransactionsRequest) Reset() {
+	*x = GetWalletTransactionsRequest{}
 	mi := &file_payment_payment_proto_msgTypes[24]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *RqGetWalletTransactions) String() string {
+func (x *GetWalletTransactionsRequest) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*RqGetWalletTransactions) ProtoMessage() {}
+func (*GetWalletTransactionsRequest) ProtoMessage() {}
 
-func (x *RqGetWalletTransactions) ProtoReflect() protoreflect.Message {
+func (x *GetWalletTransactionsRequest) ProtoReflect() protoreflect.Message {
 	mi := &file_payment_payment_proto_msgTypes[24]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -2068,62 +2056,61 @@ func (x *RqGetWalletTransactions) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use RqGetWalletTransactions.ProtoReflect.Descriptor instead.
-func (*RqGetWalletTransactions) Descriptor() ([]byte, []int) {
+// Deprecated: Use GetWalletTransactionsRequest.ProtoReflect.Descriptor instead.
+func (*GetWalletTransactionsRequest) Descriptor() ([]byte, []int) {
 	return file_payment_payment_proto_rawDescGZIP(), []int{24}
 }
 
-func (x *RqGetWalletTransactions) GetUserId() string {
+func (x *GetWalletTransactionsRequest) GetUserId() string {
 	if x != nil {
 		return x.UserId
 	}
 	return ""
 }
 
-func (x *RqGetWalletTransactions) GetUserType() *RqEnum {
+func (x *GetWalletTransactionsRequest) GetUserType() *EnumRequest {
 	if x != nil {
 		return x.UserType
 	}
 	return nil
 }
 
-func (x *RqGetWalletTransactions) GetPage() int32 {
+func (x *GetWalletTransactionsRequest) GetPage() int32 {
 	if x != nil {
 		return x.Page
 	}
 	return 0
 }
 
-func (x *RqGetWalletTransactions) GetLimit() int32 {
+func (x *GetWalletTransactionsRequest) GetLimit() int32 {
 	if x != nil {
 		return x.Limit
 	}
 	return 0
 }
 
-func (x *RqGetWalletTransactions) GetStartDate() *timestamppb.Timestamp {
+func (x *GetWalletTransactionsRequest) GetStartDate() *timestamppb.Timestamp {
 	if x != nil {
 		return x.StartDate
 	}
 	return nil
 }
 
-func (x *RqGetWalletTransactions) GetEndDate() *timestamppb.Timestamp {
+func (x *GetWalletTransactionsRequest) GetEndDate() *timestamppb.Timestamp {
 	if x != nil {
 		return x.EndDate
 	}
 	return nil
 }
 
-func (x *RqGetWalletTransactions) GetType() *RqEnum {
+func (x *GetWalletTransactionsRequest) GetType() *EnumRequest {
 	if x != nil {
 		return x.Type
 	}
 	return nil
 }
 
-// RsGetWalletTransactions
-type RsGetWalletTransactions struct {
+type GetWalletTransactionsResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Success       bool                   `protobuf:"varint,1,opt,name=success,proto3" json:"success,omitempty"`
 	Message       string                 `protobuf:"bytes,2,opt,name=message,proto3" json:"message,omitempty"`
@@ -2135,20 +2122,20 @@ type RsGetWalletTransactions struct {
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *RsGetWalletTransactions) Reset() {
-	*x = RsGetWalletTransactions{}
+func (x *GetWalletTransactionsResponse) Reset() {
+	*x = GetWalletTransactionsResponse{}
 	mi := &file_payment_payment_proto_msgTypes[25]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *RsGetWalletTransactions) String() string {
+func (x *GetWalletTransactionsResponse) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*RsGetWalletTransactions) ProtoMessage() {}
+func (*GetWalletTransactionsResponse) ProtoMessage() {}
 
-func (x *RsGetWalletTransactions) ProtoReflect() protoreflect.Message {
+func (x *GetWalletTransactionsResponse) ProtoReflect() protoreflect.Message {
 	mi := &file_payment_payment_proto_msgTypes[25]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -2160,47 +2147,47 @@ func (x *RsGetWalletTransactions) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use RsGetWalletTransactions.ProtoReflect.Descriptor instead.
-func (*RsGetWalletTransactions) Descriptor() ([]byte, []int) {
+// Deprecated: Use GetWalletTransactionsResponse.ProtoReflect.Descriptor instead.
+func (*GetWalletTransactionsResponse) Descriptor() ([]byte, []int) {
 	return file_payment_payment_proto_rawDescGZIP(), []int{25}
 }
 
-func (x *RsGetWalletTransactions) GetSuccess() bool {
+func (x *GetWalletTransactionsResponse) GetSuccess() bool {
 	if x != nil {
 		return x.Success
 	}
 	return false
 }
 
-func (x *RsGetWalletTransactions) GetMessage() string {
+func (x *GetWalletTransactionsResponse) GetMessage() string {
 	if x != nil {
 		return x.Message
 	}
 	return ""
 }
 
-func (x *RsGetWalletTransactions) GetTransactions() []*WalletTransaction {
+func (x *GetWalletTransactionsResponse) GetTransactions() []*WalletTransaction {
 	if x != nil {
 		return x.Transactions
 	}
 	return nil
 }
 
-func (x *RsGetWalletTransactions) GetTotal() int32 {
+func (x *GetWalletTransactionsResponse) GetTotal() int32 {
 	if x != nil {
 		return x.Total
 	}
 	return 0
 }
 
-func (x *RsGetWalletTransactions) GetPage() int32 {
+func (x *GetWalletTransactionsResponse) GetPage() int32 {
 	if x != nil {
 		return x.Page
 	}
 	return 0
 }
 
-func (x *RsGetWalletTransactions) GetLimit() int32 {
+func (x *GetWalletTransactionsResponse) GetLimit() int32 {
 	if x != nil {
 		return x.Limit
 	}
@@ -2211,16 +2198,16 @@ var File_payment_payment_proto protoreflect.FileDescriptor
 
 const file_payment_payment_proto_rawDesc = "" +
 	"\n" +
-	"\x15payment/payment.proto\x12\apayment\x1a\x1fgoogle/protobuf/timestamp.proto\"%\n" +
-	"\x06RqEnum\x12\x1b\n" +
+	"\x15payment/payment.proto\x12\apayment\x1a\x1fgoogle/protobuf/timestamp.proto\"*\n" +
+	"\vEnumRequest\x12\x1b\n" +
 	"\tenum_type\x18\x01 \x01(\tR\benumType\"Z\n" +
 	"\x04Enum\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\x05R\x02id\x12\x12\n" +
 	"\x04name\x18\x02 \x01(\tR\x04name\x12\x12\n" +
 	"\x04type\x18\x03 \x01(\tR\x04type\x12\x1a\n" +
-	"\bcategory\x18\x04 \x01(\tR\bcategory\"+\n" +
-	"\x06RsEnum\x12!\n" +
-	"\x04enum\x18\x01 \x03(\v2\r.payment.EnumR\x04enum\"\xb4\x06\n" +
+	"\bcategory\x18\x04 \x01(\tR\bcategory\"1\n" +
+	"\fEnumResponse\x12!\n" +
+	"\x04enum\x18\x01 \x03(\v2\r.payment.EnumR\x04enum\"\xc0\x06\n" +
 	"\aPayment\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12\x17\n" +
 	"\atrip_id\x18\x02 \x01(\tR\x06tripId\x12\x19\n" +
@@ -2228,9 +2215,9 @@ const file_payment_payment_proto_rawDesc = "" +
 	"\tdriver_id\x18\x04 \x01(\tR\bdriverId\x12\x16\n" +
 	"\x06amount\x18\x05 \x01(\x01R\x06amount\x12+\n" +
 	"\x11commission_amount\x18\x06 \x01(\x01R\x10commissionAmount\x12%\n" +
-	"\x0edriver_earning\x18\a \x01(\x01R\rdriverEarning\x126\n" +
-	"\x0epayment_method\x18\b \x01(\v2\x0f.payment.RsEnumR\rpaymentMethod\x12'\n" +
-	"\x06status\x18\t \x01(\v2\x0f.payment.RsEnumR\x06status\x124\n" +
+	"\x0edriver_earning\x18\a \x01(\x01R\rdriverEarning\x12<\n" +
+	"\x0epayment_method\x18\b \x01(\v2\x15.payment.EnumResponseR\rpaymentMethod\x12-\n" +
+	"\x06status\x18\t \x01(\v2\x15.payment.EnumResponseR\x06status\x124\n" +
 	"\x16gateway_transaction_id\x18\n" +
 	" \x01(\tR\x14gatewayTransactionId\x12)\n" +
 	"\x10gateway_response\x18\v \x01(\tR\x0fgatewayResponse\x12=\n" +
@@ -2244,15 +2231,15 @@ const file_payment_payment_proto_rawDesc = "" +
 	"\n" +
 	"created_at\x18\x12 \x01(\v2\x1a.google.protobuf.TimestampR\tcreatedAt\x129\n" +
 	"\n" +
-	"updated_at\x18\x13 \x01(\v2\x1a.google.protobuf.TimestampR\tupdatedAt\"\xfb\x03\n" +
+	"updated_at\x18\x13 \x01(\v2\x1a.google.protobuf.TimestampR\tupdatedAt\"\x87\x04\n" +
 	"\vTransaction\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12\x1d\n" +
 	"\n" +
 	"payment_id\x18\x02 \x01(\tR\tpaymentId\x124\n" +
-	"\x16gateway_transaction_id\x18\x03 \x01(\tR\x14gatewayTransactionId\x12#\n" +
-	"\x04type\x18\x04 \x01(\v2\x0f.payment.RsEnumR\x04type\x12\x16\n" +
-	"\x06amount\x18\x05 \x01(\x01R\x06amount\x12'\n" +
-	"\x06status\x18\x06 \x01(\v2\x0f.payment.RsEnumR\x06status\x12)\n" +
+	"\x16gateway_transaction_id\x18\x03 \x01(\tR\x14gatewayTransactionId\x12)\n" +
+	"\x04type\x18\x04 \x01(\v2\x15.payment.EnumResponseR\x04type\x12\x16\n" +
+	"\x06amount\x18\x05 \x01(\x01R\x06amount\x12-\n" +
+	"\x06status\x18\x06 \x01(\v2\x15.payment.EnumResponseR\x06status\x12)\n" +
 	"\x10gateway_response\x18\a \x01(\tR\x0fgatewayResponse\x12=\n" +
 	"\fprocessed_at\x18\b \x01(\v2\x1a.google.protobuf.TimestampR\vprocessedAt\x12%\n" +
 	"\x0efailure_reason\x18\t \x01(\tR\rfailureReason\x12\x1a\n" +
@@ -2261,13 +2248,13 @@ const file_payment_payment_proto_rawDesc = "" +
 	"\n" +
 	"created_at\x18\v \x01(\v2\x1a.google.protobuf.TimestampR\tcreatedAt\x129\n" +
 	"\n" +
-	"updated_at\x18\f \x01(\v2\x1a.google.protobuf.TimestampR\tupdatedAt\"\xe6\x03\n" +
+	"updated_at\x18\f \x01(\v2\x1a.google.protobuf.TimestampR\tupdatedAt\"\xec\x03\n" +
 	"\x06Refund\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12\x1d\n" +
 	"\n" +
 	"payment_id\x18\x02 \x01(\tR\tpaymentId\x12\x16\n" +
-	"\x06amount\x18\x03 \x01(\x01R\x06amount\x12'\n" +
-	"\x06status\x18\x04 \x01(\v2\x0f.payment.RsEnumR\x06status\x12\x16\n" +
+	"\x06amount\x18\x03 \x01(\x01R\x06amount\x12-\n" +
+	"\x06status\x18\x04 \x01(\v2\x15.payment.EnumResponseR\x06status\x12\x16\n" +
 	"\x06reason\x18\x05 \x01(\tR\x06reason\x12*\n" +
 	"\x11gateway_refund_id\x18\x06 \x01(\tR\x0fgatewayRefundId\x12)\n" +
 	"\x10gateway_response\x18\a \x01(\tR\x0fgatewayResponse\x12=\n" +
@@ -2278,23 +2265,23 @@ const file_payment_payment_proto_rawDesc = "" +
 	"\n" +
 	"created_at\x18\v \x01(\v2\x1a.google.protobuf.TimestampR\tcreatedAt\x129\n" +
 	"\n" +
-	"updated_at\x18\f \x01(\v2\x1a.google.protobuf.TimestampR\tupdatedAt\"\xdb\x02\n" +
+	"updated_at\x18\f \x01(\v2\x1a.google.protobuf.TimestampR\tupdatedAt\"\xe7\x02\n" +
 	"\x06Wallet\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12\x17\n" +
-	"\auser_id\x18\x02 \x01(\tR\x06userId\x12,\n" +
-	"\tuser_type\x18\x03 \x01(\v2\x0f.payment.RsEnumR\buserType\x12\x18\n" +
+	"\auser_id\x18\x02 \x01(\tR\x06userId\x122\n" +
+	"\tuser_type\x18\x03 \x01(\v2\x15.payment.EnumResponseR\buserType\x12\x18\n" +
 	"\abalance\x18\x04 \x01(\x01R\abalance\x12%\n" +
-	"\x0efrozen_balance\x18\x05 \x01(\x01R\rfrozenBalance\x12'\n" +
-	"\x06status\x18\x06 \x01(\v2\x0f.payment.RsEnumR\x06status\x12\x1a\n" +
+	"\x0efrozen_balance\x18\x05 \x01(\x01R\rfrozenBalance\x12-\n" +
+	"\x06status\x18\x06 \x01(\v2\x15.payment.EnumResponseR\x06status\x12\x1a\n" +
 	"\bcurrency\x18\a \x01(\tR\bcurrency\x129\n" +
 	"\n" +
 	"created_at\x18\b \x01(\v2\x1a.google.protobuf.TimestampR\tcreatedAt\x129\n" +
 	"\n" +
-	"updated_at\x18\t \x01(\v2\x1a.google.protobuf.TimestampR\tupdatedAt\"\xab\x03\n" +
+	"updated_at\x18\t \x01(\v2\x1a.google.protobuf.TimestampR\tupdatedAt\"\xb1\x03\n" +
 	"\x11WalletTransaction\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12\x1b\n" +
-	"\twallet_id\x18\x02 \x01(\tR\bwalletId\x12#\n" +
-	"\x04type\x18\x03 \x01(\v2\x0f.payment.RsEnumR\x04type\x12\x16\n" +
+	"\twallet_id\x18\x02 \x01(\tR\bwalletId\x12)\n" +
+	"\x04type\x18\x03 \x01(\v2\x15.payment.EnumResponseR\x04type\x12\x16\n" +
 	"\x06amount\x18\x04 \x01(\x01R\x06amount\x12%\n" +
 	"\x0ebalance_before\x18\x05 \x01(\x01R\rbalanceBefore\x12#\n" +
 	"\rbalance_after\x18\x06 \x01(\x01R\fbalanceAfter\x12 \n" +
@@ -2305,139 +2292,139 @@ const file_payment_payment_proto_rawDesc = "" +
 	"created_at\x18\n" +
 	" \x01(\v2\x1a.google.protobuf.TimestampR\tcreatedAt\x129\n" +
 	"\n" +
-	"updated_at\x18\v \x01(\v2\x1a.google.protobuf.TimestampR\tupdatedAt\"\xd1\x02\n" +
-	"\x10RqProcessPayment\x12\x17\n" +
+	"updated_at\x18\v \x01(\v2\x1a.google.protobuf.TimestampR\tupdatedAt\"\xe0\x02\n" +
+	"\x15ProcessPaymentRequest\x12\x17\n" +
 	"\atrip_id\x18\x01 \x01(\tR\x06tripId\x12\x19\n" +
 	"\brider_id\x18\x02 \x01(\tR\ariderId\x12\x1b\n" +
 	"\tdriver_id\x18\x03 \x01(\tR\bdriverId\x12\x16\n" +
-	"\x06amount\x18\x04 \x01(\x01R\x06amount\x126\n" +
-	"\x0epayment_method\x18\x05 \x01(\v2\x0f.payment.RqEnumR\rpaymentMethod\x12\x1a\n" +
-	"\bcurrency\x18\x06 \x01(\tR\bcurrency\x12C\n" +
-	"\bmetadata\x18\a \x03(\v2'.payment.RqProcessPayment.MetadataEntryR\bmetadata\x1a;\n" +
+	"\x06amount\x18\x04 \x01(\x01R\x06amount\x12;\n" +
+	"\x0epayment_method\x18\x05 \x01(\v2\x14.payment.EnumRequestR\rpaymentMethod\x12\x1a\n" +
+	"\bcurrency\x18\x06 \x01(\tR\bcurrency\x12H\n" +
+	"\bmetadata\x18\a \x03(\v2,.payment.ProcessPaymentRequest.MetadataEntryR\bmetadata\x1a;\n" +
 	"\rMetadataEntry\x12\x10\n" +
 	"\x03key\x18\x01 \x01(\tR\x03key\x12\x14\n" +
-	"\x05value\x18\x02 \x01(\tR\x05value:\x028\x01\"\xc9\x01\n" +
-	"\x10RsProcessPayment\x12\x18\n" +
+	"\x05value\x18\x02 \x01(\tR\x05value:\x028\x01\"\xcf\x01\n" +
+	"\x16ProcessPaymentResponse\x12\x18\n" +
 	"\asuccess\x18\x01 \x01(\bR\asuccess\x12\x18\n" +
 	"\amessage\x18\x02 \x01(\tR\amessage\x12*\n" +
 	"\apayment\x18\x03 \x01(\v2\x10.payment.PaymentR\apayment\x124\n" +
 	"\x16gateway_transaction_id\x18\x04 \x01(\tR\x14gatewayTransactionId\x12\x1f\n" +
 	"\vpayment_url\x18\x05 \x01(\tR\n" +
-	"paymentUrl\"L\n" +
-	"\x12RqGetPaymentStatus\x12\x1d\n" +
+	"paymentUrl\"Q\n" +
+	"\x17GetPaymentStatusRequest\x12\x1d\n" +
 	"\n" +
 	"payment_id\x18\x01 \x01(\tR\tpaymentId\x12\x17\n" +
-	"\atrip_id\x18\x02 \x01(\tR\x06tripId\"t\n" +
-	"\x12RsGetPaymentStatus\x12\x18\n" +
+	"\atrip_id\x18\x02 \x01(\tR\x06tripId\"z\n" +
+	"\x18GetPaymentStatusResponse\x12\x18\n" +
 	"\asuccess\x18\x01 \x01(\bR\asuccess\x12\x18\n" +
 	"\amessage\x18\x02 \x01(\tR\amessage\x12*\n" +
-	"\apayment\x18\x03 \x01(\v2\x10.payment.PaymentR\apayment\"\x83\x01\n" +
-	"\x0fRqProcessRefund\x12\x1d\n" +
+	"\apayment\x18\x03 \x01(\v2\x10.payment.PaymentR\apayment\"\x88\x01\n" +
+	"\x14ProcessRefundRequest\x12\x1d\n" +
 	"\n" +
 	"payment_id\x18\x01 \x01(\tR\tpaymentId\x12\x16\n" +
 	"\x06amount\x18\x02 \x01(\x01R\x06amount\x12\x16\n" +
 	"\x06reason\x18\x03 \x01(\tR\x06reason\x12!\n" +
-	"\frequested_by\x18\x04 \x01(\tR\vrequestedBy\"\x9a\x01\n" +
-	"\x0fRsProcessRefund\x12\x18\n" +
+	"\frequested_by\x18\x04 \x01(\tR\vrequestedBy\"\xa0\x01\n" +
+	"\x15ProcessRefundResponse\x12\x18\n" +
 	"\asuccess\x18\x01 \x01(\bR\asuccess\x12\x18\n" +
 	"\amessage\x18\x02 \x01(\tR\amessage\x12'\n" +
 	"\x06refund\x18\x03 \x01(\v2\x0f.payment.RefundR\x06refund\x12*\n" +
-	"\x11gateway_refund_id\x18\x04 \x01(\tR\x0fgatewayRefundId\"\xa1\x02\n" +
-	"\x13RqGetPaymentHistory\x12\x17\n" +
-	"\auser_id\x18\x01 \x01(\tR\x06userId\x12,\n" +
-	"\tuser_type\x18\x02 \x01(\v2\x0f.payment.RqEnumR\buserType\x12\x12\n" +
+	"\x11gateway_refund_id\x18\x04 \x01(\tR\x0fgatewayRefundId\"\xb0\x02\n" +
+	"\x18GetPaymentHistoryRequest\x12\x17\n" +
+	"\auser_id\x18\x01 \x01(\tR\x06userId\x121\n" +
+	"\tuser_type\x18\x02 \x01(\v2\x14.payment.EnumRequestR\buserType\x12\x12\n" +
 	"\x04page\x18\x03 \x01(\x05R\x04page\x12\x14\n" +
 	"\x05limit\x18\x04 \x01(\x05R\x05limit\x129\n" +
 	"\n" +
 	"start_date\x18\x05 \x01(\v2\x1a.google.protobuf.TimestampR\tstartDate\x125\n" +
-	"\bend_date\x18\x06 \x01(\v2\x1a.google.protobuf.TimestampR\aendDate\x12'\n" +
-	"\x06status\x18\a \x01(\v2\x0f.payment.RqEnumR\x06status\"\xb7\x01\n" +
-	"\x13RsGetPaymentHistory\x12\x18\n" +
+	"\bend_date\x18\x06 \x01(\v2\x1a.google.protobuf.TimestampR\aendDate\x12,\n" +
+	"\x06status\x18\a \x01(\v2\x14.payment.EnumRequestR\x06status\"\xbd\x01\n" +
+	"\x19GetPaymentHistoryResponse\x12\x18\n" +
 	"\asuccess\x18\x01 \x01(\bR\asuccess\x12\x18\n" +
 	"\amessage\x18\x02 \x01(\tR\amessage\x12,\n" +
 	"\bpayments\x18\x03 \x03(\v2\x10.payment.PaymentR\bpayments\x12\x14\n" +
 	"\x05total\x18\x04 \x01(\x05R\x05total\x12\x12\n" +
 	"\x04page\x18\x05 \x01(\x05R\x04page\x12\x14\n" +
-	"\x05limit\x18\x06 \x01(\x05R\x05limit\"\xfd\x01\n" +
-	"\x0fRqHandleWebhook\x12\x16\n" +
+	"\x05limit\x18\x06 \x01(\x05R\x05limit\"\x87\x02\n" +
+	"\x14HandleWebhookRequest\x12\x16\n" +
 	"\x06source\x18\x01 \x01(\tR\x06source\x12\x1d\n" +
 	"\n" +
 	"event_type\x18\x02 \x01(\tR\teventType\x12\x18\n" +
 	"\apayload\x18\x03 \x01(\tR\apayload\x12\x1c\n" +
-	"\tsignature\x18\x04 \x01(\tR\tsignature\x12?\n" +
-	"\aheaders\x18\x05 \x03(\v2%.payment.RqHandleWebhook.HeadersEntryR\aheaders\x1a:\n" +
+	"\tsignature\x18\x04 \x01(\tR\tsignature\x12D\n" +
+	"\aheaders\x18\x05 \x03(\v2*.payment.HandleWebhookRequest.HeadersEntryR\aheaders\x1a:\n" +
 	"\fHeadersEntry\x12\x10\n" +
 	"\x03key\x18\x01 \x01(\tR\x03key\x12\x14\n" +
-	"\x05value\x18\x02 \x01(\tR\x05value:\x028\x01\"a\n" +
-	"\x0fRsHandleWebhook\x12\x18\n" +
+	"\x05value\x18\x02 \x01(\tR\x05value:\x028\x01\"g\n" +
+	"\x15HandleWebhookResponse\x12\x18\n" +
 	"\asuccess\x18\x01 \x01(\bR\asuccess\x12\x18\n" +
 	"\amessage\x18\x02 \x01(\tR\amessage\x12\x1a\n" +
-	"\bresponse\x18\x03 \x01(\tR\bresponse\"[\n" +
-	"\x12RqGetWalletBalance\x12\x17\n" +
-	"\auser_id\x18\x01 \x01(\tR\x06userId\x12,\n" +
-	"\tuser_type\x18\x02 \x01(\v2\x0f.payment.RqEnumR\buserType\"q\n" +
-	"\x12RsGetWalletBalance\x12\x18\n" +
+	"\bresponse\x18\x03 \x01(\tR\bresponse\"e\n" +
+	"\x17GetWalletBalanceRequest\x12\x17\n" +
+	"\auser_id\x18\x01 \x01(\tR\x06userId\x121\n" +
+	"\tuser_type\x18\x02 \x01(\v2\x14.payment.EnumRequestR\buserType\"w\n" +
+	"\x18GetWalletBalanceResponse\x12\x18\n" +
 	"\asuccess\x18\x01 \x01(\bR\asuccess\x12\x18\n" +
 	"\amessage\x18\x02 \x01(\tR\amessage\x12'\n" +
-	"\x06wallet\x18\x03 \x01(\v2\x0f.payment.WalletR\x06wallet\"\xc1\x02\n" +
-	"\rRqTopupWallet\x12\x17\n" +
-	"\auser_id\x18\x01 \x01(\tR\x06userId\x12,\n" +
-	"\tuser_type\x18\x02 \x01(\v2\x0f.payment.RqEnumR\buserType\x12\x16\n" +
-	"\x06amount\x18\x03 \x01(\x01R\x06amount\x126\n" +
-	"\x0epayment_method\x18\x04 \x01(\v2\x0f.payment.RqEnumR\rpaymentMethod\x12\x1a\n" +
-	"\bcurrency\x18\x05 \x01(\tR\bcurrency\x12@\n" +
-	"\bmetadata\x18\x06 \x03(\v2$.payment.RqTopupWallet.MetadataEntryR\bmetadata\x1a;\n" +
+	"\x06wallet\x18\x03 \x01(\v2\x0f.payment.WalletR\x06wallet\"\xd5\x02\n" +
+	"\x12TopupWalletRequest\x12\x17\n" +
+	"\auser_id\x18\x01 \x01(\tR\x06userId\x121\n" +
+	"\tuser_type\x18\x02 \x01(\v2\x14.payment.EnumRequestR\buserType\x12\x16\n" +
+	"\x06amount\x18\x03 \x01(\x01R\x06amount\x12;\n" +
+	"\x0epayment_method\x18\x04 \x01(\v2\x14.payment.EnumRequestR\rpaymentMethod\x12\x1a\n" +
+	"\bcurrency\x18\x05 \x01(\tR\bcurrency\x12E\n" +
+	"\bmetadata\x18\x06 \x03(\v2).payment.TopupWalletRequest.MetadataEntryR\bmetadata\x1a;\n" +
 	"\rMetadataEntry\x12\x10\n" +
 	"\x03key\x18\x01 \x01(\tR\x03key\x12\x14\n" +
-	"\x05value\x18\x02 \x01(\tR\x05value:\x028\x01\"\xc3\x01\n" +
-	"\rRsTopupWallet\x12\x18\n" +
+	"\x05value\x18\x02 \x01(\tR\x05value:\x028\x01\"\xc9\x01\n" +
+	"\x13TopupWalletResponse\x12\x18\n" +
 	"\asuccess\x18\x01 \x01(\bR\asuccess\x12\x18\n" +
 	"\amessage\x18\x02 \x01(\tR\amessage\x12'\n" +
 	"\x06wallet\x18\x03 \x01(\v2\x0f.payment.WalletR\x06wallet\x124\n" +
 	"\x16gateway_transaction_id\x18\x04 \x01(\tR\x14gatewayTransactionId\x12\x1f\n" +
 	"\vpayment_url\x18\x05 \x01(\tR\n" +
-	"paymentUrl\"\x9d\x02\n" +
-	"\x14RqWithdrawFromWallet\x12\x17\n" +
-	"\auser_id\x18\x01 \x01(\tR\x06userId\x12,\n" +
-	"\tuser_type\x18\x02 \x01(\v2\x0f.payment.RqEnumR\buserType\x12\x16\n" +
+	"paymentUrl\"\xac\x02\n" +
+	"\x19WithdrawFromWalletRequest\x12\x17\n" +
+	"\auser_id\x18\x01 \x01(\tR\x06userId\x121\n" +
+	"\tuser_type\x18\x02 \x01(\v2\x14.payment.EnumRequestR\buserType\x12\x16\n" +
 	"\x06amount\x18\x03 \x01(\x01R\x06amount\x12 \n" +
-	"\vdescription\x18\x04 \x01(\tR\vdescription\x12G\n" +
-	"\bmetadata\x18\x05 \x03(\v2+.payment.RqWithdrawFromWallet.MetadataEntryR\bmetadata\x1a;\n" +
+	"\vdescription\x18\x04 \x01(\tR\vdescription\x12L\n" +
+	"\bmetadata\x18\x05 \x03(\v20.payment.WithdrawFromWalletRequest.MetadataEntryR\bmetadata\x1a;\n" +
 	"\rMetadataEntry\x12\x10\n" +
 	"\x03key\x18\x01 \x01(\tR\x03key\x12\x14\n" +
-	"\x05value\x18\x02 \x01(\tR\x05value:\x028\x01\"\xb1\x01\n" +
-	"\x14RsWithdrawFromWallet\x12\x18\n" +
+	"\x05value\x18\x02 \x01(\tR\x05value:\x028\x01\"\xb7\x01\n" +
+	"\x1aWithdrawFromWalletResponse\x12\x18\n" +
 	"\asuccess\x18\x01 \x01(\bR\asuccess\x12\x18\n" +
 	"\amessage\x18\x02 \x01(\tR\amessage\x12'\n" +
 	"\x06wallet\x18\x03 \x01(\v2\x0f.payment.WalletR\x06wallet\x12<\n" +
-	"\vtransaction\x18\x04 \x01(\v2\x1a.payment.WalletTransactionR\vtransaction\"\xa1\x02\n" +
-	"\x17RqGetWalletTransactions\x12\x17\n" +
-	"\auser_id\x18\x01 \x01(\tR\x06userId\x12,\n" +
-	"\tuser_type\x18\x02 \x01(\v2\x0f.payment.RqEnumR\buserType\x12\x12\n" +
+	"\vtransaction\x18\x04 \x01(\v2\x1a.payment.WalletTransactionR\vtransaction\"\xb0\x02\n" +
+	"\x1cGetWalletTransactionsRequest\x12\x17\n" +
+	"\auser_id\x18\x01 \x01(\tR\x06userId\x121\n" +
+	"\tuser_type\x18\x02 \x01(\v2\x14.payment.EnumRequestR\buserType\x12\x12\n" +
 	"\x04page\x18\x03 \x01(\x05R\x04page\x12\x14\n" +
 	"\x05limit\x18\x04 \x01(\x05R\x05limit\x129\n" +
 	"\n" +
 	"start_date\x18\x05 \x01(\v2\x1a.google.protobuf.TimestampR\tstartDate\x125\n" +
-	"\bend_date\x18\x06 \x01(\v2\x1a.google.protobuf.TimestampR\aendDate\x12#\n" +
-	"\x04type\x18\a \x01(\v2\x0f.payment.RqEnumR\x04type\"\xcd\x01\n" +
-	"\x17RsGetWalletTransactions\x12\x18\n" +
+	"\bend_date\x18\x06 \x01(\v2\x1a.google.protobuf.TimestampR\aendDate\x12(\n" +
+	"\x04type\x18\a \x01(\v2\x14.payment.EnumRequestR\x04type\"\xd3\x01\n" +
+	"\x1dGetWalletTransactionsResponse\x12\x18\n" +
 	"\asuccess\x18\x01 \x01(\bR\asuccess\x12\x18\n" +
 	"\amessage\x18\x02 \x01(\tR\amessage\x12>\n" +
 	"\ftransactions\x18\x03 \x03(\v2\x1a.payment.WalletTransactionR\ftransactions\x12\x14\n" +
 	"\x05total\x18\x04 \x01(\x05R\x05total\x12\x12\n" +
 	"\x04page\x18\x05 \x01(\x05R\x04page\x12\x14\n" +
-	"\x05limit\x18\x06 \x01(\x05R\x05limit2\x81\x03\n" +
-	"\x0ePaymentService\x12F\n" +
-	"\x0eProcessPayment\x12\x19.payment.RqProcessPayment\x1a\x19.payment.RsProcessPayment\x12L\n" +
-	"\x10GetPaymentStatus\x12\x1b.payment.RqGetPaymentStatus\x1a\x1b.payment.RsGetPaymentStatus\x12C\n" +
-	"\rProcessRefund\x12\x18.payment.RqProcessRefund\x1a\x18.payment.RsProcessRefund\x12O\n" +
-	"\x11GetPaymentHistory\x12\x1c.payment.RqGetPaymentHistory\x1a\x1c.payment.RsGetPaymentHistory\x12C\n" +
-	"\rHandleWebhook\x12\x18.payment.RqHandleWebhook\x1a\x18.payment.RsHandleWebhook2\xcd\x02\n" +
-	"\rWalletService\x12L\n" +
-	"\x10GetWalletBalance\x12\x1b.payment.RqGetWalletBalance\x1a\x1b.payment.RsGetWalletBalance\x12=\n" +
-	"\vTopupWallet\x12\x16.payment.RqTopupWallet\x1a\x16.payment.RsTopupWallet\x12R\n" +
-	"\x12WithdrawFromWallet\x12\x1d.payment.RqWithdrawFromWallet\x1a\x1d.payment.RsWithdrawFromWallet\x12[\n" +
-	"\x15GetWalletTransactions\x12 .payment.RqGetWalletTransactions\x1a .payment.RsGetWalletTransactionsBBZ@github.com/mihirk-khode/motocabz-common/genproto/payment;paymentb\x06proto3"
+	"\x05limit\x18\x06 \x01(\x05R\x05limit2\xb8\x03\n" +
+	"\x0ePaymentService\x12Q\n" +
+	"\x0eProcessPayment\x12\x1e.payment.ProcessPaymentRequest\x1a\x1f.payment.ProcessPaymentResponse\x12W\n" +
+	"\x10GetPaymentStatus\x12 .payment.GetPaymentStatusRequest\x1a!.payment.GetPaymentStatusResponse\x12N\n" +
+	"\rProcessRefund\x12\x1d.payment.ProcessRefundRequest\x1a\x1e.payment.ProcessRefundResponse\x12Z\n" +
+	"\x11GetPaymentHistory\x12!.payment.GetPaymentHistoryRequest\x1a\".payment.GetPaymentHistoryResponse\x12N\n" +
+	"\rHandleWebhook\x12\x1d.payment.HandleWebhookRequest\x1a\x1e.payment.HandleWebhookResponse2\xf9\x02\n" +
+	"\rWalletService\x12W\n" +
+	"\x10GetWalletBalance\x12 .payment.GetWalletBalanceRequest\x1a!.payment.GetWalletBalanceResponse\x12H\n" +
+	"\vTopupWallet\x12\x1b.payment.TopupWalletRequest\x1a\x1c.payment.TopupWalletResponse\x12]\n" +
+	"\x12WithdrawFromWallet\x12\".payment.WithdrawFromWalletRequest\x1a#.payment.WithdrawFromWalletResponse\x12f\n" +
+	"\x15GetWalletTransactions\x12%.payment.GetWalletTransactionsRequest\x1a&.payment.GetWalletTransactionsResponseBBZ@github.com/mihirk-khode/motocabz-common/genproto/payment;paymentb\x06proto3"
 
 var (
 	file_payment_payment_proto_rawDescOnce sync.Once
@@ -2453,107 +2440,107 @@ func file_payment_payment_proto_rawDescGZIP() []byte {
 
 var file_payment_payment_proto_msgTypes = make([]protoimpl.MessageInfo, 30)
 var file_payment_payment_proto_goTypes = []any{
-	(*RqEnum)(nil),                  // 0: payment.RqEnum
-	(*Enum)(nil),                    // 1: payment.Enum
-	(*RsEnum)(nil),                  // 2: payment.RsEnum
-	(*Payment)(nil),                 // 3: payment.Payment
-	(*Transaction)(nil),             // 4: payment.Transaction
-	(*Refund)(nil),                  // 5: payment.Refund
-	(*Wallet)(nil),                  // 6: payment.Wallet
-	(*WalletTransaction)(nil),       // 7: payment.WalletTransaction
-	(*RqProcessPayment)(nil),        // 8: payment.RqProcessPayment
-	(*RsProcessPayment)(nil),        // 9: payment.RsProcessPayment
-	(*RqGetPaymentStatus)(nil),      // 10: payment.RqGetPaymentStatus
-	(*RsGetPaymentStatus)(nil),      // 11: payment.RsGetPaymentStatus
-	(*RqProcessRefund)(nil),         // 12: payment.RqProcessRefund
-	(*RsProcessRefund)(nil),         // 13: payment.RsProcessRefund
-	(*RqGetPaymentHistory)(nil),     // 14: payment.RqGetPaymentHistory
-	(*RsGetPaymentHistory)(nil),     // 15: payment.RsGetPaymentHistory
-	(*RqHandleWebhook)(nil),         // 16: payment.RqHandleWebhook
-	(*RsHandleWebhook)(nil),         // 17: payment.RsHandleWebhook
-	(*RqGetWalletBalance)(nil),      // 18: payment.RqGetWalletBalance
-	(*RsGetWalletBalance)(nil),      // 19: payment.RsGetWalletBalance
-	(*RqTopupWallet)(nil),           // 20: payment.RqTopupWallet
-	(*RsTopupWallet)(nil),           // 21: payment.RsTopupWallet
-	(*RqWithdrawFromWallet)(nil),    // 22: payment.RqWithdrawFromWallet
-	(*RsWithdrawFromWallet)(nil),    // 23: payment.RsWithdrawFromWallet
-	(*RqGetWalletTransactions)(nil), // 24: payment.RqGetWalletTransactions
-	(*RsGetWalletTransactions)(nil), // 25: payment.RsGetWalletTransactions
-	nil,                             // 26: payment.RqProcessPayment.MetadataEntry
-	nil,                             // 27: payment.RqHandleWebhook.HeadersEntry
-	nil,                             // 28: payment.RqTopupWallet.MetadataEntry
-	nil,                             // 29: payment.RqWithdrawFromWallet.MetadataEntry
-	(*timestamppb.Timestamp)(nil),   // 30: google.protobuf.Timestamp
+	(*EnumRequest)(nil),                   // 0: payment.EnumRequest
+	(*Enum)(nil),                          // 1: payment.Enum
+	(*EnumResponse)(nil),                  // 2: payment.EnumResponse
+	(*Payment)(nil),                       // 3: payment.Payment
+	(*Transaction)(nil),                   // 4: payment.Transaction
+	(*Refund)(nil),                        // 5: payment.Refund
+	(*Wallet)(nil),                        // 6: payment.Wallet
+	(*WalletTransaction)(nil),             // 7: payment.WalletTransaction
+	(*ProcessPaymentRequest)(nil),         // 8: payment.ProcessPaymentRequest
+	(*ProcessPaymentResponse)(nil),        // 9: payment.ProcessPaymentResponse
+	(*GetPaymentStatusRequest)(nil),       // 10: payment.GetPaymentStatusRequest
+	(*GetPaymentStatusResponse)(nil),      // 11: payment.GetPaymentStatusResponse
+	(*ProcessRefundRequest)(nil),          // 12: payment.ProcessRefundRequest
+	(*ProcessRefundResponse)(nil),         // 13: payment.ProcessRefundResponse
+	(*GetPaymentHistoryRequest)(nil),      // 14: payment.GetPaymentHistoryRequest
+	(*GetPaymentHistoryResponse)(nil),     // 15: payment.GetPaymentHistoryResponse
+	(*HandleWebhookRequest)(nil),          // 16: payment.HandleWebhookRequest
+	(*HandleWebhookResponse)(nil),         // 17: payment.HandleWebhookResponse
+	(*GetWalletBalanceRequest)(nil),       // 18: payment.GetWalletBalanceRequest
+	(*GetWalletBalanceResponse)(nil),      // 19: payment.GetWalletBalanceResponse
+	(*TopupWalletRequest)(nil),            // 20: payment.TopupWalletRequest
+	(*TopupWalletResponse)(nil),           // 21: payment.TopupWalletResponse
+	(*WithdrawFromWalletRequest)(nil),     // 22: payment.WithdrawFromWalletRequest
+	(*WithdrawFromWalletResponse)(nil),    // 23: payment.WithdrawFromWalletResponse
+	(*GetWalletTransactionsRequest)(nil),  // 24: payment.GetWalletTransactionsRequest
+	(*GetWalletTransactionsResponse)(nil), // 25: payment.GetWalletTransactionsResponse
+	nil,                                   // 26: payment.ProcessPaymentRequest.MetadataEntry
+	nil,                                   // 27: payment.HandleWebhookRequest.HeadersEntry
+	nil,                                   // 28: payment.TopupWalletRequest.MetadataEntry
+	nil,                                   // 29: payment.WithdrawFromWalletRequest.MetadataEntry
+	(*timestamppb.Timestamp)(nil),         // 30: google.protobuf.Timestamp
 }
 var file_payment_payment_proto_depIdxs = []int32{
-	1,  // 0: payment.RsEnum.enum:type_name -> payment.Enum
-	2,  // 1: payment.Payment.payment_method:type_name -> payment.RsEnum
-	2,  // 2: payment.Payment.status:type_name -> payment.RsEnum
+	1,  // 0: payment.EnumResponse.enum:type_name -> payment.Enum
+	2,  // 1: payment.Payment.payment_method:type_name -> payment.EnumResponse
+	2,  // 2: payment.Payment.status:type_name -> payment.EnumResponse
 	30, // 3: payment.Payment.processed_at:type_name -> google.protobuf.Timestamp
 	30, // 4: payment.Payment.failed_at:type_name -> google.protobuf.Timestamp
 	30, // 5: payment.Payment.refunded_at:type_name -> google.protobuf.Timestamp
 	30, // 6: payment.Payment.created_at:type_name -> google.protobuf.Timestamp
 	30, // 7: payment.Payment.updated_at:type_name -> google.protobuf.Timestamp
-	2,  // 8: payment.Transaction.type:type_name -> payment.RsEnum
-	2,  // 9: payment.Transaction.status:type_name -> payment.RsEnum
+	2,  // 8: payment.Transaction.type:type_name -> payment.EnumResponse
+	2,  // 9: payment.Transaction.status:type_name -> payment.EnumResponse
 	30, // 10: payment.Transaction.processed_at:type_name -> google.protobuf.Timestamp
 	30, // 11: payment.Transaction.created_at:type_name -> google.protobuf.Timestamp
 	30, // 12: payment.Transaction.updated_at:type_name -> google.protobuf.Timestamp
-	2,  // 13: payment.Refund.status:type_name -> payment.RsEnum
+	2,  // 13: payment.Refund.status:type_name -> payment.EnumResponse
 	30, // 14: payment.Refund.processed_at:type_name -> google.protobuf.Timestamp
 	30, // 15: payment.Refund.created_at:type_name -> google.protobuf.Timestamp
 	30, // 16: payment.Refund.updated_at:type_name -> google.protobuf.Timestamp
-	2,  // 17: payment.Wallet.user_type:type_name -> payment.RsEnum
-	2,  // 18: payment.Wallet.status:type_name -> payment.RsEnum
+	2,  // 17: payment.Wallet.user_type:type_name -> payment.EnumResponse
+	2,  // 18: payment.Wallet.status:type_name -> payment.EnumResponse
 	30, // 19: payment.Wallet.created_at:type_name -> google.protobuf.Timestamp
 	30, // 20: payment.Wallet.updated_at:type_name -> google.protobuf.Timestamp
-	2,  // 21: payment.WalletTransaction.type:type_name -> payment.RsEnum
+	2,  // 21: payment.WalletTransaction.type:type_name -> payment.EnumResponse
 	30, // 22: payment.WalletTransaction.created_at:type_name -> google.protobuf.Timestamp
 	30, // 23: payment.WalletTransaction.updated_at:type_name -> google.protobuf.Timestamp
-	0,  // 24: payment.RqProcessPayment.payment_method:type_name -> payment.RqEnum
-	26, // 25: payment.RqProcessPayment.metadata:type_name -> payment.RqProcessPayment.MetadataEntry
-	3,  // 26: payment.RsProcessPayment.payment:type_name -> payment.Payment
-	3,  // 27: payment.RsGetPaymentStatus.payment:type_name -> payment.Payment
-	5,  // 28: payment.RsProcessRefund.refund:type_name -> payment.Refund
-	0,  // 29: payment.RqGetPaymentHistory.user_type:type_name -> payment.RqEnum
-	30, // 30: payment.RqGetPaymentHistory.start_date:type_name -> google.protobuf.Timestamp
-	30, // 31: payment.RqGetPaymentHistory.end_date:type_name -> google.protobuf.Timestamp
-	0,  // 32: payment.RqGetPaymentHistory.status:type_name -> payment.RqEnum
-	3,  // 33: payment.RsGetPaymentHistory.payments:type_name -> payment.Payment
-	27, // 34: payment.RqHandleWebhook.headers:type_name -> payment.RqHandleWebhook.HeadersEntry
-	0,  // 35: payment.RqGetWalletBalance.user_type:type_name -> payment.RqEnum
-	6,  // 36: payment.RsGetWalletBalance.wallet:type_name -> payment.Wallet
-	0,  // 37: payment.RqTopupWallet.user_type:type_name -> payment.RqEnum
-	0,  // 38: payment.RqTopupWallet.payment_method:type_name -> payment.RqEnum
-	28, // 39: payment.RqTopupWallet.metadata:type_name -> payment.RqTopupWallet.MetadataEntry
-	6,  // 40: payment.RsTopupWallet.wallet:type_name -> payment.Wallet
-	0,  // 41: payment.RqWithdrawFromWallet.user_type:type_name -> payment.RqEnum
-	29, // 42: payment.RqWithdrawFromWallet.metadata:type_name -> payment.RqWithdrawFromWallet.MetadataEntry
-	6,  // 43: payment.RsWithdrawFromWallet.wallet:type_name -> payment.Wallet
-	7,  // 44: payment.RsWithdrawFromWallet.transaction:type_name -> payment.WalletTransaction
-	0,  // 45: payment.RqGetWalletTransactions.user_type:type_name -> payment.RqEnum
-	30, // 46: payment.RqGetWalletTransactions.start_date:type_name -> google.protobuf.Timestamp
-	30, // 47: payment.RqGetWalletTransactions.end_date:type_name -> google.protobuf.Timestamp
-	0,  // 48: payment.RqGetWalletTransactions.type:type_name -> payment.RqEnum
-	7,  // 49: payment.RsGetWalletTransactions.transactions:type_name -> payment.WalletTransaction
-	8,  // 50: payment.PaymentService.ProcessPayment:input_type -> payment.RqProcessPayment
-	10, // 51: payment.PaymentService.GetPaymentStatus:input_type -> payment.RqGetPaymentStatus
-	12, // 52: payment.PaymentService.ProcessRefund:input_type -> payment.RqProcessRefund
-	14, // 53: payment.PaymentService.GetPaymentHistory:input_type -> payment.RqGetPaymentHistory
-	16, // 54: payment.PaymentService.HandleWebhook:input_type -> payment.RqHandleWebhook
-	18, // 55: payment.WalletService.GetWalletBalance:input_type -> payment.RqGetWalletBalance
-	20, // 56: payment.WalletService.TopupWallet:input_type -> payment.RqTopupWallet
-	22, // 57: payment.WalletService.WithdrawFromWallet:input_type -> payment.RqWithdrawFromWallet
-	24, // 58: payment.WalletService.GetWalletTransactions:input_type -> payment.RqGetWalletTransactions
-	9,  // 59: payment.PaymentService.ProcessPayment:output_type -> payment.RsProcessPayment
-	11, // 60: payment.PaymentService.GetPaymentStatus:output_type -> payment.RsGetPaymentStatus
-	13, // 61: payment.PaymentService.ProcessRefund:output_type -> payment.RsProcessRefund
-	15, // 62: payment.PaymentService.GetPaymentHistory:output_type -> payment.RsGetPaymentHistory
-	17, // 63: payment.PaymentService.HandleWebhook:output_type -> payment.RsHandleWebhook
-	19, // 64: payment.WalletService.GetWalletBalance:output_type -> payment.RsGetWalletBalance
-	21, // 65: payment.WalletService.TopupWallet:output_type -> payment.RsTopupWallet
-	23, // 66: payment.WalletService.WithdrawFromWallet:output_type -> payment.RsWithdrawFromWallet
-	25, // 67: payment.WalletService.GetWalletTransactions:output_type -> payment.RsGetWalletTransactions
+	0,  // 24: payment.ProcessPaymentRequest.payment_method:type_name -> payment.EnumRequest
+	26, // 25: payment.ProcessPaymentRequest.metadata:type_name -> payment.ProcessPaymentRequest.MetadataEntry
+	3,  // 26: payment.ProcessPaymentResponse.payment:type_name -> payment.Payment
+	3,  // 27: payment.GetPaymentStatusResponse.payment:type_name -> payment.Payment
+	5,  // 28: payment.ProcessRefundResponse.refund:type_name -> payment.Refund
+	0,  // 29: payment.GetPaymentHistoryRequest.user_type:type_name -> payment.EnumRequest
+	30, // 30: payment.GetPaymentHistoryRequest.start_date:type_name -> google.protobuf.Timestamp
+	30, // 31: payment.GetPaymentHistoryRequest.end_date:type_name -> google.protobuf.Timestamp
+	0,  // 32: payment.GetPaymentHistoryRequest.status:type_name -> payment.EnumRequest
+	3,  // 33: payment.GetPaymentHistoryResponse.payments:type_name -> payment.Payment
+	27, // 34: payment.HandleWebhookRequest.headers:type_name -> payment.HandleWebhookRequest.HeadersEntry
+	0,  // 35: payment.GetWalletBalanceRequest.user_type:type_name -> payment.EnumRequest
+	6,  // 36: payment.GetWalletBalanceResponse.wallet:type_name -> payment.Wallet
+	0,  // 37: payment.TopupWalletRequest.user_type:type_name -> payment.EnumRequest
+	0,  // 38: payment.TopupWalletRequest.payment_method:type_name -> payment.EnumRequest
+	28, // 39: payment.TopupWalletRequest.metadata:type_name -> payment.TopupWalletRequest.MetadataEntry
+	6,  // 40: payment.TopupWalletResponse.wallet:type_name -> payment.Wallet
+	0,  // 41: payment.WithdrawFromWalletRequest.user_type:type_name -> payment.EnumRequest
+	29, // 42: payment.WithdrawFromWalletRequest.metadata:type_name -> payment.WithdrawFromWalletRequest.MetadataEntry
+	6,  // 43: payment.WithdrawFromWalletResponse.wallet:type_name -> payment.Wallet
+	7,  // 44: payment.WithdrawFromWalletResponse.transaction:type_name -> payment.WalletTransaction
+	0,  // 45: payment.GetWalletTransactionsRequest.user_type:type_name -> payment.EnumRequest
+	30, // 46: payment.GetWalletTransactionsRequest.start_date:type_name -> google.protobuf.Timestamp
+	30, // 47: payment.GetWalletTransactionsRequest.end_date:type_name -> google.protobuf.Timestamp
+	0,  // 48: payment.GetWalletTransactionsRequest.type:type_name -> payment.EnumRequest
+	7,  // 49: payment.GetWalletTransactionsResponse.transactions:type_name -> payment.WalletTransaction
+	8,  // 50: payment.PaymentService.ProcessPayment:input_type -> payment.ProcessPaymentRequest
+	10, // 51: payment.PaymentService.GetPaymentStatus:input_type -> payment.GetPaymentStatusRequest
+	12, // 52: payment.PaymentService.ProcessRefund:input_type -> payment.ProcessRefundRequest
+	14, // 53: payment.PaymentService.GetPaymentHistory:input_type -> payment.GetPaymentHistoryRequest
+	16, // 54: payment.PaymentService.HandleWebhook:input_type -> payment.HandleWebhookRequest
+	18, // 55: payment.WalletService.GetWalletBalance:input_type -> payment.GetWalletBalanceRequest
+	20, // 56: payment.WalletService.TopupWallet:input_type -> payment.TopupWalletRequest
+	22, // 57: payment.WalletService.WithdrawFromWallet:input_type -> payment.WithdrawFromWalletRequest
+	24, // 58: payment.WalletService.GetWalletTransactions:input_type -> payment.GetWalletTransactionsRequest
+	9,  // 59: payment.PaymentService.ProcessPayment:output_type -> payment.ProcessPaymentResponse
+	11, // 60: payment.PaymentService.GetPaymentStatus:output_type -> payment.GetPaymentStatusResponse
+	13, // 61: payment.PaymentService.ProcessRefund:output_type -> payment.ProcessRefundResponse
+	15, // 62: payment.PaymentService.GetPaymentHistory:output_type -> payment.GetPaymentHistoryResponse
+	17, // 63: payment.PaymentService.HandleWebhook:output_type -> payment.HandleWebhookResponse
+	19, // 64: payment.WalletService.GetWalletBalance:output_type -> payment.GetWalletBalanceResponse
+	21, // 65: payment.WalletService.TopupWallet:output_type -> payment.TopupWalletResponse
+	23, // 66: payment.WalletService.WithdrawFromWallet:output_type -> payment.WithdrawFromWalletResponse
+	25, // 67: payment.WalletService.GetWalletTransactions:output_type -> payment.GetWalletTransactionsResponse
 	59, // [59:68] is the sub-list for method output_type
 	50, // [50:59] is the sub-list for method input_type
 	50, // [50:50] is the sub-list for extension type_name

@@ -91,27 +91,27 @@ func (x *Enum) GetCategory() string {
 }
 
 // Enum response
-type RsEnum struct {
+type EnumResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Enum          []*Enum                `protobuf:"bytes,1,rep,name=enum,proto3" json:"enum,omitempty"`
+	Enum          *Enum                  `protobuf:"bytes,1,opt,name=enum,proto3" json:"enum,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *RsEnum) Reset() {
-	*x = RsEnum{}
+func (x *EnumResponse) Reset() {
+	*x = EnumResponse{}
 	mi := &file_rider_rider_proto_msgTypes[1]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *RsEnum) String() string {
+func (x *EnumResponse) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*RsEnum) ProtoMessage() {}
+func (*EnumResponse) ProtoMessage() {}
 
-func (x *RsEnum) ProtoReflect() protoreflect.Message {
+func (x *EnumResponse) ProtoReflect() protoreflect.Message {
 	mi := &file_rider_rider_proto_msgTypes[1]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -123,39 +123,39 @@ func (x *RsEnum) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use RsEnum.ProtoReflect.Descriptor instead.
-func (*RsEnum) Descriptor() ([]byte, []int) {
+// Deprecated: Use EnumResponse.ProtoReflect.Descriptor instead.
+func (*EnumResponse) Descriptor() ([]byte, []int) {
 	return file_rider_rider_proto_rawDescGZIP(), []int{1}
 }
 
-func (x *RsEnum) GetEnum() []*Enum {
+func (x *EnumResponse) GetEnum() *Enum {
 	if x != nil {
 		return x.Enum
 	}
 	return nil
 }
 
-type RqEnum struct {
+type EnumRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	EnumType      string                 `protobuf:"bytes,1,opt,name=enum_type,json=enumType,proto3" json:"enum_type,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *RqEnum) Reset() {
-	*x = RqEnum{}
+func (x *EnumRequest) Reset() {
+	*x = EnumRequest{}
 	mi := &file_rider_rider_proto_msgTypes[2]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *RqEnum) String() string {
+func (x *EnumRequest) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*RqEnum) ProtoMessage() {}
+func (*EnumRequest) ProtoMessage() {}
 
-func (x *RqEnum) ProtoReflect() protoreflect.Message {
+func (x *EnumRequest) ProtoReflect() protoreflect.Message {
 	mi := &file_rider_rider_proto_msgTypes[2]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -167,40 +167,39 @@ func (x *RqEnum) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use RqEnum.ProtoReflect.Descriptor instead.
-func (*RqEnum) Descriptor() ([]byte, []int) {
+// Deprecated: Use EnumRequest.ProtoReflect.Descriptor instead.
+func (*EnumRequest) Descriptor() ([]byte, []int) {
 	return file_rider_rider_proto_rawDescGZIP(), []int{2}
 }
 
-func (x *RqEnum) GetEnumType() string {
+func (x *EnumRequest) GetEnumType() string {
 	if x != nil {
 		return x.EnumType
 	}
 	return ""
 }
 
-// Rider info request
-type RqGetRiderInfo struct {
+type ListEnumResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	RiderId       string                 `protobuf:"bytes,1,opt,name=rider_id,json=riderId,proto3" json:"rider_id,omitempty"`
+	Enum          []*Enum                `protobuf:"bytes,1,rep,name=enum,proto3" json:"enum,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *RqGetRiderInfo) Reset() {
-	*x = RqGetRiderInfo{}
+func (x *ListEnumResponse) Reset() {
+	*x = ListEnumResponse{}
 	mi := &file_rider_rider_proto_msgTypes[3]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *RqGetRiderInfo) String() string {
+func (x *ListEnumResponse) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*RqGetRiderInfo) ProtoMessage() {}
+func (*ListEnumResponse) ProtoMessage() {}
 
-func (x *RqGetRiderInfo) ProtoReflect() protoreflect.Message {
+func (x *ListEnumResponse) ProtoReflect() protoreflect.Message {
 	mi := &file_rider_rider_proto_msgTypes[3]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -212,12 +211,57 @@ func (x *RqGetRiderInfo) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use RqGetRiderInfo.ProtoReflect.Descriptor instead.
-func (*RqGetRiderInfo) Descriptor() ([]byte, []int) {
+// Deprecated: Use ListEnumResponse.ProtoReflect.Descriptor instead.
+func (*ListEnumResponse) Descriptor() ([]byte, []int) {
 	return file_rider_rider_proto_rawDescGZIP(), []int{3}
 }
 
-func (x *RqGetRiderInfo) GetRiderId() string {
+func (x *ListEnumResponse) GetEnum() []*Enum {
+	if x != nil {
+		return x.Enum
+	}
+	return nil
+}
+
+// Rider info request
+type RiderInfoRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	RiderId       string                 `protobuf:"bytes,1,opt,name=rider_id,json=riderId,proto3" json:"rider_id,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *RiderInfoRequest) Reset() {
+	*x = RiderInfoRequest{}
+	mi := &file_rider_rider_proto_msgTypes[4]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *RiderInfoRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*RiderInfoRequest) ProtoMessage() {}
+
+func (x *RiderInfoRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_rider_rider_proto_msgTypes[4]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use RiderInfoRequest.ProtoReflect.Descriptor instead.
+func (*RiderInfoRequest) Descriptor() ([]byte, []int) {
+	return file_rider_rider_proto_rawDescGZIP(), []int{4}
+}
+
+func (x *RiderInfoRequest) GetRiderId() string {
 	if x != nil {
 		return x.RiderId
 	}
@@ -225,35 +269,35 @@ func (x *RqGetRiderInfo) GetRiderId() string {
 }
 
 // Rider info response
-type RsGetRiderInfo struct {
+type RiderInfoResponse struct {
 	state                protoimpl.MessageState `protogen:"open.v1"`
 	RiderId              string                 `protobuf:"bytes,1,opt,name=rider_id,json=riderId,proto3" json:"rider_id,omitempty"`
 	Name                 string                 `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
 	Phone                string                 `protobuf:"bytes,3,opt,name=phone,proto3" json:"phone,omitempty"`
 	Email                string                 `protobuf:"bytes,4,opt,name=email,proto3" json:"email,omitempty"`
 	Rating               float64                `protobuf:"fixed64,5,opt,name=rating,proto3" json:"rating,omitempty"`
-	PreferredVehicleType *RsEnum                `protobuf:"bytes,6,opt,name=preferred_vehicle_type,json=preferredVehicleType,proto3" json:"preferred_vehicle_type,omitempty"`
+	PreferredVehicleType *EnumResponse          `protobuf:"bytes,6,opt,name=preferred_vehicle_type,json=preferredVehicleType,proto3" json:"preferred_vehicle_type,omitempty"`
 	InstantMatchEnabled  bool                   `protobuf:"varint,7,opt,name=instant_match_enabled,json=instantMatchEnabled,proto3" json:"instant_match_enabled,omitempty"`
-	PaymentMethod        *RsEnum                `protobuf:"bytes,8,opt,name=payment_method,json=paymentMethod,proto3" json:"payment_method,omitempty"`
+	PaymentMethod        *EnumResponse          `protobuf:"bytes,8,opt,name=payment_method,json=paymentMethod,proto3" json:"payment_method,omitempty"`
 	unknownFields        protoimpl.UnknownFields
 	sizeCache            protoimpl.SizeCache
 }
 
-func (x *RsGetRiderInfo) Reset() {
-	*x = RsGetRiderInfo{}
-	mi := &file_rider_rider_proto_msgTypes[4]
+func (x *RiderInfoResponse) Reset() {
+	*x = RiderInfoResponse{}
+	mi := &file_rider_rider_proto_msgTypes[5]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *RsGetRiderInfo) String() string {
+func (x *RiderInfoResponse) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*RsGetRiderInfo) ProtoMessage() {}
+func (*RiderInfoResponse) ProtoMessage() {}
 
-func (x *RsGetRiderInfo) ProtoReflect() protoreflect.Message {
-	mi := &file_rider_rider_proto_msgTypes[4]
+func (x *RiderInfoResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_rider_rider_proto_msgTypes[5]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -264,179 +308,65 @@ func (x *RsGetRiderInfo) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use RsGetRiderInfo.ProtoReflect.Descriptor instead.
-func (*RsGetRiderInfo) Descriptor() ([]byte, []int) {
-	return file_rider_rider_proto_rawDescGZIP(), []int{4}
+// Deprecated: Use RiderInfoResponse.ProtoReflect.Descriptor instead.
+func (*RiderInfoResponse) Descriptor() ([]byte, []int) {
+	return file_rider_rider_proto_rawDescGZIP(), []int{5}
 }
 
-func (x *RsGetRiderInfo) GetRiderId() string {
+func (x *RiderInfoResponse) GetRiderId() string {
 	if x != nil {
 		return x.RiderId
 	}
 	return ""
 }
 
-func (x *RsGetRiderInfo) GetName() string {
+func (x *RiderInfoResponse) GetName() string {
 	if x != nil {
 		return x.Name
 	}
 	return ""
 }
 
-func (x *RsGetRiderInfo) GetPhone() string {
+func (x *RiderInfoResponse) GetPhone() string {
 	if x != nil {
 		return x.Phone
 	}
 	return ""
 }
 
-func (x *RsGetRiderInfo) GetEmail() string {
+func (x *RiderInfoResponse) GetEmail() string {
 	if x != nil {
 		return x.Email
 	}
 	return ""
 }
 
-func (x *RsGetRiderInfo) GetRating() float64 {
+func (x *RiderInfoResponse) GetRating() float64 {
 	if x != nil {
 		return x.Rating
 	}
 	return 0
 }
 
-func (x *RsGetRiderInfo) GetPreferredVehicleType() *RsEnum {
+func (x *RiderInfoResponse) GetPreferredVehicleType() *EnumResponse {
 	if x != nil {
 		return x.PreferredVehicleType
 	}
 	return nil
 }
 
-func (x *RsGetRiderInfo) GetInstantMatchEnabled() bool {
+func (x *RiderInfoResponse) GetInstantMatchEnabled() bool {
 	if x != nil {
 		return x.InstantMatchEnabled
 	}
 	return false
 }
 
-func (x *RsGetRiderInfo) GetPaymentMethod() *RsEnum {
+func (x *RiderInfoResponse) GetPaymentMethod() *EnumResponse {
 	if x != nil {
 		return x.PaymentMethod
 	}
 	return nil
-}
-
-// Trip history request
-type RqGetTripHistory struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	RiderId       string                 `protobuf:"bytes,1,opt,name=rider_id,json=riderId,proto3" json:"rider_id,omitempty"`
-	Limit         int32                  `protobuf:"varint,2,opt,name=limit,proto3" json:"limit,omitempty"`
-	Offset        int32                  `protobuf:"varint,3,opt,name=offset,proto3" json:"offset,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *RqGetTripHistory) Reset() {
-	*x = RqGetTripHistory{}
-	mi := &file_rider_rider_proto_msgTypes[5]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *RqGetTripHistory) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*RqGetTripHistory) ProtoMessage() {}
-
-func (x *RqGetTripHistory) ProtoReflect() protoreflect.Message {
-	mi := &file_rider_rider_proto_msgTypes[5]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use RqGetTripHistory.ProtoReflect.Descriptor instead.
-func (*RqGetTripHistory) Descriptor() ([]byte, []int) {
-	return file_rider_rider_proto_rawDescGZIP(), []int{5}
-}
-
-func (x *RqGetTripHistory) GetRiderId() string {
-	if x != nil {
-		return x.RiderId
-	}
-	return ""
-}
-
-func (x *RqGetTripHistory) GetLimit() int32 {
-	if x != nil {
-		return x.Limit
-	}
-	return 0
-}
-
-func (x *RqGetTripHistory) GetOffset() int32 {
-	if x != nil {
-		return x.Offset
-	}
-	return 0
-}
-
-// Trip history response
-type RsGetTripHistory struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Trips         []*TripSummary         `protobuf:"bytes,1,rep,name=trips,proto3" json:"trips,omitempty"`
-	TotalCount    int32                  `protobuf:"varint,2,opt,name=total_count,json=totalCount,proto3" json:"total_count,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *RsGetTripHistory) Reset() {
-	*x = RsGetTripHistory{}
-	mi := &file_rider_rider_proto_msgTypes[6]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *RsGetTripHistory) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*RsGetTripHistory) ProtoMessage() {}
-
-func (x *RsGetTripHistory) ProtoReflect() protoreflect.Message {
-	mi := &file_rider_rider_proto_msgTypes[6]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use RsGetTripHistory.ProtoReflect.Descriptor instead.
-func (*RsGetTripHistory) Descriptor() ([]byte, []int) {
-	return file_rider_rider_proto_rawDescGZIP(), []int{6}
-}
-
-func (x *RsGetTripHistory) GetTrips() []*TripSummary {
-	if x != nil {
-		return x.Trips
-	}
-	return nil
-}
-
-func (x *RsGetTripHistory) GetTotalCount() int32 {
-	if x != nil {
-		return x.TotalCount
-	}
-	return 0
 }
 
 // Trip summary
@@ -445,13 +375,13 @@ type TripSummary struct {
 	TripId         string                 `protobuf:"bytes,1,opt,name=trip_id,json=tripId,proto3" json:"trip_id,omitempty"`
 	DriverId       string                 `protobuf:"bytes,2,opt,name=driver_id,json=driverId,proto3" json:"driver_id,omitempty"`
 	DriverName     string                 `protobuf:"bytes,3,opt,name=driver_name,json=driverName,proto3" json:"driver_name,omitempty"`
-	VehicleType    *RsEnum                `protobuf:"bytes,4,opt,name=vehicle_type,json=vehicleType,proto3" json:"vehicle_type,omitempty"`
+	VehicleType    *EnumResponse          `protobuf:"bytes,4,opt,name=vehicle_type,json=vehicleType,proto3" json:"vehicle_type,omitempty"`
 	StartLatitude  float64                `protobuf:"fixed64,5,opt,name=start_latitude,json=startLatitude,proto3" json:"start_latitude,omitempty"`
 	StartLongitude float64                `protobuf:"fixed64,6,opt,name=start_longitude,json=startLongitude,proto3" json:"start_longitude,omitempty"`
 	EndLatitude    float64                `protobuf:"fixed64,7,opt,name=end_latitude,json=endLatitude,proto3" json:"end_latitude,omitempty"`
 	EndLongitude   float64                `protobuf:"fixed64,8,opt,name=end_longitude,json=endLongitude,proto3" json:"end_longitude,omitempty"`
 	Price          float64                `protobuf:"fixed64,9,opt,name=price,proto3" json:"price,omitempty"`
-	Status         *RsEnum                `protobuf:"bytes,10,opt,name=status,proto3" json:"status,omitempty"`
+	Status         *EnumResponse          `protobuf:"bytes,10,opt,name=status,proto3" json:"status,omitempty"`
 	CreatedAt      string                 `protobuf:"bytes,11,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
 	CompletedAt    string                 `protobuf:"bytes,12,opt,name=completed_at,json=completedAt,proto3" json:"completed_at,omitempty"`
 	unknownFields  protoimpl.UnknownFields
@@ -460,7 +390,7 @@ type TripSummary struct {
 
 func (x *TripSummary) Reset() {
 	*x = TripSummary{}
-	mi := &file_rider_rider_proto_msgTypes[7]
+	mi := &file_rider_rider_proto_msgTypes[6]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -472,7 +402,7 @@ func (x *TripSummary) String() string {
 func (*TripSummary) ProtoMessage() {}
 
 func (x *TripSummary) ProtoReflect() protoreflect.Message {
-	mi := &file_rider_rider_proto_msgTypes[7]
+	mi := &file_rider_rider_proto_msgTypes[6]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -485,7 +415,7 @@ func (x *TripSummary) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use TripSummary.ProtoReflect.Descriptor instead.
 func (*TripSummary) Descriptor() ([]byte, []int) {
-	return file_rider_rider_proto_rawDescGZIP(), []int{7}
+	return file_rider_rider_proto_rawDescGZIP(), []int{6}
 }
 
 func (x *TripSummary) GetTripId() string {
@@ -509,7 +439,7 @@ func (x *TripSummary) GetDriverName() string {
 	return ""
 }
 
-func (x *TripSummary) GetVehicleType() *RsEnum {
+func (x *TripSummary) GetVehicleType() *EnumResponse {
 	if x != nil {
 		return x.VehicleType
 	}
@@ -551,7 +481,7 @@ func (x *TripSummary) GetPrice() float64 {
 	return 0
 }
 
-func (x *TripSummary) GetStatus() *RsEnum {
+func (x *TripSummary) GetStatus() *EnumResponse {
 	if x != nil {
 		return x.Status
 	}
@@ -573,28 +503,28 @@ func (x *TripSummary) GetCompletedAt() string {
 }
 
 // Rider preferences request
-type RqGetRiderPreferences struct {
+type RiderPreferenceRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	RiderId       string                 `protobuf:"bytes,1,opt,name=rider_id,json=riderId,proto3" json:"rider_id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *RqGetRiderPreferences) Reset() {
-	*x = RqGetRiderPreferences{}
-	mi := &file_rider_rider_proto_msgTypes[8]
+func (x *RiderPreferenceRequest) Reset() {
+	*x = RiderPreferenceRequest{}
+	mi := &file_rider_rider_proto_msgTypes[7]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *RqGetRiderPreferences) String() string {
+func (x *RiderPreferenceRequest) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*RqGetRiderPreferences) ProtoMessage() {}
+func (*RiderPreferenceRequest) ProtoMessage() {}
 
-func (x *RqGetRiderPreferences) ProtoReflect() protoreflect.Message {
-	mi := &file_rider_rider_proto_msgTypes[8]
+func (x *RiderPreferenceRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_rider_rider_proto_msgTypes[7]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -605,12 +535,12 @@ func (x *RqGetRiderPreferences) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use RqGetRiderPreferences.ProtoReflect.Descriptor instead.
-func (*RqGetRiderPreferences) Descriptor() ([]byte, []int) {
-	return file_rider_rider_proto_rawDescGZIP(), []int{8}
+// Deprecated: Use RiderPreferenceRequest.ProtoReflect.Descriptor instead.
+func (*RiderPreferenceRequest) Descriptor() ([]byte, []int) {
+	return file_rider_rider_proto_rawDescGZIP(), []int{7}
 }
 
-func (x *RqGetRiderPreferences) GetRiderId() string {
+func (x *RiderPreferenceRequest) GetRiderId() string {
 	if x != nil {
 		return x.RiderId
 	}
@@ -618,33 +548,33 @@ func (x *RqGetRiderPreferences) GetRiderId() string {
 }
 
 // Rider preferences response
-type RsGetRiderPreferences struct {
+type GetRiderPreferenceResponse struct {
 	state                protoimpl.MessageState `protogen:"open.v1"`
 	RiderId              string                 `protobuf:"bytes,1,opt,name=rider_id,json=riderId,proto3" json:"rider_id,omitempty"`
-	PreferredVehicleType *RsEnum                `protobuf:"bytes,2,opt,name=preferred_vehicle_type,json=preferredVehicleType,proto3" json:"preferred_vehicle_type,omitempty"`
+	PreferredVehicleType *EnumResponse          `protobuf:"bytes,2,opt,name=preferred_vehicle_type,json=preferredVehicleType,proto3" json:"preferred_vehicle_type,omitempty"`
 	InstantMatchEnabled  bool                   `protobuf:"varint,3,opt,name=instant_match_enabled,json=instantMatchEnabled,proto3" json:"instant_match_enabled,omitempty"`
-	PaymentMethod        *RsEnum                `protobuf:"bytes,4,opt,name=payment_method,json=paymentMethod,proto3" json:"payment_method,omitempty"`
+	PaymentMethod        *EnumResponse          `protobuf:"bytes,4,opt,name=payment_method,json=paymentMethod,proto3" json:"payment_method,omitempty"`
 	NotificationsEnabled bool                   `protobuf:"varint,5,opt,name=notifications_enabled,json=notificationsEnabled,proto3" json:"notifications_enabled,omitempty"`
-	Language             *RsEnum                `protobuf:"bytes,6,opt,name=language,proto3" json:"language,omitempty"`
+	Language             *EnumResponse          `protobuf:"bytes,6,opt,name=language,proto3" json:"language,omitempty"`
 	unknownFields        protoimpl.UnknownFields
 	sizeCache            protoimpl.SizeCache
 }
 
-func (x *RsGetRiderPreferences) Reset() {
-	*x = RsGetRiderPreferences{}
-	mi := &file_rider_rider_proto_msgTypes[9]
+func (x *GetRiderPreferenceResponse) Reset() {
+	*x = GetRiderPreferenceResponse{}
+	mi := &file_rider_rider_proto_msgTypes[8]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *RsGetRiderPreferences) String() string {
+func (x *GetRiderPreferenceResponse) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*RsGetRiderPreferences) ProtoMessage() {}
+func (*GetRiderPreferenceResponse) ProtoMessage() {}
 
-func (x *RsGetRiderPreferences) ProtoReflect() protoreflect.Message {
-	mi := &file_rider_rider_proto_msgTypes[9]
+func (x *GetRiderPreferenceResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_rider_rider_proto_msgTypes[8]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -655,47 +585,47 @@ func (x *RsGetRiderPreferences) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use RsGetRiderPreferences.ProtoReflect.Descriptor instead.
-func (*RsGetRiderPreferences) Descriptor() ([]byte, []int) {
-	return file_rider_rider_proto_rawDescGZIP(), []int{9}
+// Deprecated: Use GetRiderPreferenceResponse.ProtoReflect.Descriptor instead.
+func (*GetRiderPreferenceResponse) Descriptor() ([]byte, []int) {
+	return file_rider_rider_proto_rawDescGZIP(), []int{8}
 }
 
-func (x *RsGetRiderPreferences) GetRiderId() string {
+func (x *GetRiderPreferenceResponse) GetRiderId() string {
 	if x != nil {
 		return x.RiderId
 	}
 	return ""
 }
 
-func (x *RsGetRiderPreferences) GetPreferredVehicleType() *RsEnum {
+func (x *GetRiderPreferenceResponse) GetPreferredVehicleType() *EnumResponse {
 	if x != nil {
 		return x.PreferredVehicleType
 	}
 	return nil
 }
 
-func (x *RsGetRiderPreferences) GetInstantMatchEnabled() bool {
+func (x *GetRiderPreferenceResponse) GetInstantMatchEnabled() bool {
 	if x != nil {
 		return x.InstantMatchEnabled
 	}
 	return false
 }
 
-func (x *RsGetRiderPreferences) GetPaymentMethod() *RsEnum {
+func (x *GetRiderPreferenceResponse) GetPaymentMethod() *EnumResponse {
 	if x != nil {
 		return x.PaymentMethod
 	}
 	return nil
 }
 
-func (x *RsGetRiderPreferences) GetNotificationsEnabled() bool {
+func (x *GetRiderPreferenceResponse) GetNotificationsEnabled() bool {
 	if x != nil {
 		return x.NotificationsEnabled
 	}
 	return false
 }
 
-func (x *RsGetRiderPreferences) GetLanguage() *RsEnum {
+func (x *GetRiderPreferenceResponse) GetLanguage() *EnumResponse {
 	if x != nil {
 		return x.Language
 	}
@@ -703,34 +633,34 @@ func (x *RsGetRiderPreferences) GetLanguage() *RsEnum {
 }
 
 // Update rider preferences request
-type RqUpdateRiderPreferences struct {
+type UpdateRiderPreferenceRequest struct {
 	state                    protoimpl.MessageState `protogen:"open.v1"`
 	RiderId                  string                 `protobuf:"bytes,1,opt,name=rider_id,json=riderId,proto3" json:"rider_id,omitempty"`
-	PreferredVehicleType     *RqEnum                `protobuf:"bytes,2,opt,name=preferred_vehicle_type,json=preferredVehicleType,proto3" json:"preferred_vehicle_type,omitempty"`
-	PreferredVehicleCategory *RqEnum                `protobuf:"bytes,3,opt,name=preferred_vehicle_category,json=preferredVehicleCategory,proto3" json:"preferred_vehicle_category,omitempty"`
+	PreferredVehicleType     *EnumRequest           `protobuf:"bytes,2,opt,name=preferred_vehicle_type,json=preferredVehicleType,proto3" json:"preferred_vehicle_type,omitempty"`
+	PreferredVehicleCategory *EnumRequest           `protobuf:"bytes,3,opt,name=preferred_vehicle_category,json=preferredVehicleCategory,proto3" json:"preferred_vehicle_category,omitempty"`
 	InstantMatchEnabled      bool                   `protobuf:"varint,4,opt,name=instant_match_enabled,json=instantMatchEnabled,proto3" json:"instant_match_enabled,omitempty"`
-	PaymentMethod            *RqEnum                `protobuf:"bytes,5,opt,name=payment_method,json=paymentMethod,proto3" json:"payment_method,omitempty"`
+	PaymentMethod            *EnumRequest           `protobuf:"bytes,5,opt,name=payment_method,json=paymentMethod,proto3" json:"payment_method,omitempty"`
 	NotificationsEnabled     bool                   `protobuf:"varint,6,opt,name=notifications_enabled,json=notificationsEnabled,proto3" json:"notifications_enabled,omitempty"`
-	Language                 *RqEnum                `protobuf:"bytes,7,opt,name=language,proto3" json:"language,omitempty"`
+	Language                 *EnumRequest           `protobuf:"bytes,7,opt,name=language,proto3" json:"language,omitempty"`
 	unknownFields            protoimpl.UnknownFields
 	sizeCache                protoimpl.SizeCache
 }
 
-func (x *RqUpdateRiderPreferences) Reset() {
-	*x = RqUpdateRiderPreferences{}
-	mi := &file_rider_rider_proto_msgTypes[10]
+func (x *UpdateRiderPreferenceRequest) Reset() {
+	*x = UpdateRiderPreferenceRequest{}
+	mi := &file_rider_rider_proto_msgTypes[9]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *RqUpdateRiderPreferences) String() string {
+func (x *UpdateRiderPreferenceRequest) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*RqUpdateRiderPreferences) ProtoMessage() {}
+func (*UpdateRiderPreferenceRequest) ProtoMessage() {}
 
-func (x *RqUpdateRiderPreferences) ProtoReflect() protoreflect.Message {
-	mi := &file_rider_rider_proto_msgTypes[10]
+func (x *UpdateRiderPreferenceRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_rider_rider_proto_msgTypes[9]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -741,54 +671,54 @@ func (x *RqUpdateRiderPreferences) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use RqUpdateRiderPreferences.ProtoReflect.Descriptor instead.
-func (*RqUpdateRiderPreferences) Descriptor() ([]byte, []int) {
-	return file_rider_rider_proto_rawDescGZIP(), []int{10}
+// Deprecated: Use UpdateRiderPreferenceRequest.ProtoReflect.Descriptor instead.
+func (*UpdateRiderPreferenceRequest) Descriptor() ([]byte, []int) {
+	return file_rider_rider_proto_rawDescGZIP(), []int{9}
 }
 
-func (x *RqUpdateRiderPreferences) GetRiderId() string {
+func (x *UpdateRiderPreferenceRequest) GetRiderId() string {
 	if x != nil {
 		return x.RiderId
 	}
 	return ""
 }
 
-func (x *RqUpdateRiderPreferences) GetPreferredVehicleType() *RqEnum {
+func (x *UpdateRiderPreferenceRequest) GetPreferredVehicleType() *EnumRequest {
 	if x != nil {
 		return x.PreferredVehicleType
 	}
 	return nil
 }
 
-func (x *RqUpdateRiderPreferences) GetPreferredVehicleCategory() *RqEnum {
+func (x *UpdateRiderPreferenceRequest) GetPreferredVehicleCategory() *EnumRequest {
 	if x != nil {
 		return x.PreferredVehicleCategory
 	}
 	return nil
 }
 
-func (x *RqUpdateRiderPreferences) GetInstantMatchEnabled() bool {
+func (x *UpdateRiderPreferenceRequest) GetInstantMatchEnabled() bool {
 	if x != nil {
 		return x.InstantMatchEnabled
 	}
 	return false
 }
 
-func (x *RqUpdateRiderPreferences) GetPaymentMethod() *RqEnum {
+func (x *UpdateRiderPreferenceRequest) GetPaymentMethod() *EnumRequest {
 	if x != nil {
 		return x.PaymentMethod
 	}
 	return nil
 }
 
-func (x *RqUpdateRiderPreferences) GetNotificationsEnabled() bool {
+func (x *UpdateRiderPreferenceRequest) GetNotificationsEnabled() bool {
 	if x != nil {
 		return x.NotificationsEnabled
 	}
 	return false
 }
 
-func (x *RqUpdateRiderPreferences) GetLanguage() *RqEnum {
+func (x *UpdateRiderPreferenceRequest) GetLanguage() *EnumRequest {
 	if x != nil {
 		return x.Language
 	}
@@ -796,7 +726,7 @@ func (x *RqUpdateRiderPreferences) GetLanguage() *RqEnum {
 }
 
 // Update rider preferences response
-type RsUpdateRiderPreferences struct {
+type UpdateRiderPreferenceResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Success       bool                   `protobuf:"varint,1,opt,name=success,proto3" json:"success,omitempty"`
 	Message       string                 `protobuf:"bytes,2,opt,name=message,proto3" json:"message,omitempty"`
@@ -804,21 +734,21 @@ type RsUpdateRiderPreferences struct {
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *RsUpdateRiderPreferences) Reset() {
-	*x = RsUpdateRiderPreferences{}
-	mi := &file_rider_rider_proto_msgTypes[11]
+func (x *UpdateRiderPreferenceResponse) Reset() {
+	*x = UpdateRiderPreferenceResponse{}
+	mi := &file_rider_rider_proto_msgTypes[10]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *RsUpdateRiderPreferences) String() string {
+func (x *UpdateRiderPreferenceResponse) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*RsUpdateRiderPreferences) ProtoMessage() {}
+func (*UpdateRiderPreferenceResponse) ProtoMessage() {}
 
-func (x *RsUpdateRiderPreferences) ProtoReflect() protoreflect.Message {
-	mi := &file_rider_rider_proto_msgTypes[11]
+func (x *UpdateRiderPreferenceResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_rider_rider_proto_msgTypes[10]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -829,19 +759,19 @@ func (x *RsUpdateRiderPreferences) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use RsUpdateRiderPreferences.ProtoReflect.Descriptor instead.
-func (*RsUpdateRiderPreferences) Descriptor() ([]byte, []int) {
-	return file_rider_rider_proto_rawDescGZIP(), []int{11}
+// Deprecated: Use UpdateRiderPreferenceResponse.ProtoReflect.Descriptor instead.
+func (*UpdateRiderPreferenceResponse) Descriptor() ([]byte, []int) {
+	return file_rider_rider_proto_rawDescGZIP(), []int{10}
 }
 
-func (x *RsUpdateRiderPreferences) GetSuccess() bool {
+func (x *UpdateRiderPreferenceResponse) GetSuccess() bool {
 	if x != nil {
 		return x.Success
 	}
 	return false
 }
 
-func (x *RsUpdateRiderPreferences) GetMessage() string {
+func (x *UpdateRiderPreferenceResponse) GetMessage() string {
 	if x != nil {
 		return x.Message
 	}
@@ -857,71 +787,64 @@ const file_rider_rider_proto_rawDesc = "" +
 	"\x02id\x18\x01 \x01(\x05R\x02id\x12\x12\n" +
 	"\x04name\x18\x02 \x01(\tR\x04name\x12\x12\n" +
 	"\x04type\x18\x03 \x01(\tR\x04type\x12\x1a\n" +
-	"\bcategory\x18\x04 \x01(\tR\bcategory\")\n" +
-	"\x06RsEnum\x12\x1f\n" +
-	"\x04enum\x18\x01 \x03(\v2\v.rider.EnumR\x04enum\"%\n" +
-	"\x06RqEnum\x12\x1b\n" +
-	"\tenum_type\x18\x01 \x01(\tR\benumType\"+\n" +
-	"\x0eRqGetRiderInfo\x12\x19\n" +
-	"\brider_id\x18\x01 \x01(\tR\ariderId\"\xb2\x02\n" +
-	"\x0eRsGetRiderInfo\x12\x19\n" +
+	"\bcategory\x18\x04 \x01(\tR\bcategory\"/\n" +
+	"\fEnumResponse\x12\x1f\n" +
+	"\x04enum\x18\x01 \x01(\v2\v.rider.EnumR\x04enum\"*\n" +
+	"\vEnumRequest\x12\x1b\n" +
+	"\tenum_type\x18\x01 \x01(\tR\benumType\"3\n" +
+	"\x10ListEnumResponse\x12\x1f\n" +
+	"\x04enum\x18\x01 \x03(\v2\v.rider.EnumR\x04enum\"-\n" +
+	"\x10RiderInfoRequest\x12\x19\n" +
+	"\brider_id\x18\x01 \x01(\tR\ariderId\"\xc1\x02\n" +
+	"\x11RiderInfoResponse\x12\x19\n" +
 	"\brider_id\x18\x01 \x01(\tR\ariderId\x12\x12\n" +
 	"\x04name\x18\x02 \x01(\tR\x04name\x12\x14\n" +
 	"\x05phone\x18\x03 \x01(\tR\x05phone\x12\x14\n" +
 	"\x05email\x18\x04 \x01(\tR\x05email\x12\x16\n" +
-	"\x06rating\x18\x05 \x01(\x01R\x06rating\x12C\n" +
-	"\x16preferred_vehicle_type\x18\x06 \x01(\v2\r.rider.RsEnumR\x14preferredVehicleType\x122\n" +
-	"\x15instant_match_enabled\x18\a \x01(\bR\x13instantMatchEnabled\x124\n" +
-	"\x0epayment_method\x18\b \x01(\v2\r.rider.RsEnumR\rpaymentMethod\"[\n" +
-	"\x10RqGetTripHistory\x12\x19\n" +
-	"\brider_id\x18\x01 \x01(\tR\ariderId\x12\x14\n" +
-	"\x05limit\x18\x02 \x01(\x05R\x05limit\x12\x16\n" +
-	"\x06offset\x18\x03 \x01(\x05R\x06offset\"]\n" +
-	"\x10RsGetTripHistory\x12(\n" +
-	"\x05trips\x18\x01 \x03(\v2\x12.rider.TripSummaryR\x05trips\x12\x1f\n" +
-	"\vtotal_count\x18\x02 \x01(\x05R\n" +
-	"totalCount\"\xad\x03\n" +
+	"\x06rating\x18\x05 \x01(\x01R\x06rating\x12I\n" +
+	"\x16preferred_vehicle_type\x18\x06 \x01(\v2\x13.rider.EnumResponseR\x14preferredVehicleType\x122\n" +
+	"\x15instant_match_enabled\x18\a \x01(\bR\x13instantMatchEnabled\x12:\n" +
+	"\x0epayment_method\x18\b \x01(\v2\x13.rider.EnumResponseR\rpaymentMethod\"\xb9\x03\n" +
 	"\vTripSummary\x12\x17\n" +
 	"\atrip_id\x18\x01 \x01(\tR\x06tripId\x12\x1b\n" +
 	"\tdriver_id\x18\x02 \x01(\tR\bdriverId\x12\x1f\n" +
 	"\vdriver_name\x18\x03 \x01(\tR\n" +
-	"driverName\x120\n" +
-	"\fvehicle_type\x18\x04 \x01(\v2\r.rider.RsEnumR\vvehicleType\x12%\n" +
+	"driverName\x126\n" +
+	"\fvehicle_type\x18\x04 \x01(\v2\x13.rider.EnumResponseR\vvehicleType\x12%\n" +
 	"\x0estart_latitude\x18\x05 \x01(\x01R\rstartLatitude\x12'\n" +
 	"\x0fstart_longitude\x18\x06 \x01(\x01R\x0estartLongitude\x12!\n" +
 	"\fend_latitude\x18\a \x01(\x01R\vendLatitude\x12#\n" +
 	"\rend_longitude\x18\b \x01(\x01R\fendLongitude\x12\x14\n" +
-	"\x05price\x18\t \x01(\x01R\x05price\x12%\n" +
+	"\x05price\x18\t \x01(\x01R\x05price\x12+\n" +
 	"\x06status\x18\n" +
-	" \x01(\v2\r.rider.RsEnumR\x06status\x12\x1d\n" +
+	" \x01(\v2\x13.rider.EnumResponseR\x06status\x12\x1d\n" +
 	"\n" +
 	"created_at\x18\v \x01(\tR\tcreatedAt\x12!\n" +
-	"\fcompleted_at\x18\f \x01(\tR\vcompletedAt\"2\n" +
-	"\x15RqGetRiderPreferences\x12\x19\n" +
-	"\brider_id\x18\x01 \x01(\tR\ariderId\"\xc1\x02\n" +
-	"\x15RsGetRiderPreferences\x12\x19\n" +
-	"\brider_id\x18\x01 \x01(\tR\ariderId\x12C\n" +
-	"\x16preferred_vehicle_type\x18\x02 \x01(\v2\r.rider.RsEnumR\x14preferredVehicleType\x122\n" +
-	"\x15instant_match_enabled\x18\x03 \x01(\bR\x13instantMatchEnabled\x124\n" +
-	"\x0epayment_method\x18\x04 \x01(\v2\r.rider.RsEnumR\rpaymentMethod\x123\n" +
-	"\x15notifications_enabled\x18\x05 \x01(\bR\x14notificationsEnabled\x12)\n" +
-	"\blanguage\x18\x06 \x01(\v2\r.rider.RsEnumR\blanguage\"\x91\x03\n" +
-	"\x18RqUpdateRiderPreferences\x12\x19\n" +
-	"\brider_id\x18\x01 \x01(\tR\ariderId\x12C\n" +
-	"\x16preferred_vehicle_type\x18\x02 \x01(\v2\r.rider.RqEnumR\x14preferredVehicleType\x12K\n" +
-	"\x1apreferred_vehicle_category\x18\x03 \x01(\v2\r.rider.RqEnumR\x18preferredVehicleCategory\x122\n" +
-	"\x15instant_match_enabled\x18\x04 \x01(\bR\x13instantMatchEnabled\x124\n" +
-	"\x0epayment_method\x18\x05 \x01(\v2\r.rider.RqEnumR\rpaymentMethod\x123\n" +
-	"\x15notifications_enabled\x18\x06 \x01(\bR\x14notificationsEnabled\x12)\n" +
-	"\blanguage\x18\a \x01(\v2\r.rider.RqEnumR\blanguage\"N\n" +
-	"\x18RsUpdateRiderPreferences\x12\x18\n" +
+	"\fcompleted_at\x18\f \x01(\tR\vcompletedAt\"3\n" +
+	"\x16RiderPreferenceRequest\x12\x19\n" +
+	"\brider_id\x18\x01 \x01(\tR\ariderId\"\xd8\x02\n" +
+	"\x1aGetRiderPreferenceResponse\x12\x19\n" +
+	"\brider_id\x18\x01 \x01(\tR\ariderId\x12I\n" +
+	"\x16preferred_vehicle_type\x18\x02 \x01(\v2\x13.rider.EnumResponseR\x14preferredVehicleType\x122\n" +
+	"\x15instant_match_enabled\x18\x03 \x01(\bR\x13instantMatchEnabled\x12:\n" +
+	"\x0epayment_method\x18\x04 \x01(\v2\x13.rider.EnumResponseR\rpaymentMethod\x123\n" +
+	"\x15notifications_enabled\x18\x05 \x01(\bR\x14notificationsEnabled\x12/\n" +
+	"\blanguage\x18\x06 \x01(\v2\x13.rider.EnumResponseR\blanguage\"\xa9\x03\n" +
+	"\x1cUpdateRiderPreferenceRequest\x12\x19\n" +
+	"\brider_id\x18\x01 \x01(\tR\ariderId\x12H\n" +
+	"\x16preferred_vehicle_type\x18\x02 \x01(\v2\x12.rider.EnumRequestR\x14preferredVehicleType\x12P\n" +
+	"\x1apreferred_vehicle_category\x18\x03 \x01(\v2\x12.rider.EnumRequestR\x18preferredVehicleCategory\x122\n" +
+	"\x15instant_match_enabled\x18\x04 \x01(\bR\x13instantMatchEnabled\x129\n" +
+	"\x0epayment_method\x18\x05 \x01(\v2\x12.rider.EnumRequestR\rpaymentMethod\x123\n" +
+	"\x15notifications_enabled\x18\x06 \x01(\bR\x14notificationsEnabled\x12.\n" +
+	"\blanguage\x18\a \x01(\v2\x12.rider.EnumRequestR\blanguage\"S\n" +
+	"\x1dUpdateRiderPreferenceResponse\x12\x18\n" +
 	"\asuccess\x18\x01 \x01(\bR\asuccess\x12\x18\n" +
-	"\amessage\x18\x02 \x01(\tR\amessage2\xc7\x02\n" +
-	"\fRiderService\x12>\n" +
-	"\fGetRiderInfo\x12\x15.rider.RqGetRiderInfo\x1a\x15.rider.RsGetRiderInfo\"\x00\x12D\n" +
-	"\x0eGetTripHistory\x12\x17.rider.RqGetTripHistory\x1a\x17.rider.RsGetTripHistory\"\x00\x12S\n" +
-	"\x13GetRiderPreferences\x12\x1c.rider.RqGetRiderPreferences\x1a\x1c.rider.RsGetRiderPreferences\"\x00\x12\\\n" +
-	"\x16UpdateRiderPreferences\x12\x1f.rider.RqUpdateRiderPreferences\x1a\x1f.rider.RsUpdateRiderPreferences\"\x00B>Z<github.com/mihirk-khode/motocabz-common/genproto/rider;riderb\x06proto3"
+	"\amessage\x18\x02 \x01(\tR\amessage2\x95\x02\n" +
+	"\fRiderService\x12C\n" +
+	"\fGetRiderInfo\x12\x17.rider.RiderInfoRequest\x1a\x18.rider.RiderInfoResponse\"\x00\x12Y\n" +
+	"\x13GetRiderPreferences\x12\x1d.rider.RiderPreferenceRequest\x1a!.rider.GetRiderPreferenceResponse\"\x00\x12e\n" +
+	"\x16UpdateRiderPreferences\x12#.rider.UpdateRiderPreferenceRequest\x1a$.rider.UpdateRiderPreferenceResponse\"\x00B>Z<github.com/mihirk-khode/motocabz-common/genproto/rider;riderb\x06proto3"
 
 var (
 	file_rider_rider_proto_rawDescOnce sync.Once
@@ -935,45 +858,42 @@ func file_rider_rider_proto_rawDescGZIP() []byte {
 	return file_rider_rider_proto_rawDescData
 }
 
-var file_rider_rider_proto_msgTypes = make([]protoimpl.MessageInfo, 12)
+var file_rider_rider_proto_msgTypes = make([]protoimpl.MessageInfo, 11)
 var file_rider_rider_proto_goTypes = []any{
-	(*Enum)(nil),                     // 0: rider.Enum
-	(*RsEnum)(nil),                   // 1: rider.RsEnum
-	(*RqEnum)(nil),                   // 2: rider.RqEnum
-	(*RqGetRiderInfo)(nil),           // 3: rider.RqGetRiderInfo
-	(*RsGetRiderInfo)(nil),           // 4: rider.RsGetRiderInfo
-	(*RqGetTripHistory)(nil),         // 5: rider.RqGetTripHistory
-	(*RsGetTripHistory)(nil),         // 6: rider.RsGetTripHistory
-	(*TripSummary)(nil),              // 7: rider.TripSummary
-	(*RqGetRiderPreferences)(nil),    // 8: rider.RqGetRiderPreferences
-	(*RsGetRiderPreferences)(nil),    // 9: rider.RsGetRiderPreferences
-	(*RqUpdateRiderPreferences)(nil), // 10: rider.RqUpdateRiderPreferences
-	(*RsUpdateRiderPreferences)(nil), // 11: rider.RsUpdateRiderPreferences
+	(*Enum)(nil),                          // 0: rider.Enum
+	(*EnumResponse)(nil),                  // 1: rider.EnumResponse
+	(*EnumRequest)(nil),                   // 2: rider.EnumRequest
+	(*ListEnumResponse)(nil),              // 3: rider.ListEnumResponse
+	(*RiderInfoRequest)(nil),              // 4: rider.RiderInfoRequest
+	(*RiderInfoResponse)(nil),             // 5: rider.RiderInfoResponse
+	(*TripSummary)(nil),                   // 6: rider.TripSummary
+	(*RiderPreferenceRequest)(nil),        // 7: rider.RiderPreferenceRequest
+	(*GetRiderPreferenceResponse)(nil),    // 8: rider.GetRiderPreferenceResponse
+	(*UpdateRiderPreferenceRequest)(nil),  // 9: rider.UpdateRiderPreferenceRequest
+	(*UpdateRiderPreferenceResponse)(nil), // 10: rider.UpdateRiderPreferenceResponse
 }
 var file_rider_rider_proto_depIdxs = []int32{
-	0,  // 0: rider.RsEnum.enum:type_name -> rider.Enum
-	1,  // 1: rider.RsGetRiderInfo.preferred_vehicle_type:type_name -> rider.RsEnum
-	1,  // 2: rider.RsGetRiderInfo.payment_method:type_name -> rider.RsEnum
-	7,  // 3: rider.RsGetTripHistory.trips:type_name -> rider.TripSummary
-	1,  // 4: rider.TripSummary.vehicle_type:type_name -> rider.RsEnum
-	1,  // 5: rider.TripSummary.status:type_name -> rider.RsEnum
-	1,  // 6: rider.RsGetRiderPreferences.preferred_vehicle_type:type_name -> rider.RsEnum
-	1,  // 7: rider.RsGetRiderPreferences.payment_method:type_name -> rider.RsEnum
-	1,  // 8: rider.RsGetRiderPreferences.language:type_name -> rider.RsEnum
-	2,  // 9: rider.RqUpdateRiderPreferences.preferred_vehicle_type:type_name -> rider.RqEnum
-	2,  // 10: rider.RqUpdateRiderPreferences.preferred_vehicle_category:type_name -> rider.RqEnum
-	2,  // 11: rider.RqUpdateRiderPreferences.payment_method:type_name -> rider.RqEnum
-	2,  // 12: rider.RqUpdateRiderPreferences.language:type_name -> rider.RqEnum
-	3,  // 13: rider.RiderService.GetRiderInfo:input_type -> rider.RqGetRiderInfo
-	5,  // 14: rider.RiderService.GetTripHistory:input_type -> rider.RqGetTripHistory
-	8,  // 15: rider.RiderService.GetRiderPreferences:input_type -> rider.RqGetRiderPreferences
-	10, // 16: rider.RiderService.UpdateRiderPreferences:input_type -> rider.RqUpdateRiderPreferences
-	4,  // 17: rider.RiderService.GetRiderInfo:output_type -> rider.RsGetRiderInfo
-	6,  // 18: rider.RiderService.GetTripHistory:output_type -> rider.RsGetTripHistory
-	9,  // 19: rider.RiderService.GetRiderPreferences:output_type -> rider.RsGetRiderPreferences
-	11, // 20: rider.RiderService.UpdateRiderPreferences:output_type -> rider.RsUpdateRiderPreferences
-	17, // [17:21] is the sub-list for method output_type
-	13, // [13:17] is the sub-list for method input_type
+	0,  // 0: rider.EnumResponse.enum:type_name -> rider.Enum
+	0,  // 1: rider.ListEnumResponse.enum:type_name -> rider.Enum
+	1,  // 2: rider.RiderInfoResponse.preferred_vehicle_type:type_name -> rider.EnumResponse
+	1,  // 3: rider.RiderInfoResponse.payment_method:type_name -> rider.EnumResponse
+	1,  // 4: rider.TripSummary.vehicle_type:type_name -> rider.EnumResponse
+	1,  // 5: rider.TripSummary.status:type_name -> rider.EnumResponse
+	1,  // 6: rider.GetRiderPreferenceResponse.preferred_vehicle_type:type_name -> rider.EnumResponse
+	1,  // 7: rider.GetRiderPreferenceResponse.payment_method:type_name -> rider.EnumResponse
+	1,  // 8: rider.GetRiderPreferenceResponse.language:type_name -> rider.EnumResponse
+	2,  // 9: rider.UpdateRiderPreferenceRequest.preferred_vehicle_type:type_name -> rider.EnumRequest
+	2,  // 10: rider.UpdateRiderPreferenceRequest.preferred_vehicle_category:type_name -> rider.EnumRequest
+	2,  // 11: rider.UpdateRiderPreferenceRequest.payment_method:type_name -> rider.EnumRequest
+	2,  // 12: rider.UpdateRiderPreferenceRequest.language:type_name -> rider.EnumRequest
+	4,  // 13: rider.RiderService.GetRiderInfo:input_type -> rider.RiderInfoRequest
+	7,  // 14: rider.RiderService.GetRiderPreferences:input_type -> rider.RiderPreferenceRequest
+	9,  // 15: rider.RiderService.UpdateRiderPreferences:input_type -> rider.UpdateRiderPreferenceRequest
+	5,  // 16: rider.RiderService.GetRiderInfo:output_type -> rider.RiderInfoResponse
+	8,  // 17: rider.RiderService.GetRiderPreferences:output_type -> rider.GetRiderPreferenceResponse
+	10, // 18: rider.RiderService.UpdateRiderPreferences:output_type -> rider.UpdateRiderPreferenceResponse
+	16, // [16:19] is the sub-list for method output_type
+	13, // [13:16] is the sub-list for method input_type
 	13, // [13:13] is the sub-list for extension type_name
 	13, // [13:13] is the sub-list for extension extendee
 	0,  // [0:13] is the sub-list for field type_name
@@ -990,7 +910,7 @@ func file_rider_rider_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_rider_rider_proto_rawDesc), len(file_rider_rider_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   12,
+			NumMessages:   11,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

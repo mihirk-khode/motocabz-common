@@ -32,13 +32,13 @@ const (
 // Driver service provides driver-specific operations for location management and instant match
 type DriverServiceClient interface {
 	// Updates driver location and status
-	UpdateLocation(ctx context.Context, in *RqUpdateLocation, opts ...grpc.CallOption) (*RsUpdateLocation, error)
+	UpdateLocation(ctx context.Context, in *UpdateLocationRequest, opts ...grpc.CallOption) (*UpdateLocationResponse, error)
 	// Gets driver current status for instant match
-	GetDriverStatus(ctx context.Context, in *RqGetDriverStatus, opts ...grpc.CallOption) (*RsGetDriverStatus, error)
+	GetDriverStatus(ctx context.Context, in *GetDriverStatusRequest, opts ...grpc.CallOption) (*GetDriverStatusResponse, error)
 	// Streams driver location updates
 	StreamLocation(ctx context.Context, opts ...grpc.CallOption) (grpc.BidiStreamingClient[LocationUpdate, LocationAck], error)
 	// Gets driver information for instant match
-	GetDriverInfo(ctx context.Context, in *RqGetDriverInfo, opts ...grpc.CallOption) (*RsGetDriverInfo, error)
+	GetDriverInfo(ctx context.Context, in *GetDriverInfoRequest, opts ...grpc.CallOption) (*GetDriverInfoResponse, error)
 }
 
 type driverServiceClient struct {
@@ -49,9 +49,9 @@ func NewDriverServiceClient(cc grpc.ClientConnInterface) DriverServiceClient {
 	return &driverServiceClient{cc}
 }
 
-func (c *driverServiceClient) UpdateLocation(ctx context.Context, in *RqUpdateLocation, opts ...grpc.CallOption) (*RsUpdateLocation, error) {
+func (c *driverServiceClient) UpdateLocation(ctx context.Context, in *UpdateLocationRequest, opts ...grpc.CallOption) (*UpdateLocationResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(RsUpdateLocation)
+	out := new(UpdateLocationResponse)
 	err := c.cc.Invoke(ctx, DriverService_UpdateLocation_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
@@ -59,9 +59,9 @@ func (c *driverServiceClient) UpdateLocation(ctx context.Context, in *RqUpdateLo
 	return out, nil
 }
 
-func (c *driverServiceClient) GetDriverStatus(ctx context.Context, in *RqGetDriverStatus, opts ...grpc.CallOption) (*RsGetDriverStatus, error) {
+func (c *driverServiceClient) GetDriverStatus(ctx context.Context, in *GetDriverStatusRequest, opts ...grpc.CallOption) (*GetDriverStatusResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(RsGetDriverStatus)
+	out := new(GetDriverStatusResponse)
 	err := c.cc.Invoke(ctx, DriverService_GetDriverStatus_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
@@ -82,9 +82,9 @@ func (c *driverServiceClient) StreamLocation(ctx context.Context, opts ...grpc.C
 // This type alias is provided for backwards compatibility with existing code that references the prior non-generic stream type by name.
 type DriverService_StreamLocationClient = grpc.BidiStreamingClient[LocationUpdate, LocationAck]
 
-func (c *driverServiceClient) GetDriverInfo(ctx context.Context, in *RqGetDriverInfo, opts ...grpc.CallOption) (*RsGetDriverInfo, error) {
+func (c *driverServiceClient) GetDriverInfo(ctx context.Context, in *GetDriverInfoRequest, opts ...grpc.CallOption) (*GetDriverInfoResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(RsGetDriverInfo)
+	out := new(GetDriverInfoResponse)
 	err := c.cc.Invoke(ctx, DriverService_GetDriverInfo_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
@@ -99,13 +99,13 @@ func (c *driverServiceClient) GetDriverInfo(ctx context.Context, in *RqGetDriver
 // Driver service provides driver-specific operations for location management and instant match
 type DriverServiceServer interface {
 	// Updates driver location and status
-	UpdateLocation(context.Context, *RqUpdateLocation) (*RsUpdateLocation, error)
+	UpdateLocation(context.Context, *UpdateLocationRequest) (*UpdateLocationResponse, error)
 	// Gets driver current status for instant match
-	GetDriverStatus(context.Context, *RqGetDriverStatus) (*RsGetDriverStatus, error)
+	GetDriverStatus(context.Context, *GetDriverStatusRequest) (*GetDriverStatusResponse, error)
 	// Streams driver location updates
 	StreamLocation(grpc.BidiStreamingServer[LocationUpdate, LocationAck]) error
 	// Gets driver information for instant match
-	GetDriverInfo(context.Context, *RqGetDriverInfo) (*RsGetDriverInfo, error)
+	GetDriverInfo(context.Context, *GetDriverInfoRequest) (*GetDriverInfoResponse, error)
 	mustEmbedUnimplementedDriverServiceServer()
 }
 
@@ -116,16 +116,16 @@ type DriverServiceServer interface {
 // pointer dereference when methods are called.
 type UnimplementedDriverServiceServer struct{}
 
-func (UnimplementedDriverServiceServer) UpdateLocation(context.Context, *RqUpdateLocation) (*RsUpdateLocation, error) {
+func (UnimplementedDriverServiceServer) UpdateLocation(context.Context, *UpdateLocationRequest) (*UpdateLocationResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method UpdateLocation not implemented")
 }
-func (UnimplementedDriverServiceServer) GetDriverStatus(context.Context, *RqGetDriverStatus) (*RsGetDriverStatus, error) {
+func (UnimplementedDriverServiceServer) GetDriverStatus(context.Context, *GetDriverStatusRequest) (*GetDriverStatusResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method GetDriverStatus not implemented")
 }
 func (UnimplementedDriverServiceServer) StreamLocation(grpc.BidiStreamingServer[LocationUpdate, LocationAck]) error {
 	return status.Error(codes.Unimplemented, "method StreamLocation not implemented")
 }
-func (UnimplementedDriverServiceServer) GetDriverInfo(context.Context, *RqGetDriverInfo) (*RsGetDriverInfo, error) {
+func (UnimplementedDriverServiceServer) GetDriverInfo(context.Context, *GetDriverInfoRequest) (*GetDriverInfoResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method GetDriverInfo not implemented")
 }
 func (UnimplementedDriverServiceServer) mustEmbedUnimplementedDriverServiceServer() {}
@@ -150,7 +150,7 @@ func RegisterDriverServiceServer(s grpc.ServiceRegistrar, srv DriverServiceServe
 }
 
 func _DriverService_UpdateLocation_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(RqUpdateLocation)
+	in := new(UpdateLocationRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -162,13 +162,13 @@ func _DriverService_UpdateLocation_Handler(srv interface{}, ctx context.Context,
 		FullMethod: DriverService_UpdateLocation_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(DriverServiceServer).UpdateLocation(ctx, req.(*RqUpdateLocation))
+		return srv.(DriverServiceServer).UpdateLocation(ctx, req.(*UpdateLocationRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _DriverService_GetDriverStatus_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(RqGetDriverStatus)
+	in := new(GetDriverStatusRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -180,7 +180,7 @@ func _DriverService_GetDriverStatus_Handler(srv interface{}, ctx context.Context
 		FullMethod: DriverService_GetDriverStatus_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(DriverServiceServer).GetDriverStatus(ctx, req.(*RqGetDriverStatus))
+		return srv.(DriverServiceServer).GetDriverStatus(ctx, req.(*GetDriverStatusRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -193,7 +193,7 @@ func _DriverService_StreamLocation_Handler(srv interface{}, stream grpc.ServerSt
 type DriverService_StreamLocationServer = grpc.BidiStreamingServer[LocationUpdate, LocationAck]
 
 func _DriverService_GetDriverInfo_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(RqGetDriverInfo)
+	in := new(GetDriverInfoRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -205,7 +205,7 @@ func _DriverService_GetDriverInfo_Handler(srv interface{}, ctx context.Context, 
 		FullMethod: DriverService_GetDriverInfo_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(DriverServiceServer).GetDriverInfo(ctx, req.(*RqGetDriverInfo))
+		return srv.(DriverServiceServer).GetDriverInfo(ctx, req.(*GetDriverInfoRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }

@@ -91,27 +91,27 @@ func (x *Enum) GetCategory() string {
 }
 
 // Enum response
-type RsEnum struct {
+type EnumResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Enum          []*Enum                `protobuf:"bytes,1,rep,name=enum,proto3" json:"enum,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *RsEnum) Reset() {
-	*x = RsEnum{}
+func (x *EnumResponse) Reset() {
+	*x = EnumResponse{}
 	mi := &file_driver_driver_proto_msgTypes[1]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *RsEnum) String() string {
+func (x *EnumResponse) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*RsEnum) ProtoMessage() {}
+func (*EnumResponse) ProtoMessage() {}
 
-func (x *RsEnum) ProtoReflect() protoreflect.Message {
+func (x *EnumResponse) ProtoReflect() protoreflect.Message {
 	mi := &file_driver_driver_proto_msgTypes[1]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -123,39 +123,39 @@ func (x *RsEnum) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use RsEnum.ProtoReflect.Descriptor instead.
-func (*RsEnum) Descriptor() ([]byte, []int) {
+// Deprecated: Use EnumResponse.ProtoReflect.Descriptor instead.
+func (*EnumResponse) Descriptor() ([]byte, []int) {
 	return file_driver_driver_proto_rawDescGZIP(), []int{1}
 }
 
-func (x *RsEnum) GetEnum() []*Enum {
+func (x *EnumResponse) GetEnum() []*Enum {
 	if x != nil {
 		return x.Enum
 	}
 	return nil
 }
 
-type RqEnum struct {
+type EnumRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	EnumType      string                 `protobuf:"bytes,1,opt,name=enum_type,json=enumType,proto3" json:"enum_type,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *RqEnum) Reset() {
-	*x = RqEnum{}
+func (x *EnumRequest) Reset() {
+	*x = EnumRequest{}
 	mi := &file_driver_driver_proto_msgTypes[2]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *RqEnum) String() string {
+func (x *EnumRequest) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*RqEnum) ProtoMessage() {}
+func (*EnumRequest) ProtoMessage() {}
 
-func (x *RqEnum) ProtoReflect() protoreflect.Message {
+func (x *EnumRequest) ProtoReflect() protoreflect.Message {
 	mi := &file_driver_driver_proto_msgTypes[2]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -167,12 +167,12 @@ func (x *RqEnum) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use RqEnum.ProtoReflect.Descriptor instead.
-func (*RqEnum) Descriptor() ([]byte, []int) {
+// Deprecated: Use EnumRequest.ProtoReflect.Descriptor instead.
+func (*EnumRequest) Descriptor() ([]byte, []int) {
 	return file_driver_driver_proto_rawDescGZIP(), []int{2}
 }
 
-func (x *RqEnum) GetEnumType() string {
+func (x *EnumRequest) GetEnumType() string {
 	if x != nil {
 		return x.EnumType
 	}
@@ -180,30 +180,30 @@ func (x *RqEnum) GetEnumType() string {
 }
 
 // Location update request
-type RqUpdateLocation struct {
+type UpdateLocationRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	DriverId      string                 `protobuf:"bytes,1,opt,name=driver_id,json=driverId,proto3" json:"driver_id,omitempty"`
 	Latitude      float64                `protobuf:"fixed64,2,opt,name=latitude,proto3" json:"latitude,omitempty"`
 	Longitude     float64                `protobuf:"fixed64,3,opt,name=longitude,proto3" json:"longitude,omitempty"`
-	DriverStatus  *RqEnum                `protobuf:"bytes,4,opt,name=driver_status,json=driverStatus,proto3" json:"driver_status,omitempty"`
+	DriverStatus  *EnumRequest           `protobuf:"bytes,4,opt,name=driver_status,json=driverStatus,proto3" json:"driver_status,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *RqUpdateLocation) Reset() {
-	*x = RqUpdateLocation{}
+func (x *UpdateLocationRequest) Reset() {
+	*x = UpdateLocationRequest{}
 	mi := &file_driver_driver_proto_msgTypes[3]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *RqUpdateLocation) String() string {
+func (x *UpdateLocationRequest) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*RqUpdateLocation) ProtoMessage() {}
+func (*UpdateLocationRequest) ProtoMessage() {}
 
-func (x *RqUpdateLocation) ProtoReflect() protoreflect.Message {
+func (x *UpdateLocationRequest) ProtoReflect() protoreflect.Message {
 	mi := &file_driver_driver_proto_msgTypes[3]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -215,33 +215,33 @@ func (x *RqUpdateLocation) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use RqUpdateLocation.ProtoReflect.Descriptor instead.
-func (*RqUpdateLocation) Descriptor() ([]byte, []int) {
+// Deprecated: Use UpdateLocationRequest.ProtoReflect.Descriptor instead.
+func (*UpdateLocationRequest) Descriptor() ([]byte, []int) {
 	return file_driver_driver_proto_rawDescGZIP(), []int{3}
 }
 
-func (x *RqUpdateLocation) GetDriverId() string {
+func (x *UpdateLocationRequest) GetDriverId() string {
 	if x != nil {
 		return x.DriverId
 	}
 	return ""
 }
 
-func (x *RqUpdateLocation) GetLatitude() float64 {
+func (x *UpdateLocationRequest) GetLatitude() float64 {
 	if x != nil {
 		return x.Latitude
 	}
 	return 0
 }
 
-func (x *RqUpdateLocation) GetLongitude() float64 {
+func (x *UpdateLocationRequest) GetLongitude() float64 {
 	if x != nil {
 		return x.Longitude
 	}
 	return 0
 }
 
-func (x *RqUpdateLocation) GetDriverStatus() *RqEnum {
+func (x *UpdateLocationRequest) GetDriverStatus() *EnumRequest {
 	if x != nil {
 		return x.DriverStatus
 	}
@@ -249,7 +249,7 @@ func (x *RqUpdateLocation) GetDriverStatus() *RqEnum {
 }
 
 // Location update response
-type RsUpdateLocation struct {
+type UpdateLocationResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Success       bool                   `protobuf:"varint,1,opt,name=success,proto3" json:"success,omitempty"`
 	Message       string                 `protobuf:"bytes,2,opt,name=message,proto3" json:"message,omitempty"`
@@ -258,20 +258,20 @@ type RsUpdateLocation struct {
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *RsUpdateLocation) Reset() {
-	*x = RsUpdateLocation{}
+func (x *UpdateLocationResponse) Reset() {
+	*x = UpdateLocationResponse{}
 	mi := &file_driver_driver_proto_msgTypes[4]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *RsUpdateLocation) String() string {
+func (x *UpdateLocationResponse) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*RsUpdateLocation) ProtoMessage() {}
+func (*UpdateLocationResponse) ProtoMessage() {}
 
-func (x *RsUpdateLocation) ProtoReflect() protoreflect.Message {
+func (x *UpdateLocationResponse) ProtoReflect() protoreflect.Message {
 	mi := &file_driver_driver_proto_msgTypes[4]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -283,26 +283,26 @@ func (x *RsUpdateLocation) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use RsUpdateLocation.ProtoReflect.Descriptor instead.
-func (*RsUpdateLocation) Descriptor() ([]byte, []int) {
+// Deprecated: Use UpdateLocationResponse.ProtoReflect.Descriptor instead.
+func (*UpdateLocationResponse) Descriptor() ([]byte, []int) {
 	return file_driver_driver_proto_rawDescGZIP(), []int{4}
 }
 
-func (x *RsUpdateLocation) GetSuccess() bool {
+func (x *UpdateLocationResponse) GetSuccess() bool {
 	if x != nil {
 		return x.Success
 	}
 	return false
 }
 
-func (x *RsUpdateLocation) GetMessage() string {
+func (x *UpdateLocationResponse) GetMessage() string {
 	if x != nil {
 		return x.Message
 	}
 	return ""
 }
 
-func (x *RsUpdateLocation) GetTimestamp() int64 {
+func (x *UpdateLocationResponse) GetTimestamp() int64 {
 	if x != nil {
 		return x.Timestamp
 	}
@@ -310,27 +310,27 @@ func (x *RsUpdateLocation) GetTimestamp() int64 {
 }
 
 // Driver status request
-type RqGetDriverStatus struct {
+type GetDriverStatusRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	DriverId      string                 `protobuf:"bytes,1,opt,name=driver_id,json=driverId,proto3" json:"driver_id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *RqGetDriverStatus) Reset() {
-	*x = RqGetDriverStatus{}
+func (x *GetDriverStatusRequest) Reset() {
+	*x = GetDriverStatusRequest{}
 	mi := &file_driver_driver_proto_msgTypes[5]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *RqGetDriverStatus) String() string {
+func (x *GetDriverStatusRequest) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*RqGetDriverStatus) ProtoMessage() {}
+func (*GetDriverStatusRequest) ProtoMessage() {}
 
-func (x *RqGetDriverStatus) ProtoReflect() protoreflect.Message {
+func (x *GetDriverStatusRequest) ProtoReflect() protoreflect.Message {
 	mi := &file_driver_driver_proto_msgTypes[5]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -342,12 +342,12 @@ func (x *RqGetDriverStatus) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use RqGetDriverStatus.ProtoReflect.Descriptor instead.
-func (*RqGetDriverStatus) Descriptor() ([]byte, []int) {
+// Deprecated: Use GetDriverStatusRequest.ProtoReflect.Descriptor instead.
+func (*GetDriverStatusRequest) Descriptor() ([]byte, []int) {
 	return file_driver_driver_proto_rawDescGZIP(), []int{5}
 }
 
-func (x *RqGetDriverStatus) GetDriverId() string {
+func (x *GetDriverStatusRequest) GetDriverId() string {
 	if x != nil {
 		return x.DriverId
 	}
@@ -355,10 +355,10 @@ func (x *RqGetDriverStatus) GetDriverId() string {
 }
 
 // Driver status response
-type RsGetDriverStatus struct {
+type GetDriverStatusResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	DriverId      string                 `protobuf:"bytes,1,opt,name=driver_id,json=driverId,proto3" json:"driver_id,omitempty"`
-	DriverStatus  *RsEnum                `protobuf:"bytes,2,opt,name=driver_status,json=driverStatus,proto3" json:"driver_status,omitempty"`
+	DriverStatus  *EnumResponse          `protobuf:"bytes,2,opt,name=driver_status,json=driverStatus,proto3" json:"driver_status,omitempty"`
 	IsAvailable   bool                   `protobuf:"varint,3,opt,name=is_available,json=isAvailable,proto3" json:"is_available,omitempty"`
 	Latitude      float64                `protobuf:"fixed64,4,opt,name=latitude,proto3" json:"latitude,omitempty"`
 	Longitude     float64                `protobuf:"fixed64,5,opt,name=longitude,proto3" json:"longitude,omitempty"`
@@ -368,20 +368,20 @@ type RsGetDriverStatus struct {
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *RsGetDriverStatus) Reset() {
-	*x = RsGetDriverStatus{}
+func (x *GetDriverStatusResponse) Reset() {
+	*x = GetDriverStatusResponse{}
 	mi := &file_driver_driver_proto_msgTypes[6]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *RsGetDriverStatus) String() string {
+func (x *GetDriverStatusResponse) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*RsGetDriverStatus) ProtoMessage() {}
+func (*GetDriverStatusResponse) ProtoMessage() {}
 
-func (x *RsGetDriverStatus) ProtoReflect() protoreflect.Message {
+func (x *GetDriverStatusResponse) ProtoReflect() protoreflect.Message {
 	mi := &file_driver_driver_proto_msgTypes[6]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -393,54 +393,54 @@ func (x *RsGetDriverStatus) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use RsGetDriverStatus.ProtoReflect.Descriptor instead.
-func (*RsGetDriverStatus) Descriptor() ([]byte, []int) {
+// Deprecated: Use GetDriverStatusResponse.ProtoReflect.Descriptor instead.
+func (*GetDriverStatusResponse) Descriptor() ([]byte, []int) {
 	return file_driver_driver_proto_rawDescGZIP(), []int{6}
 }
 
-func (x *RsGetDriverStatus) GetDriverId() string {
+func (x *GetDriverStatusResponse) GetDriverId() string {
 	if x != nil {
 		return x.DriverId
 	}
 	return ""
 }
 
-func (x *RsGetDriverStatus) GetDriverStatus() *RsEnum {
+func (x *GetDriverStatusResponse) GetDriverStatus() *EnumResponse {
 	if x != nil {
 		return x.DriverStatus
 	}
 	return nil
 }
 
-func (x *RsGetDriverStatus) GetIsAvailable() bool {
+func (x *GetDriverStatusResponse) GetIsAvailable() bool {
 	if x != nil {
 		return x.IsAvailable
 	}
 	return false
 }
 
-func (x *RsGetDriverStatus) GetLatitude() float64 {
+func (x *GetDriverStatusResponse) GetLatitude() float64 {
 	if x != nil {
 		return x.Latitude
 	}
 	return 0
 }
 
-func (x *RsGetDriverStatus) GetLongitude() float64 {
+func (x *GetDriverStatusResponse) GetLongitude() float64 {
 	if x != nil {
 		return x.Longitude
 	}
 	return 0
 }
 
-func (x *RsGetDriverStatus) GetLastSeen() string {
+func (x *GetDriverStatusResponse) GetLastSeen() string {
 	if x != nil {
 		return x.LastSeen
 	}
 	return ""
 }
 
-func (x *RsGetDriverStatus) GetMessage() string {
+func (x *GetDriverStatusResponse) GetMessage() string {
 	if x != nil {
 		return x.Message
 	}
@@ -453,7 +453,7 @@ type LocationUpdate struct {
 	DriverId      string                 `protobuf:"bytes,1,opt,name=driver_id,json=driverId,proto3" json:"driver_id,omitempty"`
 	Latitude      float64                `protobuf:"fixed64,2,opt,name=latitude,proto3" json:"latitude,omitempty"`
 	Longitude     float64                `protobuf:"fixed64,3,opt,name=longitude,proto3" json:"longitude,omitempty"`
-	DriverStatus  *RsEnum                `protobuf:"bytes,4,opt,name=driver_status,json=driverStatus,proto3" json:"driver_status,omitempty"`
+	DriverStatus  *EnumResponse          `protobuf:"bytes,4,opt,name=driver_status,json=driverStatus,proto3" json:"driver_status,omitempty"`
 	Timestamp     int64                  `protobuf:"varint,5,opt,name=timestamp,proto3" json:"timestamp,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
@@ -510,7 +510,7 @@ func (x *LocationUpdate) GetLongitude() float64 {
 	return 0
 }
 
-func (x *LocationUpdate) GetDriverStatus() *RsEnum {
+func (x *LocationUpdate) GetDriverStatus() *EnumResponse {
 	if x != nil {
 		return x.DriverStatus
 	}
@@ -594,27 +594,27 @@ func (x *LocationAck) GetTimestamp() int64 {
 }
 
 // Driver info request
-type RqGetDriverInfo struct {
+type GetDriverInfoRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	DriverId      string                 `protobuf:"bytes,1,opt,name=driver_id,json=driverId,proto3" json:"driver_id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *RqGetDriverInfo) Reset() {
-	*x = RqGetDriverInfo{}
+func (x *GetDriverInfoRequest) Reset() {
+	*x = GetDriverInfoRequest{}
 	mi := &file_driver_driver_proto_msgTypes[9]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *RqGetDriverInfo) String() string {
+func (x *GetDriverInfoRequest) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*RqGetDriverInfo) ProtoMessage() {}
+func (*GetDriverInfoRequest) ProtoMessage() {}
 
-func (x *RqGetDriverInfo) ProtoReflect() protoreflect.Message {
+func (x *GetDriverInfoRequest) ProtoReflect() protoreflect.Message {
 	mi := &file_driver_driver_proto_msgTypes[9]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -626,12 +626,12 @@ func (x *RqGetDriverInfo) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use RqGetDriverInfo.ProtoReflect.Descriptor instead.
-func (*RqGetDriverInfo) Descriptor() ([]byte, []int) {
+// Deprecated: Use GetDriverInfoRequest.ProtoReflect.Descriptor instead.
+func (*GetDriverInfoRequest) Descriptor() ([]byte, []int) {
 	return file_driver_driver_proto_rawDescGZIP(), []int{9}
 }
 
-func (x *RqGetDriverInfo) GetDriverId() string {
+func (x *GetDriverInfoRequest) GetDriverId() string {
 	if x != nil {
 		return x.DriverId
 	}
@@ -639,37 +639,37 @@ func (x *RqGetDriverInfo) GetDriverId() string {
 }
 
 // Driver info response
-type RsGetDriverInfo struct {
+type GetDriverInfoResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	DriverId      string                 `protobuf:"bytes,1,opt,name=driver_id,json=driverId,proto3" json:"driver_id,omitempty"`
 	Name          string                 `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
 	Phone         string                 `protobuf:"bytes,3,opt,name=phone,proto3" json:"phone,omitempty"`
 	Rating        float64                `protobuf:"fixed64,4,opt,name=rating,proto3" json:"rating,omitempty"`
-	VehicleType   *RsEnum                `protobuf:"bytes,5,opt,name=vehicle_type,json=vehicleType,proto3" json:"vehicle_type,omitempty"`
+	VehicleType   *EnumResponse          `protobuf:"bytes,5,opt,name=vehicle_type,json=vehicleType,proto3" json:"vehicle_type,omitempty"`
 	VehicleInfo   string                 `protobuf:"bytes,6,opt,name=vehicle_info,json=vehicleInfo,proto3" json:"vehicle_info,omitempty"`
 	Latitude      float64                `protobuf:"fixed64,7,opt,name=latitude,proto3" json:"latitude,omitempty"`
 	Longitude     float64                `protobuf:"fixed64,8,opt,name=longitude,proto3" json:"longitude,omitempty"`
-	DriverStatus  *RsEnum                `protobuf:"bytes,9,opt,name=driver_status,json=driverStatus,proto3" json:"driver_status,omitempty"`
+	DriverStatus  *EnumResponse          `protobuf:"bytes,9,opt,name=driver_status,json=driverStatus,proto3" json:"driver_status,omitempty"`
 	Eta           int32                  `protobuf:"varint,10,opt,name=eta,proto3" json:"eta,omitempty"`            // minutes
 	Distance      float64                `protobuf:"fixed64,11,opt,name=distance,proto3" json:"distance,omitempty"` // km
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *RsGetDriverInfo) Reset() {
-	*x = RsGetDriverInfo{}
+func (x *GetDriverInfoResponse) Reset() {
+	*x = GetDriverInfoResponse{}
 	mi := &file_driver_driver_proto_msgTypes[10]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *RsGetDriverInfo) String() string {
+func (x *GetDriverInfoResponse) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*RsGetDriverInfo) ProtoMessage() {}
+func (*GetDriverInfoResponse) ProtoMessage() {}
 
-func (x *RsGetDriverInfo) ProtoReflect() protoreflect.Message {
+func (x *GetDriverInfoResponse) ProtoReflect() protoreflect.Message {
 	mi := &file_driver_driver_proto_msgTypes[10]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -681,82 +681,82 @@ func (x *RsGetDriverInfo) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use RsGetDriverInfo.ProtoReflect.Descriptor instead.
-func (*RsGetDriverInfo) Descriptor() ([]byte, []int) {
+// Deprecated: Use GetDriverInfoResponse.ProtoReflect.Descriptor instead.
+func (*GetDriverInfoResponse) Descriptor() ([]byte, []int) {
 	return file_driver_driver_proto_rawDescGZIP(), []int{10}
 }
 
-func (x *RsGetDriverInfo) GetDriverId() string {
+func (x *GetDriverInfoResponse) GetDriverId() string {
 	if x != nil {
 		return x.DriverId
 	}
 	return ""
 }
 
-func (x *RsGetDriverInfo) GetName() string {
+func (x *GetDriverInfoResponse) GetName() string {
 	if x != nil {
 		return x.Name
 	}
 	return ""
 }
 
-func (x *RsGetDriverInfo) GetPhone() string {
+func (x *GetDriverInfoResponse) GetPhone() string {
 	if x != nil {
 		return x.Phone
 	}
 	return ""
 }
 
-func (x *RsGetDriverInfo) GetRating() float64 {
+func (x *GetDriverInfoResponse) GetRating() float64 {
 	if x != nil {
 		return x.Rating
 	}
 	return 0
 }
 
-func (x *RsGetDriverInfo) GetVehicleType() *RsEnum {
+func (x *GetDriverInfoResponse) GetVehicleType() *EnumResponse {
 	if x != nil {
 		return x.VehicleType
 	}
 	return nil
 }
 
-func (x *RsGetDriverInfo) GetVehicleInfo() string {
+func (x *GetDriverInfoResponse) GetVehicleInfo() string {
 	if x != nil {
 		return x.VehicleInfo
 	}
 	return ""
 }
 
-func (x *RsGetDriverInfo) GetLatitude() float64 {
+func (x *GetDriverInfoResponse) GetLatitude() float64 {
 	if x != nil {
 		return x.Latitude
 	}
 	return 0
 }
 
-func (x *RsGetDriverInfo) GetLongitude() float64 {
+func (x *GetDriverInfoResponse) GetLongitude() float64 {
 	if x != nil {
 		return x.Longitude
 	}
 	return 0
 }
 
-func (x *RsGetDriverInfo) GetDriverStatus() *RsEnum {
+func (x *GetDriverInfoResponse) GetDriverStatus() *EnumResponse {
 	if x != nil {
 		return x.DriverStatus
 	}
 	return nil
 }
 
-func (x *RsGetDriverInfo) GetEta() int32 {
+func (x *GetDriverInfoResponse) GetEta() int32 {
 	if x != nil {
 		return x.Eta
 	}
 	return 0
 }
 
-func (x *RsGetDriverInfo) GetDistance() float64 {
+func (x *GetDriverInfoResponse) GetDistance() float64 {
 	if x != nil {
 		return x.Distance
 	}
@@ -772,61 +772,61 @@ const file_driver_driver_proto_rawDesc = "" +
 	"\x02id\x18\x01 \x01(\x05R\x02id\x12\x12\n" +
 	"\x04name\x18\x02 \x01(\tR\x04name\x12\x12\n" +
 	"\x04type\x18\x03 \x01(\tR\x04type\x12\x1a\n" +
-	"\bcategory\x18\x04 \x01(\tR\bcategory\"*\n" +
-	"\x06RsEnum\x12 \n" +
-	"\x04enum\x18\x01 \x03(\v2\f.driver.EnumR\x04enum\"%\n" +
-	"\x06RqEnum\x12\x1b\n" +
-	"\tenum_type\x18\x01 \x01(\tR\benumType\"\x9e\x01\n" +
-	"\x10RqUpdateLocation\x12\x1b\n" +
+	"\bcategory\x18\x04 \x01(\tR\bcategory\"0\n" +
+	"\fEnumResponse\x12 \n" +
+	"\x04enum\x18\x01 \x03(\v2\f.driver.EnumR\x04enum\"*\n" +
+	"\vEnumRequest\x12\x1b\n" +
+	"\tenum_type\x18\x01 \x01(\tR\benumType\"\xa8\x01\n" +
+	"\x15UpdateLocationRequest\x12\x1b\n" +
 	"\tdriver_id\x18\x01 \x01(\tR\bdriverId\x12\x1a\n" +
 	"\blatitude\x18\x02 \x01(\x01R\blatitude\x12\x1c\n" +
-	"\tlongitude\x18\x03 \x01(\x01R\tlongitude\x123\n" +
-	"\rdriver_status\x18\x04 \x01(\v2\x0e.driver.RqEnumR\fdriverStatus\"d\n" +
-	"\x10RsUpdateLocation\x12\x18\n" +
+	"\tlongitude\x18\x03 \x01(\x01R\tlongitude\x128\n" +
+	"\rdriver_status\x18\x04 \x01(\v2\x13.driver.EnumRequestR\fdriverStatus\"j\n" +
+	"\x16UpdateLocationResponse\x12\x18\n" +
 	"\asuccess\x18\x01 \x01(\bR\asuccess\x12\x18\n" +
 	"\amessage\x18\x02 \x01(\tR\amessage\x12\x1c\n" +
-	"\ttimestamp\x18\x03 \x01(\x03R\ttimestamp\"0\n" +
-	"\x11RqGetDriverStatus\x12\x1b\n" +
-	"\tdriver_id\x18\x01 \x01(\tR\bdriverId\"\xf9\x01\n" +
-	"\x11RsGetDriverStatus\x12\x1b\n" +
-	"\tdriver_id\x18\x01 \x01(\tR\bdriverId\x123\n" +
-	"\rdriver_status\x18\x02 \x01(\v2\x0e.driver.RsEnumR\fdriverStatus\x12!\n" +
+	"\ttimestamp\x18\x03 \x01(\x03R\ttimestamp\"5\n" +
+	"\x16GetDriverStatusRequest\x12\x1b\n" +
+	"\tdriver_id\x18\x01 \x01(\tR\bdriverId\"\x85\x02\n" +
+	"\x17GetDriverStatusResponse\x12\x1b\n" +
+	"\tdriver_id\x18\x01 \x01(\tR\bdriverId\x129\n" +
+	"\rdriver_status\x18\x02 \x01(\v2\x14.driver.EnumResponseR\fdriverStatus\x12!\n" +
 	"\fis_available\x18\x03 \x01(\bR\visAvailable\x12\x1a\n" +
 	"\blatitude\x18\x04 \x01(\x01R\blatitude\x12\x1c\n" +
 	"\tlongitude\x18\x05 \x01(\x01R\tlongitude\x12\x1b\n" +
 	"\tlast_seen\x18\x06 \x01(\tR\blastSeen\x12\x18\n" +
-	"\amessage\x18\a \x01(\tR\amessage\"\xba\x01\n" +
+	"\amessage\x18\a \x01(\tR\amessage\"\xc0\x01\n" +
 	"\x0eLocationUpdate\x12\x1b\n" +
 	"\tdriver_id\x18\x01 \x01(\tR\bdriverId\x12\x1a\n" +
 	"\blatitude\x18\x02 \x01(\x01R\blatitude\x12\x1c\n" +
-	"\tlongitude\x18\x03 \x01(\x01R\tlongitude\x123\n" +
-	"\rdriver_status\x18\x04 \x01(\v2\x0e.driver.RsEnumR\fdriverStatus\x12\x1c\n" +
+	"\tlongitude\x18\x03 \x01(\x01R\tlongitude\x129\n" +
+	"\rdriver_status\x18\x04 \x01(\v2\x14.driver.EnumResponseR\fdriverStatus\x12\x1c\n" +
 	"\ttimestamp\x18\x05 \x01(\x03R\ttimestamp\"|\n" +
 	"\vLocationAck\x12\x1b\n" +
 	"\tdriver_id\x18\x01 \x01(\tR\bdriverId\x12\x18\n" +
 	"\asuccess\x18\x02 \x01(\bR\asuccess\x12\x18\n" +
 	"\amessage\x18\x03 \x01(\tR\amessage\x12\x1c\n" +
-	"\ttimestamp\x18\x04 \x01(\x03R\ttimestamp\".\n" +
-	"\x0fRqGetDriverInfo\x12\x1b\n" +
-	"\tdriver_id\x18\x01 \x01(\tR\bdriverId\"\xe3\x02\n" +
-	"\x0fRsGetDriverInfo\x12\x1b\n" +
+	"\ttimestamp\x18\x04 \x01(\x03R\ttimestamp\"3\n" +
+	"\x14GetDriverInfoRequest\x12\x1b\n" +
+	"\tdriver_id\x18\x01 \x01(\tR\bdriverId\"\xf5\x02\n" +
+	"\x15GetDriverInfoResponse\x12\x1b\n" +
 	"\tdriver_id\x18\x01 \x01(\tR\bdriverId\x12\x12\n" +
 	"\x04name\x18\x02 \x01(\tR\x04name\x12\x14\n" +
 	"\x05phone\x18\x03 \x01(\tR\x05phone\x12\x16\n" +
-	"\x06rating\x18\x04 \x01(\x01R\x06rating\x121\n" +
-	"\fvehicle_type\x18\x05 \x01(\v2\x0e.driver.RsEnumR\vvehicleType\x12!\n" +
+	"\x06rating\x18\x04 \x01(\x01R\x06rating\x127\n" +
+	"\fvehicle_type\x18\x05 \x01(\v2\x14.driver.EnumResponseR\vvehicleType\x12!\n" +
 	"\fvehicle_info\x18\x06 \x01(\tR\vvehicleInfo\x12\x1a\n" +
 	"\blatitude\x18\a \x01(\x01R\blatitude\x12\x1c\n" +
-	"\tlongitude\x18\b \x01(\x01R\tlongitude\x123\n" +
-	"\rdriver_status\x18\t \x01(\v2\x0e.driver.RsEnumR\fdriverStatus\x12\x10\n" +
+	"\tlongitude\x18\b \x01(\x01R\tlongitude\x129\n" +
+	"\rdriver_status\x18\t \x01(\v2\x14.driver.EnumResponseR\fdriverStatus\x12\x10\n" +
 	"\x03eta\x18\n" +
 	" \x01(\x05R\x03eta\x12\x1a\n" +
-	"\bdistance\x18\v \x01(\x01R\bdistance2\xac\x02\n" +
-	"\rDriverService\x12F\n" +
-	"\x0eUpdateLocation\x12\x18.driver.RqUpdateLocation\x1a\x18.driver.RsUpdateLocation\"\x00\x12I\n" +
-	"\x0fGetDriverStatus\x12\x19.driver.RqGetDriverStatus\x1a\x19.driver.RsGetDriverStatus\"\x00\x12C\n" +
-	"\x0eStreamLocation\x12\x16.driver.LocationUpdate\x1a\x13.driver.LocationAck\"\x00(\x010\x01\x12C\n" +
-	"\rGetDriverInfo\x12\x17.driver.RqGetDriverInfo\x1a\x17.driver.RsGetDriverInfo\"\x00B@Z>github.com/mihirk-khode/motocabz-common/genproto/driver;driverb\x06proto3"
+	"\bdistance\x18\v \x01(\x01R\bdistance2\xcd\x02\n" +
+	"\rDriverService\x12Q\n" +
+	"\x0eUpdateLocation\x12\x1d.driver.UpdateLocationRequest\x1a\x1e.driver.UpdateLocationResponse\"\x00\x12T\n" +
+	"\x0fGetDriverStatus\x12\x1e.driver.GetDriverStatusRequest\x1a\x1f.driver.GetDriverStatusResponse\"\x00\x12C\n" +
+	"\x0eStreamLocation\x12\x16.driver.LocationUpdate\x1a\x13.driver.LocationAck\"\x00(\x010\x01\x12N\n" +
+	"\rGetDriverInfo\x12\x1c.driver.GetDriverInfoRequest\x1a\x1d.driver.GetDriverInfoResponse\"\x00B@Z>github.com/mihirk-khode/motocabz-common/genproto/driver;driverb\x06proto3"
 
 var (
 	file_driver_driver_proto_rawDescOnce sync.Once
@@ -842,33 +842,33 @@ func file_driver_driver_proto_rawDescGZIP() []byte {
 
 var file_driver_driver_proto_msgTypes = make([]protoimpl.MessageInfo, 11)
 var file_driver_driver_proto_goTypes = []any{
-	(*Enum)(nil),              // 0: driver.Enum
-	(*RsEnum)(nil),            // 1: driver.RsEnum
-	(*RqEnum)(nil),            // 2: driver.RqEnum
-	(*RqUpdateLocation)(nil),  // 3: driver.RqUpdateLocation
-	(*RsUpdateLocation)(nil),  // 4: driver.RsUpdateLocation
-	(*RqGetDriverStatus)(nil), // 5: driver.RqGetDriverStatus
-	(*RsGetDriverStatus)(nil), // 6: driver.RsGetDriverStatus
-	(*LocationUpdate)(nil),    // 7: driver.LocationUpdate
-	(*LocationAck)(nil),       // 8: driver.LocationAck
-	(*RqGetDriverInfo)(nil),   // 9: driver.RqGetDriverInfo
-	(*RsGetDriverInfo)(nil),   // 10: driver.RsGetDriverInfo
+	(*Enum)(nil),                    // 0: driver.Enum
+	(*EnumResponse)(nil),            // 1: driver.EnumResponse
+	(*EnumRequest)(nil),             // 2: driver.EnumRequest
+	(*UpdateLocationRequest)(nil),   // 3: driver.UpdateLocationRequest
+	(*UpdateLocationResponse)(nil),  // 4: driver.UpdateLocationResponse
+	(*GetDriverStatusRequest)(nil),  // 5: driver.GetDriverStatusRequest
+	(*GetDriverStatusResponse)(nil), // 6: driver.GetDriverStatusResponse
+	(*LocationUpdate)(nil),          // 7: driver.LocationUpdate
+	(*LocationAck)(nil),             // 8: driver.LocationAck
+	(*GetDriverInfoRequest)(nil),    // 9: driver.GetDriverInfoRequest
+	(*GetDriverInfoResponse)(nil),   // 10: driver.GetDriverInfoResponse
 }
 var file_driver_driver_proto_depIdxs = []int32{
-	0,  // 0: driver.RsEnum.enum:type_name -> driver.Enum
-	2,  // 1: driver.RqUpdateLocation.driver_status:type_name -> driver.RqEnum
-	1,  // 2: driver.RsGetDriverStatus.driver_status:type_name -> driver.RsEnum
-	1,  // 3: driver.LocationUpdate.driver_status:type_name -> driver.RsEnum
-	1,  // 4: driver.RsGetDriverInfo.vehicle_type:type_name -> driver.RsEnum
-	1,  // 5: driver.RsGetDriverInfo.driver_status:type_name -> driver.RsEnum
-	3,  // 6: driver.DriverService.UpdateLocation:input_type -> driver.RqUpdateLocation
-	5,  // 7: driver.DriverService.GetDriverStatus:input_type -> driver.RqGetDriverStatus
+	0,  // 0: driver.EnumResponse.enum:type_name -> driver.Enum
+	2,  // 1: driver.UpdateLocationRequest.driver_status:type_name -> driver.EnumRequest
+	1,  // 2: driver.GetDriverStatusResponse.driver_status:type_name -> driver.EnumResponse
+	1,  // 3: driver.LocationUpdate.driver_status:type_name -> driver.EnumResponse
+	1,  // 4: driver.GetDriverInfoResponse.vehicle_type:type_name -> driver.EnumResponse
+	1,  // 5: driver.GetDriverInfoResponse.driver_status:type_name -> driver.EnumResponse
+	3,  // 6: driver.DriverService.UpdateLocation:input_type -> driver.UpdateLocationRequest
+	5,  // 7: driver.DriverService.GetDriverStatus:input_type -> driver.GetDriverStatusRequest
 	7,  // 8: driver.DriverService.StreamLocation:input_type -> driver.LocationUpdate
-	9,  // 9: driver.DriverService.GetDriverInfo:input_type -> driver.RqGetDriverInfo
-	4,  // 10: driver.DriverService.UpdateLocation:output_type -> driver.RsUpdateLocation
-	6,  // 11: driver.DriverService.GetDriverStatus:output_type -> driver.RsGetDriverStatus
+	9,  // 9: driver.DriverService.GetDriverInfo:input_type -> driver.GetDriverInfoRequest
+	4,  // 10: driver.DriverService.UpdateLocation:output_type -> driver.UpdateLocationResponse
+	6,  // 11: driver.DriverService.GetDriverStatus:output_type -> driver.GetDriverStatusResponse
 	8,  // 12: driver.DriverService.StreamLocation:output_type -> driver.LocationAck
-	10, // 13: driver.DriverService.GetDriverInfo:output_type -> driver.RsGetDriverInfo
+	10, // 13: driver.DriverService.GetDriverInfo:output_type -> driver.GetDriverInfoResponse
 	10, // [10:14] is the sub-list for method output_type
 	6,  // [6:10] is the sub-list for method input_type
 	6,  // [6:6] is the sub-list for extension type_name

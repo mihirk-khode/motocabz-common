@@ -45,28 +45,28 @@ const (
 // ======= Service Definition =======
 type AdminServiceClient interface {
 	// Validate admin token
-	ValidateAdminToken(ctx context.Context, in *RqValidateAdminToken, opts ...grpc.CallOption) (*RsValidateAdminToken, error)
+	ValidateAdminToken(ctx context.Context, in *ValidateAdminTokenRequest, opts ...grpc.CallOption) (*ValidateAdminTokenResponse, error)
 	// Get admin profile
-	GetAdminProfile(ctx context.Context, in *RqGetAdminProfile, opts ...grpc.CallOption) (*RsGetAdminProfile, error)
+	GetAdminProfile(ctx context.Context, in *GetAdminProfileRequest, opts ...grpc.CallOption) (*GetAdminProfileResponse, error)
 	// Check admin permissions
-	CheckAdminPermission(ctx context.Context, in *RqCheckAdminPermission, opts ...grpc.CallOption) (*RsCheckAdminPermission, error)
+	CheckAdminPermission(ctx context.Context, in *CheckAdminPermissionRequest, opts ...grpc.CallOption) (*CheckAdminPermissionResponse, error)
 	// Driver management
-	ListDrivers(ctx context.Context, in *RqListDrivers, opts ...grpc.CallOption) (*RsListDrivers, error)
-	GetDriver(ctx context.Context, in *RqGetDriver, opts ...grpc.CallOption) (*RsGetDriver, error)
-	ApproveDriver(ctx context.Context, in *RqApproveDriver, opts ...grpc.CallOption) (*RsApproveDriver, error)
-	RejectDriver(ctx context.Context, in *RqRejectDriver, opts ...grpc.CallOption) (*RsRejectDriver, error)
-	SuspendDriver(ctx context.Context, in *RqSuspendDriver, opts ...grpc.CallOption) (*RsSuspendDriver, error)
-	ActivateDriver(ctx context.Context, in *RqActivateDriver, opts ...grpc.CallOption) (*RsActivateDriver, error)
-	GetDriverDocuments(ctx context.Context, in *RqGetDriverDocuments, opts ...grpc.CallOption) (*RsGetDriverDocuments, error)
-	ApproveDriverDocument(ctx context.Context, in *RqApproveDriverDocument, opts ...grpc.CallOption) (*RsApproveDriverDocument, error)
-	RejectDriverDocument(ctx context.Context, in *RqRejectDriverDocument, opts ...grpc.CallOption) (*RsRejectDriverDocument, error)
-	DeleteDriver(ctx context.Context, in *RqDeleteDriver, opts ...grpc.CallOption) (*RsDeleteDriver, error)
+	ListDrivers(ctx context.Context, in *ListDriversRequest, opts ...grpc.CallOption) (*ListDriversResponse, error)
+	GetDriver(ctx context.Context, in *GetDriverRequest, opts ...grpc.CallOption) (*GetDriverResponse, error)
+	ApproveDriver(ctx context.Context, in *ApproveDriverRequest, opts ...grpc.CallOption) (*ApproveDriverResponse, error)
+	RejectDriver(ctx context.Context, in *RejectDriverRequest, opts ...grpc.CallOption) (*RejectDriverResponse, error)
+	SuspendDriver(ctx context.Context, in *SuspendDriverRequest, opts ...grpc.CallOption) (*SuspendDriverResponse, error)
+	ActivateDriver(ctx context.Context, in *ActivateDriverRequest, opts ...grpc.CallOption) (*ActivateDriverResponse, error)
+	GetDriverDocuments(ctx context.Context, in *GetDriverDocumentsRequest, opts ...grpc.CallOption) (*GetDriverDocumentsResponse, error)
+	ApproveDriverDocument(ctx context.Context, in *ApproveDriverDocumentRequest, opts ...grpc.CallOption) (*ApproveDriverDocumentResponse, error)
+	RejectDriverDocument(ctx context.Context, in *RejectDriverDocumentRequest, opts ...grpc.CallOption) (*RejectDriverDocumentResponse, error)
+	DeleteDriver(ctx context.Context, in *DeleteDriverRequest, opts ...grpc.CallOption) (*DeleteDriverResponse, error)
 	// Driver document management
-	ListDriverDocuments(ctx context.Context, in *RqListDriverDocuments, opts ...grpc.CallOption) (*RsListDriverDocuments, error)
-	GetDriverDocument(ctx context.Context, in *RqGetDriverDocument, opts ...grpc.CallOption) (*RsGetDriverDocument, error)
-	DeleteDriverDocument(ctx context.Context, in *RqDeleteDriverDocument, opts ...grpc.CallOption) (*RsDeleteDriverDocument, error)
+	ListDriverDocuments(ctx context.Context, in *ListDriverDocumentsRequest, opts ...grpc.CallOption) (*ListDriverDocumentsResponse, error)
+	GetDriverDocument(ctx context.Context, in *GetDriverDocumentRequest, opts ...grpc.CallOption) (*GetDriverDocumentResponse, error)
+	DeleteDriverDocument(ctx context.Context, in *DeleteDriverDocumentRequest, opts ...grpc.CallOption) (*DeleteDriverDocumentResponse, error)
 	// Enum management
-	GetEnum(ctx context.Context, in *RqGetEnum, opts ...grpc.CallOption) (*RsGetEnum, error)
+	GetEnum(ctx context.Context, in *GetEnumRequest, opts ...grpc.CallOption) (*GetEnumResponse, error)
 }
 
 type adminServiceClient struct {
@@ -77,9 +77,9 @@ func NewAdminServiceClient(cc grpc.ClientConnInterface) AdminServiceClient {
 	return &adminServiceClient{cc}
 }
 
-func (c *adminServiceClient) ValidateAdminToken(ctx context.Context, in *RqValidateAdminToken, opts ...grpc.CallOption) (*RsValidateAdminToken, error) {
+func (c *adminServiceClient) ValidateAdminToken(ctx context.Context, in *ValidateAdminTokenRequest, opts ...grpc.CallOption) (*ValidateAdminTokenResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(RsValidateAdminToken)
+	out := new(ValidateAdminTokenResponse)
 	err := c.cc.Invoke(ctx, AdminService_ValidateAdminToken_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
@@ -87,9 +87,9 @@ func (c *adminServiceClient) ValidateAdminToken(ctx context.Context, in *RqValid
 	return out, nil
 }
 
-func (c *adminServiceClient) GetAdminProfile(ctx context.Context, in *RqGetAdminProfile, opts ...grpc.CallOption) (*RsGetAdminProfile, error) {
+func (c *adminServiceClient) GetAdminProfile(ctx context.Context, in *GetAdminProfileRequest, opts ...grpc.CallOption) (*GetAdminProfileResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(RsGetAdminProfile)
+	out := new(GetAdminProfileResponse)
 	err := c.cc.Invoke(ctx, AdminService_GetAdminProfile_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
@@ -97,9 +97,9 @@ func (c *adminServiceClient) GetAdminProfile(ctx context.Context, in *RqGetAdmin
 	return out, nil
 }
 
-func (c *adminServiceClient) CheckAdminPermission(ctx context.Context, in *RqCheckAdminPermission, opts ...grpc.CallOption) (*RsCheckAdminPermission, error) {
+func (c *adminServiceClient) CheckAdminPermission(ctx context.Context, in *CheckAdminPermissionRequest, opts ...grpc.CallOption) (*CheckAdminPermissionResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(RsCheckAdminPermission)
+	out := new(CheckAdminPermissionResponse)
 	err := c.cc.Invoke(ctx, AdminService_CheckAdminPermission_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
@@ -107,9 +107,9 @@ func (c *adminServiceClient) CheckAdminPermission(ctx context.Context, in *RqChe
 	return out, nil
 }
 
-func (c *adminServiceClient) ListDrivers(ctx context.Context, in *RqListDrivers, opts ...grpc.CallOption) (*RsListDrivers, error) {
+func (c *adminServiceClient) ListDrivers(ctx context.Context, in *ListDriversRequest, opts ...grpc.CallOption) (*ListDriversResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(RsListDrivers)
+	out := new(ListDriversResponse)
 	err := c.cc.Invoke(ctx, AdminService_ListDrivers_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
@@ -117,9 +117,9 @@ func (c *adminServiceClient) ListDrivers(ctx context.Context, in *RqListDrivers,
 	return out, nil
 }
 
-func (c *adminServiceClient) GetDriver(ctx context.Context, in *RqGetDriver, opts ...grpc.CallOption) (*RsGetDriver, error) {
+func (c *adminServiceClient) GetDriver(ctx context.Context, in *GetDriverRequest, opts ...grpc.CallOption) (*GetDriverResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(RsGetDriver)
+	out := new(GetDriverResponse)
 	err := c.cc.Invoke(ctx, AdminService_GetDriver_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
@@ -127,9 +127,9 @@ func (c *adminServiceClient) GetDriver(ctx context.Context, in *RqGetDriver, opt
 	return out, nil
 }
 
-func (c *adminServiceClient) ApproveDriver(ctx context.Context, in *RqApproveDriver, opts ...grpc.CallOption) (*RsApproveDriver, error) {
+func (c *adminServiceClient) ApproveDriver(ctx context.Context, in *ApproveDriverRequest, opts ...grpc.CallOption) (*ApproveDriverResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(RsApproveDriver)
+	out := new(ApproveDriverResponse)
 	err := c.cc.Invoke(ctx, AdminService_ApproveDriver_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
@@ -137,9 +137,9 @@ func (c *adminServiceClient) ApproveDriver(ctx context.Context, in *RqApproveDri
 	return out, nil
 }
 
-func (c *adminServiceClient) RejectDriver(ctx context.Context, in *RqRejectDriver, opts ...grpc.CallOption) (*RsRejectDriver, error) {
+func (c *adminServiceClient) RejectDriver(ctx context.Context, in *RejectDriverRequest, opts ...grpc.CallOption) (*RejectDriverResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(RsRejectDriver)
+	out := new(RejectDriverResponse)
 	err := c.cc.Invoke(ctx, AdminService_RejectDriver_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
@@ -147,9 +147,9 @@ func (c *adminServiceClient) RejectDriver(ctx context.Context, in *RqRejectDrive
 	return out, nil
 }
 
-func (c *adminServiceClient) SuspendDriver(ctx context.Context, in *RqSuspendDriver, opts ...grpc.CallOption) (*RsSuspendDriver, error) {
+func (c *adminServiceClient) SuspendDriver(ctx context.Context, in *SuspendDriverRequest, opts ...grpc.CallOption) (*SuspendDriverResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(RsSuspendDriver)
+	out := new(SuspendDriverResponse)
 	err := c.cc.Invoke(ctx, AdminService_SuspendDriver_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
@@ -157,9 +157,9 @@ func (c *adminServiceClient) SuspendDriver(ctx context.Context, in *RqSuspendDri
 	return out, nil
 }
 
-func (c *adminServiceClient) ActivateDriver(ctx context.Context, in *RqActivateDriver, opts ...grpc.CallOption) (*RsActivateDriver, error) {
+func (c *adminServiceClient) ActivateDriver(ctx context.Context, in *ActivateDriverRequest, opts ...grpc.CallOption) (*ActivateDriverResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(RsActivateDriver)
+	out := new(ActivateDriverResponse)
 	err := c.cc.Invoke(ctx, AdminService_ActivateDriver_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
@@ -167,9 +167,9 @@ func (c *adminServiceClient) ActivateDriver(ctx context.Context, in *RqActivateD
 	return out, nil
 }
 
-func (c *adminServiceClient) GetDriverDocuments(ctx context.Context, in *RqGetDriverDocuments, opts ...grpc.CallOption) (*RsGetDriverDocuments, error) {
+func (c *adminServiceClient) GetDriverDocuments(ctx context.Context, in *GetDriverDocumentsRequest, opts ...grpc.CallOption) (*GetDriverDocumentsResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(RsGetDriverDocuments)
+	out := new(GetDriverDocumentsResponse)
 	err := c.cc.Invoke(ctx, AdminService_GetDriverDocuments_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
@@ -177,9 +177,9 @@ func (c *adminServiceClient) GetDriverDocuments(ctx context.Context, in *RqGetDr
 	return out, nil
 }
 
-func (c *adminServiceClient) ApproveDriverDocument(ctx context.Context, in *RqApproveDriverDocument, opts ...grpc.CallOption) (*RsApproveDriverDocument, error) {
+func (c *adminServiceClient) ApproveDriverDocument(ctx context.Context, in *ApproveDriverDocumentRequest, opts ...grpc.CallOption) (*ApproveDriverDocumentResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(RsApproveDriverDocument)
+	out := new(ApproveDriverDocumentResponse)
 	err := c.cc.Invoke(ctx, AdminService_ApproveDriverDocument_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
@@ -187,9 +187,9 @@ func (c *adminServiceClient) ApproveDriverDocument(ctx context.Context, in *RqAp
 	return out, nil
 }
 
-func (c *adminServiceClient) RejectDriverDocument(ctx context.Context, in *RqRejectDriverDocument, opts ...grpc.CallOption) (*RsRejectDriverDocument, error) {
+func (c *adminServiceClient) RejectDriverDocument(ctx context.Context, in *RejectDriverDocumentRequest, opts ...grpc.CallOption) (*RejectDriverDocumentResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(RsRejectDriverDocument)
+	out := new(RejectDriverDocumentResponse)
 	err := c.cc.Invoke(ctx, AdminService_RejectDriverDocument_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
@@ -197,9 +197,9 @@ func (c *adminServiceClient) RejectDriverDocument(ctx context.Context, in *RqRej
 	return out, nil
 }
 
-func (c *adminServiceClient) DeleteDriver(ctx context.Context, in *RqDeleteDriver, opts ...grpc.CallOption) (*RsDeleteDriver, error) {
+func (c *adminServiceClient) DeleteDriver(ctx context.Context, in *DeleteDriverRequest, opts ...grpc.CallOption) (*DeleteDriverResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(RsDeleteDriver)
+	out := new(DeleteDriverResponse)
 	err := c.cc.Invoke(ctx, AdminService_DeleteDriver_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
@@ -207,9 +207,9 @@ func (c *adminServiceClient) DeleteDriver(ctx context.Context, in *RqDeleteDrive
 	return out, nil
 }
 
-func (c *adminServiceClient) ListDriverDocuments(ctx context.Context, in *RqListDriverDocuments, opts ...grpc.CallOption) (*RsListDriverDocuments, error) {
+func (c *adminServiceClient) ListDriverDocuments(ctx context.Context, in *ListDriverDocumentsRequest, opts ...grpc.CallOption) (*ListDriverDocumentsResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(RsListDriverDocuments)
+	out := new(ListDriverDocumentsResponse)
 	err := c.cc.Invoke(ctx, AdminService_ListDriverDocuments_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
@@ -217,9 +217,9 @@ func (c *adminServiceClient) ListDriverDocuments(ctx context.Context, in *RqList
 	return out, nil
 }
 
-func (c *adminServiceClient) GetDriverDocument(ctx context.Context, in *RqGetDriverDocument, opts ...grpc.CallOption) (*RsGetDriverDocument, error) {
+func (c *adminServiceClient) GetDriverDocument(ctx context.Context, in *GetDriverDocumentRequest, opts ...grpc.CallOption) (*GetDriverDocumentResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(RsGetDriverDocument)
+	out := new(GetDriverDocumentResponse)
 	err := c.cc.Invoke(ctx, AdminService_GetDriverDocument_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
@@ -227,9 +227,9 @@ func (c *adminServiceClient) GetDriverDocument(ctx context.Context, in *RqGetDri
 	return out, nil
 }
 
-func (c *adminServiceClient) DeleteDriverDocument(ctx context.Context, in *RqDeleteDriverDocument, opts ...grpc.CallOption) (*RsDeleteDriverDocument, error) {
+func (c *adminServiceClient) DeleteDriverDocument(ctx context.Context, in *DeleteDriverDocumentRequest, opts ...grpc.CallOption) (*DeleteDriverDocumentResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(RsDeleteDriverDocument)
+	out := new(DeleteDriverDocumentResponse)
 	err := c.cc.Invoke(ctx, AdminService_DeleteDriverDocument_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
@@ -237,9 +237,9 @@ func (c *adminServiceClient) DeleteDriverDocument(ctx context.Context, in *RqDel
 	return out, nil
 }
 
-func (c *adminServiceClient) GetEnum(ctx context.Context, in *RqGetEnum, opts ...grpc.CallOption) (*RsGetEnum, error) {
+func (c *adminServiceClient) GetEnum(ctx context.Context, in *GetEnumRequest, opts ...grpc.CallOption) (*GetEnumResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(RsGetEnum)
+	out := new(GetEnumResponse)
 	err := c.cc.Invoke(ctx, AdminService_GetEnum_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
@@ -254,28 +254,28 @@ func (c *adminServiceClient) GetEnum(ctx context.Context, in *RqGetEnum, opts ..
 // ======= Service Definition =======
 type AdminServiceServer interface {
 	// Validate admin token
-	ValidateAdminToken(context.Context, *RqValidateAdminToken) (*RsValidateAdminToken, error)
+	ValidateAdminToken(context.Context, *ValidateAdminTokenRequest) (*ValidateAdminTokenResponse, error)
 	// Get admin profile
-	GetAdminProfile(context.Context, *RqGetAdminProfile) (*RsGetAdminProfile, error)
+	GetAdminProfile(context.Context, *GetAdminProfileRequest) (*GetAdminProfileResponse, error)
 	// Check admin permissions
-	CheckAdminPermission(context.Context, *RqCheckAdminPermission) (*RsCheckAdminPermission, error)
+	CheckAdminPermission(context.Context, *CheckAdminPermissionRequest) (*CheckAdminPermissionResponse, error)
 	// Driver management
-	ListDrivers(context.Context, *RqListDrivers) (*RsListDrivers, error)
-	GetDriver(context.Context, *RqGetDriver) (*RsGetDriver, error)
-	ApproveDriver(context.Context, *RqApproveDriver) (*RsApproveDriver, error)
-	RejectDriver(context.Context, *RqRejectDriver) (*RsRejectDriver, error)
-	SuspendDriver(context.Context, *RqSuspendDriver) (*RsSuspendDriver, error)
-	ActivateDriver(context.Context, *RqActivateDriver) (*RsActivateDriver, error)
-	GetDriverDocuments(context.Context, *RqGetDriverDocuments) (*RsGetDriverDocuments, error)
-	ApproveDriverDocument(context.Context, *RqApproveDriverDocument) (*RsApproveDriverDocument, error)
-	RejectDriverDocument(context.Context, *RqRejectDriverDocument) (*RsRejectDriverDocument, error)
-	DeleteDriver(context.Context, *RqDeleteDriver) (*RsDeleteDriver, error)
+	ListDrivers(context.Context, *ListDriversRequest) (*ListDriversResponse, error)
+	GetDriver(context.Context, *GetDriverRequest) (*GetDriverResponse, error)
+	ApproveDriver(context.Context, *ApproveDriverRequest) (*ApproveDriverResponse, error)
+	RejectDriver(context.Context, *RejectDriverRequest) (*RejectDriverResponse, error)
+	SuspendDriver(context.Context, *SuspendDriverRequest) (*SuspendDriverResponse, error)
+	ActivateDriver(context.Context, *ActivateDriverRequest) (*ActivateDriverResponse, error)
+	GetDriverDocuments(context.Context, *GetDriverDocumentsRequest) (*GetDriverDocumentsResponse, error)
+	ApproveDriverDocument(context.Context, *ApproveDriverDocumentRequest) (*ApproveDriverDocumentResponse, error)
+	RejectDriverDocument(context.Context, *RejectDriverDocumentRequest) (*RejectDriverDocumentResponse, error)
+	DeleteDriver(context.Context, *DeleteDriverRequest) (*DeleteDriverResponse, error)
 	// Driver document management
-	ListDriverDocuments(context.Context, *RqListDriverDocuments) (*RsListDriverDocuments, error)
-	GetDriverDocument(context.Context, *RqGetDriverDocument) (*RsGetDriverDocument, error)
-	DeleteDriverDocument(context.Context, *RqDeleteDriverDocument) (*RsDeleteDriverDocument, error)
+	ListDriverDocuments(context.Context, *ListDriverDocumentsRequest) (*ListDriverDocumentsResponse, error)
+	GetDriverDocument(context.Context, *GetDriverDocumentRequest) (*GetDriverDocumentResponse, error)
+	DeleteDriverDocument(context.Context, *DeleteDriverDocumentRequest) (*DeleteDriverDocumentResponse, error)
 	// Enum management
-	GetEnum(context.Context, *RqGetEnum) (*RsGetEnum, error)
+	GetEnum(context.Context, *GetEnumRequest) (*GetEnumResponse, error)
 	mustEmbedUnimplementedAdminServiceServer()
 }
 
@@ -286,55 +286,55 @@ type AdminServiceServer interface {
 // pointer dereference when methods are called.
 type UnimplementedAdminServiceServer struct{}
 
-func (UnimplementedAdminServiceServer) ValidateAdminToken(context.Context, *RqValidateAdminToken) (*RsValidateAdminToken, error) {
+func (UnimplementedAdminServiceServer) ValidateAdminToken(context.Context, *ValidateAdminTokenRequest) (*ValidateAdminTokenResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method ValidateAdminToken not implemented")
 }
-func (UnimplementedAdminServiceServer) GetAdminProfile(context.Context, *RqGetAdminProfile) (*RsGetAdminProfile, error) {
+func (UnimplementedAdminServiceServer) GetAdminProfile(context.Context, *GetAdminProfileRequest) (*GetAdminProfileResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method GetAdminProfile not implemented")
 }
-func (UnimplementedAdminServiceServer) CheckAdminPermission(context.Context, *RqCheckAdminPermission) (*RsCheckAdminPermission, error) {
+func (UnimplementedAdminServiceServer) CheckAdminPermission(context.Context, *CheckAdminPermissionRequest) (*CheckAdminPermissionResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method CheckAdminPermission not implemented")
 }
-func (UnimplementedAdminServiceServer) ListDrivers(context.Context, *RqListDrivers) (*RsListDrivers, error) {
+func (UnimplementedAdminServiceServer) ListDrivers(context.Context, *ListDriversRequest) (*ListDriversResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method ListDrivers not implemented")
 }
-func (UnimplementedAdminServiceServer) GetDriver(context.Context, *RqGetDriver) (*RsGetDriver, error) {
+func (UnimplementedAdminServiceServer) GetDriver(context.Context, *GetDriverRequest) (*GetDriverResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method GetDriver not implemented")
 }
-func (UnimplementedAdminServiceServer) ApproveDriver(context.Context, *RqApproveDriver) (*RsApproveDriver, error) {
+func (UnimplementedAdminServiceServer) ApproveDriver(context.Context, *ApproveDriverRequest) (*ApproveDriverResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method ApproveDriver not implemented")
 }
-func (UnimplementedAdminServiceServer) RejectDriver(context.Context, *RqRejectDriver) (*RsRejectDriver, error) {
+func (UnimplementedAdminServiceServer) RejectDriver(context.Context, *RejectDriverRequest) (*RejectDriverResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method RejectDriver not implemented")
 }
-func (UnimplementedAdminServiceServer) SuspendDriver(context.Context, *RqSuspendDriver) (*RsSuspendDriver, error) {
+func (UnimplementedAdminServiceServer) SuspendDriver(context.Context, *SuspendDriverRequest) (*SuspendDriverResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method SuspendDriver not implemented")
 }
-func (UnimplementedAdminServiceServer) ActivateDriver(context.Context, *RqActivateDriver) (*RsActivateDriver, error) {
+func (UnimplementedAdminServiceServer) ActivateDriver(context.Context, *ActivateDriverRequest) (*ActivateDriverResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method ActivateDriver not implemented")
 }
-func (UnimplementedAdminServiceServer) GetDriverDocuments(context.Context, *RqGetDriverDocuments) (*RsGetDriverDocuments, error) {
+func (UnimplementedAdminServiceServer) GetDriverDocuments(context.Context, *GetDriverDocumentsRequest) (*GetDriverDocumentsResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method GetDriverDocuments not implemented")
 }
-func (UnimplementedAdminServiceServer) ApproveDriverDocument(context.Context, *RqApproveDriverDocument) (*RsApproveDriverDocument, error) {
+func (UnimplementedAdminServiceServer) ApproveDriverDocument(context.Context, *ApproveDriverDocumentRequest) (*ApproveDriverDocumentResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method ApproveDriverDocument not implemented")
 }
-func (UnimplementedAdminServiceServer) RejectDriverDocument(context.Context, *RqRejectDriverDocument) (*RsRejectDriverDocument, error) {
+func (UnimplementedAdminServiceServer) RejectDriverDocument(context.Context, *RejectDriverDocumentRequest) (*RejectDriverDocumentResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method RejectDriverDocument not implemented")
 }
-func (UnimplementedAdminServiceServer) DeleteDriver(context.Context, *RqDeleteDriver) (*RsDeleteDriver, error) {
+func (UnimplementedAdminServiceServer) DeleteDriver(context.Context, *DeleteDriverRequest) (*DeleteDriverResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method DeleteDriver not implemented")
 }
-func (UnimplementedAdminServiceServer) ListDriverDocuments(context.Context, *RqListDriverDocuments) (*RsListDriverDocuments, error) {
+func (UnimplementedAdminServiceServer) ListDriverDocuments(context.Context, *ListDriverDocumentsRequest) (*ListDriverDocumentsResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method ListDriverDocuments not implemented")
 }
-func (UnimplementedAdminServiceServer) GetDriverDocument(context.Context, *RqGetDriverDocument) (*RsGetDriverDocument, error) {
+func (UnimplementedAdminServiceServer) GetDriverDocument(context.Context, *GetDriverDocumentRequest) (*GetDriverDocumentResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method GetDriverDocument not implemented")
 }
-func (UnimplementedAdminServiceServer) DeleteDriverDocument(context.Context, *RqDeleteDriverDocument) (*RsDeleteDriverDocument, error) {
+func (UnimplementedAdminServiceServer) DeleteDriverDocument(context.Context, *DeleteDriverDocumentRequest) (*DeleteDriverDocumentResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method DeleteDriverDocument not implemented")
 }
-func (UnimplementedAdminServiceServer) GetEnum(context.Context, *RqGetEnum) (*RsGetEnum, error) {
+func (UnimplementedAdminServiceServer) GetEnum(context.Context, *GetEnumRequest) (*GetEnumResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method GetEnum not implemented")
 }
 func (UnimplementedAdminServiceServer) mustEmbedUnimplementedAdminServiceServer() {}
@@ -359,7 +359,7 @@ func RegisterAdminServiceServer(s grpc.ServiceRegistrar, srv AdminServiceServer)
 }
 
 func _AdminService_ValidateAdminToken_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(RqValidateAdminToken)
+	in := new(ValidateAdminTokenRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -371,13 +371,13 @@ func _AdminService_ValidateAdminToken_Handler(srv interface{}, ctx context.Conte
 		FullMethod: AdminService_ValidateAdminToken_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AdminServiceServer).ValidateAdminToken(ctx, req.(*RqValidateAdminToken))
+		return srv.(AdminServiceServer).ValidateAdminToken(ctx, req.(*ValidateAdminTokenRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _AdminService_GetAdminProfile_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(RqGetAdminProfile)
+	in := new(GetAdminProfileRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -389,13 +389,13 @@ func _AdminService_GetAdminProfile_Handler(srv interface{}, ctx context.Context,
 		FullMethod: AdminService_GetAdminProfile_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AdminServiceServer).GetAdminProfile(ctx, req.(*RqGetAdminProfile))
+		return srv.(AdminServiceServer).GetAdminProfile(ctx, req.(*GetAdminProfileRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _AdminService_CheckAdminPermission_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(RqCheckAdminPermission)
+	in := new(CheckAdminPermissionRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -407,13 +407,13 @@ func _AdminService_CheckAdminPermission_Handler(srv interface{}, ctx context.Con
 		FullMethod: AdminService_CheckAdminPermission_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AdminServiceServer).CheckAdminPermission(ctx, req.(*RqCheckAdminPermission))
+		return srv.(AdminServiceServer).CheckAdminPermission(ctx, req.(*CheckAdminPermissionRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _AdminService_ListDrivers_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(RqListDrivers)
+	in := new(ListDriversRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -425,13 +425,13 @@ func _AdminService_ListDrivers_Handler(srv interface{}, ctx context.Context, dec
 		FullMethod: AdminService_ListDrivers_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AdminServiceServer).ListDrivers(ctx, req.(*RqListDrivers))
+		return srv.(AdminServiceServer).ListDrivers(ctx, req.(*ListDriversRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _AdminService_GetDriver_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(RqGetDriver)
+	in := new(GetDriverRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -443,13 +443,13 @@ func _AdminService_GetDriver_Handler(srv interface{}, ctx context.Context, dec f
 		FullMethod: AdminService_GetDriver_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AdminServiceServer).GetDriver(ctx, req.(*RqGetDriver))
+		return srv.(AdminServiceServer).GetDriver(ctx, req.(*GetDriverRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _AdminService_ApproveDriver_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(RqApproveDriver)
+	in := new(ApproveDriverRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -461,13 +461,13 @@ func _AdminService_ApproveDriver_Handler(srv interface{}, ctx context.Context, d
 		FullMethod: AdminService_ApproveDriver_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AdminServiceServer).ApproveDriver(ctx, req.(*RqApproveDriver))
+		return srv.(AdminServiceServer).ApproveDriver(ctx, req.(*ApproveDriverRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _AdminService_RejectDriver_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(RqRejectDriver)
+	in := new(RejectDriverRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -479,13 +479,13 @@ func _AdminService_RejectDriver_Handler(srv interface{}, ctx context.Context, de
 		FullMethod: AdminService_RejectDriver_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AdminServiceServer).RejectDriver(ctx, req.(*RqRejectDriver))
+		return srv.(AdminServiceServer).RejectDriver(ctx, req.(*RejectDriverRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _AdminService_SuspendDriver_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(RqSuspendDriver)
+	in := new(SuspendDriverRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -497,13 +497,13 @@ func _AdminService_SuspendDriver_Handler(srv interface{}, ctx context.Context, d
 		FullMethod: AdminService_SuspendDriver_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AdminServiceServer).SuspendDriver(ctx, req.(*RqSuspendDriver))
+		return srv.(AdminServiceServer).SuspendDriver(ctx, req.(*SuspendDriverRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _AdminService_ActivateDriver_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(RqActivateDriver)
+	in := new(ActivateDriverRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -515,13 +515,13 @@ func _AdminService_ActivateDriver_Handler(srv interface{}, ctx context.Context, 
 		FullMethod: AdminService_ActivateDriver_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AdminServiceServer).ActivateDriver(ctx, req.(*RqActivateDriver))
+		return srv.(AdminServiceServer).ActivateDriver(ctx, req.(*ActivateDriverRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _AdminService_GetDriverDocuments_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(RqGetDriverDocuments)
+	in := new(GetDriverDocumentsRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -533,13 +533,13 @@ func _AdminService_GetDriverDocuments_Handler(srv interface{}, ctx context.Conte
 		FullMethod: AdminService_GetDriverDocuments_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AdminServiceServer).GetDriverDocuments(ctx, req.(*RqGetDriverDocuments))
+		return srv.(AdminServiceServer).GetDriverDocuments(ctx, req.(*GetDriverDocumentsRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _AdminService_ApproveDriverDocument_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(RqApproveDriverDocument)
+	in := new(ApproveDriverDocumentRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -551,13 +551,13 @@ func _AdminService_ApproveDriverDocument_Handler(srv interface{}, ctx context.Co
 		FullMethod: AdminService_ApproveDriverDocument_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AdminServiceServer).ApproveDriverDocument(ctx, req.(*RqApproveDriverDocument))
+		return srv.(AdminServiceServer).ApproveDriverDocument(ctx, req.(*ApproveDriverDocumentRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _AdminService_RejectDriverDocument_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(RqRejectDriverDocument)
+	in := new(RejectDriverDocumentRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -569,13 +569,13 @@ func _AdminService_RejectDriverDocument_Handler(srv interface{}, ctx context.Con
 		FullMethod: AdminService_RejectDriverDocument_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AdminServiceServer).RejectDriverDocument(ctx, req.(*RqRejectDriverDocument))
+		return srv.(AdminServiceServer).RejectDriverDocument(ctx, req.(*RejectDriverDocumentRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _AdminService_DeleteDriver_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(RqDeleteDriver)
+	in := new(DeleteDriverRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -587,13 +587,13 @@ func _AdminService_DeleteDriver_Handler(srv interface{}, ctx context.Context, de
 		FullMethod: AdminService_DeleteDriver_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AdminServiceServer).DeleteDriver(ctx, req.(*RqDeleteDriver))
+		return srv.(AdminServiceServer).DeleteDriver(ctx, req.(*DeleteDriverRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _AdminService_ListDriverDocuments_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(RqListDriverDocuments)
+	in := new(ListDriverDocumentsRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -605,13 +605,13 @@ func _AdminService_ListDriverDocuments_Handler(srv interface{}, ctx context.Cont
 		FullMethod: AdminService_ListDriverDocuments_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AdminServiceServer).ListDriverDocuments(ctx, req.(*RqListDriverDocuments))
+		return srv.(AdminServiceServer).ListDriverDocuments(ctx, req.(*ListDriverDocumentsRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _AdminService_GetDriverDocument_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(RqGetDriverDocument)
+	in := new(GetDriverDocumentRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -623,13 +623,13 @@ func _AdminService_GetDriverDocument_Handler(srv interface{}, ctx context.Contex
 		FullMethod: AdminService_GetDriverDocument_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AdminServiceServer).GetDriverDocument(ctx, req.(*RqGetDriverDocument))
+		return srv.(AdminServiceServer).GetDriverDocument(ctx, req.(*GetDriverDocumentRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _AdminService_DeleteDriverDocument_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(RqDeleteDriverDocument)
+	in := new(DeleteDriverDocumentRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -641,13 +641,13 @@ func _AdminService_DeleteDriverDocument_Handler(srv interface{}, ctx context.Con
 		FullMethod: AdminService_DeleteDriverDocument_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AdminServiceServer).DeleteDriverDocument(ctx, req.(*RqDeleteDriverDocument))
+		return srv.(AdminServiceServer).DeleteDriverDocument(ctx, req.(*DeleteDriverDocumentRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _AdminService_GetEnum_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(RqGetEnum)
+	in := new(GetEnumRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -659,7 +659,7 @@ func _AdminService_GetEnum_Handler(srv interface{}, ctx context.Context, dec fun
 		FullMethod: AdminService_GetEnum_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AdminServiceServer).GetEnum(ctx, req.(*RqGetEnum))
+		return srv.(AdminServiceServer).GetEnum(ctx, req.(*GetEnumRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }

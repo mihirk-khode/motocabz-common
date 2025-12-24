@@ -149,7 +149,7 @@ func RsValidationErrWithTraceID(validationErrors []ValidationError, traceID stri
 			Code:     http.StatusBadRequest,
 			CodeText: http.StatusText(http.StatusBadRequest),
 			Message:  "Validation failed",
-			Details:  validationErrors,
+			ErrorMsg: validationErrors,
 		},
 		Meta: meta,
 	}

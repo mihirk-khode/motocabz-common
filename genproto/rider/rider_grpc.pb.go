@@ -20,7 +20,6 @@ const _ = grpc.SupportPackageIsVersion9
 
 const (
 	RiderService_GetRiderInfo_FullMethodName           = "/rider.RiderService/GetRiderInfo"
-	RiderService_GetTripHistory_FullMethodName         = "/rider.RiderService/GetTripHistory"
 	RiderService_GetRiderPreferences_FullMethodName    = "/rider.RiderService/GetRiderPreferences"
 	RiderService_UpdateRiderPreferences_FullMethodName = "/rider.RiderService/UpdateRiderPreferences"
 )
@@ -32,13 +31,11 @@ const (
 // Rider service provides rider-specific operations for trip management and instant match
 type RiderServiceClient interface {
 	// Gets rider information for instant match
-	GetRiderInfo(ctx context.Context, in *RqGetRiderInfo, opts ...grpc.CallOption) (*RsGetRiderInfo, error)
-	// Gets rider trip history
-	GetTripHistory(ctx context.Context, in *RqGetTripHistory, opts ...grpc.CallOption) (*RsGetTripHistory, error)
+	GetRiderInfo(ctx context.Context, in *RiderInfoRequest, opts ...grpc.CallOption) (*RiderInfoResponse, error)
 	// Gets rider preferences
-	GetRiderPreferences(ctx context.Context, in *RqGetRiderPreferences, opts ...grpc.CallOption) (*RsGetRiderPreferences, error)
+	GetRiderPreferences(ctx context.Context, in *RiderPreferenceRequest, opts ...grpc.CallOption) (*GetRiderPreferenceResponse, error)
 	// Updates rider preferences
-	UpdateRiderPreferences(ctx context.Context, in *RqUpdateRiderPreferences, opts ...grpc.CallOption) (*RsUpdateRiderPreferences, error)
+	UpdateRiderPreferences(ctx context.Context, in *UpdateRiderPreferenceRequest, opts ...grpc.CallOption) (*UpdateRiderPreferenceResponse, error)
 }
 
 type riderServiceClient struct {
@@ -49,9 +46,9 @@ func NewRiderServiceClient(cc grpc.ClientConnInterface) RiderServiceClient {
 	return &riderServiceClient{cc}
 }
 
-func (c *riderServiceClient) GetRiderInfo(ctx context.Context, in *RqGetRiderInfo, opts ...grpc.CallOption) (*RsGetRiderInfo, error) {
+func (c *riderServiceClient) GetRiderInfo(ctx context.Context, in *RiderInfoRequest, opts ...grpc.CallOption) (*RiderInfoResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(RsGetRiderInfo)
+	out := new(RiderInfoResponse)
 	err := c.cc.Invoke(ctx, RiderService_GetRiderInfo_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
@@ -59,19 +56,9 @@ func (c *riderServiceClient) GetRiderInfo(ctx context.Context, in *RqGetRiderInf
 	return out, nil
 }
 
-func (c *riderServiceClient) GetTripHistory(ctx context.Context, in *RqGetTripHistory, opts ...grpc.CallOption) (*RsGetTripHistory, error) {
+func (c *riderServiceClient) GetRiderPreferences(ctx context.Context, in *RiderPreferenceRequest, opts ...grpc.CallOption) (*GetRiderPreferenceResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(RsGetTripHistory)
-	err := c.cc.Invoke(ctx, RiderService_GetTripHistory_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *riderServiceClient) GetRiderPreferences(ctx context.Context, in *RqGetRiderPreferences, opts ...grpc.CallOption) (*RsGetRiderPreferences, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(RsGetRiderPreferences)
+	out := new(GetRiderPreferenceResponse)
 	err := c.cc.Invoke(ctx, RiderService_GetRiderPreferences_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
@@ -79,9 +66,9 @@ func (c *riderServiceClient) GetRiderPreferences(ctx context.Context, in *RqGetR
 	return out, nil
 }
 
-func (c *riderServiceClient) UpdateRiderPreferences(ctx context.Context, in *RqUpdateRiderPreferences, opts ...grpc.CallOption) (*RsUpdateRiderPreferences, error) {
+func (c *riderServiceClient) UpdateRiderPreferences(ctx context.Context, in *UpdateRiderPreferenceRequest, opts ...grpc.CallOption) (*UpdateRiderPreferenceResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(RsUpdateRiderPreferences)
+	out := new(UpdateRiderPreferenceResponse)
 	err := c.cc.Invoke(ctx, RiderService_UpdateRiderPreferences_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
@@ -96,13 +83,11 @@ func (c *riderServiceClient) UpdateRiderPreferences(ctx context.Context, in *RqU
 // Rider service provides rider-specific operations for trip management and instant match
 type RiderServiceServer interface {
 	// Gets rider information for instant match
-	GetRiderInfo(context.Context, *RqGetRiderInfo) (*RsGetRiderInfo, error)
-	// Gets rider trip history
-	GetTripHistory(context.Context, *RqGetTripHistory) (*RsGetTripHistory, error)
+	GetRiderInfo(context.Context, *RiderInfoRequest) (*RiderInfoResponse, error)
 	// Gets rider preferences
-	GetRiderPreferences(context.Context, *RqGetRiderPreferences) (*RsGetRiderPreferences, error)
+	GetRiderPreferences(context.Context, *RiderPreferenceRequest) (*GetRiderPreferenceResponse, error)
 	// Updates rider preferences
-	UpdateRiderPreferences(context.Context, *RqUpdateRiderPreferences) (*RsUpdateRiderPreferences, error)
+	UpdateRiderPreferences(context.Context, *UpdateRiderPreferenceRequest) (*UpdateRiderPreferenceResponse, error)
 	mustEmbedUnimplementedRiderServiceServer()
 }
 
@@ -113,16 +98,13 @@ type RiderServiceServer interface {
 // pointer dereference when methods are called.
 type UnimplementedRiderServiceServer struct{}
 
-func (UnimplementedRiderServiceServer) GetRiderInfo(context.Context, *RqGetRiderInfo) (*RsGetRiderInfo, error) {
+func (UnimplementedRiderServiceServer) GetRiderInfo(context.Context, *RiderInfoRequest) (*RiderInfoResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method GetRiderInfo not implemented")
 }
-func (UnimplementedRiderServiceServer) GetTripHistory(context.Context, *RqGetTripHistory) (*RsGetTripHistory, error) {
-	return nil, status.Error(codes.Unimplemented, "method GetTripHistory not implemented")
-}
-func (UnimplementedRiderServiceServer) GetRiderPreferences(context.Context, *RqGetRiderPreferences) (*RsGetRiderPreferences, error) {
+func (UnimplementedRiderServiceServer) GetRiderPreferences(context.Context, *RiderPreferenceRequest) (*GetRiderPreferenceResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method GetRiderPreferences not implemented")
 }
-func (UnimplementedRiderServiceServer) UpdateRiderPreferences(context.Context, *RqUpdateRiderPreferences) (*RsUpdateRiderPreferences, error) {
+func (UnimplementedRiderServiceServer) UpdateRiderPreferences(context.Context, *UpdateRiderPreferenceRequest) (*UpdateRiderPreferenceResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method UpdateRiderPreferences not implemented")
 }
 func (UnimplementedRiderServiceServer) mustEmbedUnimplementedRiderServiceServer() {}
@@ -147,7 +129,7 @@ func RegisterRiderServiceServer(s grpc.ServiceRegistrar, srv RiderServiceServer)
 }
 
 func _RiderService_GetRiderInfo_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(RqGetRiderInfo)
+	in := new(RiderInfoRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -159,31 +141,13 @@ func _RiderService_GetRiderInfo_Handler(srv interface{}, ctx context.Context, de
 		FullMethod: RiderService_GetRiderInfo_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(RiderServiceServer).GetRiderInfo(ctx, req.(*RqGetRiderInfo))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _RiderService_GetTripHistory_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(RqGetTripHistory)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(RiderServiceServer).GetTripHistory(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: RiderService_GetTripHistory_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(RiderServiceServer).GetTripHistory(ctx, req.(*RqGetTripHistory))
+		return srv.(RiderServiceServer).GetRiderInfo(ctx, req.(*RiderInfoRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _RiderService_GetRiderPreferences_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(RqGetRiderPreferences)
+	in := new(RiderPreferenceRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -195,13 +159,13 @@ func _RiderService_GetRiderPreferences_Handler(srv interface{}, ctx context.Cont
 		FullMethod: RiderService_GetRiderPreferences_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(RiderServiceServer).GetRiderPreferences(ctx, req.(*RqGetRiderPreferences))
+		return srv.(RiderServiceServer).GetRiderPreferences(ctx, req.(*RiderPreferenceRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _RiderService_UpdateRiderPreferences_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(RqUpdateRiderPreferences)
+	in := new(UpdateRiderPreferenceRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -213,7 +177,7 @@ func _RiderService_UpdateRiderPreferences_Handler(srv interface{}, ctx context.C
 		FullMethod: RiderService_UpdateRiderPreferences_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(RiderServiceServer).UpdateRiderPreferences(ctx, req.(*RqUpdateRiderPreferences))
+		return srv.(RiderServiceServer).UpdateRiderPreferences(ctx, req.(*UpdateRiderPreferenceRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -228,10 +192,6 @@ var RiderService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetRiderInfo",
 			Handler:    _RiderService_GetRiderInfo_Handler,
-		},
-		{
-			MethodName: "GetTripHistory",
-			Handler:    _RiderService_GetTripHistory_Handler,
 		},
 		{
 			MethodName: "GetRiderPreferences",
