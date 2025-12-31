@@ -36,9 +36,6 @@ func InitTracer(serviceName, serviceVersion string) (*TracerProvider, error) {
 
 	// Get endpoint from env or use default
 	endpoint := getEnv("OTEL_EXPORTER_OTLP_ENDPOINT", "")
-	fmt.Println("OTEL_EXPORTER_OTLP_ENDPOINT", endpoint)
-	endpoint = "otel-collector:4317"
-	fmt.Println("OTEL_EXPORTER_OTLP_ENDPOINT", endpoint)
 
 	// If endpoint is disabled or empty, return no-op tracer provider
 	if endpoint == "" || endpoint == "none" || endpoint == "disabled" {

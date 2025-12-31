@@ -41,7 +41,7 @@ import (
     "log"
     "time"
     
-    "github.com/mihirk-khode/motocabz-common/infrastructure/observability"
+    "motocabz/common/infrastructure/observability"
 )
 
 func main() {

@@ -113,26 +113,6 @@ const (
 	NotificationTypeBidRejected      = "BID_REJECTED"
 )
 
-// Legacy Event Types (deprecated - use lowercase dot notation below)
-// These are kept for backward compatibility during migration
-const (
-	// Deprecated: Use EventTypeTripCreated = "trip.created" instead
-	EventTypeTripCreatedLegacy           = "TripCreated"
-	EventTypeTripUpdatedLegacy           = "TripUpdated"
-	EventTypeTripCancelledLegacy         = "TripCancelled"
-	EventTypeTripCompletedLegacy         = "TripCompleted"
-	EventTypeTripOptionsUpdatedLegacy    = "TripOptionsUpdated"
-	EventTypeBiddingSessionStartedLegacy = "BiddingSessionStarted"
-	EventTypeBidReceivedLegacy           = "BidReceived"
-	EventTypeBiddingSessionEndedLegacy   = "BiddingSessionEnded"
-	EventTypeDriverAssignedLegacy        = "DriverAssigned"
-	EventTypeBidSubmittedLegacy          = "BidSubmitted"
-	EventTypeBidAcceptedLegacy           = "BidAccepted"
-	EventTypeBidRejectedLegacy           = "BidRejected"
-	EventTypeBidCounteredLegacy          = "BidCountered"
-	EventTypeInstantMatchedLegacy        = "InstantMatched"
-)
-
 // Aggregate Types
 const (
 	AggregateTypeTrip           = "Trip"
@@ -166,11 +146,6 @@ const (
 	TripStatusCompleted          = "COMPLETED"
 	TripStatusCancelled          = "CANCELLED"
 	TripStatusFailed             = "FAILED"
-
-	// Legacy constants for backward compatibility (deprecated)
-	TripStatusUnspecified = "TRIP_STATUS_UNSPECIFIED"
-	TripStatusPending     = "TRIP_STATUS_PENDING"
-	TripStatusAccepted    = "TRIP_STATUS_ACCEPTED"
 )
 
 // Payment Status - Standardized values
@@ -181,9 +156,6 @@ const (
 	PaymentStatusFailed     = "FAILED"
 	PaymentStatusCancelled  = "CANCELLED"
 	PaymentStatusRefunded   = "REFUNDED"
-
-	// Legacy constants for backward compatibility (deprecated)
-	PaymentStatusUnspecified = "PAYMENT_STATUS_UNSPECIFIED"
 )
 
 // Fare Models / Price Models - Standardized values
@@ -191,11 +163,6 @@ const (
 	FareModelInstantMatch  = "INSTANT_MATCH"
 	FareModelFlexFare      = "FLEX_FARE"
 	FareModelAutomaticFare = "AUTOMATIC_FARE"
-
-	// Legacy constants for backward compatibility (deprecated)
-	PriceModelAutomaticFare = "AUTOMATIC_FARE"
-	PriceModelFlexFare      = "FLEX_FARE"
-	PriceModelInstantMatch  = "INSTANT_MATCH"
 )
 
 // Bidding Session Status - Standardized values

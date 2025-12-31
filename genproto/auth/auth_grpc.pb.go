@@ -32,22 +32,22 @@ const (
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 //
-// Auth service provides OTP-based authentication for riders and drivers.
+// Auth service provides authentication for riders and drivers.
 type AuthServiceClient interface {
-	// Sends an OTP to the provided phone.
-	SendOTP(ctx context.Context, in *SendOtpRequest, opts ...grpc.CallOption) (*SendOtpResponse, error)
+	// Sends an OTP to the provided phone number.
+	SendOTP(ctx context.Context, in *RqSendOtp, opts ...grpc.CallOption) (*RsSendOtp, error)
 	// Verifies the OTP and returns access and refresh tokens.
-	VerifyOTP(ctx context.Context, in *VerifyOtpRequest, opts ...grpc.CallOption) (*VerifyOtpResponse, error)
-	// Google signup
-	GoogleSignup(ctx context.Context, in *GoogleAuthRequest, opts ...grpc.CallOption) (*GoogleAuthResponse, error)
-	// Google login
-	GoogleLogin(ctx context.Context, in *GoogleAuthRequest, opts ...grpc.CallOption) (*GoogleAuthResponse, error)
-	// Token utilities
-	RefreshToken(ctx context.Context, in *RefreshTokenRequest, opts ...grpc.CallOption) (*TokenResponse, error)
-	// Parse token to get user id, role, expires at and validity
-	ParseToken(ctx context.Context, in *ParseTokenRequest, opts ...grpc.CallOption) (*ParseTokenResponse, error)
-	// User auth
-	UserAuth(ctx context.Context, in *UserAuthRequest, opts ...grpc.CallOption) (*UserAuthResponse, error)
+	VerifyOTP(ctx context.Context, in *RqVerifyOtp, opts ...grpc.CallOption) (*RsVerifyOtp, error)
+	// Google OAuth signup - creates a new user account
+	GoogleSignup(ctx context.Context, in *RqGoogleAuth, opts ...grpc.CallOption) (*RsGoogleAuth, error)
+	// Google OAuth login - authenticates existing user
+	GoogleLogin(ctx context.Context, in *RqGoogleAuth, opts ...grpc.CallOption) (*RsGoogleAuth, error)
+	// Refreshes access token using refresh token (with rotation)
+	RefreshToken(ctx context.Context, in *RqRefreshToken, opts ...grpc.CallOption) (*RsToken, error)
+	// Parses and validates a JWT token, returns token claims
+	ParseToken(ctx context.Context, in *RqParseToken, opts ...grpc.CallOption) (*RsParseToken, error)
+	// Generates access and refresh tokens for a user (internal use)
+	UserAuth(ctx context.Context, in *RqUserAuth, opts ...grpc.CallOption) (*RsUserAuth, error)
 }
 
 type authServiceClient struct {
@@ -58,9 +58,9 @@ func NewAuthServiceClient(cc grpc.ClientConnInterface) AuthServiceClient {
 	return &authServiceClient{cc}
 }
 
-func (c *authServiceClient) SendOTP(ctx context.Context, in *SendOtpRequest, opts ...grpc.CallOption) (*SendOtpResponse, error) {
+func (c *authServiceClient) SendOTP(ctx context.Context, in *RqSendOtp, opts ...grpc.CallOption) (*RsSendOtp, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(SendOtpResponse)
+	out := new(RsSendOtp)
 	err := c.cc.Invoke(ctx, AuthService_SendOTP_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
@@ -68,9 +68,9 @@ func (c *authServiceClient) SendOTP(ctx context.Context, in *SendOtpRequest, opt
 	return out, nil
 }
 
-func (c *authServiceClient) VerifyOTP(ctx context.Context, in *VerifyOtpRequest, opts ...grpc.CallOption) (*VerifyOtpResponse, error) {
+func (c *authServiceClient) VerifyOTP(ctx context.Context, in *RqVerifyOtp, opts ...grpc.CallOption) (*RsVerifyOtp, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(VerifyOtpResponse)
+	out := new(RsVerifyOtp)
 	err := c.cc.Invoke(ctx, AuthService_VerifyOTP_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
@@ -78,9 +78,9 @@ func (c *authServiceClient) VerifyOTP(ctx context.Context, in *VerifyOtpRequest,
 	return out, nil
 }
 
-func (c *authServiceClient) GoogleSignup(ctx context.Context, in *GoogleAuthRequest, opts ...grpc.CallOption) (*GoogleAuthResponse, error) {
+func (c *authServiceClient) GoogleSignup(ctx context.Context, in *RqGoogleAuth, opts ...grpc.CallOption) (*RsGoogleAuth, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(GoogleAuthResponse)
+	out := new(RsGoogleAuth)
 	err := c.cc.Invoke(ctx, AuthService_GoogleSignup_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
@@ -88,9 +88,9 @@ func (c *authServiceClient) GoogleSignup(ctx context.Context, in *GoogleAuthRequ
 	return out, nil
 }
 
-func (c *authServiceClient) GoogleLogin(ctx context.Context, in *GoogleAuthRequest, opts ...grpc.CallOption) (*GoogleAuthResponse, error) {
+func (c *authServiceClient) GoogleLogin(ctx context.Context, in *RqGoogleAuth, opts ...grpc.CallOption) (*RsGoogleAuth, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(GoogleAuthResponse)
+	out := new(RsGoogleAuth)
 	err := c.cc.Invoke(ctx, AuthService_GoogleLogin_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
@@ -98,9 +98,9 @@ func (c *authServiceClient) GoogleLogin(ctx context.Context, in *GoogleAuthReque
 	return out, nil
 }
 
-func (c *authServiceClient) RefreshToken(ctx context.Context, in *RefreshTokenRequest, opts ...grpc.CallOption) (*TokenResponse, error) {
+func (c *authServiceClient) RefreshToken(ctx context.Context, in *RqRefreshToken, opts ...grpc.CallOption) (*RsToken, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(TokenResponse)
+	out := new(RsToken)
 	err := c.cc.Invoke(ctx, AuthService_RefreshToken_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
@@ -108,9 +108,9 @@ func (c *authServiceClient) RefreshToken(ctx context.Context, in *RefreshTokenRe
 	return out, nil
 }
 
-func (c *authServiceClient) ParseToken(ctx context.Context, in *ParseTokenRequest, opts ...grpc.CallOption) (*ParseTokenResponse, error) {
+func (c *authServiceClient) ParseToken(ctx context.Context, in *RqParseToken, opts ...grpc.CallOption) (*RsParseToken, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(ParseTokenResponse)
+	out := new(RsParseToken)
 	err := c.cc.Invoke(ctx, AuthService_ParseToken_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
@@ -118,9 +118,9 @@ func (c *authServiceClient) ParseToken(ctx context.Context, in *ParseTokenReques
 	return out, nil
 }
 
-func (c *authServiceClient) UserAuth(ctx context.Context, in *UserAuthRequest, opts ...grpc.CallOption) (*UserAuthResponse, error) {
+func (c *authServiceClient) UserAuth(ctx context.Context, in *RqUserAuth, opts ...grpc.CallOption) (*RsUserAuth, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(UserAuthResponse)
+	out := new(RsUserAuth)
 	err := c.cc.Invoke(ctx, AuthService_UserAuth_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
@@ -132,22 +132,22 @@ func (c *authServiceClient) UserAuth(ctx context.Context, in *UserAuthRequest, o
 // All implementations must embed UnimplementedAuthServiceServer
 // for forward compatibility.
 //
-// Auth service provides OTP-based authentication for riders and drivers.
+// Auth service provides authentication for riders and drivers.
 type AuthServiceServer interface {
-	// Sends an OTP to the provided phone.
-	SendOTP(context.Context, *SendOtpRequest) (*SendOtpResponse, error)
+	// Sends an OTP to the provided phone number.
+	SendOTP(context.Context, *RqSendOtp) (*RsSendOtp, error)
 	// Verifies the OTP and returns access and refresh tokens.
-	VerifyOTP(context.Context, *VerifyOtpRequest) (*VerifyOtpResponse, error)
-	// Google signup
-	GoogleSignup(context.Context, *GoogleAuthRequest) (*GoogleAuthResponse, error)
-	// Google login
-	GoogleLogin(context.Context, *GoogleAuthRequest) (*GoogleAuthResponse, error)
-	// Token utilities
-	RefreshToken(context.Context, *RefreshTokenRequest) (*TokenResponse, error)
-	// Parse token to get user id, role, expires at and validity
-	ParseToken(context.Context, *ParseTokenRequest) (*ParseTokenResponse, error)
-	// User auth
-	UserAuth(context.Context, *UserAuthRequest) (*UserAuthResponse, error)
+	VerifyOTP(context.Context, *RqVerifyOtp) (*RsVerifyOtp, error)
+	// Google OAuth signup - creates a new user account
+	GoogleSignup(context.Context, *RqGoogleAuth) (*RsGoogleAuth, error)
+	// Google OAuth login - authenticates existing user
+	GoogleLogin(context.Context, *RqGoogleAuth) (*RsGoogleAuth, error)
+	// Refreshes access token using refresh token (with rotation)
+	RefreshToken(context.Context, *RqRefreshToken) (*RsToken, error)
+	// Parses and validates a JWT token, returns token claims
+	ParseToken(context.Context, *RqParseToken) (*RsParseToken, error)
+	// Generates access and refresh tokens for a user (internal use)
+	UserAuth(context.Context, *RqUserAuth) (*RsUserAuth, error)
 	mustEmbedUnimplementedAuthServiceServer()
 }
 
@@ -158,25 +158,25 @@ type AuthServiceServer interface {
 // pointer dereference when methods are called.
 type UnimplementedAuthServiceServer struct{}
 
-func (UnimplementedAuthServiceServer) SendOTP(context.Context, *SendOtpRequest) (*SendOtpResponse, error) {
+func (UnimplementedAuthServiceServer) SendOTP(context.Context, *RqSendOtp) (*RsSendOtp, error) {
 	return nil, status.Error(codes.Unimplemented, "method SendOTP not implemented")
 }
-func (UnimplementedAuthServiceServer) VerifyOTP(context.Context, *VerifyOtpRequest) (*VerifyOtpResponse, error) {
+func (UnimplementedAuthServiceServer) VerifyOTP(context.Context, *RqVerifyOtp) (*RsVerifyOtp, error) {
 	return nil, status.Error(codes.Unimplemented, "method VerifyOTP not implemented")
 }
-func (UnimplementedAuthServiceServer) GoogleSignup(context.Context, *GoogleAuthRequest) (*GoogleAuthResponse, error) {
+func (UnimplementedAuthServiceServer) GoogleSignup(context.Context, *RqGoogleAuth) (*RsGoogleAuth, error) {
 	return nil, status.Error(codes.Unimplemented, "method GoogleSignup not implemented")
 }
-func (UnimplementedAuthServiceServer) GoogleLogin(context.Context, *GoogleAuthRequest) (*GoogleAuthResponse, error) {
+func (UnimplementedAuthServiceServer) GoogleLogin(context.Context, *RqGoogleAuth) (*RsGoogleAuth, error) {
 	return nil, status.Error(codes.Unimplemented, "method GoogleLogin not implemented")
 }
-func (UnimplementedAuthServiceServer) RefreshToken(context.Context, *RefreshTokenRequest) (*TokenResponse, error) {
+func (UnimplementedAuthServiceServer) RefreshToken(context.Context, *RqRefreshToken) (*RsToken, error) {
 	return nil, status.Error(codes.Unimplemented, "method RefreshToken not implemented")
 }
-func (UnimplementedAuthServiceServer) ParseToken(context.Context, *ParseTokenRequest) (*ParseTokenResponse, error) {
+func (UnimplementedAuthServiceServer) ParseToken(context.Context, *RqParseToken) (*RsParseToken, error) {
 	return nil, status.Error(codes.Unimplemented, "method ParseToken not implemented")
 }
-func (UnimplementedAuthServiceServer) UserAuth(context.Context, *UserAuthRequest) (*UserAuthResponse, error) {
+func (UnimplementedAuthServiceServer) UserAuth(context.Context, *RqUserAuth) (*RsUserAuth, error) {
 	return nil, status.Error(codes.Unimplemented, "method UserAuth not implemented")
 }
 func (UnimplementedAuthServiceServer) mustEmbedUnimplementedAuthServiceServer() {}
@@ -201,7 +201,7 @@ func RegisterAuthServiceServer(s grpc.ServiceRegistrar, srv AuthServiceServer) {
 }
 
 func _AuthService_SendOTP_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(SendOtpRequest)
+	in := new(RqSendOtp)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -213,13 +213,13 @@ func _AuthService_SendOTP_Handler(srv interface{}, ctx context.Context, dec func
 		FullMethod: AuthService_SendOTP_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AuthServiceServer).SendOTP(ctx, req.(*SendOtpRequest))
+		return srv.(AuthServiceServer).SendOTP(ctx, req.(*RqSendOtp))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _AuthService_VerifyOTP_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(VerifyOtpRequest)
+	in := new(RqVerifyOtp)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -231,13 +231,13 @@ func _AuthService_VerifyOTP_Handler(srv interface{}, ctx context.Context, dec fu
 		FullMethod: AuthService_VerifyOTP_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AuthServiceServer).VerifyOTP(ctx, req.(*VerifyOtpRequest))
+		return srv.(AuthServiceServer).VerifyOTP(ctx, req.(*RqVerifyOtp))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _AuthService_GoogleSignup_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GoogleAuthRequest)
+	in := new(RqGoogleAuth)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -249,13 +249,13 @@ func _AuthService_GoogleSignup_Handler(srv interface{}, ctx context.Context, dec
 		FullMethod: AuthService_GoogleSignup_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AuthServiceServer).GoogleSignup(ctx, req.(*GoogleAuthRequest))
+		return srv.(AuthServiceServer).GoogleSignup(ctx, req.(*RqGoogleAuth))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _AuthService_GoogleLogin_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GoogleAuthRequest)
+	in := new(RqGoogleAuth)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -267,13 +267,13 @@ func _AuthService_GoogleLogin_Handler(srv interface{}, ctx context.Context, dec 
 		FullMethod: AuthService_GoogleLogin_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AuthServiceServer).GoogleLogin(ctx, req.(*GoogleAuthRequest))
+		return srv.(AuthServiceServer).GoogleLogin(ctx, req.(*RqGoogleAuth))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _AuthService_RefreshToken_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(RefreshTokenRequest)
+	in := new(RqRefreshToken)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -285,13 +285,13 @@ func _AuthService_RefreshToken_Handler(srv interface{}, ctx context.Context, dec
 		FullMethod: AuthService_RefreshToken_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AuthServiceServer).RefreshToken(ctx, req.(*RefreshTokenRequest))
+		return srv.(AuthServiceServer).RefreshToken(ctx, req.(*RqRefreshToken))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _AuthService_ParseToken_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(ParseTokenRequest)
+	in := new(RqParseToken)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -303,13 +303,13 @@ func _AuthService_ParseToken_Handler(srv interface{}, ctx context.Context, dec f
 		FullMethod: AuthService_ParseToken_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AuthServiceServer).ParseToken(ctx, req.(*ParseTokenRequest))
+		return srv.(AuthServiceServer).ParseToken(ctx, req.(*RqParseToken))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _AuthService_UserAuth_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(UserAuthRequest)
+	in := new(RqUserAuth)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -321,7 +321,7 @@ func _AuthService_UserAuth_Handler(srv interface{}, ctx context.Context, dec fun
 		FullMethod: AuthService_UserAuth_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AuthServiceServer).UserAuth(ctx, req.(*UserAuthRequest))
+		return srv.(AuthServiceServer).UserAuth(ctx, req.(*RqUserAuth))
 	}
 	return interceptor(ctx, in, info, handler)
 }

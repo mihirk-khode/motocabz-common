@@ -4,10 +4,11 @@ import (
 	"fmt"
 	"log"
 
+	"github.com/motocabz/common"
+	"github.com/motocabz/common/domain"
+	"github.com/motocabz/common/infrastructure/observability"
+
 	"github.com/gin-gonic/gin"
-	common "github.com/mihirk-khode/motocabz-common"
-	"github.com/mihirk-khode/motocabz-common/domain"
-	"github.com/mihirk-khode/motocabz-common/infrastructure/observability"
 	"go.opentelemetry.io/otel/attribute"
 	"go.opentelemetry.io/otel/codes"
 	"go.opentelemetry.io/otel/trace"

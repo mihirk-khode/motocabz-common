@@ -259,17 +259,6 @@ func SanitizeEmail(value string) string {
 	return strings.ToLower(strings.TrimSpace(value))
 }
 
-// ValidateStruct validates a struct using reflection (basic implementation)
-func ValidateStruct(v interface{}) []ValidationError {
-	// This is a basic implementation. In a real application, you might want to use
-	// a more sophisticated validation library like go-playground/validator
-	var errors []ValidationError
-
-	// Add struct validation logic here based on your needs
-	// For now, return empty slice
-	return errors
-}
-
 // Custom validation functions for specific business logic
 
 // ValidateTripStatus, ValidatePaymentStatus, ValidatePriceModel, and ValidateBiddingStatus

@@ -91,27 +91,27 @@ func (x *Enum) GetCategory() string {
 }
 
 // Enum response
-type EnumResponse struct {
+type RsEnum struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Enum          []*Enum                `protobuf:"bytes,1,rep,name=enum,proto3" json:"enum,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *EnumResponse) Reset() {
-	*x = EnumResponse{}
+func (x *RsEnum) Reset() {
+	*x = RsEnum{}
 	mi := &file_auth_auth_proto_msgTypes[1]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *EnumResponse) String() string {
+func (x *RsEnum) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*EnumResponse) ProtoMessage() {}
+func (*RsEnum) ProtoMessage() {}
 
-func (x *EnumResponse) ProtoReflect() protoreflect.Message {
+func (x *RsEnum) ProtoReflect() protoreflect.Message {
 	mi := &file_auth_auth_proto_msgTypes[1]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -123,39 +123,40 @@ func (x *EnumResponse) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use EnumResponse.ProtoReflect.Descriptor instead.
-func (*EnumResponse) Descriptor() ([]byte, []int) {
+// Deprecated: Use RsEnum.ProtoReflect.Descriptor instead.
+func (*RsEnum) Descriptor() ([]byte, []int) {
 	return file_auth_auth_proto_rawDescGZIP(), []int{1}
 }
 
-func (x *EnumResponse) GetEnum() []*Enum {
+func (x *RsEnum) GetEnum() []*Enum {
 	if x != nil {
 		return x.Enum
 	}
 	return nil
 }
 
-type EnumRequest struct {
+// Enum request
+type RqEnum struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	EnumType      string                 `protobuf:"bytes,1,opt,name=enum_type,json=enumType,proto3" json:"enum_type,omitempty"`
+	EnumType      string                 `protobuf:"bytes,1,opt,name=enum_type,json=enumType,proto3" json:"enum_type,omitempty"` // DRIVER or RIDER
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *EnumRequest) Reset() {
-	*x = EnumRequest{}
+func (x *RqEnum) Reset() {
+	*x = RqEnum{}
 	mi := &file_auth_auth_proto_msgTypes[2]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *EnumRequest) String() string {
+func (x *RqEnum) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*EnumRequest) ProtoMessage() {}
+func (*RqEnum) ProtoMessage() {}
 
-func (x *EnumRequest) ProtoReflect() protoreflect.Message {
+func (x *RqEnum) ProtoReflect() protoreflect.Message {
 	mi := &file_auth_auth_proto_msgTypes[2]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -167,41 +168,42 @@ func (x *EnumRequest) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use EnumRequest.ProtoReflect.Descriptor instead.
-func (*EnumRequest) Descriptor() ([]byte, []int) {
+// Deprecated: Use RqEnum.ProtoReflect.Descriptor instead.
+func (*RqEnum) Descriptor() ([]byte, []int) {
 	return file_auth_auth_proto_rawDescGZIP(), []int{2}
 }
 
-func (x *EnumRequest) GetEnumType() string {
+func (x *RqEnum) GetEnumType() string {
 	if x != nil {
 		return x.EnumType
 	}
 	return ""
 }
 
-type SendOtpRequest struct {
+// Send OTP Request
+type RqSendOtp struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	CountryCode   string                 `protobuf:"bytes,1,opt,name=country_code,json=countryCode,proto3" json:"country_code,omitempty"` // e.g., "+91"
 	Phone         string                 `protobuf:"bytes,2,opt,name=phone,proto3" json:"phone,omitempty"`                                // e.g., "1234567890"
-	Role          *EnumRequest           `protobuf:"bytes,3,opt,name=role,proto3" json:"role,omitempty"`                                  // rider or driver
+	Role          *RqEnum                `protobuf:"bytes,3,opt,name=role,proto3" json:"role,omitempty"`                                  // DRIVER or RIDER
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *SendOtpRequest) Reset() {
-	*x = SendOtpRequest{}
+func (x *RqSendOtp) Reset() {
+	*x = RqSendOtp{}
 	mi := &file_auth_auth_proto_msgTypes[3]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *SendOtpRequest) String() string {
+func (x *RqSendOtp) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*SendOtpRequest) ProtoMessage() {}
+func (*RqSendOtp) ProtoMessage() {}
 
-func (x *SendOtpRequest) ProtoReflect() protoreflect.Message {
+func (x *RqSendOtp) ProtoReflect() protoreflect.Message {
 	mi := &file_auth_auth_proto_msgTypes[3]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -213,53 +215,54 @@ func (x *SendOtpRequest) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use SendOtpRequest.ProtoReflect.Descriptor instead.
-func (*SendOtpRequest) Descriptor() ([]byte, []int) {
+// Deprecated: Use RqSendOtp.ProtoReflect.Descriptor instead.
+func (*RqSendOtp) Descriptor() ([]byte, []int) {
 	return file_auth_auth_proto_rawDescGZIP(), []int{3}
 }
 
-func (x *SendOtpRequest) GetCountryCode() string {
+func (x *RqSendOtp) GetCountryCode() string {
 	if x != nil {
 		return x.CountryCode
 	}
 	return ""
 }
 
-func (x *SendOtpRequest) GetPhone() string {
+func (x *RqSendOtp) GetPhone() string {
 	if x != nil {
 		return x.Phone
 	}
 	return ""
 }
 
-func (x *SendOtpRequest) GetRole() *EnumRequest {
+func (x *RqSendOtp) GetRole() *RqEnum {
 	if x != nil {
 		return x.Role
 	}
 	return nil
 }
 
-type SendOtpResponse struct {
+// Send OTP Response
+type RsSendOtp struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Sent          bool                   `protobuf:"varint,1,opt,name=sent,proto3" json:"sent,omitempty"` // true if OTP was sent
+	Sent          bool                   `protobuf:"varint,1,opt,name=sent,proto3" json:"sent,omitempty"` // true if OTP was sent successfully
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *SendOtpResponse) Reset() {
-	*x = SendOtpResponse{}
+func (x *RsSendOtp) Reset() {
+	*x = RsSendOtp{}
 	mi := &file_auth_auth_proto_msgTypes[4]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *SendOtpResponse) String() string {
+func (x *RsSendOtp) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*SendOtpResponse) ProtoMessage() {}
+func (*RsSendOtp) ProtoMessage() {}
 
-func (x *SendOtpResponse) ProtoReflect() protoreflect.Message {
+func (x *RsSendOtp) ProtoReflect() protoreflect.Message {
 	mi := &file_auth_auth_proto_msgTypes[4]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -271,42 +274,43 @@ func (x *SendOtpResponse) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use SendOtpResponse.ProtoReflect.Descriptor instead.
-func (*SendOtpResponse) Descriptor() ([]byte, []int) {
+// Deprecated: Use RsSendOtp.ProtoReflect.Descriptor instead.
+func (*RsSendOtp) Descriptor() ([]byte, []int) {
 	return file_auth_auth_proto_rawDescGZIP(), []int{4}
 }
 
-func (x *SendOtpResponse) GetSent() bool {
+func (x *RsSendOtp) GetSent() bool {
 	if x != nil {
 		return x.Sent
 	}
 	return false
 }
 
-type VerifyOtpRequest struct {
+// Verify OTP Request
+type RqVerifyOtp struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	CountryCode   string                 `protobuf:"bytes,1,opt,name=country_code,json=countryCode,proto3" json:"country_code,omitempty"`
 	Phone         string                 `protobuf:"bytes,2,opt,name=phone,proto3" json:"phone,omitempty"`
 	Code          string                 `protobuf:"bytes,3,opt,name=code,proto3" json:"code,omitempty"` // OTP code
-	Role          *EnumRequest           `protobuf:"bytes,4,opt,name=role,proto3" json:"role,omitempty"`
+	Role          *RqEnum                `protobuf:"bytes,4,opt,name=role,proto3" json:"role,omitempty"` // DRIVER or RIDER
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *VerifyOtpRequest) Reset() {
-	*x = VerifyOtpRequest{}
+func (x *RqVerifyOtp) Reset() {
+	*x = RqVerifyOtp{}
 	mi := &file_auth_auth_proto_msgTypes[5]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *VerifyOtpRequest) String() string {
+func (x *RqVerifyOtp) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*VerifyOtpRequest) ProtoMessage() {}
+func (*RqVerifyOtp) ProtoMessage() {}
 
-func (x *VerifyOtpRequest) ProtoReflect() protoreflect.Message {
+func (x *RqVerifyOtp) ProtoReflect() protoreflect.Message {
 	mi := &file_auth_auth_proto_msgTypes[5]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -318,61 +322,64 @@ func (x *VerifyOtpRequest) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use VerifyOtpRequest.ProtoReflect.Descriptor instead.
-func (*VerifyOtpRequest) Descriptor() ([]byte, []int) {
+// Deprecated: Use RqVerifyOtp.ProtoReflect.Descriptor instead.
+func (*RqVerifyOtp) Descriptor() ([]byte, []int) {
 	return file_auth_auth_proto_rawDescGZIP(), []int{5}
 }
 
-func (x *VerifyOtpRequest) GetCountryCode() string {
+func (x *RqVerifyOtp) GetCountryCode() string {
 	if x != nil {
 		return x.CountryCode
 	}
 	return ""
 }
 
-func (x *VerifyOtpRequest) GetPhone() string {
+func (x *RqVerifyOtp) GetPhone() string {
 	if x != nil {
 		return x.Phone
 	}
 	return ""
 }
 
-func (x *VerifyOtpRequest) GetCode() string {
+func (x *RqVerifyOtp) GetCode() string {
 	if x != nil {
 		return x.Code
 	}
 	return ""
 }
 
-func (x *VerifyOtpRequest) GetRole() *EnumRequest {
+func (x *RqVerifyOtp) GetRole() *RqEnum {
 	if x != nil {
 		return x.Role
 	}
 	return nil
 }
 
-type VerifyOtpResponse struct {
+// Verify OTP Response
+type RsVerifyOtp struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	OtpSent       bool                   `protobuf:"varint,1,opt,name=otp_sent,json=otpSent,proto3" json:"otp_sent,omitempty"`
 	UserAvailable bool                   `protobuf:"varint,2,opt,name=user_available,json=userAvailable,proto3" json:"user_available,omitempty"` // true if user exists
+	AccessToken   string                 `protobuf:"bytes,3,opt,name=access_token,json=accessToken,proto3" json:"access_token,omitempty"`        // JWT access token (if verification successful)
+	RefreshToken  string                 `protobuf:"bytes,4,opt,name=refresh_token,json=refreshToken,proto3" json:"refresh_token,omitempty"`     // JWT refresh token (if verification successful)
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *VerifyOtpResponse) Reset() {
-	*x = VerifyOtpResponse{}
+func (x *RsVerifyOtp) Reset() {
+	*x = RsVerifyOtp{}
 	mi := &file_auth_auth_proto_msgTypes[6]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *VerifyOtpResponse) String() string {
+func (x *RsVerifyOtp) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*VerifyOtpResponse) ProtoMessage() {}
+func (*RsVerifyOtp) ProtoMessage() {}
 
-func (x *VerifyOtpResponse) ProtoReflect() protoreflect.Message {
+func (x *RsVerifyOtp) ProtoReflect() protoreflect.Message {
 	mi := &file_auth_auth_proto_msgTypes[6]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -384,48 +391,63 @@ func (x *VerifyOtpResponse) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use VerifyOtpResponse.ProtoReflect.Descriptor instead.
-func (*VerifyOtpResponse) Descriptor() ([]byte, []int) {
+// Deprecated: Use RsVerifyOtp.ProtoReflect.Descriptor instead.
+func (*RsVerifyOtp) Descriptor() ([]byte, []int) {
 	return file_auth_auth_proto_rawDescGZIP(), []int{6}
 }
 
-func (x *VerifyOtpResponse) GetOtpSent() bool {
+func (x *RsVerifyOtp) GetOtpSent() bool {
 	if x != nil {
 		return x.OtpSent
 	}
 	return false
 }
 
-func (x *VerifyOtpResponse) GetUserAvailable() bool {
+func (x *RsVerifyOtp) GetUserAvailable() bool {
 	if x != nil {
 		return x.UserAvailable
 	}
 	return false
 }
 
-type GoogleAuthRequest struct {
+func (x *RsVerifyOtp) GetAccessToken() string {
+	if x != nil {
+		return x.AccessToken
+	}
+	return ""
+}
+
+func (x *RsVerifyOtp) GetRefreshToken() string {
+	if x != nil {
+		return x.RefreshToken
+	}
+	return ""
+}
+
+// Google Auth Request
+type RqGoogleAuth struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	IdToken       string                 `protobuf:"bytes,1,opt,name=id_token,json=idToken,proto3" json:"id_token,omitempty"`
-	ClientId      string                 `protobuf:"bytes,2,opt,name=client_id,json=clientId,proto3" json:"client_id,omitempty"`
-	Role          *EnumRequest           `protobuf:"bytes,3,opt,name=role,proto3" json:"role,omitempty"`
+	IdToken       string                 `protobuf:"bytes,1,opt,name=id_token,json=idToken,proto3" json:"id_token,omitempty"`    // Google ID token
+	ClientId      string                 `protobuf:"bytes,2,opt,name=client_id,json=clientId,proto3" json:"client_id,omitempty"` // OAuth client ID
+	Role          *RqEnum                `protobuf:"bytes,3,opt,name=role,proto3" json:"role,omitempty"`                         // DRIVER or RIDER
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *GoogleAuthRequest) Reset() {
-	*x = GoogleAuthRequest{}
+func (x *RqGoogleAuth) Reset() {
+	*x = RqGoogleAuth{}
 	mi := &file_auth_auth_proto_msgTypes[7]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *GoogleAuthRequest) String() string {
+func (x *RqGoogleAuth) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*GoogleAuthRequest) ProtoMessage() {}
+func (*RqGoogleAuth) ProtoMessage() {}
 
-func (x *GoogleAuthRequest) ProtoReflect() protoreflect.Message {
+func (x *RqGoogleAuth) ProtoReflect() protoreflect.Message {
 	mi := &file_auth_auth_proto_msgTypes[7]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -437,54 +459,55 @@ func (x *GoogleAuthRequest) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use GoogleAuthRequest.ProtoReflect.Descriptor instead.
-func (*GoogleAuthRequest) Descriptor() ([]byte, []int) {
+// Deprecated: Use RqGoogleAuth.ProtoReflect.Descriptor instead.
+func (*RqGoogleAuth) Descriptor() ([]byte, []int) {
 	return file_auth_auth_proto_rawDescGZIP(), []int{7}
 }
 
-func (x *GoogleAuthRequest) GetIdToken() string {
+func (x *RqGoogleAuth) GetIdToken() string {
 	if x != nil {
 		return x.IdToken
 	}
 	return ""
 }
 
-func (x *GoogleAuthRequest) GetClientId() string {
+func (x *RqGoogleAuth) GetClientId() string {
 	if x != nil {
 		return x.ClientId
 	}
 	return ""
 }
 
-func (x *GoogleAuthRequest) GetRole() *EnumRequest {
+func (x *RqGoogleAuth) GetRole() *RqEnum {
 	if x != nil {
 		return x.Role
 	}
 	return nil
 }
 
-type GoogleAuthResponse struct {
+// Google Auth Response
+type RsGoogleAuth struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	AccessToken   string                 `protobuf:"bytes,1,opt,name=access_token,json=accessToken,proto3" json:"access_token,omitempty"`
-	RefreshToken  string                 `protobuf:"bytes,2,opt,name=refresh_token,json=refreshToken,proto3" json:"refresh_token,omitempty"`
+	AccessToken   string                 `protobuf:"bytes,1,opt,name=access_token,json=accessToken,proto3" json:"access_token,omitempty"`    // JWT access token
+	RefreshToken  string                 `protobuf:"bytes,2,opt,name=refresh_token,json=refreshToken,proto3" json:"refresh_token,omitempty"` // JWT refresh token
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *GoogleAuthResponse) Reset() {
-	*x = GoogleAuthResponse{}
+func (x *RsGoogleAuth) Reset() {
+	*x = RsGoogleAuth{}
 	mi := &file_auth_auth_proto_msgTypes[8]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *GoogleAuthResponse) String() string {
+func (x *RsGoogleAuth) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*GoogleAuthResponse) ProtoMessage() {}
+func (*RsGoogleAuth) ProtoMessage() {}
 
-func (x *GoogleAuthResponse) ProtoReflect() protoreflect.Message {
+func (x *RsGoogleAuth) ProtoReflect() protoreflect.Message {
 	mi := &file_auth_auth_proto_msgTypes[8]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -496,46 +519,47 @@ func (x *GoogleAuthResponse) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use GoogleAuthResponse.ProtoReflect.Descriptor instead.
-func (*GoogleAuthResponse) Descriptor() ([]byte, []int) {
+// Deprecated: Use RsGoogleAuth.ProtoReflect.Descriptor instead.
+func (*RsGoogleAuth) Descriptor() ([]byte, []int) {
 	return file_auth_auth_proto_rawDescGZIP(), []int{8}
 }
 
-func (x *GoogleAuthResponse) GetAccessToken() string {
+func (x *RsGoogleAuth) GetAccessToken() string {
 	if x != nil {
 		return x.AccessToken
 	}
 	return ""
 }
 
-func (x *GoogleAuthResponse) GetRefreshToken() string {
+func (x *RsGoogleAuth) GetRefreshToken() string {
 	if x != nil {
 		return x.RefreshToken
 	}
 	return ""
 }
 
-type RefreshTokenRequest struct {
+// Refresh Token Request
+type RqRefreshToken struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	RefreshToken  string                 `protobuf:"bytes,1,opt,name=refresh_token,json=refreshToken,proto3" json:"refresh_token,omitempty"`
+	RefreshToken  string                 `protobuf:"bytes,1,opt,name=refresh_token,json=refreshToken,proto3" json:"refresh_token,omitempty"` // Current refresh token
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *RefreshTokenRequest) Reset() {
-	*x = RefreshTokenRequest{}
+func (x *RqRefreshToken) Reset() {
+	*x = RqRefreshToken{}
 	mi := &file_auth_auth_proto_msgTypes[9]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *RefreshTokenRequest) String() string {
+func (x *RqRefreshToken) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*RefreshTokenRequest) ProtoMessage() {}
+func (*RqRefreshToken) ProtoMessage() {}
 
-func (x *RefreshTokenRequest) ProtoReflect() protoreflect.Message {
+func (x *RqRefreshToken) ProtoReflect() protoreflect.Message {
 	mi := &file_auth_auth_proto_msgTypes[9]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -547,40 +571,41 @@ func (x *RefreshTokenRequest) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use RefreshTokenRequest.ProtoReflect.Descriptor instead.
-func (*RefreshTokenRequest) Descriptor() ([]byte, []int) {
+// Deprecated: Use RqRefreshToken.ProtoReflect.Descriptor instead.
+func (*RqRefreshToken) Descriptor() ([]byte, []int) {
 	return file_auth_auth_proto_rawDescGZIP(), []int{9}
 }
 
-func (x *RefreshTokenRequest) GetRefreshToken() string {
+func (x *RqRefreshToken) GetRefreshToken() string {
 	if x != nil {
 		return x.RefreshToken
 	}
 	return ""
 }
 
-type TokenResponse struct {
+// Token Response
+type RsToken struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	AccessToken   string                 `protobuf:"bytes,1,opt,name=access_token,json=accessToken,proto3" json:"access_token,omitempty"`
-	RefreshToken  string                 `protobuf:"bytes,2,opt,name=refresh_token,json=refreshToken,proto3" json:"refresh_token,omitempty"`
+	AccessToken   string                 `protobuf:"bytes,1,opt,name=access_token,json=accessToken,proto3" json:"access_token,omitempty"`    // New JWT access token
+	RefreshToken  string                 `protobuf:"bytes,2,opt,name=refresh_token,json=refreshToken,proto3" json:"refresh_token,omitempty"` // New JWT refresh token (rotated)
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *TokenResponse) Reset() {
-	*x = TokenResponse{}
+func (x *RsToken) Reset() {
+	*x = RsToken{}
 	mi := &file_auth_auth_proto_msgTypes[10]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *TokenResponse) String() string {
+func (x *RsToken) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*TokenResponse) ProtoMessage() {}
+func (*RsToken) ProtoMessage() {}
 
-func (x *TokenResponse) ProtoReflect() protoreflect.Message {
+func (x *RsToken) ProtoReflect() protoreflect.Message {
 	mi := &file_auth_auth_proto_msgTypes[10]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -592,46 +617,47 @@ func (x *TokenResponse) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use TokenResponse.ProtoReflect.Descriptor instead.
-func (*TokenResponse) Descriptor() ([]byte, []int) {
+// Deprecated: Use RsToken.ProtoReflect.Descriptor instead.
+func (*RsToken) Descriptor() ([]byte, []int) {
 	return file_auth_auth_proto_rawDescGZIP(), []int{10}
 }
 
-func (x *TokenResponse) GetAccessToken() string {
+func (x *RsToken) GetAccessToken() string {
 	if x != nil {
 		return x.AccessToken
 	}
 	return ""
 }
 
-func (x *TokenResponse) GetRefreshToken() string {
+func (x *RsToken) GetRefreshToken() string {
 	if x != nil {
 		return x.RefreshToken
 	}
 	return ""
 }
 
-type ParseTokenRequest struct {
+// Parse Token Request
+type RqParseToken struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Token         string                 `protobuf:"bytes,1,opt,name=token,proto3" json:"token,omitempty"`
+	Token         string                 `protobuf:"bytes,1,opt,name=token,proto3" json:"token,omitempty"` // JWT token to parse
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *ParseTokenRequest) Reset() {
-	*x = ParseTokenRequest{}
+func (x *RqParseToken) Reset() {
+	*x = RqParseToken{}
 	mi := &file_auth_auth_proto_msgTypes[11]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *ParseTokenRequest) String() string {
+func (x *RqParseToken) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*ParseTokenRequest) ProtoMessage() {}
+func (*RqParseToken) ProtoMessage() {}
 
-func (x *ParseTokenRequest) ProtoReflect() protoreflect.Message {
+func (x *RqParseToken) ProtoReflect() protoreflect.Message {
 	mi := &file_auth_auth_proto_msgTypes[11]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -643,42 +669,43 @@ func (x *ParseTokenRequest) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use ParseTokenRequest.ProtoReflect.Descriptor instead.
-func (*ParseTokenRequest) Descriptor() ([]byte, []int) {
+// Deprecated: Use RqParseToken.ProtoReflect.Descriptor instead.
+func (*RqParseToken) Descriptor() ([]byte, []int) {
 	return file_auth_auth_proto_rawDescGZIP(), []int{11}
 }
 
-func (x *ParseTokenRequest) GetToken() string {
+func (x *RqParseToken) GetToken() string {
 	if x != nil {
 		return x.Token
 	}
 	return ""
 }
 
-type ParseTokenResponse struct {
+// Parse Token Response
+type RsParseToken struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	UserId        string                 `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
-	Role          *EnumResponse          `protobuf:"bytes,2,opt,name=role,proto3" json:"role,omitempty"`
-	ExpiresAtUnix int64                  `protobuf:"varint,3,opt,name=expires_at_unix,json=expiresAtUnix,proto3" json:"expires_at_unix,omitempty"` // seconds since epoch
-	Valid         bool                   `protobuf:"varint,4,opt,name=valid,proto3" json:"valid,omitempty"`
+	UserId        string                 `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`                         // User ID from token
+	Role          *RsEnum                `protobuf:"bytes,2,opt,name=role,proto3" json:"role,omitempty"`                                           // User role (DRIVER or RIDER)
+	ExpiresAtUnix int64                  `protobuf:"varint,3,opt,name=expires_at_unix,json=expiresAtUnix,proto3" json:"expires_at_unix,omitempty"` // Token expiration time (Unix timestamp in seconds)
+	Valid         bool                   `protobuf:"varint,4,opt,name=valid,proto3" json:"valid,omitempty"`                                        // Whether token is valid
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *ParseTokenResponse) Reset() {
-	*x = ParseTokenResponse{}
+func (x *RsParseToken) Reset() {
+	*x = RsParseToken{}
 	mi := &file_auth_auth_proto_msgTypes[12]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *ParseTokenResponse) String() string {
+func (x *RsParseToken) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*ParseTokenResponse) ProtoMessage() {}
+func (*RsParseToken) ProtoMessage() {}
 
-func (x *ParseTokenResponse) ProtoReflect() protoreflect.Message {
+func (x *RsParseToken) ProtoReflect() protoreflect.Message {
 	mi := &file_auth_auth_proto_msgTypes[12]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -690,61 +717,62 @@ func (x *ParseTokenResponse) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use ParseTokenResponse.ProtoReflect.Descriptor instead.
-func (*ParseTokenResponse) Descriptor() ([]byte, []int) {
+// Deprecated: Use RsParseToken.ProtoReflect.Descriptor instead.
+func (*RsParseToken) Descriptor() ([]byte, []int) {
 	return file_auth_auth_proto_rawDescGZIP(), []int{12}
 }
 
-func (x *ParseTokenResponse) GetUserId() string {
+func (x *RsParseToken) GetUserId() string {
 	if x != nil {
 		return x.UserId
 	}
 	return ""
 }
 
-func (x *ParseTokenResponse) GetRole() *EnumResponse {
+func (x *RsParseToken) GetRole() *RsEnum {
 	if x != nil {
 		return x.Role
 	}
 	return nil
 }
 
-func (x *ParseTokenResponse) GetExpiresAtUnix() int64 {
+func (x *RsParseToken) GetExpiresAtUnix() int64 {
 	if x != nil {
 		return x.ExpiresAtUnix
 	}
 	return 0
 }
 
-func (x *ParseTokenResponse) GetValid() bool {
+func (x *RsParseToken) GetValid() bool {
 	if x != nil {
 		return x.Valid
 	}
 	return false
 }
 
-type UserAuthRequest struct {
+// User Auth Request (internal use - generates tokens for existing user)
+type RqUserAuth struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	UserId        string                 `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
-	Role          *EnumRequest           `protobuf:"bytes,2,opt,name=role,proto3" json:"role,omitempty"`
+	UserId        string                 `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"` // User ID
+	Role          *RqEnum                `protobuf:"bytes,2,opt,name=role,proto3" json:"role,omitempty"`                   // DRIVER or RIDER
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *UserAuthRequest) Reset() {
-	*x = UserAuthRequest{}
+func (x *RqUserAuth) Reset() {
+	*x = RqUserAuth{}
 	mi := &file_auth_auth_proto_msgTypes[13]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *UserAuthRequest) String() string {
+func (x *RqUserAuth) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*UserAuthRequest) ProtoMessage() {}
+func (*RqUserAuth) ProtoMessage() {}
 
-func (x *UserAuthRequest) ProtoReflect() protoreflect.Message {
+func (x *RqUserAuth) ProtoReflect() protoreflect.Message {
 	mi := &file_auth_auth_proto_msgTypes[13]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -756,46 +784,47 @@ func (x *UserAuthRequest) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use UserAuthRequest.ProtoReflect.Descriptor instead.
-func (*UserAuthRequest) Descriptor() ([]byte, []int) {
+// Deprecated: Use RqUserAuth.ProtoReflect.Descriptor instead.
+func (*RqUserAuth) Descriptor() ([]byte, []int) {
 	return file_auth_auth_proto_rawDescGZIP(), []int{13}
 }
 
-func (x *UserAuthRequest) GetUserId() string {
+func (x *RqUserAuth) GetUserId() string {
 	if x != nil {
 		return x.UserId
 	}
 	return ""
 }
 
-func (x *UserAuthRequest) GetRole() *EnumRequest {
+func (x *RqUserAuth) GetRole() *RqEnum {
 	if x != nil {
 		return x.Role
 	}
 	return nil
 }
 
-type UserAuthResponse struct {
+// User Auth Response
+type RsUserAuth struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Token         *TokenResponse         `protobuf:"bytes,1,opt,name=token,proto3" json:"token,omitempty"`
+	Token         *RsToken               `protobuf:"bytes,1,opt,name=token,proto3" json:"token,omitempty"` // Access and refresh tokens
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *UserAuthResponse) Reset() {
-	*x = UserAuthResponse{}
+func (x *RsUserAuth) Reset() {
+	*x = RsUserAuth{}
 	mi := &file_auth_auth_proto_msgTypes[14]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *UserAuthResponse) String() string {
+func (x *RsUserAuth) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*UserAuthResponse) ProtoMessage() {}
+func (*RsUserAuth) ProtoMessage() {}
 
-func (x *UserAuthResponse) ProtoReflect() protoreflect.Message {
+func (x *RsUserAuth) ProtoReflect() protoreflect.Message {
 	mi := &file_auth_auth_proto_msgTypes[14]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -807,12 +836,12 @@ func (x *UserAuthResponse) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use UserAuthResponse.ProtoReflect.Descriptor instead.
-func (*UserAuthResponse) Descriptor() ([]byte, []int) {
+// Deprecated: Use RsUserAuth.ProtoReflect.Descriptor instead.
+func (*RsUserAuth) Descriptor() ([]byte, []int) {
 	return file_auth_auth_proto_rawDescGZIP(), []int{14}
 }
 
-func (x *UserAuthResponse) GetToken() *TokenResponse {
+func (x *RsUserAuth) GetToken() *RsToken {
 	if x != nil {
 		return x.Token
 	}
@@ -828,59 +857,63 @@ const file_auth_auth_proto_rawDesc = "" +
 	"\x02id\x18\x01 \x01(\x05R\x02id\x12\x12\n" +
 	"\x04name\x18\x02 \x01(\tR\x04name\x12\x12\n" +
 	"\x04type\x18\x03 \x01(\tR\x04type\x12\x1a\n" +
-	"\bcategory\x18\x04 \x01(\tR\bcategory\".\n" +
-	"\fEnumResponse\x12\x1e\n" +
+	"\bcategory\x18\x04 \x01(\tR\bcategory\"(\n" +
+	"\x06RsEnum\x12\x1e\n" +
 	"\x04enum\x18\x01 \x03(\v2\n" +
-	".auth.EnumR\x04enum\"*\n" +
-	"\vEnumRequest\x12\x1b\n" +
-	"\tenum_type\x18\x01 \x01(\tR\benumType\"p\n" +
-	"\x0eSendOtpRequest\x12!\n" +
+	".auth.EnumR\x04enum\"%\n" +
+	"\x06RqEnum\x12\x1b\n" +
+	"\tenum_type\x18\x01 \x01(\tR\benumType\"f\n" +
+	"\tRqSendOtp\x12!\n" +
 	"\fcountry_code\x18\x01 \x01(\tR\vcountryCode\x12\x14\n" +
-	"\x05phone\x18\x02 \x01(\tR\x05phone\x12%\n" +
-	"\x04role\x18\x03 \x01(\v2\x11.auth.EnumRequestR\x04role\"%\n" +
-	"\x0fSendOtpResponse\x12\x12\n" +
-	"\x04sent\x18\x01 \x01(\bR\x04sent\"\x86\x01\n" +
-	"\x10VerifyOtpRequest\x12!\n" +
+	"\x05phone\x18\x02 \x01(\tR\x05phone\x12 \n" +
+	"\x04role\x18\x03 \x01(\v2\f.auth.RqEnumR\x04role\"\x1f\n" +
+	"\tRsSendOtp\x12\x12\n" +
+	"\x04sent\x18\x01 \x01(\bR\x04sent\"|\n" +
+	"\vRqVerifyOtp\x12!\n" +
 	"\fcountry_code\x18\x01 \x01(\tR\vcountryCode\x12\x14\n" +
 	"\x05phone\x18\x02 \x01(\tR\x05phone\x12\x12\n" +
-	"\x04code\x18\x03 \x01(\tR\x04code\x12%\n" +
-	"\x04role\x18\x04 \x01(\v2\x11.auth.EnumRequestR\x04role\"U\n" +
-	"\x11VerifyOtpResponse\x12\x19\n" +
+	"\x04code\x18\x03 \x01(\tR\x04code\x12 \n" +
+	"\x04role\x18\x04 \x01(\v2\f.auth.RqEnumR\x04role\"\x97\x01\n" +
+	"\vRsVerifyOtp\x12\x19\n" +
 	"\botp_sent\x18\x01 \x01(\bR\aotpSent\x12%\n" +
-	"\x0euser_available\x18\x02 \x01(\bR\ruserAvailable\"r\n" +
-	"\x11GoogleAuthRequest\x12\x19\n" +
+	"\x0euser_available\x18\x02 \x01(\bR\ruserAvailable\x12!\n" +
+	"\faccess_token\x18\x03 \x01(\tR\vaccessToken\x12#\n" +
+	"\rrefresh_token\x18\x04 \x01(\tR\frefreshToken\"h\n" +
+	"\fRqGoogleAuth\x12\x19\n" +
 	"\bid_token\x18\x01 \x01(\tR\aidToken\x12\x1b\n" +
-	"\tclient_id\x18\x02 \x01(\tR\bclientId\x12%\n" +
-	"\x04role\x18\x03 \x01(\v2\x11.auth.EnumRequestR\x04role\"\\\n" +
-	"\x12GoogleAuthResponse\x12!\n" +
+	"\tclient_id\x18\x02 \x01(\tR\bclientId\x12 \n" +
+	"\x04role\x18\x03 \x01(\v2\f.auth.RqEnumR\x04role\"V\n" +
+	"\fRsGoogleAuth\x12!\n" +
 	"\faccess_token\x18\x01 \x01(\tR\vaccessToken\x12#\n" +
-	"\rrefresh_token\x18\x02 \x01(\tR\frefreshToken\":\n" +
-	"\x13RefreshTokenRequest\x12#\n" +
-	"\rrefresh_token\x18\x01 \x01(\tR\frefreshToken\"W\n" +
-	"\rTokenResponse\x12!\n" +
+	"\rrefresh_token\x18\x02 \x01(\tR\frefreshToken\"5\n" +
+	"\x0eRqRefreshToken\x12#\n" +
+	"\rrefresh_token\x18\x01 \x01(\tR\frefreshToken\"Q\n" +
+	"\aRsToken\x12!\n" +
 	"\faccess_token\x18\x01 \x01(\tR\vaccessToken\x12#\n" +
-	"\rrefresh_token\x18\x02 \x01(\tR\frefreshToken\")\n" +
-	"\x11ParseTokenRequest\x12\x14\n" +
-	"\x05token\x18\x01 \x01(\tR\x05token\"\x93\x01\n" +
-	"\x12ParseTokenResponse\x12\x17\n" +
-	"\auser_id\x18\x01 \x01(\tR\x06userId\x12&\n" +
-	"\x04role\x18\x02 \x01(\v2\x12.auth.EnumResponseR\x04role\x12&\n" +
+	"\rrefresh_token\x18\x02 \x01(\tR\frefreshToken\"$\n" +
+	"\fRqParseToken\x12\x14\n" +
+	"\x05token\x18\x01 \x01(\tR\x05token\"\x87\x01\n" +
+	"\fRsParseToken\x12\x17\n" +
+	"\auser_id\x18\x01 \x01(\tR\x06userId\x12 \n" +
+	"\x04role\x18\x02 \x01(\v2\f.auth.RsEnumR\x04role\x12&\n" +
 	"\x0fexpires_at_unix\x18\x03 \x01(\x03R\rexpiresAtUnix\x12\x14\n" +
-	"\x05valid\x18\x04 \x01(\bR\x05valid\"Q\n" +
-	"\x0fUserAuthRequest\x12\x17\n" +
-	"\auser_id\x18\x01 \x01(\tR\x06userId\x12%\n" +
-	"\x04role\x18\x02 \x01(\v2\x11.auth.EnumRequestR\x04role\"=\n" +
-	"\x10UserAuthResponse\x12)\n" +
-	"\x05token\x18\x01 \x01(\v2\x13.auth.TokenResponseR\x05token2\xd2\x03\n" +
-	"\vAuthService\x128\n" +
-	"\aSendOTP\x12\x14.auth.SendOtpRequest\x1a\x15.auth.SendOtpResponse\"\x00\x12>\n" +
-	"\tVerifyOTP\x12\x16.auth.VerifyOtpRequest\x1a\x17.auth.VerifyOtpResponse\"\x00\x12C\n" +
-	"\fGoogleSignup\x12\x17.auth.GoogleAuthRequest\x1a\x18.auth.GoogleAuthResponse\"\x00\x12B\n" +
-	"\vGoogleLogin\x12\x17.auth.GoogleAuthRequest\x1a\x18.auth.GoogleAuthResponse\"\x00\x12@\n" +
-	"\fRefreshToken\x12\x19.auth.RefreshTokenRequest\x1a\x13.auth.TokenResponse\"\x00\x12A\n" +
+	"\x05valid\x18\x04 \x01(\bR\x05valid\"G\n" +
 	"\n" +
-	"ParseToken\x12\x17.auth.ParseTokenRequest\x1a\x18.auth.ParseTokenResponse\"\x00\x12;\n" +
-	"\bUserAuth\x12\x15.auth.UserAuthRequest\x1a\x16.auth.UserAuthResponse\"\x00B<Z:github.com/mihirk-khode/motocabz-common/genproto/auth;authb\x06proto3"
+	"RqUserAuth\x12\x17\n" +
+	"\auser_id\x18\x01 \x01(\tR\x06userId\x12 \n" +
+	"\x04role\x18\x02 \x01(\v2\f.auth.RqEnumR\x04role\"1\n" +
+	"\n" +
+	"RsUserAuth\x12#\n" +
+	"\x05token\x18\x01 \x01(\v2\r.auth.RsTokenR\x05token2\x85\x03\n" +
+	"\vAuthService\x12-\n" +
+	"\aSendOTP\x12\x0f.auth.RqSendOtp\x1a\x0f.auth.RsSendOtp\"\x00\x123\n" +
+	"\tVerifyOTP\x12\x11.auth.RqVerifyOtp\x1a\x11.auth.RsVerifyOtp\"\x00\x128\n" +
+	"\fGoogleSignup\x12\x12.auth.RqGoogleAuth\x1a\x12.auth.RsGoogleAuth\"\x00\x127\n" +
+	"\vGoogleLogin\x12\x12.auth.RqGoogleAuth\x1a\x12.auth.RsGoogleAuth\"\x00\x125\n" +
+	"\fRefreshToken\x12\x14.auth.RqRefreshToken\x1a\r.auth.RsToken\"\x00\x126\n" +
+	"\n" +
+	"ParseToken\x12\x12.auth.RqParseToken\x1a\x12.auth.RsParseToken\"\x00\x120\n" +
+	"\bUserAuth\x12\x10.auth.RqUserAuth\x1a\x10.auth.RsUserAuth\"\x00B<Z:github.com/mihirk-khode/motocabz-common/genproto/auth;authb\x06proto3"
 
 var (
 	file_auth_auth_proto_rawDescOnce sync.Once
@@ -896,44 +929,44 @@ func file_auth_auth_proto_rawDescGZIP() []byte {
 
 var file_auth_auth_proto_msgTypes = make([]protoimpl.MessageInfo, 15)
 var file_auth_auth_proto_goTypes = []any{
-	(*Enum)(nil),                // 0: auth.Enum
-	(*EnumResponse)(nil),        // 1: auth.EnumResponse
-	(*EnumRequest)(nil),         // 2: auth.EnumRequest
-	(*SendOtpRequest)(nil),      // 3: auth.SendOtpRequest
-	(*SendOtpResponse)(nil),     // 4: auth.SendOtpResponse
-	(*VerifyOtpRequest)(nil),    // 5: auth.VerifyOtpRequest
-	(*VerifyOtpResponse)(nil),   // 6: auth.VerifyOtpResponse
-	(*GoogleAuthRequest)(nil),   // 7: auth.GoogleAuthRequest
-	(*GoogleAuthResponse)(nil),  // 8: auth.GoogleAuthResponse
-	(*RefreshTokenRequest)(nil), // 9: auth.RefreshTokenRequest
-	(*TokenResponse)(nil),       // 10: auth.TokenResponse
-	(*ParseTokenRequest)(nil),   // 11: auth.ParseTokenRequest
-	(*ParseTokenResponse)(nil),  // 12: auth.ParseTokenResponse
-	(*UserAuthRequest)(nil),     // 13: auth.UserAuthRequest
-	(*UserAuthResponse)(nil),    // 14: auth.UserAuthResponse
+	(*Enum)(nil),           // 0: auth.Enum
+	(*RsEnum)(nil),         // 1: auth.RsEnum
+	(*RqEnum)(nil),         // 2: auth.RqEnum
+	(*RqSendOtp)(nil),      // 3: auth.RqSendOtp
+	(*RsSendOtp)(nil),      // 4: auth.RsSendOtp
+	(*RqVerifyOtp)(nil),    // 5: auth.RqVerifyOtp
+	(*RsVerifyOtp)(nil),    // 6: auth.RsVerifyOtp
+	(*RqGoogleAuth)(nil),   // 7: auth.RqGoogleAuth
+	(*RsGoogleAuth)(nil),   // 8: auth.RsGoogleAuth
+	(*RqRefreshToken)(nil), // 9: auth.RqRefreshToken
+	(*RsToken)(nil),        // 10: auth.RsToken
+	(*RqParseToken)(nil),   // 11: auth.RqParseToken
+	(*RsParseToken)(nil),   // 12: auth.RsParseToken
+	(*RqUserAuth)(nil),     // 13: auth.RqUserAuth
+	(*RsUserAuth)(nil),     // 14: auth.RsUserAuth
 }
 var file_auth_auth_proto_depIdxs = []int32{
-	0,  // 0: auth.EnumResponse.enum:type_name -> auth.Enum
-	2,  // 1: auth.SendOtpRequest.role:type_name -> auth.EnumRequest
-	2,  // 2: auth.VerifyOtpRequest.role:type_name -> auth.EnumRequest
-	2,  // 3: auth.GoogleAuthRequest.role:type_name -> auth.EnumRequest
-	1,  // 4: auth.ParseTokenResponse.role:type_name -> auth.EnumResponse
-	2,  // 5: auth.UserAuthRequest.role:type_name -> auth.EnumRequest
-	10, // 6: auth.UserAuthResponse.token:type_name -> auth.TokenResponse
-	3,  // 7: auth.AuthService.SendOTP:input_type -> auth.SendOtpRequest
-	5,  // 8: auth.AuthService.VerifyOTP:input_type -> auth.VerifyOtpRequest
-	7,  // 9: auth.AuthService.GoogleSignup:input_type -> auth.GoogleAuthRequest
-	7,  // 10: auth.AuthService.GoogleLogin:input_type -> auth.GoogleAuthRequest
-	9,  // 11: auth.AuthService.RefreshToken:input_type -> auth.RefreshTokenRequest
-	11, // 12: auth.AuthService.ParseToken:input_type -> auth.ParseTokenRequest
-	13, // 13: auth.AuthService.UserAuth:input_type -> auth.UserAuthRequest
-	4,  // 14: auth.AuthService.SendOTP:output_type -> auth.SendOtpResponse
-	6,  // 15: auth.AuthService.VerifyOTP:output_type -> auth.VerifyOtpResponse
-	8,  // 16: auth.AuthService.GoogleSignup:output_type -> auth.GoogleAuthResponse
-	8,  // 17: auth.AuthService.GoogleLogin:output_type -> auth.GoogleAuthResponse
-	10, // 18: auth.AuthService.RefreshToken:output_type -> auth.TokenResponse
-	12, // 19: auth.AuthService.ParseToken:output_type -> auth.ParseTokenResponse
-	14, // 20: auth.AuthService.UserAuth:output_type -> auth.UserAuthResponse
+	0,  // 0: auth.RsEnum.enum:type_name -> auth.Enum
+	2,  // 1: auth.RqSendOtp.role:type_name -> auth.RqEnum
+	2,  // 2: auth.RqVerifyOtp.role:type_name -> auth.RqEnum
+	2,  // 3: auth.RqGoogleAuth.role:type_name -> auth.RqEnum
+	1,  // 4: auth.RsParseToken.role:type_name -> auth.RsEnum
+	2,  // 5: auth.RqUserAuth.role:type_name -> auth.RqEnum
+	10, // 6: auth.RsUserAuth.token:type_name -> auth.RsToken
+	3,  // 7: auth.AuthService.SendOTP:input_type -> auth.RqSendOtp
+	5,  // 8: auth.AuthService.VerifyOTP:input_type -> auth.RqVerifyOtp
+	7,  // 9: auth.AuthService.GoogleSignup:input_type -> auth.RqGoogleAuth
+	7,  // 10: auth.AuthService.GoogleLogin:input_type -> auth.RqGoogleAuth
+	9,  // 11: auth.AuthService.RefreshToken:input_type -> auth.RqRefreshToken
+	11, // 12: auth.AuthService.ParseToken:input_type -> auth.RqParseToken
+	13, // 13: auth.AuthService.UserAuth:input_type -> auth.RqUserAuth
+	4,  // 14: auth.AuthService.SendOTP:output_type -> auth.RsSendOtp
+	6,  // 15: auth.AuthService.VerifyOTP:output_type -> auth.RsVerifyOtp
+	8,  // 16: auth.AuthService.GoogleSignup:output_type -> auth.RsGoogleAuth
+	8,  // 17: auth.AuthService.GoogleLogin:output_type -> auth.RsGoogleAuth
+	10, // 18: auth.AuthService.RefreshToken:output_type -> auth.RsToken
+	12, // 19: auth.AuthService.ParseToken:output_type -> auth.RsParseToken
+	14, // 20: auth.AuthService.UserAuth:output_type -> auth.RsUserAuth
 	14, // [14:21] is the sub-list for method output_type
 	7,  // [7:14] is the sub-list for method input_type
 	7,  // [7:7] is the sub-list for extension type_name

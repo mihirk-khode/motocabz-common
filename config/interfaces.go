@@ -67,7 +67,13 @@ type IFullConfig interface {
 }
 
 // IWSManager provides WebSocket connection management
+// Services should implement this interface with their WebSocket manager
+// See Common/websocket/websocket.go for a reference implementation
 type IWSManager interface {
-	// Add connection methods as needed
-	// This interface should be implemented by each service's WebSocket manager
+	// AddConnection adds a new WebSocket connection
+	AddConnection(userID, userType string, conn interface{})
+	// RemoveConnection removes a WebSocket connection
+	RemoveConnection(userID, userType string)
+	// SendMessage sends a message to a specific user
+	SendMessage(userID, userType string, message interface{}) error
 }
